@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    target-branch: "main"
+    directory: "/"
+    reviewers:
+      - "daht-x"
+    assignees:
+      - "daht-x"
+    commit-message:
+      prefix: "workflow"
+    labels:
+      - "scope: root"
+      - "topic: workflow"
+      - "package manager: github actions"
+      - "priority: medium"
+      - "status: pending"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
