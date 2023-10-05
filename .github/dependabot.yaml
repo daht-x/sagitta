@@ -18,3 +18,23 @@ updates:
     schedule:
       interval: "daily"
     open-pull-requests-limit: 10
+  - package-ecosystem: "npm"
+    target-branch: "main"
+    directory: "/"
+    reviewers:
+      - "daht-x"
+    assignees:
+      - "daht-x"
+    allow:
+      - dependency-name: "prettier"
+    commit-message:
+      prefix: "chore"
+    labels:
+      - "scope: root"
+      - "topic: chore"
+      - "package manager: pnpm"
+      - "priority: medium"
+      - "status: pending"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
