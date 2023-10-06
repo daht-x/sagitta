@@ -26,6 +26,7 @@ updates:
     assignees:
       - "daht-x"
     allow:
+      - dependency-name: "eslint"
       - dependency-name: "prettier"
     commit-message:
       prefix: "chore"
