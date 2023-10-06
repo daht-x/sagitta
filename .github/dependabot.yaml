@@ -30,6 +30,7 @@ updates:
       - dependency-name: "eslint"
       - dependency-name: "eslint-config-airbnb-base"
       - dependency-name: "eslint-config-prettier"
+      - dependency-name: "eslint-plugin-import"
       - dependency-name: "prettier"
     commit-message:
       prefix: "chore"
