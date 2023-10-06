@@ -17,5 +17,8 @@
 		"pnpm": ">=8"
 	},
 	"private": true,
+	"scripts": {
+		"prepare": "husky install"
+	},
 	"type": "module"
 }
