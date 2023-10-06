@@ -1,0 +1,6 @@
+{
+	"fallbackRetryDelay": "15s",
+	"retryCount": 5,
+	"retryOn429": true,
+	"timeout": "10s"
+}
