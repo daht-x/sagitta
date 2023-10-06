@@ -26,6 +26,7 @@ updates:
     assignees:
       - "daht-x"
     allow:
+      - dependency-name: "@commitlint/cli"
       - dependency-name: "@eslint/js"
       - dependency-name: "eslint"
       - dependency-name: "eslint-config-airbnb-base"
