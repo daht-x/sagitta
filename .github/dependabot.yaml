@@ -32,6 +32,7 @@ updates:
       - dependency-name: "eslint-config-airbnb-base"
       - dependency-name: "eslint-config-prettier"
       - dependency-name: "eslint-plugin-import"
+      - dependency-name: "husky"
       - dependency-name: "lint-staged"
       - dependency-name: "markdown-link-check"
       - dependency-name: "markdownlint-cli"
