@@ -28,6 +28,7 @@ updates:
     allow:
       - dependency-name: "@eslint/js"
       - dependency-name: "eslint"
+      - dependency-name: "eslint-config-airbnb-base"
       - dependency-name: "prettier"
     commit-message:
       prefix: "chore"
