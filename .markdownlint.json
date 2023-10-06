@@ -1,0 +1,18 @@
+{
+	"first-line-heading": false,
+	"heading-style": false,
+	"hr-style": {
+		"style": "---"
+	},
+	"line-length": {
+		"line_length": 400
+	},
+	"no-missing-space-closed-atx": false,
+	"no-trailing-spaces": {
+		"br_spaces": 0,
+		"strict": true
+	},
+	"ul-style": {
+		"style": "dash"
+	}
+}
