@@ -8,3 +8,4 @@
 ![Repository size](https://img.shields.io/github/repo-size/daht-x/sagitta-core?style=for-the-badge&label=REPOSITORY%20SIZE&labelColor=000000&color=228BE6)
 [![Open issues](https://img.shields.io/github/issues-raw/daht-x/sagitta-core?style=for-the-badge&label=OPEN%20ISSUES&labelColor=000000&color=7950F2)](https://github.com/daht-x/sagitta-core/issues?q=is%3Aopen+is%3Aissue)
 [![Closed issues](https://img.shields.io/github/issues-closed-raw/daht-x/sagitta-core?style=for-the-badge&label=CLOSED%20ISSUES&labelColor=000000&color=228BE6)](https://github.com/daht-x/sagitta-core/issues?q=is%3Aissue+is%3Aclosed)
+[![Open pull requests](https://img.shields.io/github/issues-pr-raw/daht-x/sagitta-core?style=for-the-badge&label=OPEN%20PULL%20REQUESTS&labelColor=000000&color=7950F2)](https://github.com/daht-x/sagitta-core/pulls?q=is%3Aopen+is%3Apr)
