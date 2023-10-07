@@ -4,7 +4,8 @@
 		"dbaeumer.vscode-eslint",
 		"redhat.vscode-yaml",
 		"yzhang.markdown-all-in-one",
-		"davidanson.vscode-markdownlint"
+		"davidanson.vscode-markdownlint",
+		"redhat.vscode-xml"
 	],
 	"unwantedRecommendations": [
 		"rvest.vs-code-prettier-eslint"
