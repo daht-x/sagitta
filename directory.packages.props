@@ -1,0 +1,5 @@
+<Project>
+	<PropertyGroup Condition="$(IsDotPropsOrDotCsproj) == true">
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+	</PropertyGroup>
+</Project>
