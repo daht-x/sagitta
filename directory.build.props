@@ -16,4 +16,7 @@
 		<AnalysisMode>all</AnalysisMode>
 		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
 	</PropertyGroup>
+	<ItemGroup Condition="$(IsDotCsproj) == true">
+		<PackageReference Include="SonarAnalyzer.CSharp" />
+	</ItemGroup>
 </Project>
