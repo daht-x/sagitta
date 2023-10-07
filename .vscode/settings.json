@@ -2,8 +2,12 @@
 	"[javascript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
+		"source.fixAll.eslint": true,
+		"source.sort.json": true
 	},
 	"eslint.experimental.useFlatConfig": true
 }
