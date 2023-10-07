@@ -1,7 +1,8 @@
 {
 	"recommendations": [
 		"esbenp.prettier-vscode",
-		"dbaeumer.vscode-eslint"
+		"dbaeumer.vscode-eslint",
+		"redhat.vscode-yaml"
 	],
 	"unwantedRecommendations": [
 		"rvest.vs-code-prettier-eslint"
