@@ -2,7 +2,9 @@
 	"recommendations": [
 		"esbenp.prettier-vscode",
 		"dbaeumer.vscode-eslint",
-		"redhat.vscode-yaml"
+		"redhat.vscode-yaml",
+		"yzhang.markdown-all-in-one",
+		"davidanson.vscode-markdownlint"
 	],
 	"unwantedRecommendations": [
 		"rvest.vs-code-prettier-eslint"
