@@ -5,6 +5,9 @@
 	"[json]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
 	},
+	"[yaml]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml"
+	},
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true,
 		"source.sort.json": true
