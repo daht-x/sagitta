@@ -5,4 +5,4 @@
 *.png binary
 *.md diff=markdown
 *.sh diff=bash eol=lf
-*.cs diff=csharp
+**/*.cs diff=csharp
