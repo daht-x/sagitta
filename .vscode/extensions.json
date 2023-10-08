@@ -15,7 +15,8 @@
 		"tintoy.msbuild-project-tools",
 		"github.vscode-github-actions",
 		"github.vscode-pull-request-github",
-		"streetsidesoftware.code-spell-checker"
+		"streetsidesoftware.code-spell-checker",
+		"editorconfig.editorconfig"
 	],
 	"unwantedRecommendations": [
 		"rvest.vs-code-prettier-eslint"
