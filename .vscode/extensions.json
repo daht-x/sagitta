@@ -5,7 +5,10 @@
 		"redhat.vscode-yaml",
 		"yzhang.markdown-all-in-one",
 		"davidanson.vscode-markdownlint",
-		"redhat.vscode-xml"
+		"redhat.vscode-xml",
+		"mads-hartmann.bash-ide-vscode",
+		"foxundermoon.shell-format",
+		"timonwong.shellcheck"
 	],
 	"unwantedRecommendations": [
 		"rvest.vs-code-prettier-eslint"
