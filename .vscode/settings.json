@@ -8,6 +8,9 @@
 	"[markdown]": {
 		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
 	},
+	"[xml]": {
+		"editor.defaultFormatter": "redhat.vscode-xml"
+	},
 	"[yaml]": {
 		"editor.defaultFormatter": "redhat.vscode-yaml"
 	},
@@ -27,5 +30,8 @@
 	"markdown.validate.fileLinks.enabled": "error",
 	"markdown.validate.fragmentLinks.enabled": "error",
 	"markdown.validate.referenceLinks.enabled": "error",
-	"markdown.validate.unusedLinkDefinitions.enabled": "error"
+	"markdown.validate.unusedLinkDefinitions.enabled": "error",
+	"xml.codeLens.enabled": true,
+	"xml.format.joinCommentLines": true,
+	"xml.format.maxLineWidth": 500
 }
