@@ -19,7 +19,8 @@
 		"editorconfig.editorconfig",
 		"usernamehw.errorlens",
 		"christian-kohler.path-intellisense",
-		"sonarsource.sonarlint-vscode"
+		"sonarsource.sonarlint-vscode",
+		"jasonnutter.vscode-codeowners"
 	],
 	"unwantedRecommendations": [
 		"rvest.vs-code-prettier-eslint"
