@@ -14,7 +14,8 @@
 		"ms-dotnettools.vscodeintellicode-csharp",
 		"tintoy.msbuild-project-tools",
 		"github.vscode-github-actions",
-		"github.vscode-pull-request-github"
+		"github.vscode-pull-request-github",
+		"streetsidesoftware.code-spell-checker"
 	],
 	"unwantedRecommendations": [
 		"rvest.vs-code-prettier-eslint"
