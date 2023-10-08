@@ -16,7 +16,8 @@
 		"github.vscode-github-actions",
 		"github.vscode-pull-request-github",
 		"streetsidesoftware.code-spell-checker",
-		"editorconfig.editorconfig"
+		"editorconfig.editorconfig",
+		"usernamehw.errorlens"
 	],
 	"unwantedRecommendations": [
 		"rvest.vs-code-prettier-eslint"
