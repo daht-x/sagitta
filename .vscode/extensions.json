@@ -17,7 +17,8 @@
 		"github.vscode-pull-request-github",
 		"streetsidesoftware.code-spell-checker",
 		"editorconfig.editorconfig",
-		"usernamehw.errorlens"
+		"usernamehw.errorlens",
+		"christian-kohler.path-intellisense"
 	],
 	"unwantedRecommendations": [
 		"rvest.vs-code-prettier-eslint"
