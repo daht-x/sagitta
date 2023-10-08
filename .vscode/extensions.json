@@ -18,7 +18,8 @@
 		"streetsidesoftware.code-spell-checker",
 		"editorconfig.editorconfig",
 		"usernamehw.errorlens",
-		"christian-kohler.path-intellisense"
+		"christian-kohler.path-intellisense",
+		"sonarsource.sonarlint-vscode"
 	],
 	"unwantedRecommendations": [
 		"rvest.vs-code-prettier-eslint"
