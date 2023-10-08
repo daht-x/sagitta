@@ -8,7 +8,11 @@
 		"redhat.vscode-xml",
 		"mads-hartmann.bash-ide-vscode",
 		"foxundermoon.shell-format",
-		"timonwong.shellcheck"
+		"timonwong.shellcheck",
+		"ms-dotnettools.csharp",
+		"ms-dotnettools.csdevkit",
+		"ms-dotnettools.vscodeintellicode-csharp",
+		"tintoy.msbuild-project-tools"
 	],
 	"unwantedRecommendations": [
 		"rvest.vs-code-prettier-eslint"
