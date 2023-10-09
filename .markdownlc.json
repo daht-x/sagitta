@@ -1,5 +1,10 @@
 {
 	"fallbackRetryDelay": "15s",
+	"ignorePatterns": [
+		{
+			"pattern": "^https:\/\/twitter.com\/.*$"
+		}
+	],
 	"retryCount": 5,
 	"retryOn429": true,
 	"timeout": "10s"
