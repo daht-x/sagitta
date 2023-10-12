@@ -1,0 +1,53 @@
+name: CodeQL
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "**.js"
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "**.js"
+  schedule:
+    - cron: "0 0 */2 * *"
+  workflow_dispatch:
+jobs:
+  redundancy:
+    name: "Redundancy"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Cancel previous workflow runs"
+        uses: "styfle/cancel-workflow-action@0.12.0"
+        with:
+          all_but_latest: true
+          access_token: "${{ github.token }}"
+  analysis:
+    name: "Analysis"
+    needs: "redundancy"
+    runs-on: ubuntu-latest
+    permissions:
+      actions: "read"
+      contents: "read"
+      security-events: "write"
+    strategy:
+      fail-fast: false
+      matrix:
+        languages:
+          - "javascript"
+    steps:
+      - name: "Set up workspace (applicable to integration events)"
+        if: "${{ github.event_name == 'push' || github.event_name == 'pull_request' }}"
+        uses: "actions/checkout@v4.1.0"
+      - name: "Set up workspace (applicable to manual or scheduled events)"
+        if: "${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}"
+        uses: "actions/checkout@v4.1.0"
+        with:
+          fetch-depth: 0
+      - name: "Set up analyzer"
+        uses: "github/codeql-action/init@v2.22.1"
+        with:
+          languages: "${{ matrix.languages }}"
+      - name: "Run analyzer"
+        uses: "github/codeql-action/analyze@v2.22.1"
