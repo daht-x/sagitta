@@ -11,4 +11,5 @@
 [![Open pull requests](https://img.shields.io/github/issues-pr-raw/daht-x/sagitta-core?style=for-the-badge&label=OPEN%20PULL%20REQUESTS&labelColor=000000&color=7950F2)](https://github.com/daht-x/sagitta-core/pulls?q=is%3Aopen+is%3Apr)
 [![Closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/daht-x/sagitta-core?style=for-the-badge&label=CLOSED%20PULL%20REQUESTS&labelColor=000000&color=228BE6)](https://github.com/daht-x/sagitta-core/pulls?q=is%3Apr+is%3Aclosed)
 
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/codeql.yaml?style=for-the-badge&label=CODEQL&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/codeql.yaml)
 [![Documentation](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/documentation.yaml?style=for-the-badge&label=DOCUMENTATION&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/documentation.yaml)
