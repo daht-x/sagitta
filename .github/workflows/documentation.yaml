@@ -11,7 +11,7 @@ on:
     paths:
       - "**.md"
   schedule:
-    - cron: "0 8 */2 * *"
+    - cron: "0 0 */2 * *"
   workflow_dispatch:
 jobs:
   redundancy:
