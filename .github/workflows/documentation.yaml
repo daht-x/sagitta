@@ -16,7 +16,6 @@ on:
 jobs:
   redundancy:
     name: "Redundancy"
-    if: "${{ github.event_name == 'push' || github.event_name == 'pull_request' }}"
     runs-on: "ubuntu-latest"
     steps:
       - name: "Cancel previous workflow runs"
@@ -26,6 +25,7 @@ jobs:
           access_token: "${{ github.token }}"
   consistency:
     name: "Consistency"
+    needs: "redundancy"
     env:
       MARKDOWN_LINK_CHECK_CONFIGURATION_FILE: ".markdownlc.json"
     runs-on: "ubuntu-latest"
