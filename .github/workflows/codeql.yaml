@@ -5,12 +5,14 @@ on:
       - "main"
     paths:
       - "package.json"
+      - "pnpm-lock.yaml"
       - "**.js"
   pull_request:
     branches:
       - "main"
     paths:
       - "package.json"
+      - "pnpm-lock.yaml"
       - "**.js"
   schedule:
     - cron: "0 0 */2 * *"
