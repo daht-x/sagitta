@@ -4,7 +4,7 @@
 		<DefaultAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</DefaultAssets>
 	</PropertyGroup>
 	<ItemGroup Condition="$(IsDotPropsOrDotCsproj) == true">
-		<PackageVersion Include="SonarAnalyzer.CSharp" Version="9.11.0.78383">
+		<PackageVersion Include="SonarAnalyzer.CSharp" Version="9.12.0.78982">
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageVersion>
