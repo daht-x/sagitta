@@ -4,11 +4,13 @@ on:
     branches:
       - "main"
     paths:
+      - "package.json"
       - "**.js"
   pull_request:
     branches:
       - "main"
     paths:
+      - "package.json"
       - "**.js"
   schedule:
     - cron: "0 0 */2 * *"
