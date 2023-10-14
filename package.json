@@ -13,7 +13,7 @@
 		"prettier": "3.0.3"
 	},
 	"engines": {
-		"node": "18.18.1",
+		"node": "18.18.2",
 		"pnpm": ">=8"
 	},
 	"private": true,
