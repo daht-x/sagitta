@@ -25,18 +25,6 @@ updates:
       - "daht-x"
     assignees:
       - "daht-x"
-    allow:
-      - dependency-name: "@commitlint/cli"
-      - dependency-name: "@eslint/js"
-      - dependency-name: "eslint"
-      - dependency-name: "eslint-config-airbnb-base"
-      - dependency-name: "eslint-config-prettier"
-      - dependency-name: "eslint-plugin-import"
-      - dependency-name: "husky"
-      - dependency-name: "lint-staged"
-      - dependency-name: "markdown-link-check"
-      - dependency-name: "markdownlint-cli"
-      - dependency-name: "prettier"
     commit-message:
       prefix: "dependency"
     labels:
@@ -55,8 +43,6 @@ updates:
       - "daht-x"
     assignees:
       - "daht-x"
-    allow:
-      - dependency-name: "SonarAnalyzer.CSharp"
     commit-message:
       prefix: "dependency"
     labels:
