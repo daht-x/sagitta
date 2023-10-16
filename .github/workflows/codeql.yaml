@@ -27,8 +27,8 @@ jobs:
         with:
           all_but_latest: true
           access_token: "${{ github.token }}"
-  analysis:
-    name: "Analysis"
+  target:
+    name: "Target"
     needs: "redundancy"
     runs-on: "ubuntu-latest"
     permissions:
