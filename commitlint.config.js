@@ -39,7 +39,7 @@ const rootConfiguration = {
 		"type-enum": [
 			ruleSeverity.error,
 			ruleCompliance.always,
-			["feature", "test", "build", "refactor", "style", "chore", "documentation", "workflow"]
+			["feature", "test", "build", "dependency", "refactor", "style", "chore", "documentation", "workflow"]
 		],
 		"type-case": [ruleSeverity.error, ruleCompliance.always, namingStyle.lowerCase],
 		"type-empty": [ruleSeverity.error, ruleCompliance.never],
