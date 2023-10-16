@@ -18,5 +18,9 @@
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageVersion>
+		<PackageVersion Include="coverlet.collector" Version="6.0.0">
+			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageVersion>
 	</ItemGroup>
 </Project>
