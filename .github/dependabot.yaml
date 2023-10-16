@@ -8,7 +8,7 @@ updates:
     assignees:
       - "daht-x"
     commit-message:
-      prefix: "workflow"
+      prefix: "dependency"
     labels:
       - "scope: root"
       - "topic: workflow"
@@ -38,7 +38,7 @@ updates:
       - dependency-name: "markdownlint-cli"
       - dependency-name: "prettier"
     commit-message:
-      prefix: "chore"
+      prefix: "dependency"
     labels:
       - "scope: root"
       - "topic: chore"
@@ -58,7 +58,7 @@ updates:
     allow:
       - dependency-name: "SonarAnalyzer.CSharp"
     commit-message:
-      prefix: "chore"
+      prefix: "dependency"
     labels:
       - "scope: root"
       - "topic: chore"
