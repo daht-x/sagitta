@@ -23,8 +23,8 @@ jobs:
         with:
           all_but_latest: true
           access_token: "${{ github.token }}"
-  consistency:
-    name: "Consistency"
+  target:
+    name: "Target"
     needs: "redundancy"
     env:
       MARKDOWN_LINK_CHECK_CONFIGURATION_FILE: ".markdownlc.json"
