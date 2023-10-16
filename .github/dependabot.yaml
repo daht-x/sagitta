@@ -11,7 +11,7 @@ updates:
       prefix: "dependency"
     labels:
       - "scope: root"
-      - "topic: workflow"
+      - "topic: dependency"
       - "package manager: github actions"
       - "priority: medium"
       - "status: pending"
@@ -41,7 +41,7 @@ updates:
       prefix: "dependency"
     labels:
       - "scope: root"
-      - "topic: chore"
+      - "topic: dependency"
       - "package manager: pnpm"
       - "priority: medium"
       - "status: pending"
@@ -61,7 +61,7 @@ updates:
       prefix: "dependency"
     labels:
       - "scope: root"
-      - "topic: chore"
+      - "topic: dependency"
       - "package manager: nuget"
       - "priority: medium"
       - "status: pending"
