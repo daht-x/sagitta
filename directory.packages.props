@@ -8,5 +8,9 @@
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageVersion>
+		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageVersion>
 	</ItemGroup>
 </Project>
