@@ -12,5 +12,6 @@
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageVersion>
+		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
 	</ItemGroup>
 </Project>
