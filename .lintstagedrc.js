@@ -1,8 +1,8 @@
 import path from "path";
 
 const rootConfiguration = {
-	"**.md": ["markdownlint --fix", 'markdown-link-check --progress --config ".markdownlc.json"'],
-	"**.js": ["prettier --write", "eslint --fix"],
+	"**.md": ["markdownlint --fix", "markdown-link-check --progress --config \".markdownlc.json\""],
+	"**.js": "eslint --fix",
 	"**/*.cs": absolutePaths => {
 		const currentWorkingDirectory = process.cwd();
 		const relativePaths = absolutePaths

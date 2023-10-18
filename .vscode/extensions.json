@@ -1,6 +1,5 @@
 {
 	"recommendations": [
-		"esbenp.prettier-vscode",
 		"dbaeumer.vscode-eslint",
 		"redhat.vscode-yaml",
 		"yzhang.markdown-all-in-one",
@@ -21,8 +20,5 @@
 		"christian-kohler.path-intellisense",
 		"sonarsource.sonarlint-vscode",
 		"jasonnutter.vscode-codeowners"
-	],
-	"unwantedRecommendations": [
-		"rvest.vs-code-prettier-eslint"
 	]
 }

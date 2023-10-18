@@ -1,6 +1,6 @@
 {
 	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
 	},
 	"[json]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
@@ -28,6 +28,7 @@
 		"source.sort.json": true
 	},
 	"eslint.experimental.useFlatConfig": true,
+	"eslint.format.enable": true,
 	"markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
 	"markdown.extension.toc.orderedList": true,
 	"markdown.extension.toc.updateOnSave": false,
