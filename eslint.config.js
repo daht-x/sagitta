@@ -17,6 +17,7 @@ const rootConfiguration = [
 			indent: [ruleSeverity.error, "tab"],
 			"no-tabs": ruleSeverity.disabled,
 			"padded-blocks": [ruleSeverity.error, ruleCompliance.never],
+			"brace-style": [ruleSeverity.error, "allman"],
 			quotes: [ruleSeverity.error, "double"],
 			"arrow-parens": [ruleSeverity.error, "as-needed"],
 			"comma-dangle": [ruleSeverity.error, ruleCompliance.never],
