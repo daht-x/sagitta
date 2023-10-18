@@ -1,8 +1,8 @@
-** text=auto
+** text=auto eol=lf
 
-.husky/** eol=lf diff=bash
+.husky/** diff=bash
 
 **.png binary
 **.md diff=markdown
-**.sh eol=lf diff=bash
+**.sh diff=bash
 **/*.cs diff=csharp

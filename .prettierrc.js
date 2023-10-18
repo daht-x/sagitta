@@ -3,8 +3,7 @@ const rootConfiguration = {
 	tabWidth: 4,
 	useTabs: true,
 	trailingComma: "none",
-	arrowParens: "avoid",
-	endOfLine: "crlf"
+	arrowParens: "avoid"
 };
 
 export default rootConfiguration;
