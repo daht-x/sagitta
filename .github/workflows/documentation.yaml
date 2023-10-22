@@ -13,19 +13,12 @@ on:
   schedule:
     - cron: "0 0 */2 * *"
   workflow_dispatch:
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
 jobs:
-  redundancy:
-    name: "Redundancy"
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: "Cancel previous workflow runs"
-        uses: "styfle/cancel-workflow-action@0.12.0"
-        with:
-          all_but_latest: true
-          access_token: "${{ github.token }}"
   target:
     name: "Target"
-    needs: "redundancy"
     env:
       MARKDOWN_LINK_CHECK_CONFIGURATION_FILE: ".markdownlc.json"
     runs-on: "ubuntu-latest"
