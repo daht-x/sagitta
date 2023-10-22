@@ -21,8 +21,8 @@ concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
   cancel-in-progress: true
 jobs:
-  target:
-    name: "Target"
+  analyzer:
+    name: "Analyzer"
     runs-on: "ubuntu-latest"
     permissions:
       actions: "read"
