@@ -1,12 +1,5 @@
 name: "CodeQL"
 on:
-  push:
-    branches:
-      - "main"
-    paths:
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "**.js"
   pull_request:
     branches:
       - "main"
@@ -35,7 +28,7 @@ jobs:
           - "javascript"
     steps:
       - name: "Set up workspace"
-        if: "${{ github.event_name == 'push' || github.event_name == 'pull_request' }}"
+        if: "${{ github.event_name == 'pull_request' }}"
         uses: "actions/checkout@v4.1.1"
       - name: "Set up workspace"
         if: "${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}"

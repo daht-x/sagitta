@@ -1,10 +1,5 @@
 name: "Documentation"
 on:
-  push:
-    branches:
-      - "main"
-    paths:
-      - "**.md"
   pull_request:
     branches:
       - "main"
@@ -19,7 +14,7 @@ concurrency:
 jobs:
   linter:
     name: "Linter"
-    if: "${{ github.event_name == 'push' || github.event_name == 'pull_request' }}"
+    if: "${{ github.event_name == 'pull_request' }}"
     runs-on: "ubuntu-latest"
     steps:
       - name: "Set up workspace"
@@ -35,18 +30,18 @@ jobs:
       MARKDOWN_LINK_CHECK_CONFIGURATION_FILE: ".markdownlc.json"
     steps:
       - name: "Set up workspace"
-        if: "${{ github.event_name == 'push' || github.event_name == 'pull_request' }}"
+        if: "${{ github.event_name == 'pull_request' }}"
         uses: "actions/checkout@v4.1.1"
-      - name: "Set up workspace (applicable to manual or scheduled events)"
+      - name: "Set up workspace"
         if: "${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}"
         uses: "actions/checkout@v4.1.1"
         with:
           fetch-depth: 0
       - name: "Run link checker"
-        if: "${{ github.event_name == 'push' || github.event_name == 'pull_request' }}"
+        if: "${{ github.event_name == 'pull_request' }}"
         uses: "gaurav-nelson/github-action-markdown-link-check@1.0.15"
         with:
-          base-branch: "main"
+          base-branch: "${{ github.ref_name }}"
           check-modified-files-only: "yes"
           use-quiet-mode: "yes"
           config-file: "${{ env.MARKDOWN_LINK_CHECK_CONFIGURATION_FILE }}"
@@ -54,6 +49,6 @@ jobs:
         if: "${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}"
         uses: "gaurav-nelson/github-action-markdown-link-check@1.0.15"
         with:
-          base-branch: "main"
+          base-branch: "${{ github.ref_name }}"
           use-quiet-mode: "yes"
           config-file: "${{ env.MARKDOWN_LINK_CHECK_CONFIGURATION_FILE }}"
