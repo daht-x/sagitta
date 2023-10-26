@@ -14,7 +14,7 @@ concurrency:
 jobs:
   analyzer:
     name: "Analyzer"
-    runs-on: "ubuntu-latest"
+    runs-on: "${{ vars.DEFAULT_UBUNTU }}"
     permissions:
       actions: "read"
       contents: "read"
