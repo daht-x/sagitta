@@ -1,8 +1,6 @@
 name: "CodeQL"
 on:
   pull_request:
-    branches:
-      - "main"
     paths:
       - "package.json"
       - "pnpm-lock.yaml"
