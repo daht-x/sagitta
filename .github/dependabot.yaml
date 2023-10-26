@@ -10,7 +10,6 @@ updates:
     commit-message:
       prefix: "dependency"
     labels:
-      - "scope: root"
       - "topic: dependency"
       - "package manager: github actions"
       - "priority: medium"
@@ -28,7 +27,6 @@ updates:
     commit-message:
       prefix: "dependency"
     labels:
-      - "scope: root"
       - "topic: dependency"
       - "package manager: pnpm"
       - "priority: medium"
@@ -46,7 +44,6 @@ updates:
     commit-message:
       prefix: "dependency"
     labels:
-      - "scope: root"
       - "topic: dependency"
       - "package manager: nuget"
       - "priority: medium"
