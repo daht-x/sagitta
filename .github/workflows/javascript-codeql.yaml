@@ -19,11 +19,6 @@ jobs:
       actions: "read"
       contents: "read"
       security-events: "write"
-    strategy:
-      fail-fast: false
-      matrix:
-        languages:
-          - "javascript"
     steps:
       - name: "Set up workspace"
         if: "${{ github.event_name == 'pull_request' }}"
@@ -36,6 +31,6 @@ jobs:
       - name: "Set up analyzer"
         uses: "github/codeql-action/init@v2.22.5"
         with:
-          languages: "${{ matrix.languages }}"
+          languages: "javascript"
       - name: "Run analyzer"
         uses: "github/codeql-action/analyze@v2.22.5"
