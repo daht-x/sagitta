@@ -34,8 +34,8 @@ jobs:
         with:
           fetch-depth: 0
       - name: "Set up analyzer"
-        uses: "github/codeql-action/init@v2.22.4"
+        uses: "github/codeql-action/init@v2.22.5"
         with:
           languages: "${{ matrix.languages }}"
       - name: "Run analyzer"
-        uses: "github/codeql-action/analyze@v2.22.4"
+        uses: "github/codeql-action/analyze@v2.22.5"
