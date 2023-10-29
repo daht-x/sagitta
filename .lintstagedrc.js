@@ -1,7 +1,7 @@
 import path from "path";
 
 const rootConfiguration = {
-	"**.md": ["markdownlint --fix", "markdown-link-check --progress --config \".markdownlc.json\""],
+	"**.md": ["markdownlint --fix", "markdown-link-check --progress --config '.markdownlc.json'"],
 	"**.js": "eslint --fix",
 	"**/*.cs": absolutePaths =>
 	{
