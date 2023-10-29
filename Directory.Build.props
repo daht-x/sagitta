@@ -1,9 +1,5 @@
 <Project>
 	<PropertyGroup>
-		<IsDotProps Condition="'$(MSBuildProjectExtension)' == '.props'">true</IsDotProps>
-		<IsDotCsproj Condition="'$(MSBuildProjectExtension)' == '.csproj'">true</IsDotCsproj>
-	</PropertyGroup>
-	<PropertyGroup Condition="$(IsDotCsproj) == true">
 		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
@@ -14,7 +10,7 @@
 		<AnalysisMode>all</AnalysisMode>
 		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
 	</PropertyGroup>
-	<ItemGroup Condition="$(IsDotCsproj) == true">
+	<ItemGroup>
 		<PackageReference Include="SonarAnalyzer.CSharp" />
 	</ItemGroup>
 </Project>
