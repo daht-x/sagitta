@@ -3,10 +3,9 @@
 		<IsDotProps Condition="'$(MSBuildProjectExtension)' == '.props'">true</IsDotProps>
 		<IsDotCsproj Condition="'$(MSBuildProjectExtension)' == '.csproj'">true</IsDotCsproj>
 		<IsDotPropsOrDotCsproj Condition="$(IsDotProps) == true Or $(IsDotCsproj) == true">true</IsDotPropsOrDotCsproj>
-		<IsContinuousIntegrationEnvironment Condition="'$(GITHUB_ACTIONS)' == 'true'">true</IsContinuousIntegrationEnvironment>
 	</PropertyGroup>
 	<PropertyGroup Condition="$(IsDotCsproj) == true">
-		<ContinuousIntegrationBuild Condition="'$(IsContinuousIntegrationEnvironment)' == true">true</ContinuousIntegrationBuild>
+		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
