@@ -64,13 +64,13 @@ jobs:
           args: "'**/*.md'"
           fail: true
       - name: "Create new issue if inaccessible links are found"
-        if: "${{ env.IS_PULL_REQUEST_EVENT == vars.POSITIVE && failure() }}"
+        if: "${{ env.IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT == vars.POSITIVE && failure() }}"
         uses: "peter-evans/create-issue-from-file@v4.0.1"
         with:
           title: "Inaccessible links found"
-          content-filepath: "lychee/out.md"
           assignees: "${{ github.repository_owner }}"
           labels: |
             topic: documentation
             priority: medium
             status: pending
+          content-filepath: "lychee/out.md"
