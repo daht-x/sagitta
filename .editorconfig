@@ -35,6 +35,7 @@ dotnet_style_null_propagation = true:warning
 dotnet_style_object_initializer = true:warning
 dotnet_style_operator_placement_when_wrapping = beginning_of_line
 dotnet_style_prefer_auto_properties = true:warning
+dotnet_style_prefer_collection_expression = true:warning
 dotnet_style_prefer_compound_assignment = true:warning
 dotnet_style_prefer_conditional_expression_over_assignment = true
 dotnet_style_prefer_conditional_expression_over_return = true
