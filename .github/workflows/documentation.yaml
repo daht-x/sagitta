@@ -36,29 +36,41 @@ jobs:
     env:
       IS_PULL_REQUEST_EVENT: "${{ github.event_name == 'pull_request' }}"
       IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT: "${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}"
-      POSITIVE_RESPONSE: "true"
-      MARKDOWN_LINK_CHECK_FILE: ".markdownlc.json"
     steps:
-      - name: "Set up workspace"
-        if: "${{ env.IS_PULL_REQUEST_EVENT == env.POSITIVE_RESPONSE }}"
-        uses: "actions/checkout@v4.1.1"
-      - name: "Set up workspace"
-        if: "${{ env.IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT == env.POSITIVE_RESPONSE }}"
+      - name: "Set up repository with all history"
+        if: "${{ env.IS_PULL_REQUEST_EVENT == vars.POSITIVE }}"
         uses: "actions/checkout@v4.1.1"
         with:
           fetch-depth: 0
-      - name: "Run link checker"
-        if: "${{ env.IS_PULL_REQUEST_EVENT == env.POSITIVE_RESPONSE }}"
-        uses: "gaurav-nelson/github-action-markdown-link-check@1.0.15"
+      - name: "Set up repository with the latest commit"
+        if: "${{ env.IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT == vars.POSITIVE }}"
+        uses: "actions/checkout@v4.1.1"
+      - name: "Get all changed files"
+        id: "changed-files"
+        if: "${{ env.IS_PULL_REQUEST_EVENT == vars.POSITIVE }}"
+        uses: "tj-actions/changed-files@v40.1.1"
         with:
-          base-branch: "${{ github.ref_name }}"
-          check-modified-files-only: true
-          use-quiet-mode: true
-          config-file: "${{ env.MARKDOWN_LINK_CHECK_FILE }}"
-      - name: "Run link checker"
-        if: "${{ env.IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT == env.POSITIVE_RESPONSE }}"
-        uses: "gaurav-nelson/github-action-markdown-link-check@1.0.15"
+          files: "${{ env.SEARCH_PATTERN }}"
+      - name: "Run link checker for all changed files"
+        if: "${{ env.IS_PULL_REQUEST_EVENT == vars.POSITIVE }}"
+        uses: "lycheeverse/lychee-action@v1.8.0"
         with:
-          base-branch: "${{ github.ref_name }}"
-          use-quiet-mode: true
-          config-file: "${{ env.MARKDOWN_LINK_CHECK_FILE }}"
+          args: "${{ steps.changed-files.outputs.all_changed_files }}"
+          fail: true
+      - name: "Run link checker for all files"
+        if: "${{ env.IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT == vars.POSITIVE }}"
+        uses: "lycheeverse/lychee-action@v1.8.0"
+        with:
+          args: "'**/*.md'"
+          fail: true
+      - name: "Create new issue if inaccessible links are found"
+        if: "${{ env.IS_PULL_REQUEST_EVENT == vars.POSITIVE && failure() }}"
+        uses: "peter-evans/create-issue-from-file@v4.0.1"
+        with:
+          title: "Inaccessible links found"
+          content-filepath: "lychee/out.md"
+          assignees: "${{ github.repository_owner }}"
+          labels: |
+            topic: documentation
+            priority: medium
+            status: pending
