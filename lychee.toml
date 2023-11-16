@@ -1,0 +1,7 @@
+cache = true
+max_cache_age = "3m"
+max_concurrency = 50
+exclude = ['^https:\/\/twitter.com\/.*$']
+timeout = 10
+retry_wait_time = 3
+require_https = true
