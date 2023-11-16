@@ -8,7 +8,7 @@
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageVersion>
