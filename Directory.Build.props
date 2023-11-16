@@ -1,7 +1,7 @@
 <Project>
 	<PropertyGroup>
 		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
