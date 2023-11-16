@@ -288,3 +288,5 @@ FodyWeavers.xsd
 *.msp
 
 *.sln.iml
+
+.lycheecache

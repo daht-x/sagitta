@@ -1,5 +1,5 @@
 const rootConfiguration = {
-	"**.md": ["markdownlint --fix", "markdown-link-check --progress --config '.markdownlc.json'"],
+	"**.md": ["markdownlint --fix", "lychee"],
 	"**.js": "eslint --fix",
 	"**/*.cs": "dotnet format --include"
 };
