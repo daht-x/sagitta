@@ -5,22 +5,22 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageVersion Include="SonarAnalyzer.CSharp" Version="9.12.0.78982">
-			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
-			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
 		<PackageVersion Include="xunit" Version="2.6.1" />
 		<PackageVersion Include="xunit.runner.visualstudio" Version="2.5.3">
-			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 		</PackageVersion>
-		<PackageVersion Include="coverlet.collector" Version="6.0.0">
-			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
+		<PackageVersion Include="coverlet.msbuild" Version="6.0.0">
 			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 		</PackageVersion>
 	</ItemGroup>
 </Project>
