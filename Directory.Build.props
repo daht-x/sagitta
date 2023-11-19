@@ -12,6 +12,6 @@
 		<UseArtifactsOutput>true</UseArtifactsOutput>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="SonarAnalyzer.CSharp" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Condition="'$(MSBuildProjectExtension)' == '.csproj'" />
 	</ItemGroup>
 </Project>
