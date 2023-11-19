@@ -1,14 +1,15 @@
 <Project>
 	<PropertyGroup>
-		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
 		<TargetFramework>net8.0</TargetFramework>
-		<Nullable>enable</Nullable>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
+		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<AnalysisMode>all</AnalysisMode>
 		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+		<UseArtifactsOutput>true</UseArtifactsOutput>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="SonarAnalyzer.CSharp" />
