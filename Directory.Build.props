@@ -9,6 +9,9 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<AnalysisMode>all</AnalysisMode>
 		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+		<Company>Daht</Company>
+		<AssemblyName>$(Company).$(MSBuildProjectName)</AssemblyName>
+		<RootNamespace>$(AssemblyName)</RootNamespace>
 		<UseArtifactsOutput>true</UseArtifactsOutput>
 	</PropertyGroup>
 	<ItemGroup>
