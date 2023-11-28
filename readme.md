@@ -11,5 +11,6 @@
 [![Open pull requests](https://img.shields.io/github/issues-pr-raw/daht-x/sagitta-core?style=for-the-badge&label=OPEN%20PULL%20REQUESTS&labelColor=000000&color=7950F2)](https://github.com/daht-x/sagitta-core/pulls?q=is%3Aopen+is%3Apr)
 [![Closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/daht-x/sagitta-core?style=for-the-badge&label=CLOSED%20PULL%20REQUESTS&labelColor=000000&color=228BE6)](https://github.com/daht-x/sagitta-core/pulls?q=is%3Apr+is%3Aclosed)
 
-[![JavaScript CodeQL](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/javascript-codeql.yaml?style=for-the-badge&label=JAVASCRIPT%20CODEQL&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/javascript-codeql.yaml)
+[![Library](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/library.yaml?style=for-the-badge&label=LIBRARY&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/library.yaml)
 [![Documentation](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/documentation.yaml?style=for-the-badge&label=DOCUMENTATION&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/documentation.yaml)
+[![JavaScript CodeQL](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/javascript-codeql.yaml?style=for-the-badge&label=JAVASCRIPT%20CODEQL&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/javascript-codeql.yaml)
