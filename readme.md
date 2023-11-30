@@ -10,6 +10,7 @@
 [![Closed issues](https://img.shields.io/github/issues-closed-raw/daht-x/sagitta-core?style=for-the-badge&label=CLOSED%20ISSUES&labelColor=000000&color=228BE6)](https://github.com/daht-x/sagitta-core/issues?q=is%3Aissue+is%3Aclosed)
 [![Open pull requests](https://img.shields.io/github/issues-pr-raw/daht-x/sagitta-core?style=for-the-badge&label=OPEN%20PULL%20REQUESTS&labelColor=000000&color=7950F2)](https://github.com/daht-x/sagitta-core/pulls?q=is%3Aopen+is%3Apr)
 [![Closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/daht-x/sagitta-core?style=for-the-badge&label=CLOSED%20PULL%20REQUESTS&labelColor=000000&color=228BE6)](https://github.com/daht-x/sagitta-core/pulls?q=is%3Apr+is%3Aclosed)
+[![Coverage](https://img.shields.io/codecov/c/github/daht-x/sagitta-core?style=for-the-badge&label=COVERAGE&labelColor=000000&color=7950F2)](https://app.codecov.io/gh/daht-x/sagitta-core)
 
 [![Library](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/library.yaml?style=for-the-badge&label=LIBRARY&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/library.yaml)
 [![Documentation](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/documentation.yaml?style=for-the-badge&label=DOCUMENTATION&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/documentation.yaml)
