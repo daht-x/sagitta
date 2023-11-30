@@ -1,10 +1,15 @@
 name: "JavaScript CodeQL"
 on:
-  pull_request:
+  push:
     paths:
+      - "**.js"
       - "package.json"
       - "pnpm-lock.yaml"
+  pull_request:
+    paths:
       - "**.js"
+      - "package.json"
+      - "pnpm-lock.yaml"
   schedule:
     - cron: "0 0 */2 * *"
   workflow_dispatch:
