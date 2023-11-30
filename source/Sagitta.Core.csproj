@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<IsPackable>true</IsPackable>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<EnablePackageValidation>true</EnablePackageValidation>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageTarget>Core</PackageTarget>
+		<Maintainer>David Andrés Hernández Triana</Maintainer>
+		<Authors>$(Maintainer)</Authors>
+		<Description>Functional paradigm abstractions | $(PackageTarget)</Description>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<PackageTags>$(Company); Sagitta; Functional paradigm; $(PackageTarget)</PackageTags>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/daht-x/sagitta-core</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Copyright>Copyright (c) $(Maintainer) $([System.DateTime]::Now.ToString("yyyy"))</Copyright>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="..\icon.png">
+			<Visible>false</Visible>
+			<Pack>true</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\readme.md">
+			<Visible>false</Visible>
+			<Pack>true</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" />
+	</ItemGroup>
+</Project>
