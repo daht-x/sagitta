@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<IsTestProject>true</IsTestProject>
+		<NoWarn>$(NoWarn);CA1707</NoWarn>
+		<CoverletOutputFormat>opencover</CoverletOutputFormat>
+		<CoverletOutput>$(ArtifactsPath)/coverage/$(AssemblyName).xml</CoverletOutput>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" />
+		<PackageReference Include="xunit" />
+		<PackageReference Include="xunit.runner.visualstudio" />
+		<PackageReference Include="coverlet.msbuild" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="../../source/Sagitta.Core.csproj" />
+	</ItemGroup>
+</Project>
