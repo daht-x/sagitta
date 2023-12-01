@@ -1,0 +1,45 @@
+name: "C# CodeQL"
+on:
+  push:
+    paths:
+      - "source/**"
+      - "test/**"
+      - ".editorconfig"
+      - "*.props"
+      - "global.json"
+      - "nuget.config"
+      - "*.sln"
+  pull_request:
+    paths:
+      - "source/**"
+      - "test/**"
+      - ".editorconfig"
+      - "*.props"
+      - "global.json"
+      - "nuget.config"
+      - "*.sln"
+  schedule:
+    - cron: "0 0 */2 * *"
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  analyzer:
+    name: "Analyzer"
+    runs-on: "${{ vars.DEFAULT_UBUNTU }}"
+    permissions:
+      actions: "read"
+      contents: "read"
+      security-events: "write"
+    steps:
+      - name: "Set up repository with the latest commit"
+        uses: "actions/checkout@v4.1.1"
+      - name: "Set up analyzer"
+        uses: "github/codeql-action/init@v2.22.8"
+        with:
+          languages: "csharp"
+      - name: "Build assemblies"
+        uses: "github/codeql-action/autobuild@v2.22.8"
+      - name: "Run analyzer"
+        uses: "github/codeql-action/analyze@v2.22.8"
