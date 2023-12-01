@@ -22,15 +22,15 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 	<ItemGroup>
-		<None Include="..\icon.png">
+		<None Include="../icon.png">
 			<Visible>false</Visible>
 			<Pack>true</Pack>
-			<PackagePath>\</PackagePath>
+			<PackagePath>/</PackagePath>
 		</None>
-		<None Include="..\readme.md">
+		<None Include="../readme.md">
 			<Visible>false</Visible>
 			<Pack>true</Pack>
-			<PackagePath>\</PackagePath>
+			<PackagePath>/</PackagePath>
 		</None>
 	</ItemGroup>
 	<ItemGroup>
