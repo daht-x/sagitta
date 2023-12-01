@@ -14,4 +14,5 @@
 
 [![Library](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/library.yaml?style=for-the-badge&label=LIBRARY&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/library.yaml)
 [![Documentation](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/documentation.yaml?style=for-the-badge&label=DOCUMENTATION&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/documentation.yaml)
+[![C# CodeQL](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/csharp-codeql.yaml?style=for-the-badge&label=C%23%20CODEQL&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/csharp-codeql.yaml)
 [![JavaScript CodeQL](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/javascript-codeql.yaml?style=for-the-badge&label=JAVASCRIPT%20CODEQL&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/javascript-codeql.yaml)
