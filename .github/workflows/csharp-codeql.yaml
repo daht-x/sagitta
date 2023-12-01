@@ -1,14 +1,5 @@
 name: "C# CodeQL"
 on:
-  push:
-    paths:
-      - "source/**"
-      - "test/**"
-      - ".editorconfig"
-      - "*.props"
-      - "global.json"
-      - "nuget.config"
-      - "*.sln"
   pull_request:
     paths:
       - "source/**"
