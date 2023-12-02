@@ -34,10 +34,15 @@ jobs:
     runs-on: "${{ vars.DEFAULT_UBUNTU }}"
     env:
       IS_PUSH_EVENT: "${{ github.event_name == 'push' }}"
+      IS_PULL_REQUEST_EVENT: "${{ github.event_name == 'pull_request' }}"
       IS_RELEASE: "${{ startsWith(github.ref, 'refs/tags/v') && github.actor == github.repository_owner }}"
       BUILD_CONFIGURATION: "Release"
     steps:
+      - name: "Set up repository with the latest commit"
+        if: "${{ env.IS_PUSH_EVENT == vars.POSITIVE }}"
+        uses: "actions/checkout@v4.1.1"
       - name: "Set up repository with all history"
+        if: "${{ env.IS_PULL_REQUEST_EVENT == vars.POSITIVE }}"
         uses: "actions/checkout@v4.1.1"
         with:
           fetch-depth: 0
@@ -45,16 +50,17 @@ jobs:
         uses: "actions/setup-dotnet@v3.2.0"
       - name: "Restore dependencies"
         run: "dotnet restore"
-      - name: "Get all changed C# files"
-        id: "all-changed-csharp-files"
+      - name: "Get all changed files"
+        id: "all-changed-files"
+        if: "${{ env.IS_PULL_REQUEST_EVENT == vars.POSITIVE }}"
         uses: "tj-actions/changed-files@v40.2.0"
         with:
           files: "**.cs"
       - name: "Run formatter"
-        if: "${{ steps.all-changed-csharp-files.outputs.any_changed == vars.POSITIVE }}"
+        if: "${{ env.IS_PULL_REQUEST_EVENT == vars.POSITIVE && steps.all-changed-files.outputs.any_changed == vars.POSITIVE }}"
         run: |
            dotnet format \
-            --include ${{ steps.all-changed-csharp-files.outputs.all_changed_files }} \
+            --include ${{ steps.all-changed-files.outputs.all_changed_files }} \
             --no-restore \
             --verify-no-changes
       - name: "Build assemblies"
