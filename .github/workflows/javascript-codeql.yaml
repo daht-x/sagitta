@@ -15,10 +15,6 @@ jobs:
   analyzer:
     name: "Analyzer"
     runs-on: "${{ vars.DEFAULT_UBUNTU }}"
-    permissions:
-      actions: "read"
-      contents: "read"
-      security-events: "write"
     steps:
       - name: "Set up repository with the latest commit"
         uses: "actions/checkout@v4.1.1"
