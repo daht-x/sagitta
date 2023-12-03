@@ -6,6 +6,40 @@ public sealed class ResultTest
 
 	private const string succeed = nameof(Result.Succeed);
 
+	private const string fail = nameof(Result.Fail);
+
+	#region Fail
+
+	[Fact]
+	[Trait(root, fail)]
+	public void Fail_NullFailure_ArgumentNullException()
+	{
+		//Arrange
+		const string failure = null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Fail<string, string>(failure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(failure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, fail)]
+	public void Fail_Failure_FailedResult()
+	{
+		//Arrange
+		const string expectedFailure = ResultFixture.Failure;
+
+		//Act
+		Result<string, string> actualResult = Result.Fail<string, string>(expectedFailure);
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	#endregion
+
 	#region Succeed
 
 	#region Overload No. 01
