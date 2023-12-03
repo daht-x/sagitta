@@ -6,6 +6,24 @@ public static class Result
 	/// <summary>Creates a new failed result.</summary>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
+	/// <param name="createFailure">
+	///     <para>Creates the possible failure.</para>
+	///     <para>If <paramref name="createFailure"/> is <see langword="null"/> or its value is <see langword="null"/>, <seealso cref="ArgumentNullException"/> will be thrown.</para>
+	/// </param>
+	/// <returns>A new failed result.</returns>
+	/// <exception cref="ArgumentNullException"/>
+	public static Result<TFailure, TSuccess> Fail<TFailure, TSuccess>(Func<TFailure> createFailure)
+		where TFailure : notnull
+		where TSuccess : notnull
+	{
+		ArgumentNullException.ThrowIfNull(createFailure);
+		TFailure failure = createFailure() ?? throw new ArgumentNullException(nameof(createFailure));
+		return Fail<TFailure, TSuccess>(failure);
+	}
+
+	/// <summary>Creates a new failed result.</summary>
+	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
+	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <param name="failure">
 	///     <para>The possible failure.</para>
 	///     <para>If <paramref name="failure"/> is <see langword="null"/>, <seealso cref="ArgumentNullException"/> will be thrown.</para>
