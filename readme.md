@@ -3,6 +3,7 @@
 [nuget]: https://www.nuget.org/packages/Daht.Sagitta.Core
 
 [![Daht.Sagitta.Core](https://img.shields.io/nuget/v/Daht.Sagitta.Core?style=for-the-badge&logo=nuget&logoColor=FFFFFF&label=DAHT.SAGITTA.CORE&labelColor=000000&color=7950F2)][nuget]
+[![Downloads](https://img.shields.io/nuget/dt/Daht.Sagitta.Core?style=for-the-badge&logo=nuget&logoColor=FFFFFF&label=DOWNLOADS&labelColor=000000&color=7950F2)][nuget]
 [![Coverage](https://img.shields.io/codecov/c/github/daht-x/sagitta-core?style=for-the-badge&logo=codecov&logoColor=FFFFFF&label=COVERAGE&labelColor=000000&color=7950F2)](https://app.codecov.io/gh/daht-x/sagitta-core)
 
 [github]: https://github.com/daht-x/sagitta-core
