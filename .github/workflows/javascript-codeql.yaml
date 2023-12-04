@@ -1,5 +1,12 @@
 name: "JavaScript CodeQL"
 on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "**.js"
+      - "package.json"
+      - "pnpm-lock.yaml"
   pull_request:
     paths:
       - "**.js"
