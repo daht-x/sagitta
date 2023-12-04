@@ -4,9 +4,107 @@ public sealed class ResultTest
 {
 	private const string root = nameof(Result);
 
-	private const string succeed = nameof(Result.Succeed);
+	private const string @catch = nameof(Result.Catch);
 
 	private const string fail = nameof(Result.Fail);
+
+	private const string succeed = nameof(Result.Succeed);
+
+	#region Catch
+
+	[Fact]
+	[Trait(root, @catch)]
+	public void Catch_NullCreateSuccessPlusCreateFailure_ArgumentNullException()
+	{
+		//Arrange
+		const Func<string> createSuccess = null!;
+		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Catch(createSuccess, createFailure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createSuccess), actualException);
+	}
+
+	[Fact]
+	[Trait(root, @catch)]
+	public void Catch_CreateSuccessWithNullValuePlusCreateFailure_ArgumentNullException()
+	{
+		//Arrange
+		Func<string> createSuccess = static () => null!;
+		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Catch(createSuccess, createFailure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createSuccess), actualException);
+	}
+
+	[Fact]
+	[Trait(root, @catch)]
+	public void Catch_CreateSuccessPlusCreateFailure_SuccessfulResult()
+	{
+		//Arrange
+		const string expectedSuccess = ResultFixture.Success;
+		Func<string> createSuccess = static () => expectedSuccess;
+		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+
+		//Act
+		Result<string, string> actualResult = Result.Catch(createSuccess, createFailure);
+
+		//Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, @catch)]
+	public void Catch_ExceptionPlusNullCreateFailure_ArgumentNullException()
+	{
+		//Arrange
+		Func<string> createSuccess = static () => throw new InvalidOperationException();
+		const Func<InvalidOperationException, string> createFailure = null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Catch(createSuccess, createFailure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, @catch)]
+	public void Catch_ExceptionPlusCreateFailureWithNullValue_ArgumentNullException()
+	{
+		//Arrange
+		Func<string> createSuccess = static () => throw new InvalidOperationException();
+		Func<InvalidOperationException, string> createFailure = static _ => null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Catch(createSuccess, createFailure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, @catch)]
+	public void Catch_ExceptionPlusCreateFailure_FailedResult()
+	{
+		//Arrange
+		Func<string> createSuccess = static () => throw new InvalidOperationException();
+		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+		const string expectedFailure = "Operation is not valid due to the current state of the object.";
+
+		//Act
+		Result<string, string> actualResult = Result.Catch(createSuccess, createFailure);
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	#endregion
 
 	#region Fail
 
