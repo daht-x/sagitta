@@ -3,6 +3,23 @@ namespace Daht.Sagitta.Core.Monads;
 /// <summary>Reference point to initialize <see cref="Result{TFailure, TSuccess}"/>.</summary>
 public static class Result
 {
+	/// <summary>Creates a new failed result if <paramref name="success"/> is <see langword="null"/>; otherwise, creates a new successful result.</summary>
+	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
+	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
+	/// <param name="success">The expected success.</param>
+	/// <param name="failure">
+	///		<para>The possible failure.</para>
+	///     <para>If <paramref name="failure"/> is <see langword="null"/>, <seealso cref="ArgumentNullException"/> will be thrown.</para>
+	/// </param>
+	/// <returns>A new failed result if <paramref name="success"/> is <see langword="null"/>; otherwise, a new successful result.</returns>
+	/// <exception cref="ArgumentNullException"/>
+	public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(TSuccess? success, TFailure failure)
+		where TFailure : notnull
+		where TSuccess : notnull
+		=> success is null
+			? Fail<TFailure, TSuccess>(failure)
+			: Succeed<TFailure, TSuccess>(success);
+
 	/// <summary>Creates a new failed result if the value of <paramref name="createSuccess"/> throws <typeparamref name="TException"/>; otherwise, creates a new successful result.</summary>
 	/// <typeparam name="TException">Type of possible exception.</typeparam>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>

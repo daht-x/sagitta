@@ -4,11 +4,62 @@ public sealed class ResultTest
 {
 	private const string root = nameof(Result);
 
+	private const string ensure = nameof(Result.Ensure);
+
 	private const string @catch = nameof(Result.Catch);
 
 	private const string fail = nameof(Result.Fail);
 
 	private const string succeed = nameof(Result.Succeed);
+
+	#region Ensure
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_NullSuccessPlusNullFailure_ArgumentNullException()
+	{
+		//Arrange
+		const string success = null!;
+		const string failure = null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Ensure(success, failure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(failure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_NullSuccessPlusFailure_FailedResult()
+	{
+		//Arrange
+		const string success = null!;
+		const string expectedFailure = ResultFixture.Failure;
+
+		//Act
+		Result<string, string> actualResult = Result.Ensure(success, expectedFailure);
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_SuccessPlusFailure_SuccessfulResult()
+	{
+		//Arrange
+		const string expectedSuccess = ResultFixture.Success;
+		const string failure = ResultFixture.Failure;
+
+		//Act
+		Result<string, string> actualResult = Result.Ensure(expectedSuccess, failure);
+
+		//Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
 
 	#region Catch
 
