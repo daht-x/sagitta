@@ -8,9 +8,9 @@ public sealed class ResultTest
 
 	private const string @catch = nameof(Result.Catch);
 
-	private const string fail = nameof(Result.Fail);
-
 	private const string succeed = nameof(Result.Succeed);
+
+	private const string fail = nameof(Result.Fail);
 
 	#region Ensure
 
@@ -157,89 +157,6 @@ public sealed class ResultTest
 
 	#endregion
 
-	#region Fail
-
-	#region Overload No. 01
-
-	[Fact]
-	[Trait(root, fail)]
-	public void Fail_NullFailure_ArgumentNullException()
-	{
-		//Arrange
-		const string failure = null!;
-
-		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Fail<string, string>(failure));
-
-		//Assert
-		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(failure), actualException);
-	}
-
-	[Fact]
-	[Trait(root, fail)]
-	public void Fail_Failure_FailedResult()
-	{
-		//Arrange
-		const string expectedFailure = ResultFixture.Failure;
-
-		//Act
-		Result<string, string> actualResult = Result.Fail<string, string>(expectedFailure);
-
-		//Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
-	}
-
-	#endregion
-
-	#region Overload No. 02
-
-	[Fact]
-	[Trait(root, fail)]
-	public void Fail_NullCreateFailure_ArgumentNullException()
-	{
-		//Arrange
-		const Func<string> createFailure = null!;
-
-		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Fail<string, string>(createFailure));
-
-		//Assert
-		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
-	}
-
-	[Fact]
-	[Trait(root, fail)]
-	public void Fail_CreateFailureWithNullValue_ArgumentNullException()
-	{
-		//Arrange
-		Func<string> createFailure = static () => null!;
-
-		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Fail<string, string>(createFailure));
-
-		//Assert
-		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
-	}
-
-	[Fact]
-	[Trait(root, fail)]
-	public void Fail_CreateFailure_FailedResult()
-	{
-		//Arrange
-		const string expectedFailure = ResultFixture.Failure;
-		Func<string> createFailure = static () => expectedFailure;
-
-		//Act
-		Result<string, string> actualResult = Result.Fail<string, string>(createFailure);
-
-		//Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
-	}
-
-	#endregion
-
-	#endregion
-
 	#region Succeed
 
 	#region Overload No. 01
@@ -317,6 +234,89 @@ public sealed class ResultTest
 
 		//Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
+
+	#endregion
+
+	#region Fail
+
+	#region Overload No. 01
+
+	[Fact]
+	[Trait(root, fail)]
+	public void Fail_NullFailure_ArgumentNullException()
+	{
+		//Arrange
+		const string failure = null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Fail<string, string>(failure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(failure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, fail)]
+	public void Fail_Failure_FailedResult()
+	{
+		//Arrange
+		const string expectedFailure = ResultFixture.Failure;
+
+		//Act
+		Result<string, string> actualResult = Result.Fail<string, string>(expectedFailure);
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	#endregion
+
+	#region Overload No. 02
+
+	[Fact]
+	[Trait(root, fail)]
+	public void Fail_NullCreateFailure_ArgumentNullException()
+	{
+		//Arrange
+		const Func<string> createFailure = null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Fail<string, string>(createFailure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, fail)]
+	public void Fail_CreateFailureWithNullValue_ArgumentNullException()
+	{
+		//Arrange
+		Func<string> createFailure = static () => null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Fail<string, string>(createFailure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, fail)]
+	public void Fail_CreateFailure_FailedResult()
+	{
+		//Arrange
+		const string expectedFailure = ResultFixture.Failure;
+		Func<string> createFailure = static () => expectedFailure;
+
+		//Act
+		Result<string, string> actualResult = Result.Fail<string, string>(createFailure);
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
 	}
 
 	#endregion
