@@ -61,6 +61,30 @@ public static class Result
 			: Succeed<TSuccess, TFailure>(success);
 	}
 
+	/// <summary>Creates a new failed result if the value of <paramref name="createSuccess"/> is <see langword="null"/>; otherwise, creates a new successful result.</summary>
+	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
+	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
+	/// <param name="createSuccess">
+	///     <para>Creates the expected success.</para>
+	///     <para>If <paramref name="createSuccess"/> is <see langword="null"/>, <seealso cref="ArgumentNullException"/> will be thrown.</para>
+	/// </param>
+	/// <param name="createFailure">
+	///     <para>Creates the possible failure.</para>
+	///     <para>If <paramref name="createFailure"/> is <see langword="null"/> or its value is <see langword="null"/>, <seealso cref="ArgumentNullException"/> will be thrown.</para>
+	/// </param>
+	/// <returns>A new failed result if the value of <paramref name="createSuccess"/> is <see langword="null"/>; otherwise, a new successful result.</returns>
+	/// <exception cref="ArgumentNullException"/>
+	public static Result<TSuccess, TFailure> Ensure<TSuccess, TFailure>(Func<TSuccess?> createSuccess, Func<TFailure> createFailure)
+		where TSuccess : notnull
+		where TFailure : notnull
+	{
+		ArgumentNullException.ThrowIfNull(createSuccess);
+		TSuccess? success = createSuccess();
+		return success is null
+			? Fail<TSuccess, TFailure>(createFailure)
+			: Succeed<TSuccess, TFailure>(success);
+	}
+
 	/// <summary>Creates a new failed result if the value of <paramref name="createSuccess"/> throws <typeparamref name="TException"/>; otherwise, creates a new successful result.</summary>
 	/// <typeparam name="TException">Type of possible exception.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
