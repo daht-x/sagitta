@@ -128,6 +128,71 @@ public sealed class ResultTest
 
 	#endregion
 
+	#region Overload No. 03
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_NullCreateSuccessPlusFailure_ArgumentNullException()
+	{
+		//Arrange
+		const Func<string> createSuccess = null!;
+		const string failure = ResultFixture.Failure;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Ensure(createSuccess, failure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createSuccess), actualException);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_CreateSuccessWithNullValuePlusNullFailure_ArgumentNullException()
+	{
+		//Arrange
+		Func<string?> createSuccess = static () => null;
+		const string failure = null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Ensure(createSuccess, failure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(failure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_CreateSuccessWithNullValuePlusFailure_FailedResult()
+	{
+		//Arrange
+		Func<string?> createSuccess = static () => null;
+		const string expectedFailure = ResultFixture.Failure;
+
+		//Act
+		Result<string, string> actualResult = Result.Ensure(createSuccess, expectedFailure);
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_CreateSuccessPlusFailure_SuccessfulResult()
+	{
+		//Arrange
+		const string expectedSuccess = ResultFixture.Success;
+		Func<string> createSuccess = static () => expectedSuccess;
+		const string failure = ResultFixture.Failure;
+
+		//Act
+		Result<string, string> actualResult = Result.Ensure(createSuccess, failure);
+
+		//Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
+
 	#endregion
 
 	#region Catch
