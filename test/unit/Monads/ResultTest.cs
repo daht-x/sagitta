@@ -14,6 +14,8 @@ public sealed class ResultTest
 
 	#region Ensure
 
+	#region Overload No. 01
+
 	[Fact]
 	[Trait(root, ensure)]
 	public void Ensure_NullSuccessPlusNullFailure_ArgumentNullException()
@@ -58,6 +60,73 @@ public sealed class ResultTest
 		//Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
+
+	#endregion
+
+	#region Overload No. 02
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_NullSuccessPlusNullCreateFailure_ArgumentNullException()
+	{
+		//Arrange
+		const string success = null!;
+		const Func<string> createFailure = null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Ensure(success, createFailure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_NullSuccessPlusCreateFailureWithNullValue_ArgumentNullException()
+	{
+		//Arrange
+		const string success = null!;
+		Func<string> createFailure = static () => null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Ensure(success, createFailure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_NullSuccessPlusCreateFailure_FailedResult()
+	{
+		//Arrange
+		const string? success = null;
+		const string expectedFailure = ResultFixture.Failure;
+		Func<string> createFailure = static () => expectedFailure;
+
+		//Act
+		Result<string, string> actualResult = Result.Ensure(success, createFailure);
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_SuccessPlusCreateFailure_SuccessfulResult()
+	{
+		//Arrange
+		const string expectedSuccess = ResultFixture.Success;
+		Func<string> createFailure = static () => ResultFixture.Failure;
+
+		//Act
+		Result<string, string> actualResult = Result.Ensure(expectedSuccess, createFailure);
+
+		//Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
 
 	#endregion
 
