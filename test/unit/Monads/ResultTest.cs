@@ -193,6 +193,87 @@ public sealed class ResultTest
 
 	#endregion
 
+	#region Overload No. 04
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_NullCreateSuccessPlusCreateFailure_ArgumentNullException()
+	{
+		//Arrange
+		const Func<string> createSuccess = null!;
+		Func<string> createFailure = static () => ResultFixture.Failure;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Ensure(createSuccess, createFailure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createSuccess), actualException);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_CreateSuccessWithNullValuePlusNullCreateFailure_ArgumentNullException()
+	{
+		//Arrange
+		Func<string?> createSuccess = static () => null;
+		const Func<string> createFailure = null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Ensure(createSuccess, createFailure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_CreateSuccessWithNullValuePlusCreateFailureWithNullValue_ArgumentNullException()
+	{
+		//Arrange
+		Func<string?> createSuccess = static () => null;
+		Func<string> createFailure = static () => null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Ensure(createSuccess, createFailure));
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_CreateSuccessWithNullValuePlusCreateFailure_FailedResult()
+	{
+		//Arrange
+		Func<string?> createSuccess = static () => null;
+		const string expectedFailure = ResultFixture.Failure;
+		Func<string> createFailure = static () => expectedFailure;
+
+		//Act
+		Result<string, string> actualResult = Result.Ensure(createSuccess, createFailure);
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_CreateSuccessPlusCreateFailure_SuccessfulResult()
+	{
+		//Arrange
+		const string expectedSuccess = ResultFixture.Success;
+		Func<string> createSuccess = static () => expectedSuccess;
+		Func<string> createFailure = static () => ResultFixture.Failure;
+
+		//Act
+		Result<string, string> actualResult = Result.Ensure(createSuccess, createFailure);
+
+		//Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
+
 	#endregion
 
 	#region Catch
