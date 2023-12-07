@@ -21,11 +21,13 @@ public sealed class ResultTest
 	public void Ensure_NullSuccessPlusNullFailure_ArgumentNullException()
 	{
 		//Arrange
-		const string success = null!;
+		const Constellation? success = null;
 		const string failure = null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Ensure(success, failure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			static () => _ = Result.Ensure(success, failure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(failure), actualException);
@@ -36,11 +38,11 @@ public sealed class ResultTest
 	public void Ensure_NullSuccessPlusFailure_FailedResult()
 	{
 		//Arrange
-		const string success = null!;
+		const Constellation? success = null;
 		const string expectedFailure = ResultFixture.Failure;
 
 		//Act
-		Result<string, string> actualResult = Result.Ensure(success, expectedFailure);
+		Result<Constellation, string> actualResult = Result.Ensure(success, expectedFailure);
 
 		//Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -51,11 +53,11 @@ public sealed class ResultTest
 	public void Ensure_SuccessPlusFailure_SuccessfulResult()
 	{
 		//Arrange
-		const string expectedSuccess = ResultFixture.Success;
+		Constellation? expectedSuccess = ResultFixture.Success;
 		const string failure = ResultFixture.Failure;
 
 		//Act
-		Result<string, string> actualResult = Result.Ensure(expectedSuccess, failure);
+		Result<Constellation, string> actualResult = Result.Ensure(expectedSuccess, failure);
 
 		//Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
@@ -70,11 +72,13 @@ public sealed class ResultTest
 	public void Ensure_NullSuccessPlusNullCreateFailure_ArgumentNullException()
 	{
 		//Arrange
-		const string success = null!;
+		const Constellation? success = null;
 		const Func<string> createFailure = null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Ensure(success, createFailure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			static () => _ = Result.Ensure(success, createFailure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
@@ -85,11 +89,13 @@ public sealed class ResultTest
 	public void Ensure_NullSuccessPlusCreateFailureWithNullValue_ArgumentNullException()
 	{
 		//Arrange
-		const string success = null!;
+		const Constellation? success = null;
 		Func<string> createFailure = static () => null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Ensure(success, createFailure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() => _ = Result.Ensure(success, createFailure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
@@ -100,12 +106,12 @@ public sealed class ResultTest
 	public void Ensure_NullSuccessPlusCreateFailure_FailedResult()
 	{
 		//Arrange
-		const string? success = null;
+		const Constellation? success = null;
 		const string expectedFailure = ResultFixture.Failure;
 		Func<string> createFailure = static () => expectedFailure;
 
 		//Act
-		Result<string, string> actualResult = Result.Ensure(success, createFailure);
+		Result<Constellation, string> actualResult = Result.Ensure(success, createFailure);
 
 		//Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -116,11 +122,11 @@ public sealed class ResultTest
 	public void Ensure_SuccessPlusCreateFailure_SuccessfulResult()
 	{
 		//Arrange
-		const string expectedSuccess = ResultFixture.Success;
+		Constellation? expectedSuccess = ResultFixture.Success;
 		Func<string> createFailure = static () => ResultFixture.Failure;
 
 		//Act
-		Result<string, string> actualResult = Result.Ensure(expectedSuccess, createFailure);
+		Result<Constellation, string> actualResult = Result.Ensure(expectedSuccess, createFailure);
 
 		//Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
@@ -135,11 +141,13 @@ public sealed class ResultTest
 	public void Ensure_NullCreateSuccessPlusFailure_ArgumentNullException()
 	{
 		//Arrange
-		const Func<string> createSuccess = null!;
+		const Func<Constellation?> createSuccess = null!;
 		const string failure = ResultFixture.Failure;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Ensure(createSuccess, failure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			static () => _ = Result.Ensure(createSuccess, failure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createSuccess), actualException);
@@ -150,11 +158,13 @@ public sealed class ResultTest
 	public void Ensure_CreateSuccessWithNullValuePlusNullFailure_ArgumentNullException()
 	{
 		//Arrange
-		Func<string?> createSuccess = static () => null;
+		Func<Constellation?> createSuccess = static () => null;
 		const string failure = null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Ensure(createSuccess, failure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() => _ = Result.Ensure(createSuccess, failure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(failure), actualException);
@@ -165,11 +175,11 @@ public sealed class ResultTest
 	public void Ensure_CreateSuccessWithNullValuePlusFailure_FailedResult()
 	{
 		//Arrange
-		Func<string?> createSuccess = static () => null;
+		Func<Constellation?> createSuccess = static () => null;
 		const string expectedFailure = ResultFixture.Failure;
 
 		//Act
-		Result<string, string> actualResult = Result.Ensure(createSuccess, expectedFailure);
+		Result<Constellation, string> actualResult = Result.Ensure(createSuccess, expectedFailure);
 
 		//Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -180,12 +190,12 @@ public sealed class ResultTest
 	public void Ensure_CreateSuccessPlusFailure_SuccessfulResult()
 	{
 		//Arrange
-		const string expectedSuccess = ResultFixture.Success;
-		Func<string> createSuccess = static () => expectedSuccess;
+		Constellation expectedSuccess = ResultFixture.Success;
+		Func<Constellation?> createSuccess = () => expectedSuccess;
 		const string failure = ResultFixture.Failure;
 
 		//Act
-		Result<string, string> actualResult = Result.Ensure(createSuccess, failure);
+		Result<Constellation, string> actualResult = Result.Ensure(createSuccess, failure);
 
 		//Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
@@ -200,11 +210,13 @@ public sealed class ResultTest
 	public void Ensure_NullCreateSuccessPlusCreateFailure_ArgumentNullException()
 	{
 		//Arrange
-		const Func<string> createSuccess = null!;
+		const Func<Constellation?> createSuccess = null!;
 		Func<string> createFailure = static () => ResultFixture.Failure;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Ensure(createSuccess, createFailure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() => _ = Result.Ensure(createSuccess, createFailure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createSuccess), actualException);
@@ -215,11 +227,13 @@ public sealed class ResultTest
 	public void Ensure_CreateSuccessWithNullValuePlusNullCreateFailure_ArgumentNullException()
 	{
 		//Arrange
-		Func<string?> createSuccess = static () => null;
+		Func<Constellation?> createSuccess = static () => null;
 		const Func<string> createFailure = null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Ensure(createSuccess, createFailure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() => _ = Result.Ensure(createSuccess, createFailure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
@@ -230,11 +244,13 @@ public sealed class ResultTest
 	public void Ensure_CreateSuccessWithNullValuePlusCreateFailureWithNullValue_ArgumentNullException()
 	{
 		//Arrange
-		Func<string?> createSuccess = static () => null;
+		Func<Constellation?> createSuccess = static () => null;
 		Func<string> createFailure = static () => null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Ensure(createSuccess, createFailure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() => _ = Result.Ensure(createSuccess, createFailure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
@@ -245,12 +261,12 @@ public sealed class ResultTest
 	public void Ensure_CreateSuccessWithNullValuePlusCreateFailure_FailedResult()
 	{
 		//Arrange
-		Func<string?> createSuccess = static () => null;
+		Func<Constellation?> createSuccess = static () => null;
 		const string expectedFailure = ResultFixture.Failure;
 		Func<string> createFailure = static () => expectedFailure;
 
 		//Act
-		Result<string, string> actualResult = Result.Ensure(createSuccess, createFailure);
+		Result<Constellation, string> actualResult = Result.Ensure(createSuccess, createFailure);
 
 		//Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -261,12 +277,12 @@ public sealed class ResultTest
 	public void Ensure_CreateSuccessPlusCreateFailure_SuccessfulResult()
 	{
 		//Arrange
-		const string expectedSuccess = ResultFixture.Success;
-		Func<string> createSuccess = static () => expectedSuccess;
+		Constellation expectedSuccess = ResultFixture.Success;
+		Func<Constellation?> createSuccess = () => expectedSuccess;
 		Func<string> createFailure = static () => ResultFixture.Failure;
 
 		//Act
-		Result<string, string> actualResult = Result.Ensure(createSuccess, createFailure);
+		Result<Constellation, string> actualResult = Result.Ensure(createSuccess, createFailure);
 
 		//Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
@@ -283,11 +299,13 @@ public sealed class ResultTest
 	public void Catch_NullCreateSuccessPlusCreateFailure_ArgumentNullException()
 	{
 		//Arrange
-		const Func<string> createSuccess = null!;
+		const Func<Constellation> createSuccess = null!;
 		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Catch(createSuccess, createFailure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() => _ = Result.Catch(createSuccess, createFailure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createSuccess), actualException);
@@ -298,11 +316,13 @@ public sealed class ResultTest
 	public void Catch_CreateSuccessWithNullValuePlusCreateFailure_ArgumentNullException()
 	{
 		//Arrange
-		Func<string> createSuccess = static () => null!;
+		Func<Constellation> createSuccess = static () => null!;
 		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Catch(createSuccess, createFailure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() => _ = Result.Catch(createSuccess, createFailure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createSuccess), actualException);
@@ -313,12 +333,12 @@ public sealed class ResultTest
 	public void Catch_CreateSuccessPlusCreateFailure_SuccessfulResult()
 	{
 		//Arrange
-		const string expectedSuccess = ResultFixture.Success;
-		Func<string> createSuccess = static () => expectedSuccess;
+		Constellation expectedSuccess = ResultFixture.Success;
+		Func<Constellation> createSuccess = () => expectedSuccess;
 		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
 
 		//Act
-		Result<string, string> actualResult = Result.Catch(createSuccess, createFailure);
+		Result<Constellation, string> actualResult = Result.Catch(createSuccess, createFailure);
 
 		//Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
@@ -329,11 +349,13 @@ public sealed class ResultTest
 	public void Catch_ExceptionPlusNullCreateFailure_ArgumentNullException()
 	{
 		//Arrange
-		Func<string> createSuccess = static () => throw new InvalidOperationException();
+		Func<Constellation> createSuccess = static () => throw new InvalidOperationException();
 		const Func<InvalidOperationException, string> createFailure = null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Catch(createSuccess, createFailure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() => _ = Result.Catch(createSuccess, createFailure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
@@ -344,11 +366,13 @@ public sealed class ResultTest
 	public void Catch_ExceptionPlusCreateFailureWithNullValue_ArgumentNullException()
 	{
 		//Arrange
-		Func<string> createSuccess = static () => throw new InvalidOperationException();
+		Func<Constellation> createSuccess = static () => throw new InvalidOperationException();
 		Func<InvalidOperationException, string> createFailure = static _ => null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Catch(createSuccess, createFailure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() => _ = Result.Catch(createSuccess, createFailure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
@@ -359,12 +383,12 @@ public sealed class ResultTest
 	public void Catch_ExceptionPlusCreateFailure_FailedResult()
 	{
 		//Arrange
-		Func<string> createSuccess = static () => throw new InvalidOperationException();
+		Func<Constellation> createSuccess = static () => throw new InvalidOperationException();
 		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
 		const string expectedFailure = "Operation is not valid due to the current state of the object.";
 
 		//Act
-		Result<string, string> actualResult = Result.Catch(createSuccess, createFailure);
+		Result<Constellation, string> actualResult = Result.Catch(createSuccess, createFailure);
 
 		//Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -381,10 +405,12 @@ public sealed class ResultTest
 	public void Succeed_NullSuccess_ArgumentNullException()
 	{
 		//Arrange
-		const string success = null!;
+		const Constellation success = null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Succeed<string, string>(success));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			static () => _ = Result.Succeed<Constellation, string>(success)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(success), actualException);
@@ -395,10 +421,10 @@ public sealed class ResultTest
 	public void Succeed_Success_SuccessfulResult()
 	{
 		//Arrange
-		const string expectedSuccess = ResultFixture.Success;
+		Constellation expectedSuccess = ResultFixture.Success;
 
 		//Act
-		Result<string, string> actualResult = Result.Succeed<string, string>(expectedSuccess);
+		Result<Constellation, string> actualResult = Result.Succeed<Constellation, string>(expectedSuccess);
 
 		//Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
@@ -413,10 +439,12 @@ public sealed class ResultTest
 	public void Succeed_NullCreateSuccess_ArgumentNullException()
 	{
 		//Arrange
-		const Func<string> createSuccess = null!;
+		const Func<Constellation> createSuccess = null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Succeed<string, string>(createSuccess));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			static () => _ = Result.Succeed<Constellation, string>(createSuccess)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createSuccess), actualException);
@@ -427,10 +455,12 @@ public sealed class ResultTest
 	public void Succeed_CreateSuccessWithNullValue_ArgumentNullException()
 	{
 		//Arrange
-		Func<string> createSuccess = static () => null!;
+		Func<Constellation> createSuccess = static () => null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Succeed<string, string>(createSuccess));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() => _ = Result.Succeed<Constellation, string>(createSuccess)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createSuccess), actualException);
@@ -441,11 +471,11 @@ public sealed class ResultTest
 	public void Succeed_CreateSuccess_SuccessfulResult()
 	{
 		//Arrange
-		const string expectedSuccess = ResultFixture.Success;
-		Func<string> createSuccess = static () => expectedSuccess;
+		Constellation expectedSuccess = ResultFixture.Success;
+		Func<Constellation> createSuccess = () => expectedSuccess;
 
 		//Act
-		Result<string, string> actualResult = Result.Succeed<string, string>(createSuccess);
+		Result<Constellation, string> actualResult = Result.Succeed<Constellation, string>(createSuccess);
 
 		//Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
@@ -467,7 +497,9 @@ public sealed class ResultTest
 		const string failure = null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Fail<string, string>(failure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			static () => _ = Result.Fail<Constellation, string>(failure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(failure), actualException);
@@ -481,7 +513,7 @@ public sealed class ResultTest
 		const string expectedFailure = ResultFixture.Failure;
 
 		//Act
-		Result<string, string> actualResult = Result.Fail<string, string>(expectedFailure);
+		Result<Constellation, string> actualResult = Result.Fail<Constellation, string>(expectedFailure);
 
 		//Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -499,7 +531,9 @@ public sealed class ResultTest
 		const Func<string> createFailure = null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(static () => _ = Result.Fail<string, string>(createFailure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			static () => _ = Result.Fail<Constellation, string>(createFailure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
@@ -513,7 +547,9 @@ public sealed class ResultTest
 		Func<string> createFailure = static () => null!;
 
 		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(() => _ = Result.Fail<string, string>(createFailure));
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() => _ = Result.Fail<Constellation, string>(createFailure)
+		);
 
 		//Assert
 		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
@@ -528,7 +564,7 @@ public sealed class ResultTest
 		Func<string> createFailure = static () => expectedFailure;
 
 		//Act
-		Result<string, string> actualResult = Result.Fail<string, string>(createFailure);
+		Result<Constellation, string> actualResult = Result.Fail<Constellation, string>(createFailure);
 
 		//Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);

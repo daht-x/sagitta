@@ -2,7 +2,13 @@ namespace Daht.Sagitta.Core.UnitTest.Monads.Fixtures;
 
 internal static class ResultFixture
 {
-	internal const string Success = nameof(Success);
+	internal static Constellation Success
+		=> new()
+		{
+			Abbreviation = "Sge",
+			Name = "Sagitta",
+			Symbolism = "The arrow"
+		};
 
 	internal const string Failure = nameof(Failure);
 }
