@@ -12,6 +12,8 @@ public sealed class ResultTest
 
 	private const string fail = nameof(Result.Fail);
 
+	private const string implicitOperator = "Implicit Operator";
+
 	#region Ensure
 
 	#region Overload No. 01
@@ -571,6 +573,44 @@ public sealed class ResultTest
 	}
 
 	#endregion
+
+	#endregion
+
+	#region Implicit Operator
+
+	[Fact]
+	[Trait(root, implicitOperator)]
+	public void ImplicitOperator_NullSuccess_ArgumentNullException()
+	{
+		//Arrange
+		const Constellation success = null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			static () =>
+			{
+#pragma warning disable S1481
+				Result<Constellation, string> _ = success;
+#pragma warning restore S1481
+			}
+		);
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(success), actualException);
+	}
+
+	[Fact]
+	[Trait(root, implicitOperator)]
+	public void ImplicitOperator_Success_SuccessfulResult()
+	{
+		//Arrange
+		Constellation expectedSuccess = ResultFixture.Success;
+
+		//Act
+		Result<Constellation, string> actualResult = expectedSuccess;
+
+		//Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
 
 	#endregion
 }
