@@ -677,5 +677,44 @@ public sealed class ResultTest
 
 	#endregion
 
+	#region Overload No. 03
+
+	[Fact]
+	[Trait(root, implicitOperator)]
+	public void ImplicitOperator_NullFailure_ArgumentNullException()
+	{
+		//Arrange
+		const string failure = null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			static () =>
+			{
+#pragma warning disable S1481
+				Result<Constellation, string> _ = failure;
+#pragma warning restore S1481
+			}
+		);
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(failure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, implicitOperator)]
+	public void ImplicitOperator_Failure_FailedResult()
+	{
+		//Arrange
+		const string expectedFailure = ResultFixture.Failure;
+
+		//Act
+		Result<Constellation, string> actualResult = expectedFailure;
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	#endregion
+
 	#endregion
 }
