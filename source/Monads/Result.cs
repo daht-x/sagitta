@@ -224,4 +224,14 @@ public readonly record struct Result<TSuccess, TFailure>
 
 	/// <summary>The possible failure.</summary>
 	public TFailure Failure { get; internal init; }
+
+	/// <summary>Creates a new successful result.</summary>
+	/// <param name="success">
+	///		<para>The expected success.</para>
+	///     <para>If <paramref name="success"/> is <see langword="null"/>, <seealso cref="ArgumentNullException"/> will be thrown.</para>
+	/// </param>
+	/// <returns>A new successful result.</returns>
+	/// <exception cref="ArgumentNullException"/>
+	public static implicit operator Result<TSuccess, TFailure>(TSuccess success)
+		=> Result.Succeed<TSuccess, TFailure>(success);
 }
