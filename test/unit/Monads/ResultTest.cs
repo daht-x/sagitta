@@ -716,5 +716,66 @@ public sealed class ResultTest
 
 	#endregion
 
+	#region Overload No. 04
+
+	[Fact]
+	[Trait(root, implicitOperator)]
+	public void ImplicitOperator_NullCreateFailure_ArgumentNullException()
+	{
+		//Arrange
+		const Func<string> createFailure = null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			static () =>
+			{
+#pragma warning disable S1481
+				Result<Constellation, string> _ = createFailure;
+#pragma warning restore S1481
+			}
+		);
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, implicitOperator)]
+	public void ImplicitOperator_CreateFailureWithNullValue_ArgumentNullException()
+	{
+		//Arrange
+		Func<string> createFailure = static () => null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() =>
+			{
+#pragma warning disable S1481
+				Result<Constellation, string> _ = createFailure;
+#pragma warning restore S1481
+			}
+		);
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createFailure), actualException);
+	}
+
+	[Fact]
+	[Trait(root, implicitOperator)]
+	public void ImplicitOperator_CreateFailure_FailedResult()
+	{
+		//Arrange
+		const string expectedFailure = ResultFixture.Failure;
+		Func<string> createFailure = static () => expectedFailure;
+
+		//Act
+		Result<Constellation, string> actualResult = createFailure;
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	#endregion
+
 	#endregion
 }
