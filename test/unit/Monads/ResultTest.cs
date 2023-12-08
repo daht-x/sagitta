@@ -578,6 +578,8 @@ public sealed class ResultTest
 
 	#region Implicit Operator
 
+	#region Overload No. 01
+
 	[Fact]
 	[Trait(root, implicitOperator)]
 	public void ImplicitOperator_NullSuccess_ArgumentNullException()
@@ -611,6 +613,69 @@ public sealed class ResultTest
 		//Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
+
+	#endregion
+
+	#region Overload No. 02
+
+	[Fact]
+	[Trait(root, implicitOperator)]
+	public void ImplicitOperator_NullCreateSuccess_ArgumentNullException()
+	{
+		//Arrange
+		const Func<Constellation> createSuccess = null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			static () =>
+			{
+#pragma warning disable S1481
+				Result<Constellation, string> _ = createSuccess;
+#pragma warning restore S1481
+			}
+		);
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createSuccess), actualException);
+	}
+
+	[Fact]
+	[Trait(root, implicitOperator)]
+	public void ImplicitOperator_CreateSuccessWithNullValue_ArgumentNullException()
+	{
+		//Arrange
+		Func<Constellation> createSuccess = static () => null!;
+
+		//Act
+		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
+			() =>
+			{
+#pragma warning disable S1481
+				Result<Constellation, string> _ = createSuccess;
+#pragma warning restore S1481
+			}
+		);
+
+		//Assert
+		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(createSuccess), actualException);
+	}
+
+	[Fact]
+	[Trait(root, implicitOperator)]
+	public void ImplicitOperator_CreateSuccess_SuccessfulResult()
+	{
+		//Arrange
+		Constellation expectedSuccess = ResultFixture.Success;
+		Func<Constellation> createSuccess = () => expectedSuccess;
+
+		//Act
+		Result<Constellation, string> actualResult = createSuccess;
+
+		//Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
 
 	#endregion
 }
