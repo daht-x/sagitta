@@ -10,7 +10,7 @@
 		<Description>Functional paradigm abstractions | Core</Description>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<PackageTags>$(Company); Sagitta; Functional; Result</PackageTags>
+		<PackageTags>$(Company); Sagitta; Functional-paradigm; Result</PackageTags>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/daht-x/sagitta-core</RepositoryUrl>
