@@ -10,5 +10,7 @@ internal static class ResultFixture
 			Symbolism = "The arrow"
 		};
 
+	internal static string RandomFailure => $"{Failure} | {Guid.NewGuid()}";
+
 	internal const string Failure = nameof(Failure);
 }
