@@ -262,7 +262,6 @@ public readonly record struct Result<TSuccess, TFailure>
 	/// </param>
 	/// <returns>A new failed result.</returns>
 	/// <exception cref="ArgumentNullException"/>
-	/// <exception cref="ArgumentNullException"/>
 	public static implicit operator Result<TSuccess, TFailure>(Func<TFailure> createFailure)
 		=> Result.Fail<TSuccess, TFailure>(createFailure);
 }
