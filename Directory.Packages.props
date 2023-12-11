@@ -13,8 +13,8 @@
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-		<PackageVersion Include="xunit" Version="2.6.2" />
-		<PackageVersion Include="xunit.runner.visualstudio" Version="2.5.4">
+		<PackageVersion Include="xunit" Version="2.6.3" />
+		<PackageVersion Include="xunit.runner.visualstudio" Version="2.5.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 		</PackageVersion>
