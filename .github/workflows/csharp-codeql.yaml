@@ -34,10 +34,10 @@ jobs:
       - name: "Set up repository with the latest commit"
         uses: "actions/checkout@v4.1.1"
       - name: "Set up analyzer"
-        uses: "github/codeql-action/init@v2.22.10"
+        uses: "github/codeql-action/init@v3.22.11"
         with:
           languages: "csharp"
       - name: "Build assemblies"
-        uses: "github/codeql-action/autobuild@v2.22.10"
+        uses: "github/codeql-action/autobuild@v3.22.11"
       - name: "Run analyzer"
-        uses: "github/codeql-action/analyze@v2.22.10"
+        uses: "github/codeql-action/analyze@v3.22.11"
