@@ -235,16 +235,6 @@ public readonly record struct Result<TSuccess, TFailure>
 	public static implicit operator Result<TSuccess, TFailure>(TSuccess success)
 		=> Result.Succeed<TSuccess, TFailure>(success);
 
-	/// <summary>Creates a new successful result.</summary>
-	/// <param name="createSuccess">
-	///     <para>Creates the expected success.</para>
-	///     <para>If <paramref name="createSuccess"/> is <see langword="null"/> or its value is <see langword="null"/>, <seealso cref="ArgumentNullException"/> will be thrown.</para>
-	/// </param>
-	/// <returns>A new successful result.</returns>
-	/// <exception cref="ArgumentNullException"/>
-	public static implicit operator Result<TSuccess, TFailure>(Func<TSuccess> createSuccess)
-		=> Result.Succeed<TSuccess, TFailure>(createSuccess);
-
 	/// <summary>Creates a new failed result.</summary>
 	/// <param name="failure">
 	///     <para>The possible failure.</para>
@@ -254,14 +244,4 @@ public readonly record struct Result<TSuccess, TFailure>
 	/// <exception cref="ArgumentNullException"/>
 	public static implicit operator Result<TSuccess, TFailure>(TFailure failure)
 		=> Result.Fail<TSuccess, TFailure>(failure);
-
-	/// <summary>Creates a new failed result.</summary>
-	/// <param name="createFailure">
-	///     <para>Creates the possible failure.</para>
-	///     <para>If <paramref name="createFailure"/> is <see langword="null"/> or its value is <see langword="null"/>, <seealso cref="ArgumentNullException"/> will be thrown.</para>
-	/// </param>
-	/// <returns>A new failed result.</returns>
-	/// <exception cref="ArgumentNullException"/>
-	public static implicit operator Result<TSuccess, TFailure>(Func<TFailure> createFailure)
-		=> Result.Fail<TSuccess, TFailure>(createFailure);
 }
