@@ -91,7 +91,7 @@ jobs:
             -property:"PackageVersion=${GITHUB_REF_NAME#v}" \
             -property:'PackageReleaseNotes=See ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.ref_name }} .'
       - name: "Upload release artifacts"
-        uses: "actions/upload-artifact@v3.1.3"
+        uses: "actions/upload-artifact@v4.0.0"
         if: "${{ env.IS_RELEASE == vars.POSITIVE }}"
         with:
           name: "${{ env.RELEASE_NAME }}"
@@ -108,7 +108,7 @@ jobs:
       NUGET_SEARCH_PATTERN: "*.nupkg"
     steps:
       - name: "Download release artifacts"
-        uses: "actions/download-artifact@v3.0.2"
+        uses: "actions/download-artifact@v4.0.0"
         with:
           name: "${{ env.RELEASE_NAME }}"
       - name: "Set up .NET SDK"
