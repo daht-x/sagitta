@@ -22,13 +22,15 @@ public static class ResultExtension
 		where TFailure : notnull
 	{
 		if (result.IsFailedOrDefault)
+		{
 			return result;
+		}
 		ArgumentNullException.ThrowIfNull(predicate);
 		if (predicate(result.Success))
 		{
 			return failure is null
 				? throw new ArgumentNullException(nameof(failure))
-				: Result.Fail<TSuccess, TFailure>(failure);
+				: ResultFactory.Fail<TSuccess, TFailure>(failure);
 		}
 		return result;
 	}
