@@ -18,8 +18,6 @@ public static class ResultExtension
 	/// <returns>A new failed result if the value of <paramref name="predicate"/> is <see langword="true"/>; otherwise, the previous result.</returns>
 	/// <exception cref="ArgumentNullException"/>
 	public static Result<TSuccess, TFailure> Ensure<TSuccess, TFailure>(this Result<TSuccess, TFailure> result, Func<TSuccess, bool> predicate, TFailure failure)
-		where TSuccess : notnull
-		where TFailure : notnull
 	{
 		if (result.IsFailedOrDefault)
 		{

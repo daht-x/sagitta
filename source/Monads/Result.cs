@@ -4,8 +4,6 @@ namespace Daht.Sagitta.Core.Monads;
 /// <typeparam name="TSuccess">Type of expected success.</typeparam>
 ///	<typeparam name="TFailure">Type of possible failure.</typeparam>
 public readonly record struct Result<TSuccess, TFailure>
-	where TSuccess : notnull
-	where TFailure : notnull
 {
 	/// <summary>Indicates whether the status is successful or <see langword="default"/>.</summary>
 	public bool IsSuccessfulOrDefault => IsSuccessful || IsDefault;
