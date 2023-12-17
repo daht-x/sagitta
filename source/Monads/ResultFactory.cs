@@ -19,8 +19,6 @@ public static class ResultFactory
 	/// <exception cref="ArgumentNullException"/>
 	public static Result<TSuccess, TFailure> Catch<TException, TSuccess, TFailure>(Func<TSuccess> createSuccess, Func<TException, TFailure> createFailure)
 		where TException : Exception
-		where TSuccess : notnull
-		where TFailure : notnull
 	{
 		try
 		{
@@ -44,8 +42,6 @@ public static class ResultFactory
 	/// <returns>A new successful result.</returns>
 	/// <exception cref="ArgumentNullException"/>
 	public static Result<TSuccess, TFailure> Succeed<TSuccess, TFailure>(Func<TSuccess> createSuccess)
-		where TSuccess : notnull
-		where TFailure : notnull
 	{
 		ArgumentNullException.ThrowIfNull(createSuccess);
 		TSuccess success = createSuccess() ?? throw new ArgumentNullException(nameof(createSuccess));
@@ -62,8 +58,6 @@ public static class ResultFactory
 	/// <returns>A new successful result.</returns>
 	/// <exception cref="ArgumentNullException"/>
 	public static Result<TSuccess, TFailure> Succeed<TSuccess, TFailure>(TSuccess success)
-		where TSuccess : notnull
-		where TFailure : notnull
 		=> success is null
 			? throw new ArgumentNullException(nameof(success))
 			: new Result<TSuccess, TFailure>()
@@ -82,8 +76,6 @@ public static class ResultFactory
 	/// <returns>A new failed result.</returns>
 	/// <exception cref="ArgumentNullException"/>
 	public static Result<TSuccess, TFailure> Fail<TSuccess, TFailure>(Func<TFailure> createFailure)
-		where TSuccess : notnull
-		where TFailure : notnull
 	{
 		ArgumentNullException.ThrowIfNull(createFailure);
 		TFailure failure = createFailure() ?? throw new ArgumentNullException(nameof(createFailure));
@@ -100,8 +92,6 @@ public static class ResultFactory
 	/// <returns>A new failed result.</returns>
 	/// <exception cref="ArgumentNullException"/>
 	public static Result<TSuccess, TFailure> Fail<TSuccess, TFailure>(TFailure failure)
-		where TSuccess : notnull
-		where TFailure : notnull
 		=> failure is null
 			? throw new ArgumentNullException(nameof(failure))
 			: new Result<TSuccess, TFailure>()
