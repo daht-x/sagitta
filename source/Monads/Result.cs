@@ -41,4 +41,21 @@ public readonly record struct Result<TSuccess, TFailure>
 	/// <returns>A new failed result.</returns>
 	public static implicit operator Result<TSuccess, TFailure>(TFailure failure)
 		=> ResultFactory.Fail<TSuccess, TFailure>(failure);
+
+	/// <summary>Creates a new failed result if the value of <paramref name="predicate"/> is <see langword="true"/>; otherwise, returns the previous result.</summary>
+	/// <param name="predicate">Creates a set of criteria.</param>
+	/// <param name="failure">The possible failure.</param>
+	/// <returns>A new failed result if the value of <paramref name="predicate"/> is <see langword="true"/>; otherwise, the previous result.</returns>
+	public Result<TSuccess, TFailure> Ensure([NotNull] Func<TSuccess, bool> predicate, TFailure failure)
+	{
+		if (IsFailedOrDefault)
+		{
+			return this;
+		}
+		if (predicate(Success))
+		{
+			return ResultFactory.Fail<TSuccess, TFailure>(failure);
+		}
+		return this;
+	}
 }
