@@ -31,22 +31,14 @@ public readonly record struct Result<TSuccess, TFailure>
 	public TFailure Failure { get; internal init; }
 
 	/// <summary>Creates a new successful result.</summary>
-	/// <param name="success">
-	///		<para>The expected success.</para>
-	///     <para>If <paramref name="success"/> is <see langword="null"/>, <seealso cref="ArgumentNullException"/> will be thrown.</para>
-	/// </param>
+	/// <param name="success">The expected success.</param>
 	/// <returns>A new successful result.</returns>
-	/// <exception cref="ArgumentNullException"/>
 	public static implicit operator Result<TSuccess, TFailure>(TSuccess success)
 		=> ResultFactory.Succeed<TSuccess, TFailure>(success);
 
 	/// <summary>Creates a new failed result.</summary>
-	/// <param name="failure">
-	///     <para>The possible failure.</para>
-	///     <para>If <paramref name="failure"/> is <see langword="null"/>, <seealso cref="ArgumentNullException"/> will be thrown.</para>
-	/// </param>
+	/// <param name="failure">The possible failure.</param>
 	/// <returns>A new failed result.</returns>
-	/// <exception cref="ArgumentNullException"/>
 	public static implicit operator Result<TSuccess, TFailure>(TFailure failure)
 		=> ResultFactory.Fail<TSuccess, TFailure>(failure);
 }
