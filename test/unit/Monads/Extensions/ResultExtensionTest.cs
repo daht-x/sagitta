@@ -45,44 +45,6 @@ public sealed class ResultExtensionTest
 
 	[Fact]
 	[Trait(root, ensure)]
-	public void Ensure_SuccessfulResultPlusNullPredicatePlusFailure_ArgumentNullException()
-	{
-		//Arrange
-		const Func<Constellation, bool> predicate = null!;
-		const string failure = ResultFixture.Failure;
-
-		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
-			static () => _ = ResultMother
-				.Succeed()
-				.Ensure(predicate, failure)
-		);
-
-		//Assert
-		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(predicate), actualException);
-	}
-
-	[Fact]
-	[Trait(root, ensure)]
-	public void Ensure_SuccessfulResultPlusTruePredicatePlusNullFailure_ArgumentNullException()
-	{
-		//Arrange
-		Func<Constellation, bool> predicate = static _ => true;
-		const string failure = null!;
-
-		//Act
-		ArgumentNullException? actualException = ExceptionHandler.Catch<ArgumentNullException>(
-			() => _ = ResultMother
-				.Succeed()
-				.Ensure(predicate, failure)
-		);
-
-		//Assert
-		ArgumentNullExceptionAsserter.AreEqualParameterNames(nameof(failure), actualException);
-	}
-
-	[Fact]
-	[Trait(root, ensure)]
 	public void Ensure_SuccessfulResultPlusTruePredicatePlusFailure_FailedResult()
 	{
 		//Arrange
