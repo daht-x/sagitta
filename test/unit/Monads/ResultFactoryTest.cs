@@ -48,7 +48,7 @@ public sealed class ResultFactoryTest
 
 	#region Succeed
 
-	#region Overload No. 01
+	#region Overload
 
 	[Fact]
 	[Trait(root, succeed)]
@@ -66,7 +66,7 @@ public sealed class ResultFactoryTest
 
 	#endregion
 
-	#region Overload No. 02
+	#region Overload
 
 	[Fact]
 	[Trait(root, succeed)]
@@ -89,7 +89,7 @@ public sealed class ResultFactoryTest
 
 	#region Fail
 
-	#region Overload No. 01
+	#region Overload
 
 	[Fact]
 	[Trait(root, fail)]
@@ -107,7 +107,7 @@ public sealed class ResultFactoryTest
 
 	#endregion
 
-	#region Overload No. 02
+	#region Overload
 
 	[Fact]
 	[Trait(root, fail)]
