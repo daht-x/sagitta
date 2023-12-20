@@ -4,13 +4,55 @@ public sealed class ResultTest
 {
 	private const string root = nameof(Result<object, object>);
 
+	private const string constructor = "Constructor";
+
 	private const string implicitOperator = "Implicit Operator";
 
 	private const string ensure = nameof(Result<object, object>.Ensure);
 
+	#region Constructor
+
+	#region Overload
+
+	[Fact]
+	[Trait(root, constructor)]
+	public void Constructor_Success_SuccessfulResult()
+	{
+		//Arrange
+		Constellation expectedSuccess = ResultFixture.Success;
+
+		//Act
+		Result<Constellation, string> actualResult = new(expectedSuccess);
+
+		//Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
+
+	#region Overload
+
+	[Fact]
+	[Trait(root, constructor)]
+	public void Constructor_Failure_FailedResult()
+	{
+		//Arrange
+		const string expectedFailure = ResultFixture.Failure;
+
+		//Act
+		Result<Constellation, string> actualResult = new(expectedFailure);
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	#endregion
+
+	#endregion
+
 	#region Implicit Operator
 
-	#region Overload No. 01
+	#region Overload
 
 	[Fact]
 	[Trait(root, implicitOperator)]
@@ -28,7 +70,7 @@ public sealed class ResultTest
 
 	#endregion
 
-	#region Overload No. 02
+	#region Overload
 
 	[Fact]
 	[Trait(root, implicitOperator)]
@@ -49,23 +91,6 @@ public sealed class ResultTest
 	#endregion
 
 	#region Ensure
-
-	[Fact]
-	[Trait(root, ensure)]
-	public void Ensure_DefaultResultPlusFalsePredicatePlusFailure_DefaultResult()
-	{
-		//Arrange
-		Func<Constellation, bool> predicate = static _ => false;
-		const string failure = ResultFixture.Failure;
-
-		//Act
-		Result<Constellation, string> actualResult = ResultMother
-			.Default
-			.Ensure(predicate, failure);
-
-		//Assert
-		ResultAsserter.IsDefault(actualResult);
-	}
 
 	[Fact]
 	[Trait(root, ensure)]

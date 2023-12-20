@@ -3,32 +3,35 @@ namespace Daht.Sagitta.Core.Monads;
 /// <summary>Type that encapsulates both the expected success and the possible failure of a given action.</summary>
 /// <typeparam name="TSuccess">Type of expected success.</typeparam>
 ///	<typeparam name="TFailure">Type of possible failure.</typeparam>
-public readonly record struct Result<TSuccess, TFailure>
+public sealed class Result<TSuccess, TFailure>
 {
-	/// <summary>Indicates whether the status is successful or <see langword="default"/>.</summary>
-	public bool IsSuccessfulOrDefault => IsSuccessful || IsDefault;
-
-	/// <summary>Indicates whether the status is failed or <see langword="default"/>.</summary>
-	public bool IsFailedOrDefault => IsFailed || IsDefault;
-
-	/// <summary>Indicates whether the status is <see langword="default"/>.</summary>
-	public bool IsDefault => this is
-	{
-		IsSuccessful: false,
-		IsFailed: false
-	};
-
 	/// <summary>Indicates whether the status is successful.</summary>
-	public bool IsSuccessful { get; internal init; }
+	public bool IsSuccessful { get; }
 
 	/// <summary>The expected success.</summary>
-	public TSuccess Success { get; internal init; }
+	public TSuccess Success { get; } = default!;
 
 	/// <summary>Indicates whether the status is failed.</summary>
-	public bool IsFailed { get; internal init; }
+	public bool IsFailed { get; }
 
 	/// <summary>The possible failure.</summary>
-	public TFailure Failure { get; internal init; }
+	public TFailure Failure { get; } = default!;
+
+	/// <summary>Creates a new successful result.</summary>
+	/// <param name="success">The expected success.</param>
+	public Result(TSuccess success)
+	{
+		IsSuccessful = true;
+		Success = success;
+	}
+
+	/// <summary>Creates a new failed result.</summary>
+	/// <param name="failure">The possible failure.</param>
+	public Result(TFailure failure)
+	{
+		IsFailed = true;
+		Failure = failure;
+	}
 
 	/// <summary>Creates a new successful result.</summary>
 	/// <param name="success">The expected success.</param>
@@ -48,11 +51,11 @@ public readonly record struct Result<TSuccess, TFailure>
 	/// <returns>A new failed result if the value of <paramref name="predicate"/> is <see langword="true"/>; otherwise, the previous result.</returns>
 	public Result<TSuccess, TFailure> Ensure([NotNull] Func<TSuccess, bool> predicate, TFailure failure)
 	{
-		if (IsFailedOrDefault)
+		if (IsFailed)
 		{
 			return this;
 		}
-		if (predicate(Success))
+		else if (predicate(Success))
 		{
 			return ResultFactory.Fail<TSuccess, TFailure>(failure);
 		}

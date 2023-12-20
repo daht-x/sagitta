@@ -2,8 +2,6 @@ namespace Daht.Sagitta.Core.UnitTest.Monads.Mothers;
 
 internal static class ResultMother
 {
-	internal static Result<Constellation, string> Default => default;
-
 	internal static Result<Constellation, string> Succeed()
 		=> ResultFactory.Succeed<Constellation, string>(ResultFixture.Success);
 
