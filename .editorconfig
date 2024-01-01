@@ -311,7 +311,6 @@ resharper_show_autodetect_configure_formatting_tip = false
 resharper_sort_attributes = true
 resharper_space_around_arrow_op = true
 resharper_space_within_slice_pattern = false
-resharper_static_members_qualify_members = none, field
 resharper_static_members_qualify_with = current_type
 resharper_use_indent_from_vs = false
 resharper_wrap_after_primary_constructor_declaration_lpar = false
