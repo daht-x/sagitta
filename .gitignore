@@ -290,3 +290,5 @@ FodyWeavers.xsd
 *.sln.iml
 
 .lycheecache
+
+.idea/
