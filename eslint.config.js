@@ -1,7 +1,7 @@
 import { FlatCompat } from "@eslint/eslintrc";
 import eslintJs from "@eslint/js";
 import importPlugin from "eslint-plugin-import";
-import { ruleSeverity, ruleCompliance } from "./linter-configuration.js";
+import { ruleCompliance, ruleSeverity } from "./linter-configuration.js";
 
 const eslintJsConfiguration = eslintJs.configs.recommended;
 const compatibilityManager = new FlatCompat();
@@ -14,18 +14,38 @@ const rootConfiguration = [
 			importPlugin
 		},
 		rules: {
-			indent: [ruleSeverity.error, "tab"],
+			indent: [
+				ruleSeverity.error,
+				"tab"
+			],
 			"no-tabs": ruleSeverity.disabled,
-			"padded-blocks": [ruleSeverity.error, ruleCompliance.never],
-			"brace-style": [ruleSeverity.error, "allman"],
-			quotes: [ruleSeverity.error, "double"],
-			"arrow-parens": [ruleSeverity.error, "as-needed"],
-			"comma-dangle": [ruleSeverity.error, ruleCompliance.never],
-			"import/extensions": [ruleSeverity.error, ruleCompliance.always],
+			"padded-blocks": [
+				ruleSeverity.error,
+				ruleCompliance.never
+			],
+			"brace-style": [
+				ruleSeverity.error,
+				"allman"
+			],
+			quotes: [
+				ruleSeverity.error,
+				"double"
+			],
+			"arrow-parens": [
+				ruleSeverity.error,
+				"as-needed"
+			],
+			"comma-dangle": [
+				ruleSeverity.error,
+				ruleCompliance.never
+			],
+			"import/extensions": [
+				ruleSeverity.error,
+				ruleCompliance.always
+			],
 			"import/no-extraneous-dependencies": ruleSeverity.disabled,
 			"import/exports-last": ruleSeverity.error
 		}
 	}
 ];
-
 export default rootConfiguration;
