@@ -36,6 +36,18 @@ public static class ResultFactory
 			? Fail<TSuccess, TFailure>(failure)
 			: Succeed<TSuccess, TFailure>(success);
 
+	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, returns the previous result.</summary>
+	/// <param name="success">The expected success.</param>
+	/// <param name="predicate">Creates a set of criteria.</param>
+	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
+	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
+	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
+	public static Result<TSuccess, TFailure> Ensure<TSuccess, TFailure>(TSuccess success, Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
+		=> predicate(success)
+			? Fail<TSuccess, TFailure>(createFailure(success))
+			: Succeed<TSuccess, TFailure>(success);
+
 	/// <summary>Creates a new successful result.</summary>
 	/// <param name="success">The expected success.</param>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
