@@ -6,6 +6,8 @@ public sealed class ResultFactoryTest
 
 	private const string @catch = nameof(ResultFactory.Catch);
 
+	private const string ensure = nameof(ResultFactory.Ensure);
+
 	private const string succeed = nameof(ResultFactory.Succeed);
 
 	private const string fail = nameof(ResultFactory.Fail);
@@ -13,39 +15,77 @@ public sealed class ResultFactoryTest
 	#region Catch
 
 	[Fact]
-	[Trait(ResultFactoryTest.root, ResultFactoryTest.@catch)]
+	[Trait(root, @catch)]
 	public void Catch_CreateSuccessPlusCreateFailure_SuccessfulResult()
 	{
-		//Arrange
+		// Arrange
 		Constellation expectedSuccess = ResultFixture.Success;
 		Constellation CreateSuccess()
 			=> expectedSuccess;
 		static string CreateFailure(InvalidOperationException exception)
 			=> exception.Message;
 
-		//Act
+		// Act
 		Result<Constellation, string> actualResult = ResultFactory.Catch<InvalidOperationException, Constellation, string>(CreateSuccess, CreateFailure);
 
-		//Assert
+		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
 
 	[Fact]
-	[Trait(ResultFactoryTest.root, ResultFactoryTest.@catch)]
+	[Trait(root, @catch)]
 	public void Catch_ExceptionPlusCreateFailure_FailedResult()
 	{
-		//Arrange
+		// Arrange
 		static Constellation CreateSuccess()
 			=> throw new InvalidOperationException();
 		static string CreateFailure(InvalidOperationException exception)
 			=> exception.Message;
 		const string expectedFailure = "Operation is not valid due to the current state of the object.";
 
-		//Act
+		// Act
 		Result<Constellation, string> actualResult = ResultFactory.Catch<InvalidOperationException, Constellation, string>(CreateSuccess, CreateFailure);
 
-		//Assert
+		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	#endregion
+
+	#region Ensure
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_SuccessPlusTruePredicatePlusFailure_FailedResult()
+	{
+		// Arrange
+		Constellation success = ResultFixture.Success;
+		static bool Predicate(Constellation _)
+			=> true;
+		const string expectedFailure = ResultFixture.Failure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultFactory.Ensure(success, Predicate, expectedFailure);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_SuccessPlusFalsePredicatePlusFailure_SuccessfulResult()
+	{
+		// Arrange
+		Constellation expectedSuccess = ResultFixture.Success;
+		static bool Predicate(Constellation _)
+			=> false;
+		const string failure = ResultFixture.Failure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultFactory.Ensure(expectedSuccess, Predicate, failure);
+
+		// Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -55,16 +95,16 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(ResultFactoryTest.root, ResultFactoryTest.succeed)]
+	[Trait(root, succeed)]
 	public void Succeed_Success_SuccessfulResult()
 	{
-		//Arrange
+		// Arrange
 		Constellation expectedSuccess = ResultFixture.Success;
 
-		//Act
+		// Act
 		Result<Constellation, string> actualResult = ResultFactory.Succeed<Constellation, string>(expectedSuccess);
 
-		//Assert
+		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
 
@@ -73,18 +113,18 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(ResultFactoryTest.root, ResultFactoryTest.succeed)]
+	[Trait(root, succeed)]
 	public void Succeed_CreateSuccess_SuccessfulResult()
 	{
-		//Arrange
+		// Arrange
 		Constellation expectedSuccess = ResultFixture.Success;
 		Constellation CreateSuccess()
 			=> expectedSuccess;
 
-		//Act
+		// Act
 		Result<Constellation, string> actualResult = ResultFactory.Succeed<Constellation, string>(CreateSuccess);
 
-		//Assert
+		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
 
@@ -97,16 +137,16 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(ResultFactoryTest.root, ResultFactoryTest.fail)]
+	[Trait(root, fail)]
 	public void Fail_Failure_FailedResult()
 	{
-		//Arrange
+		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
 
-		//Act
+		// Act
 		Result<Constellation, string> actualResult = ResultFactory.Fail<Constellation, string>(expectedFailure);
 
-		//Assert
+		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
 	}
 
@@ -115,18 +155,18 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(ResultFactoryTest.root, ResultFactoryTest.fail)]
+	[Trait(root, fail)]
 	public void Fail_CreateFailure_FailedResult()
 	{
-		//Arrange
+		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
 		static string CreateFailure()
 			=> expectedFailure;
 
-		//Act
+		// Act
 		Result<Constellation, string> actualResult = ResultFactory.Fail<Constellation, string>(CreateFailure);
 
-		//Assert
+		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
 	}
 
