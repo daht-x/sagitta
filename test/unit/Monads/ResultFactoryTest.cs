@@ -54,6 +54,8 @@ public sealed class ResultFactoryTest
 
 	#region Ensure
 
+	#region Overload
+
 	[Fact]
 	[Trait(root, ensure)]
 	public void Ensure_SuccessPlusTruePredicatePlusFailure_FailedResult()
@@ -87,6 +89,49 @@ public sealed class ResultFactoryTest
 		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
+
+	#endregion
+
+	#region Overload
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_SuccessPlusTruePredicatePlusCreateFailure_FailedResult()
+	{
+		// Arrange
+		Constellation success = ResultFixture.Success;
+		static bool Predicate(Constellation _)
+			=> true;
+		const string expectedFailure = ResultFixture.Failure;
+		static string CreateFailure(Constellation _)
+			=> expectedFailure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultFactory.Ensure(success, Predicate, CreateFailure);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_SuccessPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
+	{
+		// Arrange
+		Constellation expectedSuccess = ResultFixture.Success;
+		static bool Predicate(Constellation _)
+			=> false;
+		static string CreateFailure(Constellation _)
+			=> ResultFixture.Failure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultFactory.Ensure(expectedSuccess, Predicate, CreateFailure);
+
+		// Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
 
 	#endregion
 
