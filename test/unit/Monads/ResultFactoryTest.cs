@@ -174,6 +174,50 @@ public sealed class ResultFactoryTest
 
 	#endregion
 
+	#region Overload
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_CreateSuccessPlusTruePredicatePlusCreateFailure_FailedResult()
+	{
+		// Arrange
+		static Constellation CreateSuccess()
+			=> ResultFixture.Success;
+		static bool Predicate(Constellation _)
+			=> true;
+		const string expectedFailure = ResultFixture.Failure;
+		static string CreateFailure(Constellation _)
+			=> expectedFailure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultFactory.Ensure(CreateSuccess, Predicate, CreateFailure);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_CreateSuccessPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
+	{
+		// Arrange
+		Constellation expectedSuccess = ResultFixture.Success;
+		Constellation CreateSuccess()
+			=> expectedSuccess;
+		static bool Predicate(Constellation _)
+			=> false;
+		static string CreateFailure(Constellation _)
+			=> ResultFixture.Failure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultFactory.Ensure(CreateSuccess, Predicate, CreateFailure);
+
+		// Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
+
 	#endregion
 
 	#region Succeed
