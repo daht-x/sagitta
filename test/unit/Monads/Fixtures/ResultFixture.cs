@@ -2,7 +2,7 @@ namespace Daht.Sagitta.Core.UnitTest.Monads.Fixtures;
 
 internal static class ResultFixture
 {
-	internal const string Failure = nameof(ResultFixture.Failure);
+	internal const string Failure = nameof(Failure);
 
 	internal static Constellation Success
 		=> new()
@@ -13,5 +13,5 @@ internal static class ResultFixture
 		};
 
 	internal static string RandomFailure
-		=> $"{ResultFixture.Failure} | {Guid.NewGuid()}";
+		=> $"{Failure} | {Guid.NewGuid()}";
 }
