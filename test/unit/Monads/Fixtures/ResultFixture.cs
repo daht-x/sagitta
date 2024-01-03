@@ -4,6 +4,8 @@ internal static class ResultFixture
 {
 	internal const string Failure = nameof(Failure);
 
+	internal const string Auxiliary = nameof(Auxiliary);
+
 	internal static Constellation Success
 		=> new()
 		{

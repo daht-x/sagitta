@@ -78,6 +78,20 @@ public static class ResultFactory
 			: Succeed<TSuccess, TFailure>(success);
 	}
 
+	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, returns the previous result.</summary>
+	/// <param name="success">The expected success.</param>
+	/// <param name="auxiliary">The auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
+	/// <param name="predicate">Creates a set of criteria.</param>
+	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
+	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
+	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
+	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
+	public static Result<TSuccess, TFailure> Ensure<TAuxiliary, TSuccess, TFailure>(TSuccess success, TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
+		=> predicate(success, auxiliary)
+			? Fail<TSuccess, TFailure>(createFailure(success, auxiliary))
+			: Succeed<TSuccess, TFailure>(success);
+
 	/// <summary>Creates a new successful result.</summary>
 	/// <param name="success">The expected success.</param>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
