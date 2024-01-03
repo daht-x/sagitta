@@ -94,17 +94,16 @@ public sealed class ResultTest
 
 	[Fact]
 	[Trait(root, ensure)]
-	public void Ensure_FailedResultPlusFalsePredicatePlusFailure_FailedResult()
+	public void Ensure_FailedResultPlusTruePredicatePlusFailure_FailedResult()
 	{
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
-		static bool Predicate(Constellation _)
-			=> false;
+		Func<Constellation, bool> predicate = static _ => true;
 		string failure = ResultFixture.RandomFailure;
 
 		// Act
 		Result<Constellation, string> actualResult = ResultMother.Fail(expectedFailure)
-			.Ensure(Predicate, failure);
+			.Ensure(predicate, failure);
 
 		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -115,13 +114,12 @@ public sealed class ResultTest
 	public void Ensure_SuccessfulResultPlusTruePredicatePlusFailure_FailedResult()
 	{
 		// Arrange
-		static bool Predicate(Constellation _)
-			=> true;
+		Func<Constellation, bool> predicate = static _ => true;
 		const string expectedFailure = ResultFixture.Failure;
 
 		// Act
 		Result<Constellation, string> actualResult = ResultMother.Succeed()
-			.Ensure(Predicate, expectedFailure);
+			.Ensure(predicate, expectedFailure);
 
 		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -133,13 +131,12 @@ public sealed class ResultTest
 	{
 		// Arrange
 		Constellation expectedSuccess = ResultFixture.Success;
-		static bool Predicate(Constellation _)
-			=> false;
+		Func<Constellation, bool> predicate = static _ => false;
 		const string failure = ResultFixture.Failure;
 
 		// Act
 		Result<Constellation, string> actualResult = ResultMother.Succeed(expectedSuccess)
-			.Ensure(Predicate, failure);
+			.Ensure(predicate, failure);
 
 		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
