@@ -92,5 +92,23 @@ public sealed class Result<TSuccess, TFailure>
 			? new(createFailure(Success, auxiliary))
 			: this;
 	}
+
+	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, returns the previous result.</summary>
+	/// <param name="createAuxiliary">Creates the auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
+	/// <param name="predicate">Creates a set of criteria.</param>
+	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
+	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
+	public Result<TSuccess, TFailure> Ensure<TAuxiliary>(Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
+	{
+		if (IsFailed)
+		{
+			return this;
+		}
+		TAuxiliary auxiliary = createAuxiliary();
+		return predicate(Success, auxiliary)
+			? new(createFailure(Success, auxiliary))
+			: this;
+	}
 }
 #pragma warning restore CA1062

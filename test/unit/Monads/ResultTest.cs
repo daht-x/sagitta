@@ -259,5 +259,63 @@ public sealed class ResultTest
 
 	#endregion
 
+	#region Overload
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_FailedResultPlusCreateAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
+	{
+		// Arrange
+		const string expectedFailure = ResultFixture.Failure;
+		Func<string> createAuxiliary = static () => ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = static (_, _) => true;
+		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.RandomFailure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultMother.Fail(expectedFailure)
+			.Ensure(createAuxiliary, predicate, createFailure);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_SuccessfulResultPlusCreateAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
+	{
+		// Arrange
+		Func<string> createAuxiliary = static () => ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = static (_, _) => true;
+		const string expectedFailure = ResultFixture.Failure;
+		Func<Constellation, string, string> createFailure = static (_, _) => expectedFailure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultMother.Succeed()
+			.Ensure(createAuxiliary, predicate, createFailure);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_SuccessfulResultPlusCreateAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
+	{
+		// Arrange
+		Constellation expectedSuccess = ResultFixture.Success;
+		Func<string> createAuxiliary = static () => ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = static (_, _) => false;
+		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultMother.Succeed(expectedSuccess)
+			.Ensure(createAuxiliary, predicate, createFailure);
+
+		// Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
+
 	#endregion
 }
