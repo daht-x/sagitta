@@ -1,9 +1,12 @@
-name: "C# CodeQL"
+name: "CodeQL"
 on:
   push:
     branches:
       - "main"
     paths:
+      - "**.js"
+      - "package.json"
+      - "pnpm-lock.yaml"
       - "source/**"
       - "test/**"
       - ".editorconfig"
@@ -13,6 +16,9 @@ on:
       - "*.sln"
   pull_request:
     paths:
+      - "**.js"
+      - "package.json"
+      - "pnpm-lock.yaml"
       - "source/**"
       - "test/**"
       - ".editorconfig"
@@ -30,14 +36,21 @@ jobs:
   analyzer:
     name: "Analyzer"
     runs-on: "${{ vars.DEFAULT_UBUNTU }}"
+    strategy:
+      matrix:
+        languages:
+          - "javascript"
+          - "csharp"
     steps:
       - name: "Set up repository with the latest commit"
         uses: "actions/checkout@v4.1.1"
       - name: "Set up analyzer"
         uses: "github/codeql-action/init@v3.22.12"
         with:
-          languages: "csharp"
+          languages: "${{ matrix.languages }}"
       - name: "Build assemblies"
         uses: "github/codeql-action/autobuild@v3.22.12"
       - name: "Run analyzer"
         uses: "github/codeql-action/analyze@v3.22.12"
+        with:
+          category: "/language:${{ matrix.languages }}"
