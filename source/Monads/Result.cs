@@ -57,7 +57,22 @@ public sealed class Result<TSuccess, TFailure>
 			return this;
 		}
 		return predicate(Success)
-			? new(failure)
+			? ResultFactory.Fail<TSuccess, TFailure>(failure)
+			: this;
+	}
+
+	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, returns the previous result.</summary>
+	/// <param name="predicate">Creates a set of criteria.</param>
+	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
+	public Result<TSuccess, TFailure> Ensure(Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
+	{
+		if (IsFailed)
+		{
+			return this;
+		}
+		return predicate(Success)
+			? ResultFactory.Fail<TSuccess, TFailure>(createFailure(Success))
 			: this;
 	}
 }
