@@ -9,9 +9,18 @@ internal static class ResultFixture
 	internal static Constellation Success
 		=> new()
 		{
+			Galaxy = "Milky Way",
 			Abbreviation = "Sge",
 			Name = "Sagitta",
 			Symbolism = "The arrow"
+		};
+
+	internal static Start SuccessToMap
+		=> new()
+		{
+			Constellation = Success.Name,
+			Name = "Gamma Sagittae",
+			EvolutionaryStage = "Red Giant"
 		};
 
 	internal static string RandomFailure

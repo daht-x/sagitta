@@ -10,6 +10,8 @@ public sealed class ResultTest
 
 	private const string ensure = nameof(Result<object, object>.Ensure);
 
+	private const string map = nameof(Result<object, object>.Map);
+
 	#region Constructor
 
 	#region Overload
@@ -316,6 +318,41 @@ public sealed class ResultTest
 	}
 
 	#endregion
+
+	#endregion
+
+	#region Map
+
+	[Fact]
+	[Trait(root, map)]
+	public void Map_FailedResultPlusSuccessToMap_FailedResult()
+	{
+		//Arrange
+		const string expectedFailure = ResultFixture.Failure;
+		Start successToMap = ResultFixture.SuccessToMap;
+
+		//Act
+		Result<Start, string> actualResult = ResultMother.Fail(expectedFailure)
+			.Map(successToMap);
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, map)]
+	public void Map_SuccessfulResultPlusSuccessToMap_SuccessfulResult()
+	{
+		//Arrange
+		Start expectedSuccess = ResultFixture.SuccessToMap;
+
+		//Act
+		Result<Start, string> actualResult = ResultMother.Succeed()
+			.Map(expectedSuccess);
+
+		//Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
 
 	#endregion
 }

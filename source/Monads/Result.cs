@@ -110,5 +110,14 @@ public sealed class Result<TSuccess, TFailure>
 			? new(createFailure(Success, auxiliary))
 			: this;
 	}
+
+	/// <summary>Creates a new result with a different expected success.</summary>
+	/// <param name="successToMap">The expected success to map.</param>
+	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
+	/// <returns>A new result with a different expected success.</returns>
+	public Result<TSuccessToMap, TFailure> Map<TSuccessToMap>(TSuccessToMap successToMap)
+		=> IsFailed
+			? new(Failure)
+			: new(successToMap);
 }
 #pragma warning restore CA1062
