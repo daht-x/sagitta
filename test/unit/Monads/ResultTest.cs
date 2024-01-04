@@ -323,6 +323,8 @@ public sealed class ResultTest
 
 	#region Map
 
+	#region Overload
+
 	[Fact]
 	[Trait(root, map)]
 	public void Map_FailedResultPlusSuccessToMap_FailedResult()
@@ -353,6 +355,44 @@ public sealed class ResultTest
 		//Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
+
+	#endregion
+
+	#region Overload
+
+	[Fact]
+	[Trait(root, map)]
+	public void Map_FailedResultPlusCreateSuccessToMap_FailedResult()
+	{
+		//Arrange
+		const string expectedFailure = ResultFixture.Failure;
+		Func<Constellation, Start> createSuccessToMap = static _ => ResultFixture.SuccessToMap;
+
+		//Act
+		Result<Start, string> actualResult = ResultMother.Fail(expectedFailure)
+			.Map(createSuccessToMap);
+
+		//Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, map)]
+	public void Map_SuccessfulResultPlusCreateSuccessToMap_SuccessfulResult()
+	{
+		//Arrange
+		Start expectedSuccess = ResultFixture.SuccessToMap;
+		Func<Constellation, Start> createSuccessToMap = _ => expectedSuccess;
+
+		//Act
+		Result<Start, string> actualResult = ResultMother.Succeed()
+			.Map(createSuccessToMap);
+
+		//Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
 
 	#endregion
 }
