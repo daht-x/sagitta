@@ -276,6 +276,46 @@ public sealed class ResultFactoryTest
 
 	#endregion
 
+	#region Overload
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_CreateSuccessPlusAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
+	{
+		// Arrange
+		Func<Constellation> createSuccess = static () => ResultFixture.Success;
+		const string auxiliary = ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = static (_, _) => true;
+		const string expectedFailure = ResultFixture.Failure;
+		Func<Constellation, string, string> createFailure = static (_, _) => expectedFailure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultFactory.Ensure(createSuccess, auxiliary, predicate, createFailure);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_CreateSuccessPlusAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
+	{
+		// Arrange
+		Constellation expectedSuccess = ResultFixture.Success;
+		Func<Constellation> createSuccess = () => expectedSuccess;
+		const string auxiliary = ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = static (_, _) => false;
+		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultFactory.Ensure(createSuccess, auxiliary, predicate, createFailure);
+
+		// Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
+
 	#endregion
 
 	#region Succeed
