@@ -201,5 +201,63 @@ public sealed class ResultTest
 
 	#endregion
 
+	#region Overload
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_FailedResultPlusAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
+	{
+		// Arrange
+		const string expectedFailure = ResultFixture.Failure;
+		const string auxiliary = ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = static (_, _) => true;
+		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.RandomFailure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultMother.Fail(expectedFailure)
+			.Ensure(auxiliary, predicate, createFailure);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_SuccessfulResultPlusAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
+	{
+		// Arrange
+		const string auxiliary = ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = static (_, _) => true;
+		const string expectedFailure = ResultFixture.Failure;
+		Func<Constellation, string, string> createFailure = static (_, _) => expectedFailure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultMother.Succeed()
+			.Ensure(auxiliary, predicate, createFailure);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_SuccessfulResultPlusAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
+	{
+		// Arrange
+		Constellation expectedSuccess = ResultFixture.Success;
+		const string auxiliary = ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = static (_, _) => false;
+		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultMother.Succeed(expectedSuccess)
+			.Ensure(auxiliary, predicate, createFailure);
+
+		// Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
+
 	#endregion
 }

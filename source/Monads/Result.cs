@@ -57,7 +57,7 @@ public sealed class Result<TSuccess, TFailure>
 			return this;
 		}
 		return predicate(Success)
-			? ResultFactory.Fail<TSuccess, TFailure>(failure)
+			? new(failure)
 			: this;
 	}
 
@@ -72,7 +72,24 @@ public sealed class Result<TSuccess, TFailure>
 			return this;
 		}
 		return predicate(Success)
-			? ResultFactory.Fail<TSuccess, TFailure>(createFailure(Success))
+			? new(createFailure(Success))
+			: this;
+	}
+
+	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, returns the previous result.</summary>
+	/// <param name="auxiliary">The auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
+	/// <param name="predicate">Creates a set of criteria.</param>
+	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
+	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
+	public Result<TSuccess, TFailure> Ensure<TAuxiliary>(TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
+	{
+		if (IsFailed)
+		{
+			return this;
+		}
+		return predicate(Success, auxiliary)
+			? new(createFailure(Success, auxiliary))
 			: this;
 	}
 }
