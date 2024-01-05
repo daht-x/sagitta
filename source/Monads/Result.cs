@@ -111,22 +111,31 @@ public sealed class Result<TSuccess, TFailure>
 			: this;
 	}
 
-	/// <summary>Creates a new result with a different expected success.</summary>
+	/// <summary>Creates a new result with the same or different type of expected success.</summary>
 	/// <param name="successToMap">The expected success to map.</param>
 	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
-	/// <returns>A new result with a different expected success.</returns>
+	/// <returns>A new result with the same or different type of expected success.</returns>
 	public Result<TSuccessToMap, TFailure> Map<TSuccessToMap>(TSuccessToMap successToMap)
 		=> IsFailed
 			? new(Failure)
 			: new(successToMap);
 
-	/// <summary>Creates a new result with a different expected success.</summary>
+	/// <summary>Creates a new result with the same or different type of expected success.</summary>
 	/// <param name="createSuccessToMap">Creates the expected success to map.</param>
 	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
-	/// <returns>A new result with a different expected success.</returns>
+	/// <returns>A new result with the same or different type of expected success.</returns>
 	public Result<TSuccessToMap, TFailure> Map<TSuccessToMap>(Func<TSuccess, TSuccessToMap> createSuccessToMap)
 		=> IsFailed
 			? new(Failure)
 			: new(createSuccessToMap(Success));
+
+	/// <summary>Creates a new result in combination with another result with the same or different type of expected success.</summary>
+	/// <param name="createResultToBind">Creates a new result to bind.</param>
+	/// <typeparam name="TSuccessToBind">Type of expected success to bind.</typeparam>
+	/// <returns>A new result in combination with another result with the same or different type of expected success.</returns>
+	public Result<TSuccessToBind, TFailure> Bind<TSuccessToBind>(Func<TSuccess, Result<TSuccessToBind, TFailure>> createResultToBind)
+		=> IsFailed
+			? new(Failure)
+			: createResultToBind(Success);
 }
 #pragma warning restore CA1062

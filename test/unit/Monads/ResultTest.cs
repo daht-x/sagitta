@@ -12,6 +12,8 @@ public sealed class ResultTest
 
 	private const string map = nameof(Result<object, object>.Map);
 
+	private const string bind = nameof(Result<object, object>.Bind);
+
 	#region Constructor
 
 	#region Overload
@@ -329,15 +331,15 @@ public sealed class ResultTest
 	[Trait(root, map)]
 	public void Map_FailedResultPlusSuccessToMap_FailedResult()
 	{
-		//Arrange
+		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
 		Start successToMap = ResultFixture.SuccessToMap;
 
-		//Act
+		// Act
 		Result<Start, string> actualResult = ResultMother.Fail(expectedFailure)
 			.Map(successToMap);
 
-		//Assert
+		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
 	}
 
@@ -345,14 +347,14 @@ public sealed class ResultTest
 	[Trait(root, map)]
 	public void Map_SuccessfulResultPlusSuccessToMap_SuccessfulResult()
 	{
-		//Arrange
+		// Arrange
 		Start expectedSuccess = ResultFixture.SuccessToMap;
 
-		//Act
+		// Act
 		Result<Start, string> actualResult = ResultMother.Succeed()
 			.Map(expectedSuccess);
 
-		//Assert
+		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
 
@@ -364,15 +366,15 @@ public sealed class ResultTest
 	[Trait(root, map)]
 	public void Map_FailedResultPlusCreateSuccessToMap_FailedResult()
 	{
-		//Arrange
+		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
 		Func<Constellation, Start> createSuccessToMap = static _ => ResultFixture.SuccessToMap;
 
-		//Act
+		// Act
 		Result<Start, string> actualResult = ResultMother.Fail(expectedFailure)
 			.Map(createSuccessToMap);
 
-		//Assert
+		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
 	}
 
@@ -380,19 +382,71 @@ public sealed class ResultTest
 	[Trait(root, map)]
 	public void Map_SuccessfulResultPlusCreateSuccessToMap_SuccessfulResult()
 	{
-		//Arrange
+		// Arrange
 		Start expectedSuccess = ResultFixture.SuccessToMap;
 		Func<Constellation, Start> createSuccessToMap = _ => expectedSuccess;
 
-		//Act
+		// Act
 		Result<Start, string> actualResult = ResultMother.Succeed()
 			.Map(createSuccessToMap);
 
-		//Assert
+		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
+
+	#endregion
+
+	#region Bind
+
+	[Fact]
+	[Trait(root, bind)]
+	public void Bind_FailedResultPlusCreateResultToBindWithSuccessfulResult_FailedResult()
+	{
+		// Arrange
+		const string expectedFailure = ResultFixture.Failure;
+		Func<Constellation, Result<Constellation, string>> createResultToBind = static _ => ResultMother.Succeed();
+
+		// Act
+		Result<Constellation, string> actualResult = ResultMother.Fail(expectedFailure)
+			.Bind(createResultToBind);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, bind)]
+	public void Bind_SuccessfulResultPlusCreateResultToBindWithFailedResult_FailedResult()
+	{
+		// Arrange
+		const string expectedFailure = ResultFixture.Failure;
+		Func<Constellation, Result<Constellation, string>> createResultToBind = static _ => ResultMother.Fail(expectedFailure);
+
+		// Act
+		Result<Constellation, string> actualResult = ResultMother.Succeed()
+			.Bind(createResultToBind);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, bind)]
+	public void Bind_SuccessfulResultPlusCreateResultToBindWithSuccessfulResult_SuccessfulResult()
+	{
+		// Arrange
+		Constellation expectedSuccess = ResultFixture.Success;
+		Func<Constellation, Result<Constellation, string>> createResultToBind = _ => ResultMother.Succeed(expectedSuccess);
+
+		// Act
+		Result<Constellation, string> actualResult = ResultMother.SucceedRandomly()
+			.Bind(createResultToBind);
+
+		// Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
 
 	#endregion
 }
