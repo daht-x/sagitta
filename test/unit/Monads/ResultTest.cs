@@ -100,60 +100,6 @@ public sealed class ResultTest
 
 	[Fact]
 	[Trait(root, ensure)]
-	public void Ensure_FailedResultPlusTruePredicatePlusFailure_FailedResult()
-	{
-		// Arrange
-		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, bool> predicate = static _ => true;
-		string failure = ResultFixture.RandomFailure;
-
-		// Act
-		Result<Constellation, string> actualResult = ResultMother.Fail(expectedFailure)
-			.Ensure(predicate, failure);
-
-		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
-	}
-
-	[Fact]
-	[Trait(root, ensure)]
-	public void Ensure_SuccessfulResultPlusTruePredicatePlusFailure_FailedResult()
-	{
-		// Arrange
-		Func<Constellation, bool> predicate = static _ => true;
-		const string expectedFailure = ResultFixture.Failure;
-
-		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed()
-			.Ensure(predicate, expectedFailure);
-
-		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
-	}
-
-	[Fact]
-	[Trait(root, ensure)]
-	public void Ensure_SuccessfulResultPlusFalsePredicatePlusFailure_SuccessfulResult()
-	{
-		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
-		Func<Constellation, bool> predicate = static _ => false;
-		const string failure = ResultFixture.Failure;
-
-		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed(expectedSuccess)
-			.Ensure(predicate, failure);
-
-		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
-	}
-
-	#endregion
-
-	#region Overload
-
-	[Fact]
-	[Trait(root, ensure)]
 	public void Ensure_FailedResultPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -209,17 +155,16 @@ public sealed class ResultTest
 
 	[Fact]
 	[Trait(root, ensure)]
-	public void Ensure_FailedResultPlusAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
+	public void Ensure_FailedResultPlusTruePredicatePlusFailure_FailedResult()
 	{
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
-		const string auxiliary = ResultFixture.Auxiliary;
-		Func<Constellation, string, bool> predicate = static (_, _) => true;
-		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.RandomFailure;
+		Func<Constellation, bool> predicate = static _ => true;
+		string failure = ResultFixture.RandomFailure;
 
 		// Act
 		Result<Constellation, string> actualResult = ResultMother.Fail(expectedFailure)
-			.Ensure(auxiliary, predicate, createFailure);
+			.Ensure(predicate, failure);
 
 		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -227,17 +172,15 @@ public sealed class ResultTest
 
 	[Fact]
 	[Trait(root, ensure)]
-	public void Ensure_SuccessfulResultPlusAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
+	public void Ensure_SuccessfulResultPlusTruePredicatePlusFailure_FailedResult()
 	{
 		// Arrange
-		const string auxiliary = ResultFixture.Auxiliary;
-		Func<Constellation, string, bool> predicate = static (_, _) => true;
+		Func<Constellation, bool> predicate = static _ => true;
 		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, string, string> createFailure = static (_, _) => expectedFailure;
 
 		// Act
 		Result<Constellation, string> actualResult = ResultMother.Succeed()
-			.Ensure(auxiliary, predicate, createFailure);
+			.Ensure(predicate, expectedFailure);
 
 		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -245,17 +188,16 @@ public sealed class ResultTest
 
 	[Fact]
 	[Trait(root, ensure)]
-	public void Ensure_SuccessfulResultPlusAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
+	public void Ensure_SuccessfulResultPlusFalsePredicatePlusFailure_SuccessfulResult()
 	{
 		// Arrange
 		Constellation expectedSuccess = ResultFixture.Success;
-		const string auxiliary = ResultFixture.Auxiliary;
-		Func<Constellation, string, bool> predicate = static (_, _) => false;
-		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
+		Func<Constellation, bool> predicate = static _ => false;
+		const string failure = ResultFixture.Failure;
 
 		// Act
 		Result<Constellation, string> actualResult = ResultMother.Succeed(expectedSuccess)
-			.Ensure(auxiliary, predicate, createFailure);
+			.Ensure(predicate, failure);
 
 		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
@@ -321,44 +263,67 @@ public sealed class ResultTest
 
 	#endregion
 
-	#endregion
-
-	#region Map
-
 	#region Overload
 
 	[Fact]
-	[Trait(root, map)]
-	public void Map_FailedResultPlusSuccessToMap_FailedResult()
+	[Trait(root, ensure)]
+	public void Ensure_FailedResultPlusAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
-		Start successToMap = ResultFixture.SuccessToMap;
+		const string auxiliary = ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = static (_, _) => true;
+		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.RandomFailure;
 
 		// Act
-		Result<Start, string> actualResult = ResultMother.Fail(expectedFailure)
-			.Map(successToMap);
+		Result<Constellation, string> actualResult = ResultMother.Fail(expectedFailure)
+			.Ensure(auxiliary, predicate, createFailure);
 
 		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
-	[Trait(root, map)]
-	public void Map_SuccessfulResultPlusSuccessToMap_SuccessfulResult()
+	[Trait(root, ensure)]
+	public void Ensure_SuccessfulResultPlusAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
-		Start expectedSuccess = ResultFixture.SuccessToMap;
+		const string auxiliary = ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = static (_, _) => true;
+		const string expectedFailure = ResultFixture.Failure;
+		Func<Constellation, string, string> createFailure = static (_, _) => expectedFailure;
 
 		// Act
-		Result<Start, string> actualResult = ResultMother.Succeed()
-			.Map(expectedSuccess);
+		Result<Constellation, string> actualResult = ResultMother.Succeed()
+			.Ensure(auxiliary, predicate, createFailure);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, ensure)]
+	public void Ensure_SuccessfulResultPlusAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
+	{
+		// Arrange
+		Constellation expectedSuccess = ResultFixture.Success;
+		const string auxiliary = ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = static (_, _) => false;
+		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultMother.Succeed(expectedSuccess)
+			.Ensure(auxiliary, predicate, createFailure);
 
 		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
+
+	#endregion
+
+	#region Map
 
 	#region Overload
 
@@ -389,6 +354,41 @@ public sealed class ResultTest
 		// Act
 		Result<Start, string> actualResult = ResultMother.Succeed()
 			.Map(createSuccessToMap);
+
+		// Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
+
+	#region Overload
+
+	[Fact]
+	[Trait(root, map)]
+	public void Map_FailedResultPlusSuccessToMap_FailedResult()
+	{
+		// Arrange
+		const string expectedFailure = ResultFixture.Failure;
+		Start successToMap = ResultFixture.SuccessToMap;
+
+		// Act
+		Result<Start, string> actualResult = ResultMother.Fail(expectedFailure)
+			.Map(successToMap);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	[Fact]
+	[Trait(root, map)]
+	public void Map_SuccessfulResultPlusSuccessToMap_SuccessfulResult()
+	{
+		// Arrange
+		Start expectedSuccess = ResultFixture.SuccessToMap;
+
+		// Act
+		Result<Start, string> actualResult = ResultMother.Succeed()
+			.Map(expectedSuccess);
 
 		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
