@@ -3,11 +3,14 @@ namespace Daht.Sagitta.Core.UnitTest.Monads.Mothers;
 internal static class ResultMother
 {
 	internal static Result<Constellation, string> Succeed()
-		=> ResultFactory.Succeed<Constellation, string>(ResultFixture.Success);
+		=> new(ResultFixture.Success);
 
 	internal static Result<Constellation, string> Succeed(Constellation success)
-		=> ResultFactory.Succeed<Constellation, string>(success);
+		=> new(success);
+
+	internal static Result<Constellation, string> SucceedRandomly()
+		=> new(ResultFixture.RandomSuccess);
 
 	internal static Result<Constellation, string> Fail(string failure)
-		=> ResultFactory.Fail<Constellation, string>(failure);
+		=> new(failure);
 }

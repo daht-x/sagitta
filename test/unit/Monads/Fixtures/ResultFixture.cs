@@ -15,6 +15,12 @@ internal static class ResultFixture
 			Symbolism = "The arrow"
 		};
 
+	internal static Constellation RandomSuccess
+		=> Success with
+		{
+			Abbreviation = $"{Success.Name} | {Guid.NewGuid()}"
+		};
+
 	internal static Start SuccessToMap
 		=> new()
 		{
