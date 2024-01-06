@@ -53,13 +53,13 @@ jobs:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Run link checker for all changed files"
         if: "${{ env.IS_PULL_REQUEST_EVENT == vars.POSITIVE }}"
-        uses: "lycheeverse/lychee-action@v1.8.0"
+        uses: "lycheeverse/lychee-action@v1.9.0"
         with:
           args: "${{ steps.changed-files.outputs.all_changed_files }}"
           fail: true
       - name: "Run link checker for all files"
         if: "${{ env.IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT == vars.POSITIVE }}"
-        uses: "lycheeverse/lychee-action@v1.8.0"
+        uses: "lycheeverse/lychee-action@v1.9.0"
         with:
           args: "'**/*.md'"
           fail: true
