@@ -118,5 +118,15 @@ public sealed class Result<TSuccess, TFailure>
 		=> IsFailed
 			? new(Failure)
 			: createResultToBind(Success);
+
+	/// <summary>Creates a new reduced failure if the result is failed; otherwise, creates a new reduced success.</summary>
+	/// <param name="createReducedSuccess">Creates the expected reduced success.</param>
+	/// <param name="createReducedFailure">Creates the possible reduced failure.</param>
+	/// <typeparam name="TReducer">Type of reducer.</typeparam>
+	/// <returns>A new reduced failure if the result is failed; otherwise, a new reduced success.</returns>
+	public TReducer Reduce<TReducer>(Func<TSuccess, TReducer> createReducedSuccess, Func<TFailure, TReducer> createReducedFailure)
+		=> IsFailed
+			? createReducedFailure(Failure)
+			: createReducedSuccess(Success);
 }
 #pragma warning restore CA1062

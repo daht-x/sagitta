@@ -14,6 +14,8 @@ public sealed class ResultTest
 
 	private const string bind = nameof(Result<object, object>.Bind);
 
+	private const string reduce = nameof(Result<object, object>.Reduce);
+
 	#region Constructor
 
 	#region Overload
@@ -446,6 +448,44 @@ public sealed class ResultTest
 
 		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	#endregion
+
+	#region Reduce
+
+	[Fact]
+	[Trait(root, reduce)]
+	public void Reduce_FailedResultPlusCreateReducedSuccessPlusCreateReducedFailure_ReducedFailure()
+	{
+		// Arrange
+		object expectedReduction = ResultFixture.Failure;
+		Func<Constellation, object> createReducedSuccess = static _ => ResultFixture.Success;
+		Func<string, object> createReducedFailure = _ => expectedReduction;
+
+		// Act
+		object actualReduction = ResultMother.Fail()
+			.Reduce(createReducedSuccess, createReducedFailure);
+
+		// Assert
+		Assert.Equal(expectedReduction, actualReduction);
+	}
+
+	[Fact]
+	[Trait(root, reduce)]
+	public void Reduce_SuccessfulResultPlusCreateReducedSuccessPlusCreateReducedFailure_ReducedSuccess()
+	{
+		// Arrange
+		Constellation expectedReduction = ResultFixture.Success;
+		Func<Constellation, object> createReducedSuccess = _ => expectedReduction;
+		Func<string, object> createReducedFailure = static _ => ResultFixture.Failure;
+
+		// Act
+		object actualReduction = ResultMother.Succeed()
+			.Reduce(createReducedSuccess, createReducedFailure);
+
+		// Assert
+		Assert.Equal(expectedReduction, actualReduction);
 	}
 
 	#endregion
