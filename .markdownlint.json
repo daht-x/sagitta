@@ -1,5 +1,5 @@
 {
-	"first-line-heading": false,
+	"first-line-heading": true,
 	"heading-style": false,
 	"hr-style": {
 		"style": "---"
