@@ -253,6 +253,7 @@ Type that exposes a set of ways to initialize [`Result<TSuccess, TFailure>`](./r
 
 - [`Result<TSuccess, TFailure>`](./result.md): Type that encapsulates both the expected success and the possible failure of a given action.
 - [License](../../license).
+- [Security policy](../../security.md).
 - [Code of conduct](../../code-of-conduct.md).
 
 ***[Top](#resultfactory)***
