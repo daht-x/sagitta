@@ -4,14 +4,14 @@
 
 ## Table of contents
 
-- [Signature](#signature)
-- [Description](#description)
-- [Methods](#methods)
-  - [`Catch`](#catch)
-  - [`Ensure`](#ensure)
-  - [`Succeed`](#succeed)
-  - [`Fail`](#fail)
-- [Additional resources](#additional-resources)
+1. [Signature](#signature)
+2. [Description](#description)
+3. [Methods](#methods)
+   - [`Catch`](#catch)
+   - [`Ensure`](#ensure)
+   - [`Succeed`](#succeed)
+   - [`Fail`](#fail)
+4. [Additional resources](#additional-resources)
 
 ### Signature
 

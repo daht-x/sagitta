@@ -4,22 +4,22 @@
 
 ## Table of contents
 
-- [Signature](#signature)
-- [Description](#description)
-- [Generics](#generics)
-- [Constructors](#constructors)
-- [Properties](#properties)
-  - [`IsSuccessful`](#issuccessful)
-  - [`Success`](#success)
-  - [`IsFailed`](#isfailed)
-  - [`Failure`](#failure)
-- [Implicit operators](#implicit-operators)
-- [Methods](#methods)
-  - [`Ensure`](#ensure)
-  - [`Map`](#map)
-  - [`Bind`](#bind)
-  - [`Reduce`](#reduce)
-- [Additional resources](#additional-resources)
+1. [Signature](#signature)
+2. [Description](#description)
+3. [Generics](#generics)
+4. [Constructors](#constructors)
+5. [Properties](#properties)
+   - [`IsSuccessful`](#issuccessful)
+   - [`Success`](#success)
+   - [`IsFailed`](#isfailed)
+   - [`Failure`](#failure)
+6. [Implicit operators](#implicit-operators)
+7. [Methods](#methods)
+   - [`Ensure`](#ensure)
+   - [`Map`](#map)
+   - [`Bind`](#bind)
+   - [`Reduce`](#reduce)
+8. [Additional resources](#additional-resources)
 
 ### Signature
 
