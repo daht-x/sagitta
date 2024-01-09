@@ -1,6 +1,6 @@
 # `Result<TSuccess, TFailure>`
 
-***[~](../../readme.md) / Monads /***
+***[home](../../readme.md) / monads /***
 
 ## Table of contents
 
@@ -27,7 +27,7 @@
 public sealed class Result<TSuccess, TFailure>
 ```
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 ---
 
@@ -35,7 +35,7 @@ public sealed class Result<TSuccess, TFailure>
 
 Type that encapsulates both the expected success and the possible failure of a given action.
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 ---
 
@@ -44,7 +44,7 @@ Type that encapsulates both the expected success and the possible failure of a g
 - `TSuccess`: Type of expected success.
 - `TFailure`: Type of possible failure.
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 ---
 
@@ -70,7 +70,7 @@ Type that encapsulates both the expected success and the possible failure of a g
    - **Parameters**:
      - `failure`: The possible failure.
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 ---
 
@@ -86,7 +86,7 @@ Type that encapsulates both the expected success and the possible failure of a g
 
   - **Description**: Indicates whether the status is successful.
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 #### `Success`
 
@@ -98,7 +98,7 @@ Type that encapsulates both the expected success and the possible failure of a g
 
   - **Description**: The expected success.
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 #### `IsFailed`
 
@@ -110,7 +110,7 @@ Type that encapsulates both the expected success and the possible failure of a g
 
   - **Description**: Indicates whether the status is failed.
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 #### `Failure`
 
@@ -122,7 +122,7 @@ Type that encapsulates both the expected success and the possible failure of a g
 
   - **Description**: The possible failure.
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 ---
 
@@ -148,7 +148,7 @@ Type that encapsulates both the expected success and the possible failure of a g
    - **Parameters**:
      - `failure`: The possible failure.
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 ---
 
@@ -208,7 +208,7 @@ Type that encapsulates both the expected success and the possible failure of a g
    - **Generics**:
      - `TAuxiliary`: Type of auxiliary.
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 #### `Map`
 
@@ -236,7 +236,7 @@ Type that encapsulates both the expected success and the possible failure of a g
    - **Generics**:
      - `TSuccessToMap`: Type of expected success to map.
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 #### `Bind`
 
@@ -252,7 +252,7 @@ Type that encapsulates both the expected success and the possible failure of a g
    - **Generics**:
      - `TSuccessToBind`: Type of expected success to bind.
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 #### `Reduce`
 
@@ -269,12 +269,14 @@ Type that encapsulates both the expected success and the possible failure of a g
    - **Generics**:
      - `TReducer`: Type of reducer.
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
 
 ---
 
 ### Additional resources
 
 - [`ResultFactory`](./result-factory.md): Type that exposes a set of ways to initialize [`Result<TSuccess, TFailure>`](#resulttsuccess-tfailure).
+- [License](../../license).
+- [Code of conduct](../../code-of-conduct.md).
 
-***[Go to top](#resulttsuccess-tfailure)***
+***[Top](#resulttsuccess-tfailure)***
