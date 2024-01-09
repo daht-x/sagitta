@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+. "$(dirname -- "$0")/_/husky.sh"
+buildConfiguration='Release'
+dotnet clean
+dotnet restore
+dotnet build \
+	--no-restore \
+	--configuration "$buildConfiguration"
+dotnet test \
+	--no-build \
+	--configuration "$buildConfiguration"
