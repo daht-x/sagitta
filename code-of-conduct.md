@@ -1,6 +1,8 @@
 
 # Contributor covenant code of conduct
 
+***[home](./readme.md) /***
+
 ## Table of contents
 
 1. [Our pledge](#our-pledge)
@@ -10,6 +12,7 @@
 5. [Enforcement](#enforcement)
 6. [Enforcement guidelines](#enforcement-guidelines)
 7. [Attribution](#attribution)
+8. [Additional resources](#additional-resources)
 
 ### Our pledge
 
@@ -22,6 +25,8 @@ identity and orientation.
 
 We pledge to act and interact in ways that contribute to an open, welcoming,
 diverse, inclusive, and healthy community.
+
+***[Top](#contributor-covenant-code-of-conduct)***
 
 ### Our standards
 
@@ -47,6 +52,8 @@ Examples of unacceptable behavior include:
 - Other conduct which could reasonably be considered inappropriate in a
   professional setting.
 
+***[Top](#contributor-covenant-code-of-conduct)***
+
 ### Enforcement responsibilities
 
 Community leaders are responsible for clarifying and enforcing our standards of
@@ -59,6 +66,8 @@ comments, commits, code, wiki edits, issues, and other contributions that are
 not aligned to this Code of Conduct, and will communicate reasons for moderation
 decisions when appropriate.
 
+***[Top](#contributor-covenant-code-of-conduct)***
+
 ### Scope
 
 This Code of Conduct applies within all community spaces, and also applies when
@@ -66,6 +75,8 @@ an individual is officially representing the community in public spaces.
 Examples of representing our community include using an official e-mail address,
 posting via an official social media account, or acting as an appointed
 representative at an online or offline event.
+
+***[Top](#contributor-covenant-code-of-conduct)***
 
 ### Enforcement
 
@@ -76,6 +87,8 @@ All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.
+
+***[Top](#contributor-covenant-code-of-conduct)***
 
 ### Enforcement guidelines
 
@@ -115,6 +128,8 @@ individual, or aggression toward or disparagement of classes of individuals.
    - **Consequence**: A permanent ban from any sort of public interaction within the
 community.
 
+***[Top](#contributor-covenant-code-of-conduct)***
+
 ### Attribution
 
 This Code of Conduct is adapted from the
@@ -128,3 +143,11 @@ Community Impact Guidelines were inspired by
 For answers to common questions about this code of conduct, see the FAQ at
 <https://www.contributor-covenant.org/faq>. Translations are available at
 <https://www.contributor-covenant.org/translations>.
+
+***[Top](#contributor-covenant-code-of-conduct)***
+
+### Additional resources
+
+- [License](license).
+
+***[Top](#contributor-covenant-code-of-conduct)***

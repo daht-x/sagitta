@@ -1,6 +1,6 @@
 # `ResultFactory`
 
-***[~](../../readme.md) / Monads /***
+***[home](../../readme.md) / monads /***
 
 ## Table of contents
 
@@ -19,7 +19,7 @@
 public static class ResultFactory
 ```
 
-***[Go to top](#resultfactory)***
+***[Top](#resultfactory)***
 
 ---
 
@@ -27,7 +27,7 @@ public static class ResultFactory
 
 Type that exposes a set of ways to initialize [`Result<TSuccess, TFailure>`](./result.md).
 
-***[Go to top](#resultfactory)***
+***[Top](#resultfactory)***
 
 ---
 
@@ -51,7 +51,7 @@ Type that exposes a set of ways to initialize [`Result<TSuccess, TFailure>`](./r
      - `TSuccess`: Type of expected success.
      - `TFailure`: Type of possible failure.
 
-***[Go to top](#resultfactory)***
+***[Top](#resultfactory)***
 
 [true-false-operators]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/true-false-operators
 
@@ -185,7 +185,7 @@ Type that exposes a set of ways to initialize [`Result<TSuccess, TFailure>`](./r
      - `TSuccess`: Type of expected success.
      - `TFailure`: Type of possible failure.
 
-***[Go to top](#resultfactory)***
+***[Top](#resultfactory)***
 
 #### `Succeed`
 
@@ -215,7 +215,7 @@ Type that exposes a set of ways to initialize [`Result<TSuccess, TFailure>`](./r
      - `TSuccess`: Type of expected success.
      - `TFailure`: Type of possible failure.
 
-***[Go to top](#resultfactory)***
+***[Top](#resultfactory)***
 
 #### `Fail`
 
@@ -245,12 +245,14 @@ Type that exposes a set of ways to initialize [`Result<TSuccess, TFailure>`](./r
      - `TSuccess`: Type of expected success.
      - `TFailure`: Type of possible failure.
 
-***[Go to top](#resultfactory)***
+***[Top](#resultfactory)***
 
 ---
 
 ### Additional resources
 
 - [`Result<TSuccess, TFailure>`](./result.md): Type that encapsulates both the expected success and the possible failure of a given action.
+- [License](../../license).
+- [Code of conduct](../../code-of-conduct.md).
 
-***[Go to top](#resultfactory)***
+***[Top](#resultfactory)***
