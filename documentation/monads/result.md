@@ -277,7 +277,8 @@ Type that encapsulates both the expected success and the possible failure of a g
 
 - [`ResultFactory`](./result-factory.md): Type that exposes a set of ways to initialize [`Result<TSuccess, TFailure>`](#resulttsuccess-tfailure).
 - [License](../../license).
-- [Security policy](../../security.md).
 - [Code of conduct](../../code-of-conduct.md).
+- [Security policy](../../security.md).
+- [Contributing](../../contributing.md).
 
 ***[Top](#resulttsuccess-tfailure)***
