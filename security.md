@@ -38,5 +38,6 @@ Send a private message to [@_daht_x](https://twitter.com/_daht_x) and include as
 
 - [License](./license).
 - [Code of conduct](./code-of-conduct.md).
+- [Contributing](./contributing.md).
 
 ***[Top](#security-policy)***
