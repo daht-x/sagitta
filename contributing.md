@@ -12,7 +12,7 @@
 
 ### Code of conduct
 
-Please read and follow the [code of conduct](./code-of-conduct.md).
+Please read and follow our [code of conduct](./code-of-conduct.md).
 
 ***[Top](#contributing)***
 
@@ -31,20 +31,18 @@ Please read and follow the [code of conduct](./code-of-conduct.md).
 ### Coding rules
 
 - All public API methods must be documented.
-- All improvements, features or bug fixes must be tested.
+- All enhancements, features or bug fixes must be tested.
 
 ***[Top](#contributing)***
 
 ### Security policy
 
-Please read and follow the [security policy](./security.md).
+Please read and follow our [security policy](./security.md) if you have found any security vulnerability.
 
 ***[Top](#contributing)***
 
 ### Additional resources
 
 - [License](./license).
-- [Security policy](./security.md).
-- [Code of conduct](./code-of-conduct.md).
 
 ***[Top](#contributing)***

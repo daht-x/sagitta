@@ -11,7 +11,7 @@
 
 ### Support
 
-The updates with improvements, new features and bug fixes are only applied and available in the latest release.
+The updates with enhancements, new features and bug fixes are only applied and available in the latest release.
 
 ***[Top](#security-policy)***
 
@@ -19,7 +19,7 @@ The updates with improvements, new features and bug fixes are only applied and a
 
 ***Please do not report security vulnerabilities through public GitHub issues.***
 
-Send a private message to [@_daht_x](https://twitter.com/_daht_x) and include as much of the requested information as possible, as detailed below:
+Please send a private message to [@_daht_x](https://twitter.com/_daht_x) and include as much of the requested information as possible, as detailed below:
 
 - Type of vulnerability.
 - The location of the affected source code (git details (tag, branch, commit) and full paths of source files(s)).
