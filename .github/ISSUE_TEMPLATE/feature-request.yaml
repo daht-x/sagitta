@@ -1,6 +1,7 @@
 name: "Feature request"
 description: "Request a feature or enhancement"
 title: "feature: "
+assignees: "daht-x"
 labels:
   - "topic: feature"
   - "priority: medium"
