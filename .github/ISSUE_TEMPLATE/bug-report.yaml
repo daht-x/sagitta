@@ -47,4 +47,4 @@ body:
       required: false
     attributes:
       label: "Additional information"
-      description: "provide related issues, relevant changes, suggestions, etc."
+      description: "Provide related issues, relevant changes, suggestions, etc."
