@@ -1,0 +1,28 @@
+name: "Feature request"
+description: "Request a feature or enhancement"
+title: "feature: "
+labels:
+  - "topic: feature"
+  - "priority: medium"
+  - "status: pending"
+body:
+  - type: "markdown"
+    attributes:
+      value: "***Thank you very much for your contribution.***"
+  - type: "markdown"
+    attributes:
+      value: "Please read and follow our [code of conduct](https://github.com/daht-x/sagitta-core/blob/main/code-of-conduct.md)."
+  - type: "textarea"
+    id: "description"
+    validations:
+      required: true
+    attributes:
+      label: "Description"
+      description: "Provide a concise and clear description of the expected feature or enhancement."
+  - type: "textarea"
+    id: "additional-information"
+    validations:
+      required: false
+    attributes:
+      label: "Additional information"
+      description: "Provide related features or enhancements, relevant changes, suggestions, etc."
