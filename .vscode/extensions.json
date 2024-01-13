@@ -19,7 +19,6 @@
 		"usernamehw.errorlens",
 		"christian-kohler.path-intellisense",
 		"sonarsource.sonarlint-vscode",
-		"jasonnutter.vscode-codeowners",
 		"tamasfe.even-better-toml"
 	]
 }
