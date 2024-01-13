@@ -52,6 +52,6 @@
 	"xml.format.joinCommentLines": true,
 	"xml.format.maxLineWidth": 500,
 	"yaml.schemas": {
-		"https://json.schemastore.org/github-issue-config.json": "./.github/ISSUE_TEMPLATE/config.yaml"
+		"https://json.schemastore.org/github-issue-config.json": "./.github/ISSUE_TEMPLATE/config.yml"
 	}
 }
