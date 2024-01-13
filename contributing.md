@@ -19,6 +19,7 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 ### Prerequisite software
 
 - [Git](https://git-scm.com) **(cross-platform)**.
+- [ShellCheck](https://github.com/koalaman/shellcheck) **(cross-platform)**.
 - [NVM](https://github.com/nvm-sh/nvm) **(available for Linux, macOS and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))**.
 - [NVM-Windows](https://github.com/coreybutler/nvm-windows) **(available only for Windows)**.
 - [Node.js](https://nodejs.org/en) **(cross-platform - the version specified in [.nvmrc](./.nvmrc) and [package.json](./package.json) is required)**.
