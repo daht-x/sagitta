@@ -279,6 +279,6 @@ Type that encapsulates both the expected success and the possible failure of a g
 - [License](../../license).
 - [Code of conduct](../../code-of-conduct.md).
 - [Security policy](../../security.md).
-- [Contributing](../../contributing.md).
+- [Contribution guidelines](../../contributing.md).
 
 ***[Top](#resulttsuccess-tfailure)***

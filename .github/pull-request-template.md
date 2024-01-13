@@ -1,5 +1,35 @@
-<!-- ## Ticket(s) <!-- Optional -->
+# Integration
 
-## Description <!-- Required -->
+***Thank you very much for your contribution.***
 
-<!-- ## Evidence <!-- Optional -->
+Please read and follow our [code of conduct](../code-of-conduct.md) and [contribution guidelines](../contributing.md).
+
+## Table of contents
+
+1. [Tickets](#tickets)
+2. [Description](#description)
+3. [Additional information](#additional-information)
+
+### Tickets
+
+<!-- Provide related issue tickets | Optional -->
+
+Undefined
+
+***[Top](#integration)***
+
+### Description
+
+<!-- Provide a concise and clear description | Required -->
+
+Undefined
+
+***[Top](#integration)***
+
+### Additional information
+
+<!-- Provide related features or enhancements, relevant changes, suggestions, etc. | Optional -->
+
+Undefined
+
+***[Top](#integration)***
