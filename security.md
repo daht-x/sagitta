@@ -38,6 +38,6 @@ Please send a direct message (DM) to [@_daht_x](https://twitter.com/_daht_x) and
 
 - [License](./license).
 - [Code of conduct](./code-of-conduct.md).
-- [Contributing](./contributing.md).
+- [Contribution guidelines](./contributing.md).
 
 ***[Top](#security-policy)***

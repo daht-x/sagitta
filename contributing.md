@@ -1,4 +1,4 @@
-# Contributing
+# Contribution guidelines
 
 ***[home](./readme.md) /***
 
@@ -14,7 +14,7 @@
 
 Please read and follow our [code of conduct](./code-of-conduct.md).
 
-***[Top](#contributing)***
+***[Top](#contribution-guidelines)***
 
 ### Prerequisite software
 
@@ -26,23 +26,23 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 - [Lychee](https://github.com/lycheeverse/lychee) **(cross-platform)**.
 - [.NET SDK](https://dotnet.microsoft.com/en-us/download) **(cross-platform - the version specified in [global.json](./global.json) is required)**.
 
-***[Top](#contributing)***
+***[Top](#contribution-guidelines)***
 
 ### Coding rules
 
 - All public API methods must be documented.
 - All enhancements, features or bug fixes must be tested.
 
-***[Top](#contributing)***
+***[Top](#contribution-guidelines)***
 
 ### Security policy
 
 Please read and follow our [security policy](./security.md) if you have found any security vulnerability.
 
-***[Top](#contributing)***
+***[Top](#contribution-guidelines)***
 
 ### Additional resources
 
 - [License](./license).
 
-***[Top](#contributing)***
+***[Top](#contribution-guidelines)***
