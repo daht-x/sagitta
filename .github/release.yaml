@@ -1,0 +1,17 @@
+changelog:
+  exclude:
+    authors:
+      - "dependabot"
+  categories:
+    - title: "Bugs fixed"
+      labels:
+        - "topic: bug"
+    - title: "Build system"
+      labels:
+        - "topic: build"
+    - title: "New features and enhancements"
+      labels:
+        - "topic: feature"
+    - title: "Dependencies management"
+      labels:
+        - "topic: dependency"
