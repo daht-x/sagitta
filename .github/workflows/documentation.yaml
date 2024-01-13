@@ -67,7 +67,7 @@ jobs:
         if: "${{ env.IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT == vars.POSITIVE && failure() }}"
         uses: "peter-evans/create-issue-from-file@v4.0.1"
         with:
-          title: "Inaccessible links found"
+          title: "documentation: inaccessible links found"
           assignees: "${{ github.repository_owner }}"
           labels: |
             topic: documentation
