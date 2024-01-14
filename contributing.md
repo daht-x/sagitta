@@ -7,8 +7,10 @@
 1. [Code of conduct](#code-of-conduct)
 2. [Prerequisite software](#prerequisite-software)
 3. [Coding rules](#coding-rules)
-4. [Security policy](#security-policy)
-5. [Additional resources](#additional-resources)
+4. [Bug report](#bug-report)
+5. [Feature request](#feature-request)
+6. [Security policy](#security-policy)
+7. [Additional resources](#additional-resources)
 
 ### Code of conduct
 
@@ -33,6 +35,21 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 
 - All public API methods must be documented.
 - All enhancements, features or bug fixes must be tested.
+
+***[Top](#contribution-guidelines)***
+
+[issue-templates]: https://github.com/daht-x/sagitta-core/issues/new/choose
+[new-issue]: https://github.com/daht-x/sagitta-core/issues/new
+
+### Bug report
+
+To report a bug or unintended behavior, select a [predefined template][issue-templates] or create a [custom issue][new-issue].
+
+***[Top](#contribution-guidelines)***
+
+### Feature request
+
+To request a feature or enhancement, select a [predefined template][issue-templates] or create a [custom issue][new-issue].
 
 ***[Top](#contribution-guidelines)***
 
