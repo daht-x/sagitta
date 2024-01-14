@@ -1,5 +1,4 @@
 const rootConfiguration = {
-
 	"**.md": [
 		"markdownlint --fix",
 		"lychee"
