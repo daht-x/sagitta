@@ -3,7 +3,7 @@ const rootConfiguration = {
 		"markdownlint --fix",
 		"lychee"
 	],
-	"**.sh": "shellcheck --severity 'style'",
+	"(**.sh|.husky/**)": "shellcheck --severity 'style'",
 	"**.js": "eslint --fix",
 	"**/*.cs": "dotnet format --include"
 };
