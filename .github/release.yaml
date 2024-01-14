@@ -14,4 +14,8 @@ changelog:
         - "topic: feature"
     - title: "Dependencies management"
       labels:
-        - "topic: dependency"
+        - "package manager: nuget"
+      exclude:
+        labels:
+          - "package manager: github actions"
+          - "package manager: pnpm"
