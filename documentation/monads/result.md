@@ -1,284 +1,210 @@
-# `Result<TSuccess, TFailure>`
+# `sealed class Result<TSuccess, TFailure>`
 
 ***[home](../../readme.md) / monads /***
 
+Type that encapsulates both the expected success and the possible failure of a given action.
+
+| Generic    | Description              |
+|:-----------|:-------------------------|
+| `TSuccess` | Type of expected success |
+| `TFailure` | Type of possible failure |
+
 ## Table of contents
 
-1. [Signature](#signature)
-2. [Description](#description)
-3. [Generics](#generics)
-4. [Constructors](#constructors)
-5. [Properties](#properties)
-   - [`IsSuccessful`](#issuccessful)
-   - [`Success`](#success)
-   - [`IsFailed`](#isfailed)
-   - [`Failure`](#failure)
-6. [Implicit operators](#implicit-operators)
-7. [Methods](#methods)
+1. [Constructors](#constructors)
+2. [Properties](#properties)
+3. [Implicit operators](#implicit-operators)
+4. [Methods](#methods)
    - [`Ensure`](#ensure)
    - [`Map`](#map)
    - [`Bind`](#bind)
    - [`Reduce`](#reduce)
-8. [Additional resources](#additional-resources)
-
-### Signature
-
-```cs
-public sealed class Result<TSuccess, TFailure>
-```
-
-***[Top](#resulttsuccess-tfailure)***
-
----
-
-### Description
-
-Type that encapsulates both the expected success and the possible failure of a given action.
-
-***[Top](#resulttsuccess-tfailure)***
-
----
-
-### Generics
-
-- `TSuccess`: Type of expected success.
-- `TFailure`: Type of possible failure.
-
-***[Top](#resulttsuccess-tfailure)***
-
----
+5. [Additional resources](#additional-resources)
 
 ### Constructors
 
-1. **Signature**:
+- `Result(TSuccess success)`:
 
-   ```cs
-   public Result(TSuccess success)
-   ```
+  Creates a new successful result.
 
-   - **Description**: Creates a new successful result.
-   - **Parameters**:
-     - `success`: The expected success.
+  | Parameter | Description          |
+  |:----------|:---------------------|
+  | `success` | The expected success |
 
-2. **Signature**:
+- `Result(TFailure failure)`:
 
-   ```cs
-   public Result(TFailure failure)
-   ```
+  Creates a new failed result.
 
-   - **Description**: Creates a new failed result.
-   - **Parameters**:
-     - `failure`: The possible failure.
+  | Parameter | Description          |
+  |:----------|:---------------------|
+  | `failure` | The possible failure |
 
-***[Top](#resulttsuccess-tfailure)***
+***[Top](#sealed-class-resulttsuccess-tfailure)***
 
 ---
 
+[bool]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool
+
 ### Properties
 
-#### ``IsSuccessful``
+| Member         | Type           | Description                                |
+|:---------------|:---------------|:-------------------------------------------|
+| `IsSuccessful` | [`bool`][bool] | Indicates whether the status is successful |
+| `Success`      | `TSuccess`     | The expected success                       |
+| `IsFailed`     | [`bool`][bool] | Indicates whether the status is failed     |
+| `Failure`      | `TFailure`     | The possible failure                       |
 
-- **Signature**:
-
-  ```cs
-  public bool IsSuccessful { get; }
-  ```
-
-  - **Description**: Indicates whether the status is successful.
-
-***[Top](#resulttsuccess-tfailure)***
-
-#### `Success`
-
-- **Signature**:
-
-  ```cs
-  public TSuccess Success { get; }
-  ```
-
-  - **Description**: The expected success.
-
-***[Top](#resulttsuccess-tfailure)***
-
-#### `IsFailed`
-
-- **Signature**:
-
-  ```cs
-  public bool IsFailed { get; }
-  ```
-
-  - **Description**: Indicates whether the status is failed.
-
-***[Top](#resulttsuccess-tfailure)***
-
-#### `Failure`
-
-- **Signature**:
-
-  ```cs
-  public TFailure Failure { get; }
-  ```
-
-  - **Description**: The possible failure.
-
-***[Top](#resulttsuccess-tfailure)***
+***[Top](#sealed-class-resulttsuccess-tfailure)***
 
 ---
 
 ### Implicit operators
 
-1. **Signature**:
+- `Result<TSuccess, TFailure>(TSuccess success)`:
 
-   ```cs
-   public static implicit operator Result<TSuccess, TFailure>(TSuccess success)
-   ```
+  Creates a new successful result.
 
-   - **Description**: Creates a new successful result.
-   - **Parameters**:
-     - `success`: The expected success.
+  | Parameter | Description          |
+  |:----------|:---------------------|
+  | `success` | The expected success |
 
-2. **Signature**:
+- `Result<TSuccess, TFailure>(TFailure failure)`:
 
-   ```cs
-   public static implicit operator Result<TSuccess, TFailure>(TFailure failure)
-   ```
+  Creates a new failed result.
 
-   - **Description**: Creates a new failed result.
-   - **Parameters**:
-     - `failure`: The possible failure.
+  | Parameter | Description          |
+  |:----------|:---------------------|
+  | `failure` | The possible failure |
 
-***[Top](#resulttsuccess-tfailure)***
+***[Top](#sealed-class-resulttsuccess-tfailure)***
 
 ---
 
 ### Methods
 
-[true-false-operators]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/true-false-operators
-
 #### `Ensure`
 
-1. **Signature**:
+Creates a new failed result if the value of `predicate` is [`true`][bool]; otherwise, returns the previous result.
 
-   ```cs
-   public Result<TSuccess, TFailure> Ensure(Func<TSuccess, bool> predicate, TFailure failure)
-   ```
+- `Ensure(Func<TSuccess, bool> predicate, TFailure failure)`:
 
-   - **Description**: Creates a new failed result if the value of `predicate` is [true][true-false-operators]; otherwise, returns the previous result.
-   - **Parameters**:
-     - `predicate`: Creates a set of criteria.
-     - `failure`: The possible failure.
+  | Parameter   | Description               |
+  |:------------|:--------------------------|
+  | `predicate` | Creates a set of criteria |
+  | `failure`   | The possible failure      |
 
-2. **Signature**:
+  Returns `Result<TSuccess, TFailure>`.
 
-   ```cs
-   public Result<TSuccess, TFailure> Ensure(Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
-   ```
+- `Ensure(Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)`:
 
-   - **Description**: Creates a new failed result if the value of `predicate` is [true][true-false-operators]; otherwise, returns the previous result.
-   - **Parameters**:
-     - `predicate`: Creates a set of criteria.
-     - `createFailure`: Creates the possible failure.
+  | Parameter       | Description                  |
+  |:----------------|:-----------------------------|
+  | `predicate`     | Creates a set of criteria    |
+  | `createFailure` | Creates the possible failure |
 
-3. **Signature**:
+  Returns `Result<TSuccess, TFailure>`.
 
-   ```cs
-   public Result<TSuccess, TFailure> Ensure<TAuxiliary>(TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
-   ```
+- `Ensure<TAuxiliary>(TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)`:
 
-   - **Description**: Creates a new failed result if the value of `predicate` is [true][true-false-operators]; otherwise, returns the previous result.
-   - **Parameters**:
-     - `auxiliary`: The auxiliary to use in combination with `predicate` and `createFailure`.
-     - `predicate`: Creates a set of criteria.
-     - `createFailure`: Creates the possible failure.
-   - **Generics**:
-     - `TAuxiliary`: Type of auxiliary.
+  | Generic      | Description       |
+  |:-------------|:------------------|
+  | `TAuxiliary` | Type of auxiliary |
 
-4. **Signature**:
+  | Parameter       | Description                                                              |
+  |:----------------|:-------------------------------------------------------------------------|
+  | `auxiliary`     | The auxiliary to use in combination with `predicate` and `createFailure` |
+  | `predicate`     | Creates a set of criteria                                                |
+  | `createFailure` | Creates the possible failure                                             |
 
-   ```cs
-   public Result<TSuccess, TFailure> Ensure<TAuxiliary>(Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
-   ```
+  Returns `Result<TSuccess, TFailure>`.
 
-   - **Description**: Creates a new failed result if the value of `predicate` is [true][true-false-operators]; otherwise, returns the previous result.
-   - **Parameters**:
-     - `createAuxiliary`: Creates the auxiliary to use in combination with `predicate` and `createFailure`.
-     - `predicate`: Creates a set of criteria.
-     - `createFailure`: Creates the possible failure.
-   - **Generics**:
-     - `TAuxiliary`: Type of auxiliary.
+- `Ensure<TAuxiliary>(Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)`:
 
-***[Top](#resulttsuccess-tfailure)***
+  | Generic      | Description       |
+  |:-------------|:------------------|
+  | `TAuxiliary` | Type of auxiliary |
+
+  | Parameter         | Description                                                                      |
+  |:------------------|:---------------------------------------------------------------------------------|
+  | `createAuxiliary` | Creates the auxiliary to use in combination with `predicate` and `createFailure` |
+  | `predicate`       | Creates a set of criteria                                                        |
+  | `createFailure`   | Creates the possible failure                                                     |
+
+  Returns `Result<TSuccess, TFailure>`.
+
+***[Top](#sealed-class-resulttsuccess-tfailure)***
 
 #### `Map`
 
-1. **Signature**:
+Creates a new result with the same or different type of expected success.
 
-   ```cs
-   public Result<TSuccessToMap, TFailure> Map<TSuccessToMap>(TSuccessToMap successToMap)
-   ```
+| Generic         | Description                     |
+|:----------------|:--------------------------------|
+| `TSuccessToMap` | Type of expected success to map |
 
-   - **Description**: Creates a new result with the same or different type of expected success.
-   - **Parameters**:
-     - `successToMap`: The expected success to map.
-   - **Generics**:
-     - `TSuccessToMap`: Type of expected success to map.
+- `Map<TSuccessToMap>(TSuccessToMap successToMap)`:
 
-2. **Signature**:
+  | Parameter      | Description                 |
+  |:---------------|:----------------------------|
+  | `successToMap` | The expected success to map |
 
-   ```cs
-   public Result<TSuccessToMap, TFailure> Map<TSuccessToMap>(Func<TSuccess, TSuccessToMap> createSuccessToMap)
-   ```
+  Returns `Result<TSuccessToMap, TFailure>`.
 
-   - **Description**: Creates a new result with the same or different type of expected success.
-   - **Parameters**:
-     - `createSuccessToMap`: Creates the expected success to map.
-   - **Generics**:
-     - `TSuccessToMap`: Type of expected success to map.
+- `Map<TSuccessToMap>(Func<TSuccess, TSuccessToMap> createSuccessToMap)`:
 
-***[Top](#resulttsuccess-tfailure)***
+  | Parameter            | Description                         |
+  |:---------------------|:------------------------------------|
+  | `createSuccessToMap` | Creates the expected success to map |
+
+  Returns `Result<TSuccessToMap, TFailure>`.
+
+***[Top](#sealed-class-resulttsuccess-tfailure)***
 
 #### `Bind`
 
-1. **Signature**:
+Creates a new result in combination with another result with the same or different type of expected success.
 
-   ```cs
-   public Result<TSuccessToBind, TFailure> Bind<TSuccessToBind>(Func<TSuccess, Result<TSuccessToBind, TFailure>> createResultToBind)
-   ```
+| Generic          | Description                      |
+|:-----------------|:---------------------------------|
+| `TSuccessToBind` | Type of expected success to bind |
 
-   - **Description**: Creates a new result in combination with another result with the same or different type of expected success.
-   - **Parameters**:
-     - `createResultToBind`: Creates a new result to bind.
-   - **Generics**:
-     - `TSuccessToBind`: Type of expected success to bind.
+- `Bind<TSuccessToBind>(Func<TSuccess, Result<TSuccessToBind, TFailure>> createResultToBind)`:
 
-***[Top](#resulttsuccess-tfailure)***
+  | Parameter            | Description                  |
+  |:---------------------|:-----------------------------|
+  | `createResultToBind` | Creates a new result to bind |
+
+  Returns `Result<TSuccessToBind, TFailure>`.
+
+***[Top](#sealed-class-resulttsuccess-tfailure)***
 
 #### `Reduce`
 
-1. **Signature**:
+Creates a new reduced failure if the result is failed; otherwise, creates a new reduced success.
 
-   ```cs
-   public TReducer Reduce<TReducer>(Func<TSuccess, TReducer> createReducedSuccess, Func<TFailure, TReducer> createReducedFailure)
-   ```
+| Generic    | Description     |
+|:-----------|:----------------|
+| `TReducer` | Type of reducer |
 
-   - **Description**: Creates a new reduced failure if the result is failed; otherwise, creates a new reduced success.
-   - **Parameters**:
-     - `createReducedSuccess`: Creates the expected reduced success.
-     - `createReducedFailure`: Creates the possible reduced failure.
-   - **Generics**:
-     - `TReducer`: Type of reducer.
+- `Reduce<TReducer>(Func<TSuccess, TReducer> createReducedSuccess, Func<TFailure, TReducer> createReducedFailure)`:
 
-***[Top](#resulttsuccess-tfailure)***
+  | Parameter              | Description                          |
+  |:-----------------------|:-------------------------------------|
+  | `createReducedSuccess` | Creates the expected reduced success |
+  | `createReducedFailure` | Creates the possible reduced failure |
+
+  Returns `TReducer`.
+
+***[Top](#sealed-class-resulttsuccess-tfailure)***
 
 ---
 
 ### Additional resources
 
-- [`ResultFactory`](./result-factory.md): Type that exposes a set of ways to initialize [`Result<TSuccess, TFailure>`](#resulttsuccess-tfailure).
+- [`ResultFactory`](./result-factory.md): Type that exposes a set of ways to initialize `Result<TSuccess, TFailure>`.
 - [License](../../license).
 - [Code of conduct](../../code-of-conduct.md).
 - [Security policy](../../security.md).
 - [Contribution guidelines](../../contributing.md).
 
-***[Top](#resulttsuccess-tfailure)***
+***[Top](#sealed-class-resulttsuccess-tfailure)***
