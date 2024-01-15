@@ -19,6 +19,7 @@
 		"usernamehw.errorlens",
 		"christian-kohler.path-intellisense",
 		"sonarsource.sonarlint-vscode",
-		"tamasfe.even-better-toml"
+		"tamasfe.even-better-toml",
+		"darkriszty.markdown-table-prettify"
 	]
 }
