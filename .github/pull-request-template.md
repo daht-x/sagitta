@@ -1,8 +1,8 @@
-# Integration
+# Pull request
 
-***Thank you very much for your contribution.***
+***Thank you very much for your contribution***
 
-Please read and follow our [code of conduct](../code-of-conduct.md) and [contribution guidelines](../contributing.md).
+Please read and follow our [code of conduct](../code-of-conduct.md) and [contributing guidelines](../contributing.md).
 
 ## Table of contents
 
@@ -16,7 +16,9 @@ Please read and follow our [code of conduct](../code-of-conduct.md) and [contrib
 
 Undefined
 
-***[Top](#integration)***
+***[Top](#pull-request)***
+
+---
 
 ### Description
 
@@ -24,7 +26,9 @@ Undefined
 
 Undefined
 
-***[Top](#integration)***
+***[Top](#pull-request)***
+
+---
 
 ### Additional information
 
@@ -32,4 +36,4 @@ Undefined
 
 Undefined
 
-***[Top](#integration)***
+***[Top](#pull-request)***

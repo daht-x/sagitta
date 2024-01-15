@@ -183,8 +183,8 @@ Creates a new failed result.
 
 - [`Result<TSuccess, TFailure>`](./result.md): Type that encapsulates both the expected success and the possible failure of a given action.
 - [License](../../license).
-- [Code of conduct](../../code-of-conduct.md).
 - [Security policy](../../security.md).
-- [Contribution guidelines](../../contributing.md).
+- [Code of conduct](../../code-of-conduct.md).
+- [Contributing guidelines](../../contributing.md).
 
 ***[Top](#static-class-resultfactory)***
