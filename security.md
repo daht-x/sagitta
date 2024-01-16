@@ -15,9 +15,11 @@ The updates with enhancements, new features and bug fixes are only applied and a
 
 ***[Top](#security-policy)***
 
+---
+
 ### Vulnerabilities report
 
-***Please do not report security vulnerabilities through public GitHub issues.***
+***Please do not report security vulnerabilities through public GitHub issues***
 
 Please send a direct message (DM) to [@_daht_x](https://twitter.com/_daht_x) and include as much of the requested information as possible, as detailed below:
 
@@ -27,6 +29,8 @@ Please send a direct message (DM) to [@_daht_x](https://twitter.com/_daht_x) and
 
 ***[Top](#security-policy)***
 
+---
+
 ### Suggestions
 
 - Periodically manage the update of dependencies.
@@ -34,10 +38,12 @@ Please send a direct message (DM) to [@_daht_x](https://twitter.com/_daht_x) and
 
 ***[Top](#security-policy)***
 
+---
+
 ### Additional resources
 
 - [License](./license).
 - [Code of conduct](./code-of-conduct.md).
-- [Contribution guidelines](./contributing.md).
+- [Contributing guidelines](./contributing.md).
 
 ***[Top](#security-policy)***
