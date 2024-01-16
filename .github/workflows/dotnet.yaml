@@ -53,7 +53,7 @@ jobs:
       - name: "Get all changed files"
         id: "all-changed-files"
         if: "${{ env.IS_PULL_REQUEST_EVENT == vars.POSITIVE }}"
-        uses: "tj-actions/changed-files@v41.0.1"
+        uses: "tj-actions/changed-files@v41.1.1"
         with:
           files: "**.cs"
       - name: "Run formatter"
@@ -91,7 +91,7 @@ jobs:
             -property:"PackageVersion=${GITHUB_REF_NAME#v}" \
             -property:'PackageReleaseNotes=See ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.ref_name }} .'
       - name: "Upload release artifacts"
-        uses: "actions/upload-artifact@v4.0.0"
+        uses: "actions/upload-artifact@v4.1.0"
         if: "${{ env.IS_RELEASE == vars.POSITIVE }}"
         with:
           name: "${{ env.RELEASE_NAME }}"
