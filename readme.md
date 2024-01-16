@@ -28,13 +28,11 @@ Please go to the [NuGet package manager][package] and select the most appropriat
 
 ***[Top](#sagitta---core)***
 
----
-
 ### API
 
 #### Monads
 
-The term **monad** describes a set of abstractions that provide ways to manage the state of an element through the composition of sequential operations and the handling of side effects.
+The monads represent a set of structures that provide ways to manage the state of an element through the composition of sequential operations and the handling of side effects.
 
 [result]: https://github.com/daht-x/sagitta-core/blob/main/documentation/monads/result.md
 [result-factory]: https://github.com/daht-x/sagitta-core/blob/main/documentation/monads/result-factory.md
@@ -46,31 +44,23 @@ The term **monad** describes a set of abstractions that provide ways to manage t
 
 ***[Top](#sagitta---core)***
 
----
-
 ### License
 
 Distributed under [MIT license](https://github.com/daht-x/sagitta-core/blob/main/license).
 
 ***[Top](#sagitta---core)***
 
----
-
 ### Security policy
 
-Please read and follow our [security policy](https://github.com/daht-x/sagitta-core/blob/main/security.md).
+Please read and keep in mind our [security policy](https://github.com/daht-x/sagitta-core/blob/main/security.md).
 
 ***[Top](#sagitta---core)***
-
----
 
 ### Code of conduct
 
 Please read and follow our [code of conduct](https://github.com/daht-x/sagitta-core/blob/main/code-of-conduct.md).
 
 ***[Top](#sagitta---core)***
-
----
 
 ### Contributing guidelines
 

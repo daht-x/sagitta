@@ -41,8 +41,6 @@ Type that encapsulates both the expected success and the possible failure of a g
 
 ***[Top](#sealed-class-resulttsuccess-tfailure)***
 
----
-
 [bool]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool
 
 ### Properties
@@ -55,8 +53,6 @@ Type that encapsulates both the expected success and the possible failure of a g
 | `Failure`      | `TFailure`     | The possible failure                       |
 
 ***[Top](#sealed-class-resulttsuccess-tfailure)***
-
----
 
 ### Implicit operators
 
@@ -77,8 +73,6 @@ Type that encapsulates both the expected success and the possible failure of a g
   | `failure` | The possible failure |
 
 ***[Top](#sealed-class-resulttsuccess-tfailure)***
-
----
 
 ### Methods
 
@@ -196,8 +190,6 @@ Creates a new reduced failure if the result is failed; otherwise, creates a new 
   Returns `TReducer`.
 
 ***[Top](#sealed-class-resulttsuccess-tfailure)***
-
----
 
 ### Additional resources
 

@@ -18,8 +18,6 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 
 ***[Top](#contributing-guidelines)***
 
----
-
 ### Prerequisite software
 
 - [Git](https://git-scm.com) **(cross-platform)**.
@@ -33,8 +31,6 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 
 ***[Top](#contributing-guidelines)***
 
----
-
 ### Coding rules
 
 - All public API methods must be documented.
@@ -45,15 +41,11 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 [issue-templates]: https://github.com/daht-x/sagitta-core/issues/new/choose
 [new-issue]: https://github.com/daht-x/sagitta-core/issues/new
 
----
-
 ### Bug report
 
 To report a bug or unintended behavior, select a [predefined template][issue-templates] or create a [custom issue][new-issue].
 
 ***[Top](#contributing-guidelines)***
-
----
 
 ### Feature request
 
@@ -61,15 +53,11 @@ To request a feature or enhancement, select a [predefined template][issue-templa
 
 ***[Top](#contributing-guidelines)***
 
----
-
 ### Security policy
 
-Please read and follow our [security policy](./security.md).
+Please read and keep in mind our [security policy](./security.md).
 
 ***[Top](#contributing-guidelines)***
-
----
 
 ### Additional resources
 

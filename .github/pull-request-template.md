@@ -18,8 +18,6 @@ Undefined
 
 ***[Top](#pull-request)***
 
----
-
 ### Description
 
 <!-- Provide a concise and clear description | Required -->
@@ -27,8 +25,6 @@ Undefined
 Undefined
 
 ***[Top](#pull-request)***
-
----
 
 ### Additional information
 
