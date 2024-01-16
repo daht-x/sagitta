@@ -15,6 +15,7 @@
 		"editor.defaultFormatter": "redhat.vscode-yaml"
 	},
 	"cSpell.words": [
+		"allman",
 		"Andrés",
 		"commitlint",
 		"daht",
@@ -22,8 +23,11 @@
 		"markdownlc",
 		"markdownlint",
 		"notnull",
+		"Paket",
+		"Sagittae",
+		"shellcheck",
 		"Triana",
-		"shellcheck"
+		"Xunit"
 	],
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit",

@@ -203,8 +203,8 @@ Creates a new reduced failure if the result is failed; otherwise, creates a new 
 
 - [`ResultFactory`](./result-factory.md): Type that exposes a set of ways to initialize `Result<TSuccess, TFailure>`.
 - [License](../../license).
-- [Code of conduct](../../code-of-conduct.md).
 - [Security policy](../../security.md).
-- [Contribution guidelines](../../contributing.md).
+- [Code of conduct](../../code-of-conduct.md).
+- [Contributing guidelines](../../contributing.md).
 
 ***[Top](#sealed-class-resulttsuccess-tfailure)***

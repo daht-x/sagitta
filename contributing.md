@@ -1,4 +1,4 @@
-# Contribution guidelines
+# Contributing guidelines
 
 ***[home](./readme.md) /***
 
@@ -16,7 +16,9 @@
 
 Please read and follow our [code of conduct](./code-of-conduct.md).
 
-***[Top](#contribution-guidelines)***
+***[Top](#contributing-guidelines)***
+
+---
 
 ### Prerequisite software
 
@@ -29,38 +31,48 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 - [Lychee](https://github.com/lycheeverse/lychee) **(cross-platform)**.
 - [.NET SDK](https://dotnet.microsoft.com/en-us/download) **(cross-platform - the version specified in [global.json](./global.json) is required)**.
 
-***[Top](#contribution-guidelines)***
+***[Top](#contributing-guidelines)***
+
+---
 
 ### Coding rules
 
 - All public API methods must be documented.
 - All enhancements, features or bug fixes must be tested.
 
-***[Top](#contribution-guidelines)***
+***[Top](#contributing-guidelines)***
 
 [issue-templates]: https://github.com/daht-x/sagitta-core/issues/new/choose
 [new-issue]: https://github.com/daht-x/sagitta-core/issues/new
+
+---
 
 ### Bug report
 
 To report a bug or unintended behavior, select a [predefined template][issue-templates] or create a [custom issue][new-issue].
 
-***[Top](#contribution-guidelines)***
+***[Top](#contributing-guidelines)***
+
+---
 
 ### Feature request
 
 To request a feature or enhancement, select a [predefined template][issue-templates] or create a [custom issue][new-issue].
 
-***[Top](#contribution-guidelines)***
+***[Top](#contributing-guidelines)***
+
+---
 
 ### Security policy
 
-Please read and follow our [security policy](./security.md) if you have found any security vulnerability.
+Please read and follow our [security policy](./security.md).
 
-***[Top](#contribution-guidelines)***
+***[Top](#contributing-guidelines)***
+
+---
 
 ### Additional resources
 
 - [License](./license).
 
-***[Top](#contribution-guidelines)***
+***[Top](#contributing-guidelines)***
