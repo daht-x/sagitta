@@ -1,4 +1,3 @@
-
 # Code of conduct
 
 ***[home](./readme.md) /***
@@ -28,8 +27,6 @@ diverse, inclusive, and healthy community.
 
 ***[Top](#code-of-conduct)***
 
----
-
 ### Our standards
 
 Examples of behavior that contributes to a positive environment for our
@@ -56,8 +53,6 @@ Examples of unacceptable behavior include:
 
 ***[Top](#code-of-conduct)***
 
----
-
 ### Enforcement responsibilities
 
 Community leaders are responsible for clarifying and enforcing our standards of
@@ -72,8 +67,6 @@ decisions when appropriate.
 
 ***[Top](#code-of-conduct)***
 
----
-
 ### Scope
 
 This Code of Conduct applies within all community spaces, and also applies when
@@ -83,8 +76,6 @@ posting via an official social media account, or acting as an appointed
 representative at an online or offline event.
 
 ***[Top](#code-of-conduct)***
-
----
 
 ### Enforcement
 
@@ -97,8 +88,6 @@ All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.
 
 ***[Top](#code-of-conduct)***
-
----
 
 ### Enforcement guidelines
 
@@ -140,8 +129,6 @@ community.
 
 ***[Top](#code-of-conduct)***
 
----
-
 ### Attribution
 
 This Code of Conduct is adapted from the
@@ -157,8 +144,6 @@ For answers to common questions about this code of conduct, see the FAQ at
 <https://www.contributor-covenant.org/translations>.
 
 ***[Top](#code-of-conduct)***
-
----
 
 ### Additional resources
 

@@ -15,8 +15,6 @@ The updates with enhancements, new features and bug fixes are only applied and a
 
 ***[Top](#security-policy)***
 
----
-
 ### Vulnerabilities report
 
 ***Please do not report security vulnerabilities through public GitHub issues***
@@ -29,16 +27,12 @@ Please send a direct message (DM) to [@_daht_x](https://twitter.com/_daht_x) and
 
 ***[Top](#security-policy)***
 
----
-
 ### Suggestions
 
 - Periodically manage the update of dependencies.
 - Use services like [GitHub dependabot](https://docs.github.com/en/code-security/dependabot), [GitLab dependabot](https://dependabot-gitlab.gitlab.io/dependabot/), etc. to automatically update dependencies.
 
 ***[Top](#security-policy)***
-
----
 
 ### Additional resources
 

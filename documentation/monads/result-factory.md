@@ -177,8 +177,6 @@ Creates a new failed result.
 
 ***[Top](#static-class-resultfactory)***
 
----
-
 ### Additional resources
 
 - [`Result<TSuccess, TFailure>`](./result.md): Type that encapsulates both the expected success and the possible failure of a given action.
