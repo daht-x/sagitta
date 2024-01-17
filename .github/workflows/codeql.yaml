@@ -45,12 +45,12 @@ jobs:
       - name: "Set up repository with the latest commit"
         uses: "actions/checkout@v4.1.1"
       - name: "Set up analyzer"
-        uses: "github/codeql-action/init@v3.23.0"
+        uses: "github/codeql-action/init@v3.23.1"
         with:
           languages: "${{ matrix.languages }}"
       - name: "Build assemblies"
-        uses: "github/codeql-action/autobuild@v3.23.0"
+        uses: "github/codeql-action/autobuild@v3.23.1"
       - name: "Run analyzer"
-        uses: "github/codeql-action/analyze@v3.23.0"
+        uses: "github/codeql-action/analyze@v3.23.1"
         with:
           category: "/language:${{ matrix.languages }}"
