@@ -9,7 +9,7 @@
 [![Coverage](https://img.shields.io/codecov/c/github/daht-x/sagitta-core?style=for-the-badge&logo=codecov&logoColor=FFFFFF&label=Coverage&labelColor=000000&color=7950F2)](https://app.codecov.io/gh/daht-x/sagitta-core)
 
 [![CodeQL](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/codeql.yaml?style=for-the-badge&logo=github-actions&logoColor=FFFFFF&label=CodeQL&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/codeql.yaml)
-[![.NET](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/dotnet.yaml?style=for-the-badge&logo=github-actions&logoColor=FFFFFF&label=.NET&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/dotnet.yaml)
+[![Library](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/library.yaml?style=for-the-badge&logo=github-actions&logoColor=FFFFFF&label=Library&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/library.yaml)
 [![Markdown](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/markdown.yaml?style=for-the-badge&logo=github-actions&logoColor=FFFFFF&label=Markdown&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/markdown.yaml)
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-000000?style=for-the-badge&logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/daht-x)
