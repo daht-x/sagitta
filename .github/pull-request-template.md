@@ -14,7 +14,7 @@ Please read and follow our [code of conduct](../code-of-conduct.md) and [contrib
 
 <!-- Provide related issue tickets | Optional -->
 
-Undefined
+Undefined.
 
 ***[Top](#pull-request)***
 
@@ -22,7 +22,7 @@ Undefined
 
 <!-- Provide a concise and clear description | Required -->
 
-Undefined
+Undefined.
 
 ***[Top](#pull-request)***
 
@@ -30,6 +30,6 @@ Undefined
 
 <!-- Provide related features or enhancements, relevant changes, suggestions, etc. | Optional -->
 
-Undefined
+Undefined.
 
 ***[Top](#pull-request)***
