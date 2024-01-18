@@ -11,7 +11,7 @@
 
 ### Support
 
-The updates with enhancements, new features and bug fixes are only applied and available in the latest release.
+The support will only be available for the latest [LTS (Long Term Support)](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) release of the .NET platform.
 
 ***[Top](#security-policy)***
 
