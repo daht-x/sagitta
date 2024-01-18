@@ -3,12 +3,12 @@ changelog:
     authors:
       - "dependabot"
   categories:
-    - title: "Bugs fixed"
-      labels:
-        - "topic: bug"
     - title: "Build system"
       labels:
         - "topic: build"
+    - title: "Bug fixes"
+      labels:
+        - "topic: bug"
     - title: "New features and enhancements"
       labels:
         - "topic: feature"
