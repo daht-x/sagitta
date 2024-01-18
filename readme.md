@@ -2,9 +2,9 @@
 
 ***Functional paradigm abstractions for .NET***
 
-[package]: https://www.nuget.org/packages/Daht.Sagitta.Core
+[nuget-package-registry]: https://www.nuget.org/packages/Daht.Sagitta.Core
 
-[![NuGet](https://img.shields.io/nuget/v/Daht.Sagitta.Core?style=for-the-badge&logo=nuget&logoColor=FFFFFF&label=NuGet&labelColor=000000&color=7950F2)][package]
+[![NuGet](https://img.shields.io/nuget/v/Daht.Sagitta.Core?style=for-the-badge&logo=nuget&logoColor=FFFFFF&label=NuGet&labelColor=000000&color=7950F2)][nuget-package-registry]
 [![Downloads](https://img.shields.io/nuget/dt/Daht.Sagitta.Core?style=for-the-badge&logo=nuget&logoColor=FFFFFF&label=Downloads&labelColor=000000&color=7950F2)](https://www.nuget.org/stats/packages/Daht.Sagitta.Core?groupby=Version)
 [![Coverage](https://img.shields.io/codecov/c/github/daht-x/sagitta-core?style=for-the-badge&logo=codecov&logoColor=FFFFFF&label=Coverage&labelColor=000000&color=7950F2)](https://app.codecov.io/gh/daht-x/sagitta-core)
 
@@ -27,7 +27,57 @@
 
 ### Installation
 
-Please go to the [NuGet package manager][package] and select the most appropriate installation method for your workflow.
+***For information on all available versions, please see the [NuGet][nuget-package-registry] or [GitHub](https://github.com/daht-x/sagitta-core/pkgs/nuget/Daht.Sagitta.Core) package registry***
+
+Please select the installation method that best suits your workflow:
+
+- [.NET command-line interface (CLI)](https://learn.microsoft.com/en-us/dotnet/core/tools):
+
+  ```shell
+  dotnet add package Daht.Sagitta.Core --version x.x.x
+  ```
+
+- [Default package reference](https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files):
+
+  ```xml
+  <!-- Project file (.*proj) -->
+  <Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+      <!-- ... -->
+      <PackageReference Include="Daht.Sagitta.Core" Version="x.x.x" />
+      <!-- ... -->
+    </ItemGroup>
+  </Project>
+  ```
+
+- [Central package management (CPM)](https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management):
+
+  ```xml
+  <!-- Directory.Packages.props -->
+  <Project>
+    <PropertyGroup>
+      <!-- ... -->
+      <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+      <!-- ... -->
+    </PropertyGroup>
+    <ItemGroup>
+      <!-- ... -->
+      <PackageVersion Include="Daht.Sagitta.Core" Version="x.x.x" />
+      <!-- ... -->
+    </ItemGroup>
+  </Project>
+  ```
+
+  ```xml
+  <!-- Project file (.*proj) -->
+  <Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+      <!-- ... -->
+      <PackageReference Include="Daht.Sagitta.Core" />
+      <!-- ... -->
+    </ItemGroup>
+  </Project>
+  ```
 
 ***[Top](#sagitta---core)***
 
