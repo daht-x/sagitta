@@ -198,7 +198,7 @@ public sealed class ResultFactoryTest
 
 	#endregion
 
-	#region Overlaod
+	#region Overload
 
 	[Fact]
 	[Trait(root, ensure)]
