@@ -94,6 +94,19 @@ public sealed class Result<TSuccess, TFailure>
 			: this;
 	}
 
+	/// <summary>Executes an action if the previous result is successful.</summary>
+	/// <param name="execute">The action to execute.</param>
+	/// <returns>The previous result.</returns>
+	public Result<TSuccess, TFailure> DoOnSuccess(Action<TSuccess> execute)
+	{
+		if (IsFailed)
+		{
+			return this;
+		}
+		execute(Success);
+		return this;
+	}
+
 	/// <summary>Creates a new result with the same or different type of expected success.</summary>
 	/// <param name="createSuccessToMap">Creates the expected success to map.</param>
 	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
@@ -119,11 +132,11 @@ public sealed class Result<TSuccess, TFailure>
 			? new(Failure)
 			: createResultToBind(Success);
 
-	/// <summary>Creates a new reduced failure if the result is failed; otherwise, creates a new reduced success.</summary>
+	/// <summary>Creates a new reduced failure if the previous result is failed; otherwise, creates a new reduced success.</summary>
 	/// <param name="createReducedSuccess">Creates the expected reduced success.</param>
 	/// <param name="createReducedFailure">Creates the possible reduced failure.</param>
 	/// <typeparam name="TReducer">Type of reducer.</typeparam>
-	/// <returns>A new reduced failure if the result is failed; otherwise, a new reduced success.</returns>
+	/// <returns>A new reduced failure if the previous result is failed; otherwise, a new reduced success.</returns>
 	public TReducer Reduce<TReducer>(Func<TSuccess, TReducer> createReducedSuccess, Func<TFailure, TReducer> createReducedFailure)
 		=> IsFailed
 			? createReducedFailure(Failure)

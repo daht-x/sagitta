@@ -10,6 +10,8 @@ public sealed class ResultTest
 
 	private const string ensure = nameof(Result<object, object>.Ensure);
 
+	private const string doOnSuccess = nameof(Result<object, object>.DoOnSuccess);
+
 	private const string map = nameof(Result<object, object>.Map);
 
 	private const string bind = nameof(Result<object, object>.Bind);
@@ -322,6 +324,44 @@ public sealed class ResultTest
 	}
 
 	#endregion
+
+	#endregion
+
+	#region DoOnSuccess
+
+	[Fact]
+	[Trait(root, doOnSuccess)]
+	public void DoOnSuccess_FailedResultPlusExecute_FailedResult()
+	{
+		// Arrange
+		bool status = false;
+		Action<Constellation> execute = _ => status = true;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultMother.Fail()
+			.DoOnSuccess(execute);
+
+		// Assert
+		Assert.False(status);
+		ResultAsserter.IsFailed(actualResult);
+	}
+
+	[Fact]
+	[Trait(root, doOnSuccess)]
+	public void DoOnSuccess_SuccessfulResultPlusExecute_SuccessfulResult()
+	{
+		// Arrange
+		bool status = false;
+		Action<Constellation> execute = _ => status = true;
+
+		// Act
+		Result<Constellation, string> actualResult = ResultMother.Succeed()
+			.DoOnSuccess(execute);
+
+		// Assert
+		Assert.True(status);
+		ResultAsserter.IsSuccessful(actualResult);
+	}
 
 	#endregion
 
