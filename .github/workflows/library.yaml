@@ -89,7 +89,7 @@ jobs:
             --no-build \
             --configuration '${{ env.BUILD_CONFIGURATION }}' \
             -property:"PackageVersion=${GITHUB_REF_NAME#v}" \
-            -property:'PackageReleaseNotes=For information, please see ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.ref_name }}'
+            -property:'PackageReleaseNotes=Please see ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.ref_name }}'
       - name: "Upload release artifacts"
         uses: "actions/upload-artifact@v4.2.0"
         if: "${{ env.IS_RELEASE == vars.POSITIVE }}"
