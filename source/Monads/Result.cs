@@ -107,6 +107,19 @@ public sealed class Result<TSuccess, TFailure>
 		return this;
 	}
 
+	/// <summary>Executes an action if the previous result is failed.</summary>
+	/// <param name="execute">The action to execute.</param>
+	/// <returns>The previous result.</returns>
+	public Result<TSuccess, TFailure> DoOnFailure(Action<TFailure> execute)
+	{
+		if (IsSuccessful)
+		{
+			return this;
+		}
+		execute(Failure);
+		return this;
+	}
+
 	/// <summary>Creates a new result with the same or different type of expected success.</summary>
 	/// <param name="createSuccessToMap">Creates the expected success to map.</param>
 	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
