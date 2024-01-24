@@ -17,6 +17,7 @@ Type that encapsulates both the expected success and the possible failure of a g
 4. [Methods](#methods)
    - [`Ensure`](#ensure)
    - [`DoOnSuccess`](#doonsuccess)
+   - [`DoOnFailure`](#doonfailure)
    - [`Map`](#map)
    - [`Bind`](#bind)
    - [`Reduce`](#reduce)
@@ -134,6 +135,20 @@ Creates a new failed result if the value of `predicate` is [`true`][bool]; other
 Executes an action if the previous result is successful.
 
 - `DoOnSuccess(Action<TSuccess> execute)`:
+
+  | Parameter | Description           |
+  |:----------|:----------------------|
+  | `execute` | The action to execute |
+
+  Returns the previous result.
+
+***[Top](#sealed-class-resulttsuccess-tfailure)***
+
+#### `DoOnFailure`
+
+Executes an action if the previous result is failed.
+
+- `DoOnFailure(Action<TFailure> execute)`:
 
   | Parameter | Description           |
   |:----------|:----------------------|
