@@ -16,6 +16,7 @@ Type that encapsulates both the expected success and the possible failure of a g
 3. [Implicit operators](#implicit-operators)
 4. [Methods](#methods)
    - [`Ensure`](#ensure)
+   - [`DoOnSuccess`](#doonsuccess)
    - [`Map`](#map)
    - [`Bind`](#bind)
    - [`Reduce`](#reduce)
@@ -125,6 +126,20 @@ Creates a new failed result if the value of `predicate` is [`true`][bool]; other
   | `createFailure`   | Creates the possible failure                                                     |
 
   Returns `Result<TSuccess, TFailure>`.
+
+***[Top](#sealed-class-resulttsuccess-tfailure)***
+
+#### `DoOnSuccess`
+
+Executes an action if the previous result is successful.
+
+- `DoOnSuccess(Action<TSuccess> execute)`:
+
+  | Parameter | Description           |
+  |:----------|:----------------------|
+  | `execute` | The action to execute |
+
+  Returns the previous result.
 
 ***[Top](#sealed-class-resulttsuccess-tfailure)***
 
