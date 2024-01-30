@@ -15,7 +15,7 @@
 	},
 	"private": true,
 	"scripts": {
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"type": "module"
 }
