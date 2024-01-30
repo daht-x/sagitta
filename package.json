@@ -7,7 +7,7 @@
 		"eslint-plugin-import": "2.29.1",
 		"husky": "9.0.6",
 		"lint-staged": "15.2.0",
-		"markdownlint-cli": "0.38.0"
+		"markdownlint-cli": "0.39.0"
 	},
 	"engines": {
 		"node": "20.11.0",
