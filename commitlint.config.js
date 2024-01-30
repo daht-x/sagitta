@@ -137,6 +137,7 @@ const rootConfiguration = {
 			ruleSeverity.error,
 			ruleCompliance.always,
 			[
+				"compatibility",
 				"feature",
 				"test",
 				"build",
