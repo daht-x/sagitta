@@ -59,6 +59,10 @@ const rootConfiguration = {
 			ruleCompliance.always,
 			defaultMinimumLength
 		],
+		"header-trim": [
+			ruleSeverity.error,
+			ruleCompliance.always
+		],
 		"header-case": [
 			ruleSeverity.warning,
 			ruleCompliance.always,
