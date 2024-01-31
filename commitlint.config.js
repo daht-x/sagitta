@@ -3,7 +3,7 @@ import { ruleCompliance, ruleSeverity } from "./linter-configuration.js";
 const namingStyle = {
 	lowerCase: "lower-case"
 };
-const defaultMaximumLength = 100;
+const defaultMaximumLength = 120;
 const defaultMaximumLineLength = 400;
 const defaultMinimumLength = 0;
 const rootConfiguration = {
@@ -58,6 +58,10 @@ const rootConfiguration = {
 			ruleSeverity.error,
 			ruleCompliance.always,
 			defaultMinimumLength
+		],
+		"header-trim": [
+			ruleSeverity.error,
+			ruleCompliance.always
 		],
 		"header-case": [
 			ruleSeverity.warning,
@@ -133,6 +137,7 @@ const rootConfiguration = {
 			ruleSeverity.error,
 			ruleCompliance.always,
 			[
+				"compatibility",
 				"feature",
 				"test",
 				"build",
