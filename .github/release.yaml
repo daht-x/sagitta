@@ -3,6 +3,9 @@ changelog:
     authors:
       - "dependabot"
   categories:
+    - title: "Compatibility"
+      labels:
+        - "topic: compatibility"
     - title: "Build system"
       labels:
         - "topic: build"
@@ -14,8 +17,4 @@ changelog:
         - "topic: feature"
     - title: "Dependencies management"
       labels:
-        - "package manager: nuget"
-      exclude:
-        labels:
-          - "package manager: github actions"
-          - "package manager: pnpm"
+        - "topic: dependency"
