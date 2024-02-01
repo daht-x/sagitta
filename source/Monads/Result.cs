@@ -134,13 +134,13 @@ public sealed class Result<TFailure, TSuccess>
 			: createResultToBind(Success);
 
 	/// <summary>Creates a new reduced failure if the previous result is failed; otherwise, creates a new reduced success.</summary>
-	/// <param name="createReducedSuccess">Creates the expected reduced success.</param>
-	/// <param name="createReducedFailure">Creates the possible reduced failure.</param>
+	/// <param name="reduceFailure">Creates the possible reduced failure.</param>
+	/// <param name="reduceSuccess">Creates the expected reduced success.</param>
 	/// <typeparam name="TReducer">Type of reducer.</typeparam>
 	/// <returns>A new reduced failure if the previous result is failed; otherwise, a new reduced success.</returns>
-	public TReducer Reduce<TReducer>(Func<TSuccess, TReducer> createReducedSuccess, Func<TFailure, TReducer> createReducedFailure)
+	public TReducer Reduce<TReducer>(Func<TFailure, TReducer> reduceFailure, Func<TSuccess, TReducer> reduceSuccess)
 		=> IsFailed
-			? createReducedFailure(Failure)
-			: createReducedSuccess(Success);
+			? reduceFailure(Failure)
+			: reduceSuccess(Success);
 }
 #pragma warning restore CA1062
