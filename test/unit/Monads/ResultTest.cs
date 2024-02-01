@@ -2,7 +2,7 @@ namespace Daht.Sagitta.Core.UnitTest.Monads;
 
 public sealed class ResultTest
 {
-	private const string root = nameof(Result<object, object>);
+	private const string @base = nameof(Result<object, object>);
 
 	private const string constructor = "Constructor";
 
@@ -10,9 +10,9 @@ public sealed class ResultTest
 
 	private const string ensure = nameof(Result<object, object>.Ensure);
 
-	private const string doOnSuccess = nameof(Result<object, object>.DoOnSuccess);
-
 	private const string doOnFailure = nameof(Result<object, object>.DoOnFailure);
+
+	private const string doOnSuccess = nameof(Result<object, object>.DoOnSuccess);
 
 	private const string map = nameof(Result<object, object>.Map);
 
@@ -25,17 +25,17 @@ public sealed class ResultTest
 	#region Overload
 
 	[Fact]
-	[Trait(root, constructor)]
-	public void Constructor_Success_SuccessfulResult()
+	[Trait(@base, constructor)]
+	public void Constructor_Failure_FailedResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
+		const string expectedFailure = ResultFixture.Failure;
 
 		// Act
-		Result<Constellation, string> actualResult = new(expectedSuccess);
+		Result<string, Constellation> actualResult = new(expectedFailure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
 	}
 
 	#endregion
@@ -43,17 +43,17 @@ public sealed class ResultTest
 	#region Overload
 
 	[Fact]
-	[Trait(root, constructor)]
-	public void Constructor_Failure_FailedResult()
+	[Trait(@base, constructor)]
+	public void Constructor_Success_SuccessfulResult()
 	{
 		// Arrange
-		const string expectedFailure = ResultFixture.Failure;
+		Constellation expectedSuccess = ResultFixture.Success;
 
 		// Act
-		Result<Constellation, string> actualResult = new(expectedFailure);
+		Result<string, Constellation> actualResult = new(expectedSuccess);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -65,17 +65,17 @@ public sealed class ResultTest
 	#region Overload
 
 	[Fact]
-	[Trait(root, implicitOperator)]
-	public void ImplicitOperator_Success_SuccessfulResult()
+	[Trait(@base, implicitOperator)]
+	public void ImplicitOperator_Failure_FailedResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
+		const string expectedFailure = ResultFixture.Failure;
 
 		// Act
-		Result<Constellation, string> actualResult = expectedSuccess;
+		Result<string, Constellation> actualResult = expectedFailure;
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
 	}
 
 	#endregion
@@ -83,17 +83,17 @@ public sealed class ResultTest
 	#region Overload
 
 	[Fact]
-	[Trait(root, implicitOperator)]
-	public void ImplicitOperator_Failure_FailedResult()
+	[Trait(@base, implicitOperator)]
+	public void ImplicitOperator_Success_SuccessfulResult()
 	{
 		// Arrange
-		const string expectedFailure = ResultFixture.Failure;
+		Constellation expectedSuccess = ResultFixture.Success;
 
 		// Act
-		Result<Constellation, string> actualResult = expectedFailure;
+		Result<string, Constellation> actualResult = expectedSuccess;
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -105,7 +105,7 @@ public sealed class ResultTest
 	#region Overload
 
 	[Fact]
-	[Trait(root, ensure)]
+	[Trait(@base, ensure)]
 	public void Ensure_FailedResultPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -114,7 +114,7 @@ public sealed class ResultTest
 		Func<Constellation, string> createFailure = static _ => ResultFixture.RandomFailure;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Fail(expectedFailure)
+		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
 			.Ensure(predicate, createFailure);
 
 		// Assert
@@ -122,7 +122,7 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, ensure)]
+	[Trait(@base, ensure)]
 	public void Ensure_SuccessfulResultPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -131,7 +131,7 @@ public sealed class ResultTest
 		Func<Constellation, string> createFailure = static _ => expectedFailure;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed()
+		Result<string, Constellation> actualResult = ResultMother.Succeed()
 			.Ensure(predicate, createFailure);
 
 		// Assert
@@ -139,7 +139,7 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, ensure)]
+	[Trait(@base, ensure)]
 	public void Ensure_SuccessfulResultPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -148,7 +148,7 @@ public sealed class ResultTest
 		Func<Constellation, string> createFailure = static _ => ResultFixture.Failure;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed(expectedSuccess)
+		Result<string, Constellation> actualResult = ResultMother.Succeed(expectedSuccess)
 			.Ensure(predicate, createFailure);
 
 		// Assert
@@ -160,7 +160,7 @@ public sealed class ResultTest
 	#region Overload
 
 	[Fact]
-	[Trait(root, ensure)]
+	[Trait(@base, ensure)]
 	public void Ensure_FailedResultPlusTruePredicatePlusFailure_FailedResult()
 	{
 		// Arrange
@@ -169,7 +169,7 @@ public sealed class ResultTest
 		string failure = ResultFixture.RandomFailure;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Fail(expectedFailure)
+		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
 			.Ensure(predicate, failure);
 
 		// Assert
@@ -177,7 +177,7 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, ensure)]
+	[Trait(@base, ensure)]
 	public void Ensure_SuccessfulResultPlusTruePredicatePlusFailure_FailedResult()
 	{
 		// Arrange
@@ -185,7 +185,7 @@ public sealed class ResultTest
 		const string expectedFailure = ResultFixture.Failure;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed()
+		Result<string, Constellation> actualResult = ResultMother.Succeed()
 			.Ensure(predicate, expectedFailure);
 
 		// Assert
@@ -193,7 +193,7 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, ensure)]
+	[Trait(@base, ensure)]
 	public void Ensure_SuccessfulResultPlusFalsePredicatePlusFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -202,7 +202,7 @@ public sealed class ResultTest
 		const string failure = ResultFixture.Failure;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed(expectedSuccess)
+		Result<string, Constellation> actualResult = ResultMother.Succeed(expectedSuccess)
 			.Ensure(predicate, failure);
 
 		// Assert
@@ -214,7 +214,7 @@ public sealed class ResultTest
 	#region Overload
 
 	[Fact]
-	[Trait(root, ensure)]
+	[Trait(@base, ensure)]
 	public void Ensure_FailedResultPlusCreateAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -224,7 +224,7 @@ public sealed class ResultTest
 		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.RandomFailure;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Fail(expectedFailure)
+		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
 			.Ensure(createAuxiliary, predicate, createFailure);
 
 		// Assert
@@ -232,7 +232,7 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, ensure)]
+	[Trait(@base, ensure)]
 	public void Ensure_SuccessfulResultPlusCreateAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -242,7 +242,7 @@ public sealed class ResultTest
 		Func<Constellation, string, string> createFailure = static (_, _) => expectedFailure;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed()
+		Result<string, Constellation> actualResult = ResultMother.Succeed()
 			.Ensure(createAuxiliary, predicate, createFailure);
 
 		// Assert
@@ -250,7 +250,7 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, ensure)]
+	[Trait(@base, ensure)]
 	public void Ensure_SuccessfulResultPlusCreateAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -260,7 +260,7 @@ public sealed class ResultTest
 		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed(expectedSuccess)
+		Result<string, Constellation> actualResult = ResultMother.Succeed(expectedSuccess)
 			.Ensure(createAuxiliary, predicate, createFailure);
 
 		// Assert
@@ -272,7 +272,7 @@ public sealed class ResultTest
 	#region Overload
 
 	[Fact]
-	[Trait(root, ensure)]
+	[Trait(@base, ensure)]
 	public void Ensure_FailedResultPlusAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -282,7 +282,7 @@ public sealed class ResultTest
 		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.RandomFailure;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Fail(expectedFailure)
+		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
 			.Ensure(auxiliary, predicate, createFailure);
 
 		// Assert
@@ -290,7 +290,7 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, ensure)]
+	[Trait(@base, ensure)]
 	public void Ensure_SuccessfulResultPlusAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -300,7 +300,7 @@ public sealed class ResultTest
 		Func<Constellation, string, string> createFailure = static (_, _) => expectedFailure;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed()
+		Result<string, Constellation> actualResult = ResultMother.Succeed()
 			.Ensure(auxiliary, predicate, createFailure);
 
 		// Assert
@@ -308,7 +308,7 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, ensure)]
+	[Trait(@base, ensure)]
 	public void Ensure_SuccessfulResultPlusAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -318,7 +318,7 @@ public sealed class ResultTest
 		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed(expectedSuccess)
+		Result<string, Constellation> actualResult = ResultMother.Succeed(expectedSuccess)
 			.Ensure(auxiliary, predicate, createFailure);
 
 		// Assert
@@ -329,48 +329,10 @@ public sealed class ResultTest
 
 	#endregion
 
-	#region DoOnSuccess
-
-	[Fact]
-	[Trait(root, doOnSuccess)]
-	public void DoOnSuccess_FailedResultPlusExecute_FailedResult()
-	{
-		// Arrange
-		bool status = false;
-		Action<Constellation> execute = _ => status = true;
-
-		// Act
-		Result<Constellation, string> actualResult = ResultMother.Fail()
-			.DoOnSuccess(execute);
-
-		// Assert
-		Assert.False(status);
-		ResultAsserter.IsFailed(actualResult);
-	}
-
-	[Fact]
-	[Trait(root, doOnSuccess)]
-	public void DoOnSuccess_SuccessfulResultPlusExecute_SuccessfulResult()
-	{
-		// Arrange
-		bool status = false;
-		Action<Constellation> execute = _ => status = true;
-
-		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed()
-			.DoOnSuccess(execute);
-
-		// Assert
-		Assert.True(status);
-		ResultAsserter.IsSuccessful(actualResult);
-	}
-
-	#endregion
-
 	#region DoOnFailure
 
 	[Fact]
-	[Trait(root, doOnFailure)]
+	[Trait(@base, doOnFailure)]
 	public void DoOnFailure_SuccessfulResultPlusExecute_SuccessfulResult()
 	{
 		// Arrange
@@ -378,7 +340,7 @@ public sealed class ResultTest
 		Action<string> execute = _ => status = true;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed()
+		Result<string, Constellation> actualResult = ResultMother.Succeed()
 			.DoOnFailure(execute);
 
 		// Assert
@@ -387,7 +349,7 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, doOnFailure)]
+	[Trait(@base, doOnFailure)]
 	public void DoOnFailure_FailedResultPlusExecute_FailedResult()
 	{
 		// Arrange
@@ -395,12 +357,50 @@ public sealed class ResultTest
 		Action<string> execute = _ => status = true;
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Fail()
+		Result<string, Constellation> actualResult = ResultMother.Fail()
 			.DoOnFailure(execute);
 
 		// Assert
 		Assert.True(status);
 		ResultAsserter.IsFailed(actualResult);
+	}
+
+	#endregion
+
+	#region DoOnSuccess
+
+	[Fact]
+	[Trait(@base, doOnSuccess)]
+	public void DoOnSuccess_FailedResultPlusExecute_FailedResult()
+	{
+		// Arrange
+		bool status = false;
+		Action<Constellation> execute = _ => status = true;
+
+		// Act
+		Result<string, Constellation> actualResult = ResultMother.Fail()
+			.DoOnSuccess(execute);
+
+		// Assert
+		Assert.False(status);
+		ResultAsserter.IsFailed(actualResult);
+	}
+
+	[Fact]
+	[Trait(@base, doOnSuccess)]
+	public void DoOnSuccess_SuccessfulResultPlusExecute_SuccessfulResult()
+	{
+		// Arrange
+		bool status = false;
+		Action<Constellation> execute = _ => status = true;
+
+		// Act
+		Result<string, Constellation> actualResult = ResultMother.Succeed()
+			.DoOnSuccess(execute);
+
+		// Assert
+		Assert.True(status);
+		ResultAsserter.IsSuccessful(actualResult);
 	}
 
 	#endregion
@@ -410,7 +410,7 @@ public sealed class ResultTest
 	#region Overload
 
 	[Fact]
-	[Trait(root, map)]
+	[Trait(@base, map)]
 	public void Map_FailedResultPlusCreateSuccessToMap_FailedResult()
 	{
 		// Arrange
@@ -418,7 +418,7 @@ public sealed class ResultTest
 		Func<Constellation, Start> createSuccessToMap = static _ => ResultFixture.SuccessToMap;
 
 		// Act
-		Result<Start, string> actualResult = ResultMother.Fail(expectedFailure)
+		Result<string, Start> actualResult = ResultMother.Fail(expectedFailure)
 			.Map(createSuccessToMap);
 
 		// Assert
@@ -426,7 +426,7 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, map)]
+	[Trait(@base, map)]
 	public void Map_SuccessfulResultPlusCreateSuccessToMap_SuccessfulResult()
 	{
 		// Arrange
@@ -434,7 +434,7 @@ public sealed class ResultTest
 		Func<Constellation, Start> createSuccessToMap = _ => expectedSuccess;
 
 		// Act
-		Result<Start, string> actualResult = ResultMother.Succeed()
+		Result<string, Start> actualResult = ResultMother.Succeed()
 			.Map(createSuccessToMap);
 
 		// Assert
@@ -446,7 +446,7 @@ public sealed class ResultTest
 	#region Overload
 
 	[Fact]
-	[Trait(root, map)]
+	[Trait(@base, map)]
 	public void Map_FailedResultPlusSuccessToMap_FailedResult()
 	{
 		// Arrange
@@ -454,7 +454,7 @@ public sealed class ResultTest
 		Start successToMap = ResultFixture.SuccessToMap;
 
 		// Act
-		Result<Start, string> actualResult = ResultMother.Fail(expectedFailure)
+		Result<string, Start> actualResult = ResultMother.Fail(expectedFailure)
 			.Map(successToMap);
 
 		// Assert
@@ -462,14 +462,14 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, map)]
+	[Trait(@base, map)]
 	public void Map_SuccessfulResultPlusSuccessToMap_SuccessfulResult()
 	{
 		// Arrange
 		Start expectedSuccess = ResultFixture.SuccessToMap;
 
 		// Act
-		Result<Start, string> actualResult = ResultMother.Succeed()
+		Result<string, Start> actualResult = ResultMother.Succeed()
 			.Map(expectedSuccess);
 
 		// Assert
@@ -483,15 +483,15 @@ public sealed class ResultTest
 	#region Bind
 
 	[Fact]
-	[Trait(root, bind)]
+	[Trait(@base, bind)]
 	public void Bind_FailedResultPlusCreateResultToBindWithSuccessfulResult_FailedResult()
 	{
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, Result<Constellation, string>> createResultToBind = static _ => ResultMother.Succeed();
+		Func<Constellation, Result<string, Constellation>> createResultToBind = static _ => ResultMother.Succeed();
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Fail(expectedFailure)
+		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
 			.Bind(createResultToBind);
 
 		// Assert
@@ -499,15 +499,15 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, bind)]
+	[Trait(@base, bind)]
 	public void Bind_SuccessfulResultPlusCreateResultToBindWithFailedResult_FailedResult()
 	{
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, Result<Constellation, string>> createResultToBind = static _ => ResultMother.Fail(expectedFailure);
+		Func<Constellation, Result<string, Constellation>> createResultToBind = static _ => ResultMother.Fail(expectedFailure);
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.Succeed()
+		Result<string, Constellation> actualResult = ResultMother.Succeed()
 			.Bind(createResultToBind);
 
 		// Assert
@@ -515,15 +515,15 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, bind)]
+	[Trait(@base, bind)]
 	public void Bind_SuccessfulResultPlusCreateResultToBindWithSuccessfulResult_SuccessfulResult()
 	{
 		// Arrange
 		Constellation expectedSuccess = ResultFixture.Success;
-		Func<Constellation, Result<Constellation, string>> createResultToBind = _ => ResultMother.Succeed(expectedSuccess);
+		Func<Constellation, Result<string, Constellation>> createResultToBind = _ => ResultMother.Succeed(expectedSuccess);
 
 		// Act
-		Result<Constellation, string> actualResult = ResultMother.SucceedRandomly()
+		Result<string, Constellation> actualResult = ResultMother.SucceedRandomly()
 			.Bind(createResultToBind);
 
 		// Assert
@@ -535,7 +535,7 @@ public sealed class ResultTest
 	#region Reduce
 
 	[Fact]
-	[Trait(root, reduce)]
+	[Trait(@base, reduce)]
 	public void Reduce_FailedResultPlusCreateReducedSuccessPlusCreateReducedFailure_ReducedFailure()
 	{
 		// Arrange
@@ -552,7 +552,7 @@ public sealed class ResultTest
 	}
 
 	[Fact]
-	[Trait(root, reduce)]
+	[Trait(@base, reduce)]
 	public void Reduce_SuccessfulResultPlusCreateReducedSuccessPlusCreateReducedFailure_ReducedSuccess()
 	{
 		// Arrange
