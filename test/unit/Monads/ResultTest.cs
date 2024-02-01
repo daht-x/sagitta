@@ -536,16 +536,16 @@ public sealed class ResultTest
 
 	[Fact]
 	[Trait(@base, reduce)]
-	public void Reduce_FailedResultPlusCreateReducedSuccessPlusCreateReducedFailure_ReducedFailure()
+	public void Reduce_FailedResultPlusReduceFailurePlusReduceSuccess_ReducedFailure()
 	{
 		// Arrange
 		object expectedReduction = ResultFixture.Failure;
-		Func<Constellation, object> createReducedSuccess = static _ => ResultFixture.Success;
-		Func<string, object> createReducedFailure = _ => expectedReduction;
+		Func<string, object> reduceFailure = _ => expectedReduction;
+		Func<Constellation, object> reduceSuccess = static _ => ResultFixture.Success;
 
 		// Act
 		object actualReduction = ResultMother.Fail()
-			.Reduce(createReducedSuccess, createReducedFailure);
+			.Reduce(reduceFailure, reduceSuccess);
 
 		// Assert
 		Assert.Equal(expectedReduction, actualReduction);
@@ -553,16 +553,16 @@ public sealed class ResultTest
 
 	[Fact]
 	[Trait(@base, reduce)]
-	public void Reduce_SuccessfulResultPlusCreateReducedSuccessPlusCreateReducedFailure_ReducedSuccess()
+	public void Reduce_SuccessfulResultPlusReduceFailurePlusReduceSuccess_ReducedSuccess()
 	{
 		// Arrange
 		Constellation expectedReduction = ResultFixture.Success;
-		Func<Constellation, object> createReducedSuccess = _ => expectedReduction;
-		Func<string, object> createReducedFailure = static _ => ResultFixture.Failure;
+		Func<string, object> reduceFailure = static _ => ResultFixture.Failure;
+		Func<Constellation, object> reduceSuccess = _ => expectedReduction;
 
 		// Act
 		object actualReduction = ResultMother.Succeed()
-			.Reduce(createReducedSuccess, createReducedFailure);
+			.Reduce(reduceFailure, reduceSuccess);
 
 		// Assert
 		Assert.Equal(expectedReduction, actualReduction);
