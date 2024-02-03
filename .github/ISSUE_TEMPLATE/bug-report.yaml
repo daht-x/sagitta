@@ -1,5 +1,5 @@
-name: "Bug report."
-description: "Report a bug or unintended behavior"
+name: "Bug report"
+description: "Report a bug or unintended behavior."
 assignees: "daht-x"
 labels:
   - "topic: bug"

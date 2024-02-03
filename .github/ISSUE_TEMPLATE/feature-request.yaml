@@ -1,5 +1,5 @@
-name: "Feature request."
-description: "Request a feature or enhancement"
+name: "Feature request"
+description: "Request a feature or enhancement."
 assignees: "daht-x"
 labels:
   - "topic: feature"
