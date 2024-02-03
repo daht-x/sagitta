@@ -36,8 +36,8 @@ Please send a direct message (DM) to [@_daht_x](https://twitter.com/_daht_x) and
 
 ### Additional resources
 
-- [License](./license).
-- [Code of conduct](./code-of-conduct.md).
-- [Contributing guidelines](./contributing.md).
+- [License](./license)
+- [Code of conduct](./code-of-conduct.md)
+- [Contributing guidelines](./contributing.md)
 
 ***[Top](#security-policy)***
