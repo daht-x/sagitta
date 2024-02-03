@@ -1,188 +1,339 @@
-# `static class ResultFactory`
+# `ResultFactory`
 
 ***[home](../../readme.md) / monads /***
 
-Type that exposes a set of ways to initialize [`Result<TSuccess, TFailure>`](./result.md).
+```cs
+public static class ResultFactory
+ ```
+
+Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>`](./result.md).
 
 ## Table of contents
 
 1. [Methods](#methods)
-   - [`Catch`](#catch)
-   - [`Ensure`](#ensure)
-   - [`Succeed`](#succeed)
-   - [`Fail`](#fail)
+   - [`Fail<TFailure, TSuccess>(failure)`](#failtfailure-tsuccessfailure)
+   - [`Fail<TFailure, TSuccess>(createFailure)`](#failtfailure-tsuccesscreatefailure)
+   - [`Succeed<TFailure, TSuccess>(success)`](#succeedtfailure-tsuccesssuccess)
+   - [`Succeed<TFailure, TSuccess>(createSuccess)`](#succeedtfailure-tsuccesscreatesuccess)
+   - [`Catch<TException, TFailure, TSuccess>(createSuccess, createFailure)`](#catchtexception-tfailure-tsuccesscreatesuccess-createfailure)
+   - [`Ensure<TFailure, TSuccess>(success, predicate, failure)`](#ensuretfailure-tsuccesssuccess-predicate-failure)
+   - [`Ensure<TFailure, TSuccess>(success, predicate, createFailure)`](#ensuretfailure-tsuccesssuccess-predicate-createfailure)
+   - [`Ensure<TFailure, TSuccess>(createSuccess, predicate, failure)`](#ensuretfailure-tsuccesscreatesuccess-predicate-failure)
+   - [`Ensure<TFailure, TSuccess>(createSuccess, predicate, createFailure)`](#ensuretfailure-tsuccesscreatesuccess-predicate-createfailure)
+   - [`Ensure<TAuxiliary, TFailure, TSuccess>(success, auxiliary, predicate, createFailure)`](#ensuretauxiliary-tfailure-tsuccesssuccess-auxiliary-predicate-createfailure)
+   - [`Ensure<TAuxiliary, TFailure, TSuccess>(success, createAuxiliary, predicate, createFailure)`](#ensuretauxiliary-tfailure-tsuccesssuccess-createauxiliary-predicate-createfailure)
+   - [`Ensure<TAuxiliary, TFailure, TSuccess>(createSuccess, auxiliary, predicate, createFailure)`](#ensuretauxiliary-tfailure-tsuccesscreatesuccess-auxiliary-predicate-createfailure)
+   - [`Ensure<TAuxiliary, TFailure, TSuccess>(createSuccess, createAuxiliary, predicate, createFailure)`](#ensuretauxiliary-tfailure-tsuccesscreatesuccess-createauxiliary-predicate-createfailure)
 2. [Additional resources](#additional-resources)
 
 ### Methods
 
-#### `Catch`
+#### `Fail<TFailure, TSuccess>(failure)`
 
-Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new successful result.
+- Declaration:
 
-- `Catch<TException, TSuccess, TFailure>(Func<TSuccess> createSuccess, Func<TException, TFailure> createFailure)`:
+  ```cs
+  public static Result<TFailure, TSuccess> Fail<TFailure, TSuccess>(TFailure failure)
+  ```
 
-  | Generic      | Description                |
+- Description: Creates a new failed result.
+- Generics:
+  | Name       | Description              |
+  |:-----------|:-------------------------|
+  | `TFailure` | Type of possible failure |
+  | `TSuccess` | Type of expected success |
+- Parameters:
+  | Name      | Description          |
+  |:----------|:---------------------|
+  | `failure` | The possible failure |
+
+***[Top](#resultfactory)***
+
+#### `Fail<TFailure, TSuccess>(createFailure)`
+
+- Declaration:
+
+  ```cs
+  public static Result<TFailure, TSuccess> Fail<TFailure, TSuccess>(Func<TFailure> createFailure)
+  ```
+
+- Description: Creates a new failed result.
+- Generics:
+  | Name       | Description              |
+  |:-----------|:-------------------------|
+  | `TFailure` | Type of possible failure |
+  | `TSuccess` | Type of expected success |
+- Parameters:
+  | Name            | Description                  |
+  |:----------------|:-----------------------------|
+  | `createFailure` | Creates the possible failure |
+
+***[Top](#resultfactory)***
+
+#### `Succeed<TFailure, TSuccess>(success)`
+
+- Declaration:
+
+  ```cs
+  public static Result<TFailure, TSuccess> Succeed<TFailure, TSuccess>(TSuccess success)
+  ```
+
+- Description: Creates a new successful result.
+- Generics:
+  | Name       | Description              |
+  |:-----------|:-------------------------|
+  | `TFailure` | Type of possible failure |
+  | `TSuccess` | Type of expected success |
+- Parameters:
+  | Name      | Description          |
+  |:----------|:---------------------|
+  | `success` | The expected success |
+
+***[Top](#resultfactory)***
+
+#### `Succeed<TFailure, TSuccess>(createSuccess)`
+
+- Declaration:
+
+  ```cs
+  public static Result<TFailure, TSuccess> Succeed<TFailure, TSuccess>(Func<TSuccess> createSuccess)
+  ```
+
+- Description: Creates a new successful result.
+- Generics:
+  | Name       | Description              |
+  |:-----------|:-------------------------|
+  | `TFailure` | Type of possible failure |
+  | `TSuccess` | Type of expected success |
+- Parameters:
+  | Name            | Description                  |
+  |:----------------|:-----------------------------|
+  | `createSuccess` | Creates the expected success |
+
+***[Top](#resultfactory)***
+
+#### `Catch<TException, TFailure, TSuccess>(createSuccess, createFailure)`
+
+- Declaration:
+
+  ```cs
+  public static Result<TFailure, TSuccess> Catch<TException, TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TException, TFailure> createFailure)
+    where TException : Exception
+  ```
+
+- Description:  Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new successful result.
+- Generics:
+  | Name         | Description                |
   |:-------------|:---------------------------|
   | `TException` | Type of possible exception |
-  | `TSuccess`   | Type of expected success   |
   | `TFailure`   | Type of possible failure   |
-
-  | Parameter       | Description                  |
+  | `TSuccess`   | Type of expected success   |
+- Parameters:
+  | Name            | Description                  |
   |:----------------|:-----------------------------|
   | `createSuccess` | Creates the expected success |
   | `createFailure` | Creates the possible failure |
 
-***[Top](#static-class-resultfactory)***
+***[Top](#resultfactory)***
 
-[bool]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool
+#### `Ensure<TFailure, TSuccess>(success, predicate, failure)`
 
-#### `Ensure`
+- Declaration:
 
-Creates a new failed result if the value of `predicate` is [true][bool]; otherwise, creates a new successful result.
+  ```cs
+  public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(TSuccess success, Func<TSuccess, bool> predicate, TFailure failure)
+  ```
 
-| Generic    | Description              |
-|:-----------|:-------------------------|
-| `TSuccess` | Type of expected success |
-| `TFailure` | Type of possible failure |
-
-- `Ensure<TSuccess, TFailure>(TSuccess success, Func<TSuccess, bool> predicate, TFailure failure)`:
-
-  | Parameter   | Description               |
+- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Generics:
+  | Name       | Description              |
+  |:-----------|:-------------------------|
+  | `TFailure` | Type of possible failure |
+  | `TSuccess` | Type of expected success |
+- Parameters:
+  | Name        | Description               |
   |:------------|:--------------------------|
   | `success`   | The expected success      |
   | `predicate` | Creates a set of criteria |
   | `failure`   | The possible failure      |
 
-- `Ensure<TSuccess, TFailure>(TSuccess success, Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)`:
+***[Top](#resultfactory)***
 
-  | Parameter       | Description                  |
+#### `Ensure<TFailure, TSuccess>(success, predicate, createFailure)`
+
+- Declaration:
+
+  ```cs
+  public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(TSuccess success, Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
+  ```
+
+- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Generics:
+  | Name       | Description              |
+  |:-----------|:-------------------------|
+  | `TFailure` | Type of possible failure |
+  | `TSuccess` | Type of expected success |
+- Parameters:
+  | Name            | Description                  |
   |:----------------|:-----------------------------|
   | `success`       | The expected success         |
   | `predicate`     | Creates a set of criteria    |
   | `createFailure` | Creates the possible failure |
 
-- `Ensure<TSuccess, TFailure>(Func<TSuccess> createSuccess, Func<TSuccess, bool> predicate, TFailure failure)`:
+***[Top](#resultfactory)***
 
-  | Parameter       | Description                  |
+#### `Ensure<TFailure, TSuccess>(createSuccess, predicate, failure)`
+
+- Declaration:
+
+  ```cs
+  public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TSuccess, bool> predicate, TFailure failure)
+  ```
+
+- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Generics:
+  | Name       | Description              |
+  |:-----------|:-------------------------|
+  | `TFailure` | Type of possible failure |
+  | `TSuccess` | Type of expected success |
+- Parameters:
+  | Name            | Description                  |
   |:----------------|:-----------------------------|
   | `createSuccess` | Creates the expected success |
   | `predicate`     | Creates a set of criteria    |
   | `failure`       | The possible failure         |
 
-- `Ensure<TSuccess, TFailure>(Func<TSuccess> createSuccess, Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)`:
+***[Top](#resultfactory)***
 
-  | Parameter       | Description                  |
+#### `Ensure<TFailure, TSuccess>(createSuccess, predicate, createFailure)`
+
+- Declaration:
+
+  ```cs
+  public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
+  ```
+
+- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Generics:
+  | Name       | Description              |
+  |:-----------|:-------------------------|
+  | `TFailure` | Type of possible failure |
+  | `TSuccess` | Type of expected success |
+- Parameters:
+  | Name            | Description                  |
   |:----------------|:-----------------------------|
   | `createSuccess` | Creates the expected success |
   | `predicate`     | Creates a set of criteria    |
   | `createFailure` | Creates the possible failure |
 
-- `Ensure<TAuxiliary, TSuccess, TFailure>(TSuccess success, TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)`:
+***[Top](#resultfactory)***
 
-  | Generic      | Description       |
-  |:-------------|:------------------|
-  | `TAuxiliary` | Type of auxiliary |
+#### `Ensure<TAuxiliary, TFailure, TSuccess>(success, auxiliary, predicate, createFailure)`
 
-  | Parameter       | Description                                                              |
+- Declaration:
+
+  ```cs
+  public static Result<TFailure, TSuccess> Ensure<TAuxiliary, TFailure, TSuccess>(TSuccess success, TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
+  ```
+
+- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Generics:
+  | Name         | Description              |
+  |:-------------|:-------------------------|
+  | `TAuxiliary` | Type of auxiliary        |
+  | `TFailure`   | Type of possible failure |
+  | `TSuccess`   | Type of expected success |
+- Parameters:
+  | Name            | Description                                                              |
   |:----------------|:-------------------------------------------------------------------------|
   | `success`       | The expected success                                                     |
   | `auxiliary`     | The auxiliary to use in combination with `predicate` and `createFailure` |
   | `predicate`     | Creates a set of criteria                                                |
   | `createFailure` | Creates the possible failure                                             |
 
-- `Ensure<TAuxiliary, TSuccess, TFailure>(TSuccess success, Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)`:
+***[Top](#resultfactory)***
 
-  | Generic      | Description       |
-  |:-------------|:------------------|
-  | `TAuxiliary` | Type of auxiliary |
+#### `Ensure<TAuxiliary, TFailure, TSuccess>(success, createAuxiliary, predicate, createFailure)`
 
-  | Parameter         | Description                                                                      |
+- Declaration:
+
+  ```cs
+  public static Result<TFailure, TSuccess> Ensure<TAuxiliary, TFailure, TSuccess>(TSuccess success, Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
+  ```
+
+- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Generics:
+  | Name         | Description              |
+  |:-------------|:-------------------------|
+  | `TAuxiliary` | Type of auxiliary        |
+  | `TFailure`   | Type of possible failure |
+  | `TSuccess`   | Type of expected success |
+- Parameters:
+  | Name              | Description                                                                      |
   |:------------------|:---------------------------------------------------------------------------------|
   | `success`         | The expected success                                                             |
   | `createAuxiliary` | Creates the auxiliary to use in combination with `predicate` and `createFailure` |
   | `predicate`       | Creates a set of criteria                                                        |
   | `createFailure`   | Creates the possible failure                                                     |
 
-- `Ensure<TAuxiliary, TSuccess, TFailure>(Func<TSuccess> createSuccess, TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)`:
+***[Top](#resultfactory)***
 
-  | Generic      | Description       |
-  |:-------------|:------------------|
-  | `TAuxiliary` | Type of auxiliary |
+#### `Ensure<TAuxiliary, TFailure, TSuccess>(createSuccess, auxiliary, predicate, createFailure)`
 
-  | Parameter       | Description                                                              |
+- Declaration:
+
+  ```cs
+  public static Result<TFailure, TSuccess> Ensure<TAuxiliary, TFailure, TSuccess>(Func<TSuccess> createSuccess, TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
+  ```
+
+- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Generics:
+  | Name         | Description              |
+  |:-------------|:-------------------------|
+  | `TAuxiliary` | Type of auxiliary        |
+  | `TFailure`   | Type of possible failure |
+  | `TSuccess`   | Type of expected success |
+- Parameters:
+  | Name            | Description                                                              |
   |:----------------|:-------------------------------------------------------------------------|
   | `createSuccess` | Creates the expected success                                             |
   | `auxiliary`     | The auxiliary to use in combination with `predicate` and `createFailure` |
   | `predicate`     | Creates a set of criteria                                                |
   | `createFailure` | Creates the possible failure                                             |
 
-- `Ensure<TAuxiliary, TSuccess, TFailure>(Func<TSuccess> createSuccess, Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)`:
+***[Top](#resultfactory)***
 
-  | Generic      | Description       |
-  |:-------------|:------------------|
-  | `TAuxiliary` | Type of auxiliary |
+#### `Ensure<TAuxiliary, TFailure, TSuccess>(createSuccess, createAuxiliary, predicate, createFailure)`
 
-  | Parameter         | Description                                                                      |
+- Declaration:
+
+  ```cs
+  public static Result<TFailure, TSuccess> Ensure<TAuxiliary, TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
+  ```
+
+- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Generics:
+  | Name         | Description              |
+  |:-------------|:-------------------------|
+  | `TAuxiliary` | Type of auxiliary        |
+  | `TFailure`   | Type of possible failure |
+  | `TSuccess`   | Type of expected success |
+- Parameters:
+  | Name              | Description                                                                      |
   |:------------------|:---------------------------------------------------------------------------------|
   | `createSuccess`   | Creates the expected success                                                     |
   | `createAuxiliary` | Creates the auxiliary to use in combination with `predicate` and `createFailure` |
   | `predicate`       | Creates a set of criteria                                                        |
   | `createFailure`   | Creates the possible failure                                                     |
 
-***[Top](#static-class-resultfactory)***
-
-#### `Succeed`
-
-Creates a new successful result.
-
-| Generic    | Description              |
-|:-----------|:-------------------------|
-| `TSuccess` | Type of expected success |
-| `TFailure` | Type of possible failure |
-
-- `Succeed<TSuccess, TFailure>(TSuccess success)`:
-
-  | Parameter | Description          |
-  |:----------|:---------------------|
-  | `success` | The expected success |
-
-- `Succeed<TSuccess, TFailure>(Func<TSuccess> createSuccess)`:
-
-  | Parameter       | Description                  |
-  |:----------------|:-----------------------------|
-  | `createSuccess` | Creates the expected success |
-
-***[Top](#static-class-resultfactory)***
-
-#### `Fail`
-
-Creates a new failed result.
-
-| Generic    | Description              |
-|:-----------|:-------------------------|
-| `TSuccess` | Type of expected success |
-| `TFailure` | Type of possible failure |
-
-- `Fail<TSuccess, TFailure>(TFailure failure)`:
-
-  | Parameter | Description          |
-  |:----------|:---------------------|
-  | `failure` | The possible failure |
-
-- `Fail<TSuccess, TFailure>(Func<TFailure> createFailure)`:
-
-  | Parameter       | Description                  |
-  |:----------------|:-----------------------------|
-  | `createFailure` | Creates the possible failure |
-
-***[Top](#static-class-resultfactory)***
+***[Top](#resultfactory)***
 
 ### Additional resources
 
-- [`Result<TSuccess, TFailure>`](./result.md): Type that encapsulates both the expected success and the possible failure of a given action.
-- [License](../../license).
-- [Security policy](../../security.md).
-- [Code of conduct](../../code-of-conduct.md).
-- [Contributing guidelines](../../contributing.md).
+- [`Result<TFailure, TSuccess>`](./result.md): Type intended to manage both the possible failure and the expected success of a given action.
+- [License](../../license)
+- [Security policy](../../security.md)
+- [Code of conduct](../../code-of-conduct.md)
+- [Contributing guidelines](../../contributing.md)
 
-***[Top](#static-class-resultfactory)***
+***[Top](#resultfactory)***

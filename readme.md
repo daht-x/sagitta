@@ -12,9 +12,6 @@
 [![Library](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/library.yaml?style=for-the-badge&logo=github-actions&logoColor=FFFFFF&label=Library&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/library.yaml)
 [![Markdown](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/markdown.yaml?style=for-the-badge&logo=github-actions&logoColor=FFFFFF&label=Markdown&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/markdown.yaml)
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-000000?style=for-the-badge&logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/daht-x)
-[![X (Twitter)](https://img.shields.io/badge/X%20(Twitter)-000000?style=for-the-badge&logo=x&logoColor=FFFFFF)](https://twitter.com/_daht_x)
-
 ## Table of contents
 
 1. [Installation](#installation)
@@ -24,12 +21,13 @@
 4. [Security policy](#security-policy)
 5. [Code of conduct](#code-of-conduct)
 6. [Contributing guidelines](#contributing-guidelines)
+7. [Contact](#contact)
 
 ### Installation
 
 ***For information on all available versions, please see the [NuGet][nuget-package-registry] or [GitHub](https://github.com/daht-x/sagitta-core/pkgs/nuget/Daht.Sagitta.Core) package registry***
 
-Please select the installation method that best suits your workflow:
+Please choose the installation method that best suits your workflow:
 
 - [.NET command-line interface (CLI)](https://learn.microsoft.com/en-us/dotnet/core/tools):
 
@@ -90,10 +88,10 @@ The monads represent a set of structures that provide ways to manage the state o
 [result]: https://github.com/daht-x/sagitta-core/blob/main/documentation/monads/result.md
 [result-factory]: https://github.com/daht-x/sagitta-core/blob/main/documentation/monads/result-factory.md
 
-| Type                                   | Description                                                                                 |
-|:---------------------------------------|:--------------------------------------------------------------------------------------------|
-| [`Result<TSuccess, TFailure>`][result] | Type that encapsulates both the expected success and the possible failure of a given action |
-| [`ResultFactory`][result-factory]      | Type that exposes a set of ways to initialize [`Result<TSuccess, TFailure>`][result]        |
+| Type                                   | Description                                                                                  |
+|:---------------------------------------|:---------------------------------------------------------------------------------------------|
+| [`Result<TFailure, TSuccess>`][result] | Type intended to manage both the possible failure and the expected success of a given action |
+| [`ResultFactory`][result-factory]      | Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>`][result]   |
 
 ***[Top](#sagitta---core)***
 
@@ -120,3 +118,8 @@ Please read and follow our [code of conduct](https://github.com/daht-x/sagitta-c
 Please read and follow our [contributing guidelines](https://github.com/daht-x/sagitta-core/blob/main/contributing.md).
 
 ***[Top](#sagitta---core)***
+
+### Contact
+
+- [LinkedIn](https://www.linkedin.com/in/daht-x)
+- [X (Twitter)](https://twitter.com/_daht_x)
