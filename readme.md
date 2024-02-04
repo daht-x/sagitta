@@ -2,19 +2,18 @@
 
 ***Functional paradigm abstractions for .NET***
 
-[nuget-package-registry]: https://www.nuget.org/packages/Daht.Sagitta.Core
-
-[![NuGet](https://img.shields.io/nuget/v/Daht.Sagitta.Core?style=for-the-badge&logo=nuget&logoColor=FFFFFF&label=NuGet&labelColor=000000&color=7950F2)][nuget-package-registry]
-[![Downloads](https://img.shields.io/nuget/dt/Daht.Sagitta.Core?style=for-the-badge&logo=nuget&logoColor=FFFFFF&label=Downloads&labelColor=000000&color=7950F2)](https://www.nuget.org/stats/packages/Daht.Sagitta.Core?groupby=Version)
-[![Coverage](https://img.shields.io/codecov/c/github/daht-x/sagitta-core?style=for-the-badge&logo=codecov&logoColor=FFFFFF&label=Coverage&labelColor=000000&color=7950F2)](https://app.codecov.io/gh/daht-x/sagitta-core)
-
-[![CodeQL](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/codeql.yaml?style=for-the-badge&logo=github-actions&logoColor=FFFFFF&label=CodeQL&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/codeql.yaml)
-[![Library](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/library.yaml?style=for-the-badge&logo=github-actions&logoColor=FFFFFF&label=Library&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/library.yaml)
-[![Markdown](https://img.shields.io/github/actions/workflow/status/daht-x/sagitta-core/markdown.yaml?style=for-the-badge&logo=github-actions&logoColor=FFFFFF&label=Markdown&labelColor=000000)](https://github.com/daht-x/sagitta-core/actions/workflows/markdown.yaml)
+[![Stars](https://img.shields.io/github/stars/daht-x/sagitta-core?style=for-the-badge&logo=starship&logoColor=cdd6f4&label=Stars&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta-core)
+[![Release](https://img.shields.io/github/v/release/daht-x/sagitta-core?style=for-the-badge&logo=github&logoColor=cdd6f4&label=Release&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta-core/releases)
+[![Downloads](https://img.shields.io/nuget/dt/Daht.Sagitta.Core?style=for-the-badge&logo=nuget&logoColor=cdd6f4&label=Downloads&labelColor=313244&color=b4befe)](https://www.nuget.org/stats/packages/Daht.Sagitta.Core?groupby=Version)
+[![Coverage](https://img.shields.io/codecov/c/github/daht-x/sagitta-core?style=for-the-badge&logo=codecov&logoColor=cdd6f4&label=Coverage&labelColor=313244&color=b4befe)](https://app.codecov.io/gh/daht-x/sagitta-core)
+[![Issues](https://img.shields.io/github/issues/daht-x/sagitta-core?style=for-the-badge&logo=gitbook&logoColor=cdd6f4&label=Issues&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta-core/issues)
 
 ## Table of contents
 
 1. [Installation](#installation)
+   - [.NET command-line interface](#net-command-line-interface)
+   - [Project file](#project-file)
+   - [Central package management](#central-package-management)
 2. [API](#api)
    - [Monads](#monads)
 3. [License](#license)
@@ -25,57 +24,58 @@
 
 ### Installation
 
-***For information on all available versions, please see the [NuGet][nuget-package-registry] or [GitHub](https://github.com/daht-x/sagitta-core/pkgs/nuget/Daht.Sagitta.Core) package registry***
+***For information on all available versions, please see the [NuGet](https://www.nuget.org/packages/Daht.Sagitta.Core) or [GitHub](https://github.com/daht-x/sagitta-core/pkgs/nuget/Daht.Sagitta.Core) package registry***
 
-Please choose the installation method that best suits your workflow:
+#### .NET command-line interface
 
-- [.NET command-line interface (CLI)](https://learn.microsoft.com/en-us/dotnet/core/tools):
+```shell
+dotnet add package Daht.Sagitta.Core --version x.x.x
+```
 
-  ```shell
-  dotnet add package Daht.Sagitta.Core --version x.x.x
-  ```
+For more information, please see [here](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-add-package).
 
-- [Default package reference](https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files):
+***[Top](#sagitta---core)***
 
-  ```xml
-  <!-- Project file (.*proj) -->
-  <Project Sdk="Microsoft.NET.Sdk">
-    <ItemGroup>
-      <!-- ... -->
-      <PackageReference Include="Daht.Sagitta.Core" Version="x.x.x" />
-      <!-- ... -->
-    </ItemGroup>
-  </Project>
-  ```
+#### Project file
 
-- [Central package management (CPM)](https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management):
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Daht.Sagitta.Core" Version="x.x.x" />
+  </ItemGroup>
+</Project>
+```
 
-  ```xml
-  <!-- Directory.Packages.props -->
-  <Project>
-    <PropertyGroup>
-      <!-- ... -->
-      <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-      <!-- ... -->
-    </PropertyGroup>
-    <ItemGroup>
-      <!-- ... -->
-      <PackageVersion Include="Daht.Sagitta.Core" Version="x.x.x" />
-      <!-- ... -->
-    </ItemGroup>
-  </Project>
-  ```
+For more information, please see [here](https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files).
 
-  ```xml
-  <!-- Project file (.*proj) -->
-  <Project Sdk="Microsoft.NET.Sdk">
-    <ItemGroup>
-      <!-- ... -->
-      <PackageReference Include="Daht.Sagitta.Core" />
-      <!-- ... -->
-    </ItemGroup>
-  </Project>
-  ```
+***[Top](#sagitta---core)***
+
+#### Central package management
+
+1. `Directory.Packages.props` file:
+
+   ```xml
+   <Project>
+     <PropertyGroup>
+       <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+     </PropertyGroup>
+     <ItemGroup>
+       <PackageVersion Include="Daht.Sagitta.Core" Version="x.x.x" />
+     </ItemGroup>
+   </Project>
+   ```
+
+2. Project file:
+
+   ```xml
+   <Project Sdk="Microsoft.NET.Sdk">
+     <ItemGroup>
+       <PackageReference Include="Daht.Sagitta.Core" />
+     </ItemGroup>
+   </Project>
+   ```
+
+For more information, please see [here](https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management).
 
 ***[Top](#sagitta---core)***
 
@@ -122,4 +122,4 @@ Please read and follow our [contributing guidelines](https://github.com/daht-x/s
 ### Contact
 
 - [LinkedIn](https://www.linkedin.com/in/daht-x)
-- [X (Twitter)](https://twitter.com/_daht_x)
+- [X](https://twitter.com/_daht_x)
