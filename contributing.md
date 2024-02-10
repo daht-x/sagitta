@@ -20,14 +20,16 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 
 ### Prerequisite software
 
-- [Git](https://git-scm.com) **(cross-platform)**.
-- [ShellCheck](https://github.com/koalaman/shellcheck) **(cross-platform)**.
-- [NVM](https://github.com/nvm-sh/nvm) **(available for Linux, macOS and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))**.
-- [NVM-Windows](https://github.com/coreybutler/nvm-windows) **(available only for Windows)**.
-- [Node.js](https://nodejs.org/en) **(cross-platform - the version specified in [.nvmrc](./.nvmrc) and [package.json](./package.json) is required)**.
-- [PNPM](https://pnpm.io) **(cross-platform - the version specified in [package.json](./package.json) is required)**.
-- [Lychee](https://github.com/lycheeverse/lychee) **(cross-platform)**.
-- [.NET SDK](https://dotnet.microsoft.com/en-us/download) **(cross-platform - the version specified in [global.json](./global.json) is required)**.
+[nvm]: https://github.com/nvm-sh/nvm
+
+- [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) **(required for Windows users when working with [NVM][nvm] and [@biomejs/biome](https://github.com/biomejs/biome))**
+- [Git](https://git-scm.com)
+- [ShellCheck](https://github.com/koalaman/shellcheck)
+- [NVM][nvm]
+- [Node.js](https://nodejs.org/en) **(the version specified in [.nvmrc](./.nvmrc) and [package.json](./package.json) is required)**
+- [PNPM](https://pnpm.io) **(the version specified in [package.json](./package.json) is required)**
+- [Lychee](https://github.com/lycheeverse/lychee)
+- [.NET SDK](https://dotnet.microsoft.com/en-us/download) **(the version specified in [global.json](./global.json) is required)**
 
 ***[Top](#contributing-guidelines)***
 

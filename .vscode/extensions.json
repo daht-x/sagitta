@@ -1,6 +1,5 @@
 {
 	"recommendations": [
-		"dbaeumer.vscode-eslint",
 		"redhat.vscode-yaml",
 		"yzhang.markdown-all-in-one",
 		"davidanson.vscode-markdownlint",
@@ -20,6 +19,7 @@
 		"christian-kohler.path-intellisense",
 		"sonarsource.sonarlint-vscode",
 		"tamasfe.even-better-toml",
-		"darkriszty.markdown-table-prettify"
+		"darkriszty.markdown-table-prettify",
+		"biomejs.biome"
 	]
 }

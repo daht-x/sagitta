@@ -1,9 +1,12 @@
 {
 	"[javascript]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[json]": {
-		"editor.defaultFormatter": "vscode.json-language-features"
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[markdown]": {
 		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
@@ -14,30 +17,13 @@
 	"[yaml]": {
 		"editor.defaultFormatter": "redhat.vscode-yaml"
 	},
-	"cSpell.words": [
-		"allman",
-		"Andrés",
-		"Codecov",
-		"commitlint",
-		"daht",
-		"Hernández",
-		"markdownlc",
-		"markdownlint",
-		"notnull",
-		"Paket",
-		"Sagittae",
-		"shellcheck",
-		"Triana",
-		"Xunit"
-	],
+	"cSpell.words": ["allman", "Andrés", "Codecov", "commitlint", "daht", "Hernández", "markdownlc", "markdownlint", "notnull", "Paket", "Sagittae", "shellcheck", "Triana", "Xunit"],
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit",
+		"quickfix.biome": "explicit",
 		"source.fixAll.shellcheck": "explicit",
+		"source.organizeImports.biome": "explicit",
 		"source.sort.json": "explicit"
 	},
-	"eslint.experimental.useFlatConfig": true,
-	"eslint.format.enable": true,
-	"markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
 	"markdown.extension.toc.orderedList": true,
 	"markdown.extension.toc.updateOnSave": false,
 	"markdown.occurrencesHighlight.enabled": true,
@@ -52,7 +38,7 @@
 	"shellformat.useEditorConfig": true,
 	"xml.codeLens.enabled": true,
 	"xml.format.joinCommentLines": true,
-	"xml.format.maxLineWidth": 500,
+	"xml.format.maxLineWidth": 300,
 	"yaml.schemas": {
 		"https://json.schemastore.org/github-issue-config.json": "./.github/ISSUE_TEMPLATE/config.yml"
 	}
