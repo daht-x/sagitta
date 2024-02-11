@@ -4,7 +4,7 @@ on:
     branches:
       - "main"
     paths:
-      - "**.js"
+      - "**.ts"
       - "package.json"
       - "pnpm-lock.yaml"
       - "source/**"
@@ -16,7 +16,7 @@ on:
       - "*.sln"
   pull_request:
     paths:
-      - "**.js"
+      - "**.ts"
       - "package.json"
       - "pnpm-lock.yaml"
       - "source/**"
@@ -39,7 +39,7 @@ jobs:
     strategy:
       matrix:
         languages:
-          - "javascript"
+          - "typescript"
           - "csharp"
     steps:
       - name: "Set up repository with the latest commit"
