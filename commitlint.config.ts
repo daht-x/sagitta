@@ -12,7 +12,7 @@ const defaultMinimumLength = 0;
 enum NamingStyle {
 	LowerCase = "lower-case"
 }
-const SIGNATURE_LABEL = "Signed-off-by:";
+const signatureLabel = "Signed-off-by:";
 const rootConfiguration: UserConfig = {
 	rules: {
 		"body-full-stop": [RuleConfigSeverity.Error, RuleCompliance.Always, fullStop],
@@ -49,8 +49,8 @@ const rootConfiguration: UserConfig = {
 		"type-empty": [RuleConfigSeverity.Error, RuleCompliance.Never],
 		"type-max-length": [RuleConfigSeverity.Error, RuleCompliance.Always, defaultMaximumLength],
 		"type-min-length": [RuleConfigSeverity.Error, RuleCompliance.Always, defaultMinimumLength],
-		"signed-off-by": [RuleConfigSeverity.Warning, RuleCompliance.Always, SIGNATURE_LABEL],
-		"trailer-exists": [RuleConfigSeverity.Warning, RuleCompliance.Always, SIGNATURE_LABEL]
+		"signed-off-by": [RuleConfigSeverity.Warning, RuleCompliance.Always, signatureLabel],
+		"trailer-exists": [RuleConfigSeverity.Warning, RuleCompliance.Always, signatureLabel]
 	}
 };
 
