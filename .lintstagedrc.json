@@ -1,6 +1,6 @@
 {
 	"(**.sh|.husky/**)": "shellcheck --severity 'style'",
 	"**.md": ["markdownlint --fix", "lychee"],
-	"**.{json,ts}": "pnpm dlx @biomejs/biome check --apply",
+	"**.{json,js,ts}": "pnpm dlx @biomejs/biome check --apply",
 	"**/*.cs": "dotnet format --include"
 }
