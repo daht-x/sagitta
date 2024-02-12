@@ -2,7 +2,7 @@
 
 ***Thank you very much for your contribution***
 
-Please read and follow our [code of conduct](https://github.com/daht-x/sagitta-core/blob/main/code-of-conduct.md) and [contributing guidelines](https://github.com/daht-x/sagitta-core/blob/main/contributing.md).
+Please read and follow our [code of conduct](https://github.com/daht-x/sagitta/blob/main/code-of-conduct.md) and [contributing guidelines](https://github.com/daht-x/sagitta/blob/main/contributing.md).
 
 ## Table of contents
 

@@ -2,11 +2,11 @@
 
 ***Functional paradigm abstractions for .NET***
 
-[![Stars](https://img.shields.io/github/stars/daht-x/sagitta-core?style=for-the-badge&logo=starship&logoColor=cdd6f4&label=Stars&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta-core)
-[![Release](https://img.shields.io/github/v/release/daht-x/sagitta-core?style=for-the-badge&logo=github&logoColor=cdd6f4&label=Release&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta-core/releases)
+[![Stars](https://img.shields.io/github/stars/daht-x/sagitta?style=for-the-badge&logo=starship&logoColor=cdd6f4&label=Stars&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta)
+[![Release](https://img.shields.io/github/v/release/daht-x/sagitta?style=for-the-badge&logo=github&logoColor=cdd6f4&label=Release&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta/releases)
 [![Downloads](https://img.shields.io/nuget/dt/Daht.Sagitta.Core?style=for-the-badge&logo=nuget&logoColor=cdd6f4&label=Downloads&labelColor=313244&color=b4befe)](https://www.nuget.org/stats/packages/Daht.Sagitta.Core?groupby=Version)
-[![Coverage](https://img.shields.io/codecov/c/github/daht-x/sagitta-core?style=for-the-badge&logo=codecov&logoColor=cdd6f4&label=Coverage&labelColor=313244&color=b4befe)](https://app.codecov.io/gh/daht-x/sagitta-core)
-[![Issues](https://img.shields.io/github/issues/daht-x/sagitta-core?style=for-the-badge&logo=gitbook&logoColor=cdd6f4&label=Issues&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta-core/issues)
+[![Coverage](https://img.shields.io/codecov/c/github/daht-x/sagitta?style=for-the-badge&logo=codecov&logoColor=cdd6f4&label=Coverage&labelColor=313244&color=b4befe)](https://app.codecov.io/gh/daht-x/sagitta)
+[![Issues](https://img.shields.io/github/issues/daht-x/sagitta?style=for-the-badge&logo=gitbook&logoColor=cdd6f4&label=Issues&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta/issues)
 
 ## Table of contents
 
@@ -24,7 +24,7 @@
 
 ### Installation
 
-***For information on all available versions, please see the [NuGet](https://www.nuget.org/packages/Daht.Sagitta.Core) or [GitHub](https://github.com/daht-x/sagitta-core/pkgs/nuget/Daht.Sagitta.Core) package registry***
+***For information on all available versions, please see the [NuGet](https://www.nuget.org/packages/Daht.Sagitta.Core) or [GitHub](https://github.com/daht-x/sagitta/pkgs/nuget/Daht.Sagitta.Core) package registry***
 
 #### .NET command-line interface
 
@@ -85,8 +85,8 @@ For more information, please see [here](https://learn.microsoft.com/en-us/nuget/
 
 The monads represent a set of structures that provide ways to manage the state of an element through the composition of sequential operations and the handling of side effects.
 
-[result]: https://github.com/daht-x/sagitta-core/blob/main/documentation/monads/result.md
-[result-factory]: https://github.com/daht-x/sagitta-core/blob/main/documentation/monads/result-factory.md
+[result]: https://github.com/daht-x/sagitta/blob/main/documentation/monads/result.md
+[result-factory]: https://github.com/daht-x/sagitta/blob/main/documentation/monads/result-factory.md
 
 | Type                                   | Description                                                                                  |
 |:---------------------------------------|:---------------------------------------------------------------------------------------------|
@@ -97,25 +97,25 @@ The monads represent a set of structures that provide ways to manage the state o
 
 ### License
 
-Distributed under [MIT license](https://github.com/daht-x/sagitta-core/blob/main/license).
+Distributed under [MIT license](https://github.com/daht-x/sagitta/blob/main/license).
 
 ***[Top](#sagitta---core)***
 
 ### Security policy
 
-Please read and keep in mind our [security policy](https://github.com/daht-x/sagitta-core/blob/main/security.md).
+Please read and keep in mind our [security policy](https://github.com/daht-x/sagitta/blob/main/security.md).
 
 ***[Top](#sagitta---core)***
 
 ### Code of conduct
 
-Please read and follow our [code of conduct](https://github.com/daht-x/sagitta-core/blob/main/code-of-conduct.md).
+Please read and follow our [code of conduct](https://github.com/daht-x/sagitta/blob/main/code-of-conduct.md).
 
 ***[Top](#sagitta---core)***
 
 ### Contributing guidelines
 
-Please read and follow our [contributing guidelines](https://github.com/daht-x/sagitta-core/blob/main/contributing.md).
+Please read and follow our [contributing guidelines](https://github.com/daht-x/sagitta/blob/main/contributing.md).
 
 ***[Top](#sagitta---core)***
 

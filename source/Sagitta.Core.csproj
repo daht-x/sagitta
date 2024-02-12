@@ -13,7 +13,7 @@
 		<PackageTags>$(Company); Sagitta; Functional; Paradigm; Result; ResultFactory</PackageTags>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/daht-x/sagitta-core</RepositoryUrl>
+		<RepositoryUrl>https://github.com/daht-x/sagitta</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Copyright>Copyright (c) $(Maintainer) $([System.DateTime]::Now.ToString("yyyy"))</Copyright>
