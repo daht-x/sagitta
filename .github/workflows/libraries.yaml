@@ -1,4 +1,4 @@
-name: "Library"
+name: "Libraries"
 on:
   push:
     branches:
