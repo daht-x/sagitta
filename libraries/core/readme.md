@@ -1,6 +1,8 @@
-# Sagitta - Core
+# Daht.Sagitta.Core
 
-***Functional paradigm abstractions for .NET***
+***[home](../../readme.md) / packages /***
+
+***Functional paradigm abstractions for .NET - Core***
 
 [![Stars](https://img.shields.io/github/stars/daht-x/sagitta?style=for-the-badge&logo=starship&logoColor=cdd6f4&label=Stars&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta)
 [![Release](https://img.shields.io/github/v/release/daht-x/sagitta?style=for-the-badge&logo=github&logoColor=cdd6f4&label=Release&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta/releases)
@@ -34,7 +36,7 @@ dotnet add package Daht.Sagitta.Core --version x.x.x
 
 For more information, please see [here](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-add-package).
 
-***[Top](#sagitta---core)***
+***[Top](#dahtsagittacore)***
 
 #### Project file
 
@@ -48,7 +50,7 @@ For more information, please see [here](https://learn.microsoft.com/en-us/dotnet
 
 For more information, please see [here](https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files).
 
-***[Top](#sagitta---core)***
+***[Top](#dahtsagittacore)***
 
 #### Central package management
 
@@ -77,7 +79,7 @@ For more information, please see [here](https://learn.microsoft.com/en-us/nuget/
 
 For more information, please see [here](https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management).
 
-***[Top](#sagitta---core)***
+***[Top](#dahtsagittacore)***
 
 ### API
 
@@ -85,39 +87,39 @@ For more information, please see [here](https://learn.microsoft.com/en-us/nuget/
 
 The monads represent a set of structures that provide ways to manage the state of an element through the composition of sequential operations and the handling of side effects.
 
-[result]: https://github.com/daht-x/sagitta/blob/main/documentation/monads/result.md
-[result-factory]: https://github.com/daht-x/sagitta/blob/main/documentation/monads/result-factory.md
+[result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result-factory.md
+[result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result-factory.md
 
 | Type                                   | Description                                                                                  |
 |:---------------------------------------|:---------------------------------------------------------------------------------------------|
 | [`Result<TFailure, TSuccess>`][result] | Type intended to manage both the possible failure and the expected success of a given action |
 | [`ResultFactory`][result-factory]      | Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>`][result]   |
 
-***[Top](#sagitta---core)***
+***[Top](#dahtsagittacore)***
 
 ### License
 
 Distributed under [MIT license](https://github.com/daht-x/sagitta/blob/main/license).
 
-***[Top](#sagitta---core)***
+***[Top](#dahtsagittacore)***
 
 ### Security policy
 
 Please read and keep in mind our [security policy](https://github.com/daht-x/sagitta/blob/main/security.md).
 
-***[Top](#sagitta---core)***
+***[Top](#dahtsagittacore)***
 
 ### Code of conduct
 
 Please read and follow our [code of conduct](https://github.com/daht-x/sagitta/blob/main/code-of-conduct.md).
 
-***[Top](#sagitta---core)***
+***[Top](#dahtsagittacore)***
 
 ### Contributing guidelines
 
 Please read and follow our [contributing guidelines](https://github.com/daht-x/sagitta/blob/main/contributing.md).
 
-***[Top](#sagitta---core)***
+***[Top](#dahtsagittacore)***
 
 ### Contact
 

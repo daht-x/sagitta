@@ -1,6 +1,6 @@
 # `Result<TFailure, TSuccess>`
 
-***[home](../../readme.md) / monads /***
+***[home](../../../../readme.md) / packages /  [core](../../readme.md) / monads /***
 
 ```cs
 public sealed class Result<TFailure, TSuccess>
