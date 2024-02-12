@@ -40,8 +40,8 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 
 ***[Top](#contributing-guidelines)***
 
-[issue-templates]: https://github.com/daht-x/sagitta-core/issues/new/choose
-[new-issue]: https://github.com/daht-x/sagitta-core/issues/new
+[issue-templates]: https://github.com/daht-x/sagitta/issues/new/choose
+[new-issue]: https://github.com/daht-x/sagitta/issues/new
 
 ### Bug report
 
