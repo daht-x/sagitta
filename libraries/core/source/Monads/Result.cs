@@ -6,6 +6,18 @@ namespace Daht.Sagitta.Core.Monads;
 /// <typeparam name="TSuccess">Type of expected success.</typeparam>
 public sealed class Result<TFailure, TSuccess>
 {
+	/// <summary>Indicates whether the status is failed.</summary>
+	public bool IsFailed { get; }
+
+	/// <summary>The possible failure.</summary>
+	public TFailure Failure { get; } = default!;
+
+	/// <summary>Indicates whether the status is successful.</summary>
+	public bool IsSuccessful { get; }
+
+	/// <summary>The expected success.</summary>
+	public TSuccess Success { get; } = default!;
+
 	/// <summary>Creates a new failed result.</summary>
 	/// <param name="failure">The possible failure.</param>
 	public Result(TFailure failure)
@@ -21,18 +33,6 @@ public sealed class Result<TFailure, TSuccess>
 		IsSuccessful = true;
 		Success = success;
 	}
-
-	/// <summary>Indicates whether the status is failed.</summary>
-	public bool IsFailed { get; }
-
-	/// <summary>The possible failure.</summary>
-	public TFailure Failure { get; } = default!;
-
-	/// <summary>Indicates whether the status is successful.</summary>
-	public bool IsSuccessful { get; }
-
-	/// <summary>The expected success.</summary>
-	public TSuccess Success { get; } = default!;
 
 	/// <summary>Creates a new failed result.</summary>
 	/// <param name="failure">The possible failure.</param>
