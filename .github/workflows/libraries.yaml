@@ -82,7 +82,7 @@ jobs:
           files: "*.xml"
           fail_ci_if_error: true
           token: "${{ secrets.CODECOV_TOKEN }}"
-      - name: "Build package"
+      - name: "Build packages"
         if: "${{ env.IS_RELEASE == vars.POSITIVE }}"
         run: |
           dotnet pack \
@@ -113,7 +113,7 @@ jobs:
           name: "${{ env.RELEASE_NAME }}"
       - name: "Set up .NET SDK"
         uses: "actions/setup-dotnet@v4.0.0"
-      - name: "Publish package"
+      - name: "Publish packages"
         run: |
           dotnet nuget push '${{ env.NUGET_OUTPUT_DIRECTORY }}/${{ env.NUGET_SEARCH_PATTERN }}' \
             --source 'nuget' \
