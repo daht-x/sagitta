@@ -6,7 +6,7 @@
 public sealed class Result<TFailure, TSuccess>
  ```
 
-Type intended to manage both the possible failure and the expected success of a given action.
+Type intended to handle both the possible failure and the expected success of a given action.
 
 ## Table of contents
 

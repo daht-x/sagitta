@@ -330,7 +330,7 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 ### Additional resources
 
-- [`Result<TFailure, TSuccess>`](./result.md): Type intended to manage both the possible failure and the expected success of a given action.
+- [`Result<TFailure, TSuccess>`](./result.md): Type intended to handle both the possible failure and the expected success of a given action.
 - [License](../../../../license)
 - [Security policy](../../../../security.md)
 - [Code of conduct](../../../../code-of-conduct.md)

@@ -85,14 +85,14 @@ For more information, please see [here](https://learn.microsoft.com/en-us/nuget/
 
 #### Monads
 
-The monads represent a set of structures that provide ways to manage the state of an element through the composition of sequential operations and the handling of side effects.
+The monads represent a set of structures that provide ways to handle the state of an element through the composition of sequential operations and the handling of side effects.
 
 [result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result-factory.md
 [result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result-factory.md
 
 | Type                                   | Description                                                                                  |
 |:---------------------------------------|:---------------------------------------------------------------------------------------------|
-| [`Result<TFailure, TSuccess>`][result] | Type intended to manage both the possible failure and the expected success of a given action |
+| [`Result<TFailure, TSuccess>`][result] | Type intended to handle both the possible failure and the expected success of a given action |
 | [`ResultFactory`][result-factory]      | Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>`][result]   |
 
 ***[Top](#dahtsagittacore)***

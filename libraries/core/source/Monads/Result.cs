@@ -1,7 +1,7 @@
 namespace Daht.Sagitta.Core.Monads;
 
 #pragma warning disable CA1062
-/// <summary>Type intended to manage both the possible failure and the expected success of a given action.</summary>
+/// <summary>Type intended to handle both the possible failure and the expected success of a given action.</summary>
 /// <typeparam name="TFailure">Type of possible failure.</typeparam>
 /// <typeparam name="TSuccess">Type of expected success.</typeparam>
 public sealed class Result<TFailure, TSuccess>
