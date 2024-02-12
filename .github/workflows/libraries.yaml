@@ -79,7 +79,7 @@ jobs:
         uses: "codecov/codecov-action@v4.0.1"
         with:
           directory: "artifacts/coverage"
-          file: "*.xml"
+          files: "*.xml"
           fail_ci_if_error: true
           token: "${{ secrets.CODECOV_TOKEN }}"
       - name: "Build package"
