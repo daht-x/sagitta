@@ -1,6 +1,6 @@
 # Daht.Sagitta.Core
 
-***[home](https://github.com/daht-x/sagitta/blob/main/libraries/core/readme.md) / packages /***
+***[home](https://github.com/daht-x/sagitta/blob/main/readme.md) / packages /***
 
 ***Functional paradigm abstractions for .NET - Core***
 
