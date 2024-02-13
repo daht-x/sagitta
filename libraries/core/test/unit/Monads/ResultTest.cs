@@ -104,6 +104,8 @@ public sealed class ResultTest
 
 	#region Catch
 
+	#region Overload
+
 	[Fact]
 	[Trait(@base, @catch)]
 	public void Catch_FailedResultPlusExecutePlusCreateFailure_FailedResult()
@@ -142,7 +144,7 @@ public sealed class ResultTest
 
 	[Fact]
 	[Trait(@base, @catch)]
-	public void Catch_SuccessfulResultPlusExceptionPlusCreateFailure_FailedResult()
+	public void Catch_SuccessfulResultPlusExceptionInExecutePlusCreateFailure_FailedResult()
 	{
 		// Arrange
 		Action<Constellation> execute = static _ => throw new InvalidOperationException();
@@ -156,6 +158,62 @@ public sealed class ResultTest
 		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
 	}
+
+	#endregion
+
+	#region Overload
+
+	[Fact]
+	[Trait(@base, @catch)]
+	public void Catch_FailedResultPlusCreateSuccessPlusCreateFailure_FailedResult()
+	{
+		// Arrange
+		Func<Constellation, Constellation> createSuccess = static _ => ResultFixture.Success;
+		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+
+		// Act
+		Result<string, Constellation> actualResult = ResultMother.Fail()
+			.Catch(createSuccess, createFailure);
+
+		// Assert
+		ResultAsserter.IsFailed(actualResult);
+	}
+
+	[Fact]
+	[Trait(@base, @catch)]
+	public void Catch_SuccessfulResultPlusCreateSuccessPlusCreateFailure_SuccessfulResult()
+	{
+		// Arrange
+		Constellation expectedSuccess = ResultFixture.Success;
+		Func<Constellation, Constellation> createSuccess = _ => expectedSuccess;
+		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+
+		// Act
+		Result<string, Constellation> actualResult = ResultMother.Succeed()
+			.Catch(createSuccess, createFailure);
+
+		// Assert
+		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+	}
+
+	[Fact]
+	[Trait(@base, @catch)]
+	public void Catch_SuccessfulResultPlusExceptionInCreateSuccessPlusCreateFailure_FailedResult()
+	{
+		// Arrange
+		Func<Constellation, Constellation> createSuccess = static _ => throw new InvalidOperationException();
+		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+		const string expectedFailure = "Operation is not valid due to the current state of the object.";
+
+		// Act
+		Result<string, Constellation> actualResult = ResultMother.Succeed()
+			.Catch(createSuccess, createFailure);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
+
+	#endregion
 
 	#endregion
 
