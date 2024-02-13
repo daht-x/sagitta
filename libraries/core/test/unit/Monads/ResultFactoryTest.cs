@@ -32,7 +32,7 @@ public sealed class ResultFactoryTest
 
 	[Fact]
 	[Trait(@base, @catch)]
-	public void Catch_ExceptionPlusCreateFailure_FailedResult()
+	public void Catch_ExceptionInCreateSuccessPlusCreateFailure_FailedResult()
 	{
 		// Arrange
 		Func<Constellation> createSuccess = static () => throw new InvalidOperationException();

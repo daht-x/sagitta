@@ -69,6 +69,26 @@ public sealed class Result<TFailure, TSuccess>
 		}
 	}
 
+	/// <summary>Creates a new failed result if the value of <paramref name="createSuccess" /> throws <typeparamref name="TException" />; otherwise, creates a new successful result.</summary>
+	/// <param name="createSuccess">Creates the expected success.</param>
+	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <typeparam name="TException">Type of possible exception.</typeparam>
+	/// <returns>A new failed result if the value of <paramref name="createSuccess" /> throws <typeparamref name="TException" />; otherwise, a new successful result.</returns>
+	public Result<TFailure, TSuccess> Catch<TException>(Func<TSuccess, TSuccess> createSuccess, Func<TException, TFailure> createFailure)
+		where TException : Exception
+	{
+		try
+		{
+			return IsFailed
+				? this
+				: new(createSuccess(Success));
+		}
+		catch (TException exception)
+		{
+			return new(createFailure(exception));
+		}
+	}
+
 	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, returns the previous result.</summary>
 	/// <param name="predicate">Creates a set of criteria.</param>
 	/// <param name="createFailure">Creates the possible failure.</param>
