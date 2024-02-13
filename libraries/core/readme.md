@@ -87,7 +87,7 @@ For more information, please see [here](https://learn.microsoft.com/en-us/nuget/
 
 The monads represent a set of structures that provide ways to handle the state of an element through the composition of sequential operations and the handling of side effects.
 
-[result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result-factory.md
+[result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result.md
 [result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result-factory.md
 
 | Type                                   | Description                                                                                  |
