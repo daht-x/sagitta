@@ -26,6 +26,7 @@ Type intended to handle both the possible failure and the expected success of a 
    - [`Result<TFailure, TSuccess>(success)`](#resulttfailure-tsuccesssuccess)
 5. [Methods](#methods)
    - [`Catch<TException>(execute, createFailure`](#catchtexceptionexecute-createfailure)
+   - [`Catch<TException>(createSuccess, createFailure)`](#catchtexceptioncreatesuccess-createfailure)
    - [`Ensure(predicate, failure)`](#ensurepredicate-failure)
    - [`Ensure(predicate, createFailure)`](#ensurepredicate-createfailure)
    - [`Ensure<TAuxiliary>(auxiliary, predicate, createFailure)`](#ensuretauxiliaryauxiliary-predicate-createfailure)
@@ -190,6 +191,28 @@ Type of expected success.
   | Name            | Description                  |
   |:----------------|:-----------------------------|
   | `execute`       | The action to execute        |
+  | `createFailure` | Creates the possible failure |
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `Catch<TException>(createSuccess, createFailure)`
+
+- Declaration:
+
+  ```cs
+  public Result<TFailure, TSuccess> Catch<TException>(Func<TSuccess, TSuccess> createSuccess, Func<TException, TFailure> createFailure)
+    where TException : Exception
+  ```
+
+- Description: Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new successful result.
+- Generics:
+  | Name         | Description                |
+  |:-------------|:---------------------------|
+  | `TException` | Type of possible exception |
+- Parameters:
+  | Name            | Description                  |
+  |:----------------|:-----------------------------|
+  | `createSuccess` | Creates the expected success |
   | `createFailure` | Creates the possible failure |
 
 ***[Top](#resulttfailure-tsuccess)***

@@ -121,7 +121,7 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
     where TException : Exception
   ```
 
-- Description:  Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new successful result.
+- Description: Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new successful result.
 - Generics:
   | Name         | Description                |
   |:-------------|:---------------------------|
