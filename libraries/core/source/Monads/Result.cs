@@ -46,6 +46,29 @@ public sealed class Result<TFailure, TSuccess>
 	public static implicit operator Result<TFailure, TSuccess>(TSuccess success)
 		=> new(success);
 
+	/// <summary>Creates a new failed result if <paramref name="execute" /> throws <typeparamref name="TException" />; otherwise, returns the previous result.</summary>
+	/// <param name="execute">The action to execute.</param>
+	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <typeparam name="TException">Type of possible exception.</typeparam>
+	/// <returns>A new failed result if <paramref name="execute" /> throws <typeparamref name="TException" />; otherwise, the previous result.</returns>
+	public Result<TFailure, TSuccess> Catch<TException>(Action<TSuccess> execute, Func<TException, TFailure> createFailure)
+		where TException : Exception
+	{
+		try
+		{
+			if (IsFailed)
+			{
+				return this;
+			}
+			execute(Success);
+			return this;
+		}
+		catch (TException exception)
+		{
+			return new(createFailure(exception));
+		}
+	}
+
 	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, returns the previous result.</summary>
 	/// <param name="predicate">Creates a set of criteria.</param>
 	/// <param name="createFailure">Creates the possible failure.</param>

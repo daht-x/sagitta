@@ -8,6 +8,8 @@ public sealed class ResultTest
 
 	private const string implicitOperator = "Implicit Operator";
 
+	private const string @catch = nameof(Result<object, object>.Catch);
+
 	private const string ensure = nameof(Result<object, object>.Ensure);
 
 	private const string doOnFailure = nameof(Result<object, object>.DoOnFailure);
@@ -97,6 +99,63 @@ public sealed class ResultTest
 	}
 
 	#endregion
+
+	#endregion
+
+	#region Catch
+
+	[Fact]
+	[Trait(@base, @catch)]
+	public void Catch_FailedResultPlusExecutePlusCreateFailure_FailedResult()
+	{
+		// Arrange
+		bool status = false;
+		Action<Constellation> execute = _ => status = true;
+		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+
+		// Act
+		Result<string, Constellation> actualResult = ResultMother.Fail()
+			.Catch(execute, createFailure);
+
+		// Assert
+		Assert.False(status);
+		ResultAsserter.IsFailed(actualResult);
+	}
+
+	[Fact]
+	[Trait(@base, @catch)]
+	public void Catch_SuccessfulResultPlusExecutePlusCreateFailure_SuccessfulResult()
+	{
+		// Arrange
+		bool status = false;
+		Action<Constellation> execute = _ => status = true;
+		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+
+		// Act
+		Result<string, Constellation> actualResult = ResultMother.Succeed()
+			.Catch(execute, createFailure);
+
+		// Assert
+		Assert.True(status);
+		ResultAsserter.IsSuccessful(actualResult);
+	}
+
+	[Fact]
+	[Trait(@base, @catch)]
+	public void Catch_SuccessfulResultPlusExceptionPlusCreateFailure_FailedResult()
+	{
+		// Arrange
+		Action<Constellation> execute = static _ => throw new InvalidOperationException();
+		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+		const string expectedFailure = "Operation is not valid due to the current state of the object.";
+
+		// Act
+		Result<string, Constellation> actualResult = ResultMother.Succeed()
+			.Catch(execute, createFailure);
+
+		// Assert
+		ResultAsserter.AreFailed(expectedFailure, actualResult);
+	}
 
 	#endregion
 
