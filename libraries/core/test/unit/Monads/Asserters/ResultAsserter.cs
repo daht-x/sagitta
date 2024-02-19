@@ -2,7 +2,8 @@ namespace Daht.Sagitta.Core.UnitTest.Monads.Asserters;
 
 internal static class ResultAsserter
 {
-	internal static void AreFailed<TFailure, TSuccess>(TFailure expectedFailure, Result<TFailure, TSuccess> actualResult)
+	internal static void AreFailed<TFailure, TSuccess>(TFailure expectedFailure,
+		Result<TFailure, TSuccess> actualResult)
 	{
 		IsFailed(actualResult);
 		Assert.Equal(default, actualResult.Success);
@@ -15,7 +16,8 @@ internal static class ResultAsserter
 		Assert.True(actualResult.IsFailed);
 	}
 
-	internal static void AreSuccessful<TFailure, TSuccess>(TSuccess expectedSuccess, Result<TFailure, TSuccess> actualResult)
+	internal static void AreSuccessful<TFailure, TSuccess>(TSuccess expectedSuccess,
+		Result<TFailure, TSuccess> actualResult)
 	{
 		IsSuccessful(actualResult);
 		Assert.Equal(expectedSuccess, actualResult.Success);

@@ -204,7 +204,8 @@ Type of expected success.
     where TException : Exception
   ```
 
-- Description: Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new successful result.
+- Description: Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new
+successful result.
 - Generics:
   | Name         | Description                |
   |:-------------|:---------------------------|

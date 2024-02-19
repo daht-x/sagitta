@@ -51,7 +51,8 @@ public sealed class Result<TFailure, TSuccess>
 	/// <param name="createFailure">Creates the possible failure.</param>
 	/// <typeparam name="TException">Type of possible exception.</typeparam>
 	/// <returns>A new failed result if <paramref name="execute" /> throws <typeparamref name="TException" />; otherwise, the previous result.</returns>
-	public Result<TFailure, TSuccess> Catch<TException>(Action<TSuccess> execute, Func<TException, TFailure> createFailure)
+	public Result<TFailure, TSuccess> Catch<TException>(Action<TSuccess> execute,
+		Func<TException, TFailure> createFailure)
 		where TException : Exception
 	{
 		try
@@ -74,7 +75,8 @@ public sealed class Result<TFailure, TSuccess>
 	/// <param name="createFailure">Creates the possible failure.</param>
 	/// <typeparam name="TException">Type of possible exception.</typeparam>
 	/// <returns>A new failed result if the value of <paramref name="createSuccess" /> throws <typeparamref name="TException" />; otherwise, a new successful result.</returns>
-	public Result<TFailure, TSuccess> Catch<TException>(Func<TSuccess, TSuccess> createSuccess, Func<TException, TFailure> createFailure)
+	public Result<TFailure, TSuccess> Catch<TException>(Func<TSuccess, TSuccess> createSuccess,
+		Func<TException, TFailure> createFailure)
 		where TException : Exception
 	{
 		try
@@ -117,7 +119,8 @@ public sealed class Result<TFailure, TSuccess>
 	/// <param name="createFailure">Creates the possible failure.</param>
 	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
 	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
-	public Result<TFailure, TSuccess> Ensure<TAuxiliary>(Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
+	public Result<TFailure, TSuccess> Ensure<TAuxiliary>(Func<TAuxiliary> createAuxiliary,
+		Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
 		=> Ensure(createAuxiliary(), predicate, createFailure);
 
 	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, returns the previous result.</summary>
@@ -126,7 +129,8 @@ public sealed class Result<TFailure, TSuccess>
 	/// <param name="createFailure">Creates the possible failure.</param>
 	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
 	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
-	public Result<TFailure, TSuccess> Ensure<TAuxiliary>(TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
+	public Result<TFailure, TSuccess> Ensure<TAuxiliary>(TAuxiliary auxiliary,
+		Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
 	{
 		if (IsFailed)
 		{
@@ -183,7 +187,8 @@ public sealed class Result<TFailure, TSuccess>
 	/// <param name="createResultToBind">Creates a new result to bind.</param>
 	/// <typeparam name="TSuccessToBind">Type of expected success to bind.</typeparam>
 	/// <returns>A new result in combination with another result with the same or different type of expected success.</returns>
-	public Result<TFailure, TSuccessToBind> Bind<TSuccessToBind>(Func<TSuccess, Result<TFailure, TSuccessToBind>> createResultToBind)
+	public Result<TFailure, TSuccessToBind> Bind<TSuccessToBind>(
+		Func<TSuccess, Result<TFailure, TSuccessToBind>> createResultToBind)
 		=> IsFailed
 			? new(Failure)
 			: createResultToBind(Success);

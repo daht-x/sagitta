@@ -6,7 +6,7 @@
 	"formatter": {
 		"enabled": true,
 		"indentWidth": 4,
-		"lineWidth": 300
+		"lineWidth": 120
 	},
 	"javascript": {
 		"formatter": {

@@ -11,7 +11,8 @@
 
 ### Support
 
-The support will only be available for the latest [LTS (Long Term Support)](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) release of the .NET platform.
+The support will only be available for the latest [LTS (Long Term Support)](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core)
+release of the .NET platform.
 
 ***[Top](#security-policy)***
 
@@ -19,7 +20,8 @@ The support will only be available for the latest [LTS (Long Term Support)](http
 
 ***Please do not report security vulnerabilities through public GitHub issues***
 
-Please send a direct message (DM) to [@_daht_x](https://twitter.com/_daht_x) and include as much of the requested information as possible, as detailed below:
+Please send a direct message (DM) to [@_daht_x](https://twitter.com/_daht_x) and include as much of the requested information
+as possible, as detailed below:
 
 - Type of vulnerability.
 - The location of the affected source code (git details (tag, branch, commit) and full paths of source files(s)).
@@ -30,7 +32,8 @@ Please send a direct message (DM) to [@_daht_x](https://twitter.com/_daht_x) and
 ### Suggestions
 
 - Periodically manage the update of dependencies.
-- Use services like [GitHub dependabot](https://docs.github.com/en/code-security/dependabot), [GitLab dependabot](https://dependabot-gitlab.gitlab.io/dependabot/), etc. to automatically update dependencies.
+- Use services like [GitHub dependabot](https://docs.github.com/en/code-security/dependabot), [GitLab dependabot](https://dependabot-gitlab.gitlab.io/dependabot/),
+etc. to automatically update dependencies.
 
 ***[Top](#security-policy)***
 

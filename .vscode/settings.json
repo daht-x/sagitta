@@ -20,7 +20,22 @@
 	"[yaml]": {
 		"editor.defaultFormatter": "redhat.vscode-yaml"
 	},
-	"cSpell.words": ["allman", "Andrés", "Codecov", "commitlint", "daht", "Hernández", "markdownlc", "markdownlint", "notnull", "Paket", "Sagittae", "shellcheck", "Triana", "Xunit"],
+	"cSpell.words": [
+		"allman",
+		"Andrés",
+		"Codecov",
+		"commitlint",
+		"daht",
+		"Hernández",
+		"markdownlc",
+		"markdownlint",
+		"notnull",
+		"Paket",
+		"Sagittae",
+		"shellcheck",
+		"Triana",
+		"Xunit"
+	],
 	"editor.codeActionsOnSave": {
 		"quickfix.biome": "explicit",
 		"source.fixAll.shellcheck": "explicit",
@@ -41,7 +56,7 @@
 	"shellformat.useEditorConfig": true,
 	"xml.codeLens.enabled": true,
 	"xml.format.joinCommentLines": true,
-	"xml.format.maxLineWidth": 300,
+	"xml.format.maxLineWidth": 120,
 	"yaml.schemas": {
 		"https://json.schemastore.org/github-issue-config.json": "./.github/ISSUE_TEMPLATE/config.yml"
 	}

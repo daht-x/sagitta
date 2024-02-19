@@ -621,7 +621,8 @@ public sealed class ResultTest
 	{
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, Result<string, Constellation>> createResultToBind = static _ => ResultMother.Fail(expectedFailure);
+		Func<Constellation, Result<string, Constellation>> createResultToBind = static _
+			=> ResultMother.Fail(expectedFailure);
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Succeed()
@@ -637,7 +638,8 @@ public sealed class ResultTest
 	{
 		// Arrange
 		Constellation expectedSuccess = ResultFixture.Success;
-		Func<Constellation, Result<string, Constellation>> createResultToBind = _ => ResultMother.Succeed(expectedSuccess);
+		Func<Constellation, Result<string, Constellation>> createResultToBind = _
+			=> ResultMother.Succeed(expectedSuccess);
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.SucceedRandomly()

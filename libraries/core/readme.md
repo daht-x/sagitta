@@ -26,7 +26,8 @@
 
 ### Installation
 
-***For information on all available versions, please see the [NuGet](https://www.nuget.org/packages/Daht.Sagitta.Core) or [GitHub](https://github.com/daht-x/sagitta/pkgs/nuget/Daht.Sagitta.Core) package registry***
+***For information on all available versions, please see the [NuGet](https://www.nuget.org/packages/Daht.Sagitta.Core) or
+[GitHub](https://github.com/daht-x/sagitta/pkgs/nuget/Daht.Sagitta.Core) package registry***
 
 #### .NET command-line interface
 
@@ -85,7 +86,8 @@ For more information, please see [here](https://learn.microsoft.com/en-us/nuget/
 
 #### Monads
 
-The monads represent a set of structures that provide ways to handle the state of an element through the composition of sequential operations and the handling of side effects.
+The monads represent a set of structures that provide ways to handle the state of an element through the composition of
+sequential operations and the handling of side effects.
 
 [result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result.md
 [result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result-factory.md

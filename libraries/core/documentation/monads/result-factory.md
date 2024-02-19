@@ -121,7 +121,8 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
     where TException : Exception
   ```
 
-- Description: Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new successful result.
+- Description: Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new
+successful result.
 - Generics:
   | Name         | Description                |
   |:-------------|:---------------------------|
@@ -330,7 +331,8 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 ### Additional resources
 
-- [`Result<TFailure, TSuccess>`](./result.md): Type intended to handle both the possible failure and the expected success of a given action.
+- [`Result<TFailure, TSuccess>`](./result.md): Type intended to handle both the possible failure and the expected success
+of a given action.
 - [License](../../../../license)
 - [Security policy](../../../../security.md)
 - [Code of conduct](../../../../code-of-conduct.md)

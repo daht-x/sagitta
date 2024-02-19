@@ -44,7 +44,23 @@ const rootConfiguration: UserConfig = {
 		"subject-max-length": [RuleConfigSeverity.Error, RuleCompliance.Always, defaultMaximumLength],
 		"subject-min-length": [RuleConfigSeverity.Error, RuleCompliance.Always, defaultMinimumLength],
 		"subject-exclamation-mark": [RuleConfigSeverity.Error, RuleCompliance.Never],
-		"type-enum": [RuleConfigSeverity.Error, RuleCompliance.Always, ["compatibility", "feature", "test", "build", "dependency", "bug", "refactor", "style", "chore", "documentation", "workflow"]],
+		"type-enum": [
+			RuleConfigSeverity.Error,
+			RuleCompliance.Always,
+			[
+				"compatibility",
+				"feature",
+				"test",
+				"build",
+				"dependency",
+				"bug",
+				"refactor",
+				"style",
+				"chore",
+				"documentation",
+				"workflow"
+			]
+		],
 		"type-case": [RuleConfigSeverity.Error, RuleCompliance.Always, NamingStyle.LowerCase],
 		"type-empty": [RuleConfigSeverity.Error, RuleCompliance.Never],
 		"type-max-length": [RuleConfigSeverity.Error, RuleCompliance.Always, defaultMaximumLength],

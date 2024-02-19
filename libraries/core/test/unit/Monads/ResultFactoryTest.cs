@@ -212,7 +212,8 @@ public sealed class ResultFactoryTest
 		Func<Constellation, string, string> createFailure = static (_, _) => expectedFailure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(success, createAuxiliary, predicate, createFailure);
+		Result<string, Constellation> actualResult =
+			ResultFactory.Ensure(success, createAuxiliary, predicate, createFailure);
 
 		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -229,7 +230,8 @@ public sealed class ResultFactoryTest
 		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(expectedSuccess, createAuxiliary, predicate, createFailure);
+		Result<string, Constellation> actualResult =
+			ResultFactory.Ensure(expectedSuccess, createAuxiliary, predicate, createFailure);
 
 		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
@@ -251,7 +253,8 @@ public sealed class ResultFactoryTest
 		Func<Constellation, string, string> createFailure = static (_, _) => expectedFailure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(createSuccess, createAuxiliary, predicate, createFailure);
+		Result<string, Constellation> actualResult =
+			ResultFactory.Ensure(createSuccess, createAuxiliary, predicate, createFailure);
 
 		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -269,7 +272,8 @@ public sealed class ResultFactoryTest
 		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(createSuccess, createAuxiliary, predicate, createFailure);
+		Result<string, Constellation> actualResult =
+			ResultFactory.Ensure(createSuccess, createAuxiliary, predicate, createFailure);
 
 		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
@@ -291,7 +295,8 @@ public sealed class ResultFactoryTest
 		Func<Constellation, string, string> createFailure = static (_, _) => expectedFailure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(createSuccess, auxiliary, predicate, createFailure);
+		Result<string, Constellation> actualResult =
+			ResultFactory.Ensure(createSuccess, auxiliary, predicate, createFailure);
 
 		// Assert
 		ResultAsserter.AreFailed(expectedFailure, actualResult);
@@ -309,7 +314,8 @@ public sealed class ResultFactoryTest
 		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(createSuccess, auxiliary, predicate, createFailure);
+		Result<string, Constellation> actualResult =
+			ResultFactory.Ensure(createSuccess, auxiliary, predicate, createFailure);
 
 		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
@@ -348,7 +354,8 @@ public sealed class ResultFactoryTest
 		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(expectedSuccess, auxiliary, predicate, createFailure);
+		Result<string, Constellation> actualResult =
+			ResultFactory.Ensure(expectedSuccess, auxiliary, predicate, createFailure);
 
 		// Assert
 		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);

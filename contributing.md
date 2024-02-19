@@ -22,7 +22,8 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 
 [nvm]: https://github.com/nvm-sh/nvm
 
-- [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) **(required for Windows users when working with [NVM][nvm] and [@biomejs/biome](https://github.com/biomejs/biome))**
+- [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) **(required for Windows users when working with [NVM][nvm]
+and [@biomejs/biome](https://github.com/biomejs/biome))**
 - [Git](https://git-scm.com)
 - [ShellCheck](https://github.com/koalaman/shellcheck)
 - [NVM][nvm]

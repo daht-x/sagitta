@@ -5,7 +5,9 @@
 		"style": "---"
 	},
 	"line-length": {
-		"line_length": 400
+		"code_blocks": false,
+		"line_length": 120,
+		"tables": false
 	},
 	"no-missing-space-closed-atx": false,
 	"no-trailing-spaces": {
