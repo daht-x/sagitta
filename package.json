@@ -8,7 +8,7 @@
 		"markdownlint-cli": "0.39.0"
 	},
 	"engines": {
-		"node": "20.11.0",
+		"node": "20.11.1",
 		"pnpm": ">=8"
 	},
 	"private": true,
