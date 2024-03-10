@@ -113,7 +113,7 @@ public sealed class ResultTest
 		// Arrange
 		bool status = false;
 		Action<Constellation> execute = _ => status = true;
-		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+		Func<InvalidOperationException, string> createFailure = exception => exception.Message;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Fail()
@@ -131,7 +131,7 @@ public sealed class ResultTest
 		// Arrange
 		bool status = false;
 		Action<Constellation> execute = _ => status = true;
-		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+		Func<InvalidOperationException, string> createFailure = exception => exception.Message;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Succeed()
@@ -147,8 +147,8 @@ public sealed class ResultTest
 	public void Catch_SuccessfulResultPlusExceptionInExecutePlusCreateFailure_FailedResult()
 	{
 		// Arrange
-		Action<Constellation> execute = static _ => throw new InvalidOperationException();
-		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+		Action<Constellation> execute = _ => throw new InvalidOperationException();
+		Func<InvalidOperationException, string> createFailure = exception => exception.Message;
 		const string expectedFailure = "Operation is not valid due to the current state of the object.";
 
 		// Act
@@ -168,8 +168,8 @@ public sealed class ResultTest
 	public void Catch_FailedResultPlusCreateSuccessPlusCreateFailure_FailedResult()
 	{
 		// Arrange
-		Func<Constellation, Constellation> createSuccess = static _ => ResultFixture.Success;
-		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+		Func<Constellation, Constellation> createSuccess = _ => ResultFixture.Success;
+		Func<InvalidOperationException, string> createFailure = exception => exception.Message;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Fail()
@@ -186,7 +186,7 @@ public sealed class ResultTest
 		// Arrange
 		Constellation expectedSuccess = ResultFixture.Success;
 		Func<Constellation, Constellation> createSuccess = _ => expectedSuccess;
-		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+		Func<InvalidOperationException, string> createFailure = exception => exception.Message;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Succeed()
@@ -201,8 +201,8 @@ public sealed class ResultTest
 	public void Catch_SuccessfulResultPlusExceptionInCreateSuccessPlusCreateFailure_FailedResult()
 	{
 		// Arrange
-		Func<Constellation, Constellation> createSuccess = static _ => throw new InvalidOperationException();
-		Func<InvalidOperationException, string> createFailure = static exception => exception.Message;
+		Func<Constellation, Constellation> createSuccess = _ => throw new InvalidOperationException();
+		Func<InvalidOperationException, string> createFailure = exception => exception.Message;
 		const string expectedFailure = "Operation is not valid due to the current state of the object.";
 
 		// Act
@@ -227,8 +227,8 @@ public sealed class ResultTest
 	{
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, bool> predicate = static _ => true;
-		Func<Constellation, string> createFailure = static _ => ResultFixture.RandomFailure;
+		Func<Constellation, bool> predicate = _ => true;
+		Func<Constellation, string> createFailure = _ => ResultFixture.RandomFailure;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
@@ -243,9 +243,9 @@ public sealed class ResultTest
 	public void Ensure_SuccessfulResultPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
-		Func<Constellation, bool> predicate = static _ => true;
+		Func<Constellation, bool> predicate = _ => true;
 		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, string> createFailure = static _ => expectedFailure;
+		Func<Constellation, string> createFailure = _ => expectedFailure;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Succeed()
@@ -261,8 +261,8 @@ public sealed class ResultTest
 	{
 		// Arrange
 		Constellation expectedSuccess = ResultFixture.Success;
-		Func<Constellation, bool> predicate = static _ => false;
-		Func<Constellation, string> createFailure = static _ => ResultFixture.Failure;
+		Func<Constellation, bool> predicate = _ => false;
+		Func<Constellation, string> createFailure = _ => ResultFixture.Failure;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Succeed(expectedSuccess)
@@ -282,7 +282,7 @@ public sealed class ResultTest
 	{
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, bool> predicate = static _ => true;
+		Func<Constellation, bool> predicate = _ => true;
 		string failure = ResultFixture.RandomFailure;
 
 		// Act
@@ -298,7 +298,7 @@ public sealed class ResultTest
 	public void Ensure_SuccessfulResultPlusTruePredicatePlusFailure_FailedResult()
 	{
 		// Arrange
-		Func<Constellation, bool> predicate = static _ => true;
+		Func<Constellation, bool> predicate = _ => true;
 		const string expectedFailure = ResultFixture.Failure;
 
 		// Act
@@ -315,7 +315,7 @@ public sealed class ResultTest
 	{
 		// Arrange
 		Constellation expectedSuccess = ResultFixture.Success;
-		Func<Constellation, bool> predicate = static _ => false;
+		Func<Constellation, bool> predicate = _ => false;
 		const string failure = ResultFixture.Failure;
 
 		// Act
@@ -336,9 +336,9 @@ public sealed class ResultTest
 	{
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
-		Func<string> createAuxiliary = static () => ResultFixture.Auxiliary;
-		Func<Constellation, string, bool> predicate = static (_, _) => true;
-		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.RandomFailure;
+		Func<string> createAuxiliary = () => ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = (_, _) => true;
+		Func<Constellation, string, string> createFailure = (_, _) => ResultFixture.RandomFailure;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
@@ -353,10 +353,10 @@ public sealed class ResultTest
 	public void Ensure_SuccessfulResultPlusCreateAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
-		Func<string> createAuxiliary = static () => ResultFixture.Auxiliary;
-		Func<Constellation, string, bool> predicate = static (_, _) => true;
+		Func<string> createAuxiliary = () => ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = (_, _) => true;
 		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, string, string> createFailure = static (_, _) => expectedFailure;
+		Func<Constellation, string, string> createFailure = (_, _) => expectedFailure;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Succeed()
@@ -372,9 +372,9 @@ public sealed class ResultTest
 	{
 		// Arrange
 		Constellation expectedSuccess = ResultFixture.Success;
-		Func<string> createAuxiliary = static () => ResultFixture.Auxiliary;
-		Func<Constellation, string, bool> predicate = static (_, _) => false;
-		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
+		Func<string> createAuxiliary = () => ResultFixture.Auxiliary;
+		Func<Constellation, string, bool> predicate = (_, _) => false;
+		Func<Constellation, string, string> createFailure = (_, _) => ResultFixture.Failure;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Succeed(expectedSuccess)
@@ -395,8 +395,8 @@ public sealed class ResultTest
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
 		const string auxiliary = ResultFixture.Auxiliary;
-		Func<Constellation, string, bool> predicate = static (_, _) => true;
-		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.RandomFailure;
+		Func<Constellation, string, bool> predicate = (_, _) => true;
+		Func<Constellation, string, string> createFailure = (_, _) => ResultFixture.RandomFailure;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
@@ -412,9 +412,9 @@ public sealed class ResultTest
 	{
 		// Arrange
 		const string auxiliary = ResultFixture.Auxiliary;
-		Func<Constellation, string, bool> predicate = static (_, _) => true;
+		Func<Constellation, string, bool> predicate = (_, _) => true;
 		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, string, string> createFailure = static (_, _) => expectedFailure;
+		Func<Constellation, string, string> createFailure = (_, _) => expectedFailure;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Succeed()
@@ -431,8 +431,8 @@ public sealed class ResultTest
 		// Arrange
 		Constellation expectedSuccess = ResultFixture.Success;
 		const string auxiliary = ResultFixture.Auxiliary;
-		Func<Constellation, string, bool> predicate = static (_, _) => false;
-		Func<Constellation, string, string> createFailure = static (_, _) => ResultFixture.Failure;
+		Func<Constellation, string, bool> predicate = (_, _) => false;
+		Func<Constellation, string, string> createFailure = (_, _) => ResultFixture.Failure;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Succeed(expectedSuccess)
@@ -532,7 +532,7 @@ public sealed class ResultTest
 	{
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, Start> createSuccessToMap = static _ => ResultFixture.SuccessToMap;
+		Func<Constellation, Start> createSuccessToMap = _ => ResultFixture.SuccessToMap;
 
 		// Act
 		Result<string, Start> actualResult = ResultMother.Fail(expectedFailure)
@@ -605,7 +605,7 @@ public sealed class ResultTest
 	{
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, Result<string, Constellation>> createResultToBind = static _ => ResultMother.Succeed();
+		Func<Constellation, Result<string, Constellation>> createResultToBind = _ => ResultMother.Succeed();
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
@@ -621,8 +621,7 @@ public sealed class ResultTest
 	{
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, Result<string, Constellation>> createResultToBind = static _
-			=> ResultMother.Fail(expectedFailure);
+		Func<Constellation, Result<string, Constellation>> createResultToBind = _ => ResultMother.Fail(expectedFailure);
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Succeed()
@@ -660,7 +659,7 @@ public sealed class ResultTest
 		// Arrange
 		object expectedReduction = ResultFixture.Failure;
 		Func<string, object> reduceFailure = _ => expectedReduction;
-		Func<Constellation, object> reduceSuccess = static _ => ResultFixture.Success;
+		Func<Constellation, object> reduceSuccess = _ => ResultFixture.Success;
 
 		// Act
 		object actualReduction = ResultMother.Fail()
@@ -676,7 +675,7 @@ public sealed class ResultTest
 	{
 		// Arrange
 		Constellation expectedReduction = ResultFixture.Success;
-		Func<string, object> reduceFailure = static _ => ResultFixture.Failure;
+		Func<string, object> reduceFailure = _ => ResultFixture.Failure;
 		Func<Constellation, object> reduceSuccess = _ => expectedReduction;
 
 		// Act
