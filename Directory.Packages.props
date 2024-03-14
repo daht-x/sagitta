@@ -18,7 +18,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 		</PackageVersion>
-		<PackageVersion Include="coverlet.msbuild" Version="6.0.1">
+		<PackageVersion Include="coverlet.msbuild" Version="6.0.2">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 		</PackageVersion>
