@@ -1,12 +1,11 @@
 #!/usr/bin/env sh
 
-. "$(dirname -- "$0")/_/husky.sh"
 dotnet clean
 dotnet restore
-buildConfiguration='Release'
+readonly build_configuration='Release'
 dotnet build \
 	--no-restore \
-	--configuration "$buildConfiguration"
+	--configuration "$build_configuration"
 dotnet test \
 	--no-build \
-	--configuration "$buildConfiguration"
+	--configuration "$build_configuration"
