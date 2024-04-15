@@ -1,11 +1,19 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-dotnet clean
-dotnet restore
-readonly build_configuration='Release'
-dotnet build \
-	--no-restore \
-	--configuration "$build_configuration"
-dotnet test \
-	--no-build \
-	--configuration "$build_configuration"
+set -o errexit
+set -o nounset
+set -o pipefail
+run() {
+	dotnet clean
+	dotnet restore
+	local build_configuration='Release'
+	readonly build_configuration
+	dotnet build \
+		--no-restore \
+		--configuration "$build_configuration"
+	dotnet test \
+		--no-build \
+		--configuration "$build_configuration"
+	exit 0
+}
+run

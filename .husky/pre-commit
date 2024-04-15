@@ -1,3 +1,10 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-pnpm exec lint-staged --relative
+set -o errexit
+set -o nounset
+set -o pipefail
+run() {
+	pnpm exec lint-staged --relative
+	exit 0
+}
+run
