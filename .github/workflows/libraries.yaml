@@ -4,8 +4,8 @@ on:
     branches:
       - "main"
     paths:
-      - "libraries/**.cs"
-      - "libraries/**.csproj"
+      - "*/**.cs"
+      - "*/**.csproj"
       - ".editorconfig"
       - "*.props"
       - "global.json"
@@ -15,8 +15,8 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
   pull_request:
     paths:
-      - "libraries/**.cs"
-      - "libraries/**.csproj"
+      - "*/**.cs"
+      - "*/**.csproj"
       - ".editorconfig"
       - "*.props"
       - "global.json"
@@ -63,7 +63,7 @@ jobs:
             --include ${{ steps.all-changed-files.outputs.all_changed_files }} \
             --no-restore \
             --verify-no-changes
-      - name: "Build assemblies"
+      - name: "Build artifacts"
         run: |
           dotnet build \
             --no-restore \
@@ -90,7 +90,7 @@ jobs:
             --configuration '${{ env.BUILD_CONFIGURATION }}' \
             -property:"PackageVersion=${GITHUB_REF_NAME#v}" \
             -property:'PackageReleaseNotes=Please see ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.ref_name }}'
-      - name: "Upload release artifacts"
+      - name: "Upload artifacts"
         uses: "actions/upload-artifact@v4.3.1"
         if: "${{ env.IS_RELEASE == vars.POSITIVE }}"
         with:
@@ -107,7 +107,7 @@ jobs:
     env:
       NUGET_SEARCH_PATTERN: "*.nupkg"
     steps:
-      - name: "Download release artifacts"
+      - name: "Download artifacts"
         uses: "actions/download-artifact@v4.1.4"
         with:
           name: "${{ env.RELEASE_NAME }}"
