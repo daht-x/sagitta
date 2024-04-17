@@ -1,0 +1,50 @@
+name: "JSON"
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "**.json"
+  pull_request:
+    paths:
+      - "**.json"
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+env:
+  SEARCH_PATTERN: "**.json"
+jobs:
+  formatter:
+    name: "Formatter"
+    runs-on: "${{ vars.DEFAULT_UBUNTU }}"
+    steps:
+      - name: "Set up repository with all history"
+        uses: "actions/checkout@v4.1.2"
+        with:
+          fetch-depth: 0
+      - name: "Get all changed files"
+        id: "json-files"
+        uses: "tj-actions/changed-files@v44.0.1"
+        with:
+          files: "${{ env.SEARCH_PATTERN }}"
+      - name: "Set up formatter"
+        uses: "biomejs/setup-biome@v2.1.1"
+      - name: "Run formatter for all changed files"
+        run: "biome format ${{ steps.json-files.outputs.all_changed_files }}"
+  linter:
+    name: "Linter"
+    runs-on: "${{ vars.DEFAULT_UBUNTU }}"
+    steps:
+      - name: "Set up repository with all history"
+        uses: "actions/checkout@v4.1.2"
+        with:
+          fetch-depth: 0
+      - name: "Get all changed files"
+        id: "json-files"
+        uses: "tj-actions/changed-files@v44.0.1"
+        with:
+          files: "${{ env.SEARCH_PATTERN }}"
+      - name: "Set up linter"
+        uses: "biomejs/setup-biome@v2.1.1"
+      - name: "Run linter for all changed files"
+        run: "biome lint ${{ steps.json-files.outputs.all_changed_files }}"
