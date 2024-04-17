@@ -21,15 +21,17 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 ### Prerequisite software
 
 [nvm]: https://github.com/nvm-sh/nvm
+[yamllint]: https://github.com/adrienverge/yamllint
 
-- [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) **(required for Windows users when working with [NVM][nvm]
-and [@biomejs/biome](https://github.com/biomejs/biome))**
+- [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) **(required for Windows users when working with [NVM][nvm],
+  [@biomejs/biome](https://github.com/biomejs/biome) and [yamllint][yamllint])**
 - [Git](https://git-scm.com)
+- [yamllint][yamllint]
 - [ShellCheck](https://github.com/koalaman/shellcheck)
 - [NVM][nvm]
 - [Node.js](https://nodejs.org/en) **(the version specified in [.nvmrc](./.nvmrc) and [package.json](./package.json) is required)**
 - [PNPM](https://pnpm.io) **(the version specified in [package.json](./package.json) is required)**
-- [Lychee](https://github.com/lycheeverse/lychee)
+- [lychee](https://github.com/lycheeverse/lychee)
 - [.NET SDK](https://dotnet.microsoft.com/en-us/download) **(the version specified in [global.json](./global.json) is required)**
 
 ***[Top](#contributing-guidelines)***
