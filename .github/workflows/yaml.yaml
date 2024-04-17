@@ -1,0 +1,33 @@
+name: "YAML"
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "**.yaml"
+      - "**.yml"
+  pull_request:
+    paths:
+      - "**.yaml"
+      - "**.yml"
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  linter:
+    name: "Linter"
+    runs-on: "${{ vars.DEFAULT_UBUNTU }}"
+    steps:
+      - name: "Set up repository with all history"
+        uses: "actions/checkout@v4.1.2"
+        with:
+          fetch-depth: 0
+      - name: "Get all changed files"
+        id: "yaml-files"
+        uses: "tj-actions/changed-files@v44.0.1"
+        with:
+          files: "**.{yaml,yml}"
+      - name: "Run linter for all changed files"
+        uses: "ibiqlik/action-yamllint@v3.1.1"
+        with:
+          file_or_dir: "${{ steps.yaml-files.outputs.all_changed_files }}"
