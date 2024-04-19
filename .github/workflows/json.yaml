@@ -19,7 +19,7 @@ jobs:
     runs-on: "${{ vars.DEFAULT_UBUNTU }}"
     steps:
       - name: "Set up repository with all history"
-        uses: "actions/checkout@v4.1.2"
+        uses: "actions/checkout@v4.1.3"
         with:
           fetch-depth: 0
       - name: "Get all changed files"
@@ -36,7 +36,7 @@ jobs:
     runs-on: "${{ vars.DEFAULT_UBUNTU }}"
     steps:
       - name: "Set up repository with all history"
-        uses: "actions/checkout@v4.1.2"
+        uses: "actions/checkout@v4.1.3"
         with:
           fetch-depth: 0
       - name: "Get all changed files"
