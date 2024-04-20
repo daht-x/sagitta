@@ -47,7 +47,7 @@ jobs:
         run: "dotnet restore"
       - name: "Get all changed C# files"
         id: "csharp-files"
-        uses: "tj-actions/changed-files@v44.1.0"
+        uses: "tj-actions/changed-files@v44.3.0"
         with:
           files: "**/*.cs"
       - name: "Run formatter for all changed files"
@@ -102,7 +102,7 @@ jobs:
       NUGET_SEARCH_PATTERN: "*.nupkg"
     steps:
       - name: "Download artifacts"
-        uses: "actions/download-artifact@v4.1.4"
+        uses: "actions/download-artifact@v4.1.5"
         with:
           name: "${{ env.RELEASE_NAME }}"
       - name: "Set up .NET SDK"
