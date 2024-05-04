@@ -28,6 +28,7 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 - [Git](https://git-scm.com)
 - [yamllint][yamllint]
 - [ShellCheck](https://github.com/koalaman/shellcheck)
+- [shfmt](https://github.com/mvdan/sh)
 - [NVM][nvm]
 - [Node.js](https://nodejs.org/en) **(the version specified in [.nvmrc](./.nvmrc) and [package.json](./package.json) is required)**
 - [PNPM](https://pnpm.io) **(the version specified in [package.json](./package.json) is required)**
