@@ -20,6 +20,7 @@
 		"sonarsource.sonarlint-vscode",
 		"tamasfe.even-better-toml",
 		"darkriszty.markdown-table-prettify",
-		"biomejs.biome"
+		"biomejs.biome",
+		"fnando.linter"
 	]
 }

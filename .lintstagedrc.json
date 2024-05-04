@@ -1,5 +1,5 @@
 {
-	"(**.sh|.husky/**)": "shellcheck --severity 'style'",
+	"(**.sh|.husky/**)": ["shfmt --write", "shellcheck --severity 'style'"],
 	"**.md": ["markdownlint --fix", "lychee"],
 	"**.{json,js,ts}": "pnpm exec biome check --apply",
 	"**.{yaml,yml}": "yamllint --strict",

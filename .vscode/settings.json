@@ -11,6 +11,9 @@
 	"[markdown]": {
 		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
 	},
+	"[shellscript]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	},
 	"[typescript]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	},
@@ -34,7 +37,8 @@
 		"Sagittae",
 		"shellcheck",
 		"Triana",
-		"Xunit"
+		"Xunit",
+		"shfmt"
 	],
 	"editor.codeActionsOnSave": {
 		"quickfix.biome": "explicit",
