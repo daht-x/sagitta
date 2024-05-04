@@ -70,7 +70,7 @@ jobs:
             -property:'CollectCoverage=${{ env.IS_PUSH_EVENT_TO_MAIN_BRANCH }}'
       - name: "Upload coverage results"
         if: "${{ env.IS_PUSH_EVENT_TO_MAIN_BRANCH == vars.POSITIVE }}"
-        uses: "codecov/codecov-action@v4.3.0"
+        uses: "codecov/codecov-action@v4.3.1"
         with:
           directory: "artifacts/coverage/"
           files: "*.xml"
