@@ -4,7 +4,7 @@
 		<DefaultAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</DefaultAssets>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageVersion Include="SonarAnalyzer.CSharp" Version="9.25.0.90414">
+		<PackageVersion Include="SonarAnalyzer.CSharp" Version="9.25.1.91650">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 		</PackageVersion>
@@ -12,7 +12,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
 		<PackageVersion Include="xunit" Version="2.8.0" />
 		<PackageVersion Include="xunit.runner.visualstudio" Version="2.8.0">
 			<PrivateAssets>all</PrivateAssets>
