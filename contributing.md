@@ -20,16 +20,12 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 
 ### Prerequisite software
 
-[nvm]: https://github.com/nvm-sh/nvm
-[yamllint]: https://github.com/adrienverge/yamllint
-
-- [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) **(required for Windows users when working with [NVM][nvm],
-  [@biomejs/biome](https://github.com/biomejs/biome) and [yamllint][yamllint])**
 - [Git](https://git-scm.com)
-- [yamllint][yamllint]
+- [yamllint](https://github.com/adrienverge/yamllint)
 - [ShellCheck](https://github.com/koalaman/shellcheck)
 - [shfmt](https://github.com/mvdan/sh)
-- [NVM][nvm]
+- [NVM](https://github.com/nvm-sh/nvm) or alternatives like [FNM](https://github.com/Schniz/fnm),
+[N](https://github.com/tj/n) or [NVM-Windows](https://github.com/coreybutler/nvm-windows).
 - [Node.js](https://nodejs.org/en) **(the version specified in [.nvmrc](./.nvmrc) and [package.json](./package.json) is required)**
 - [PNPM](https://pnpm.io) **(the version specified in [package.json](./package.json) is required)**
 - [lychee](https://github.com/lycheeverse/lychee)
