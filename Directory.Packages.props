@@ -4,7 +4,7 @@
 		<DefaultAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</DefaultAssets>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageVersion Include="SonarAnalyzer.CSharp" Version="9.25.0.90414">
+		<PackageVersion Include="SonarAnalyzer.CSharp" Version="9.25.1.91650">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>$(DefaultAssets)</IncludeAssets>
 		</PackageVersion>
