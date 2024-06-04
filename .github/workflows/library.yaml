@@ -27,7 +27,7 @@ concurrency:
   cancel-in-progress: true
 env:
   RELEASE_NAME: "${{ github.ref_name }}"
-  NUGET_OUTPUT_DIRECTORY: "artifacts/package/release/"
+  NUGET_OUTPUT_DIRECTORY: "./artifacts/package/release/"
 jobs:
   builder:
     name: "Builder"
@@ -72,7 +72,7 @@ jobs:
         if: "${{ env.IS_PUSH_EVENT_TO_MAIN_BRANCH == vars.POSITIVE }}"
         uses: "codecov/codecov-action@v4.4.1"
         with:
-          directory: "artifacts/coverage/"
+          directory: "./artifacts/coverage/"
           files: "*.xml"
           fail_ci_if_error: true
           token: "${{ secrets.CODECOV_TOKEN }}"
