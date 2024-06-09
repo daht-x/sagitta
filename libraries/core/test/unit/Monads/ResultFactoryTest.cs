@@ -27,7 +27,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Catch(createSuccess, createFailure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	[Fact]
@@ -43,7 +43,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Catch(createSuccess, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	#endregion
@@ -66,7 +66,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Ensure(success, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -82,7 +82,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Ensure(expectedSuccess, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -103,7 +103,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Ensure(createSuccess, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -120,7 +120,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Ensure(createSuccess, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -140,7 +140,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Ensure(createSuccess, predicate, expectedFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -157,7 +157,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Ensure(createSuccess, predicate, failure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -177,7 +177,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Ensure(success, predicate, expectedFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -193,7 +193,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Ensure(expectedSuccess, predicate, failure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -216,7 +216,7 @@ public sealed class ResultFactoryTest
 			ResultFactory.Ensure(success, createAuxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -234,7 +234,7 @@ public sealed class ResultFactoryTest
 			ResultFactory.Ensure(expectedSuccess, createAuxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -257,7 +257,7 @@ public sealed class ResultFactoryTest
 			ResultFactory.Ensure(createSuccess, createAuxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -276,7 +276,7 @@ public sealed class ResultFactoryTest
 			ResultFactory.Ensure(createSuccess, createAuxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -299,7 +299,7 @@ public sealed class ResultFactoryTest
 			ResultFactory.Ensure(createSuccess, auxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -318,7 +318,7 @@ public sealed class ResultFactoryTest
 			ResultFactory.Ensure(createSuccess, auxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -340,7 +340,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Ensure(success, auxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -358,7 +358,7 @@ public sealed class ResultFactoryTest
 			ResultFactory.Ensure(expectedSuccess, auxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -380,7 +380,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Fail<string, Constellation>(expectedFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	#endregion
@@ -399,7 +399,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Fail<string, Constellation>(createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	#endregion
@@ -421,7 +421,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Succeed<string, Constellation>(expectedSuccess);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -440,7 +440,7 @@ public sealed class ResultFactoryTest
 		Result<string, Constellation> actualResult = ResultFactory.Succeed<string, Constellation>(createSuccess);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion

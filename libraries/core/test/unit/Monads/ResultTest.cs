@@ -37,7 +37,7 @@ public sealed class ResultTest
 		Result<string, Constellation> actualResult = new(expectedFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	#endregion
@@ -55,7 +55,7 @@ public sealed class ResultTest
 		Result<string, Constellation> actualResult = new(expectedSuccess);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -77,7 +77,7 @@ public sealed class ResultTest
 		Result<string, Constellation> actualResult = expectedFailure;
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	#endregion
@@ -95,7 +95,7 @@ public sealed class ResultTest
 		Result<string, Constellation> actualResult = expectedSuccess;
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -121,7 +121,7 @@ public sealed class ResultTest
 
 		// Assert
 		Assert.False(status);
-		ResultAsserter.IsFailed(actualResult);
+		ResultAsserter.CheckIfIsFailed(actualResult);
 	}
 
 	[Fact]
@@ -139,7 +139,7 @@ public sealed class ResultTest
 
 		// Assert
 		Assert.True(status);
-		ResultAsserter.IsSuccessful(actualResult);
+		ResultAsserter.CheckIfIsSuccessful(actualResult);
 	}
 
 	[Fact]
@@ -156,7 +156,7 @@ public sealed class ResultTest
 			.Catch(execute, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	#endregion
@@ -176,7 +176,7 @@ public sealed class ResultTest
 			.Catch(createSuccess, createFailure);
 
 		// Assert
-		ResultAsserter.IsFailed(actualResult);
+		ResultAsserter.CheckIfIsFailed(actualResult);
 	}
 
 	[Fact]
@@ -193,7 +193,7 @@ public sealed class ResultTest
 			.Catch(createSuccess, createFailure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	[Fact]
@@ -210,7 +210,7 @@ public sealed class ResultTest
 			.Catch(createSuccess, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	#endregion
@@ -235,7 +235,7 @@ public sealed class ResultTest
 			.Ensure(predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -252,7 +252,7 @@ public sealed class ResultTest
 			.Ensure(predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -269,7 +269,7 @@ public sealed class ResultTest
 			.Ensure(predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -290,7 +290,7 @@ public sealed class ResultTest
 			.Ensure(predicate, failure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -306,7 +306,7 @@ public sealed class ResultTest
 			.Ensure(predicate, expectedFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -323,7 +323,7 @@ public sealed class ResultTest
 			.Ensure(predicate, failure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -345,7 +345,7 @@ public sealed class ResultTest
 			.Ensure(createAuxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -363,7 +363,7 @@ public sealed class ResultTest
 			.Ensure(createAuxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -381,7 +381,7 @@ public sealed class ResultTest
 			.Ensure(createAuxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -403,7 +403,7 @@ public sealed class ResultTest
 			.Ensure(auxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -421,7 +421,7 @@ public sealed class ResultTest
 			.Ensure(auxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -439,7 +439,7 @@ public sealed class ResultTest
 			.Ensure(auxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -462,7 +462,7 @@ public sealed class ResultTest
 
 		// Assert
 		Assert.False(status);
-		ResultAsserter.IsSuccessful(actualResult);
+		ResultAsserter.CheckIfIsSuccessful(actualResult);
 	}
 
 	[Fact]
@@ -479,7 +479,7 @@ public sealed class ResultTest
 
 		// Assert
 		Assert.True(status);
-		ResultAsserter.IsFailed(actualResult);
+		ResultAsserter.CheckIfIsFailed(actualResult);
 	}
 
 	#endregion
@@ -500,7 +500,7 @@ public sealed class ResultTest
 
 		// Assert
 		Assert.False(status);
-		ResultAsserter.IsFailed(actualResult);
+		ResultAsserter.CheckIfIsFailed(actualResult);
 	}
 
 	[Fact]
@@ -517,7 +517,7 @@ public sealed class ResultTest
 
 		// Assert
 		Assert.True(status);
-		ResultAsserter.IsSuccessful(actualResult);
+		ResultAsserter.CheckIfIsSuccessful(actualResult);
 	}
 
 	#endregion
@@ -539,7 +539,7 @@ public sealed class ResultTest
 			.Map(createSuccessToMap);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -555,7 +555,7 @@ public sealed class ResultTest
 			.Map(createSuccessToMap);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -575,7 +575,7 @@ public sealed class ResultTest
 			.Map(successToMap);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -590,7 +590,7 @@ public sealed class ResultTest
 			.Map(expectedSuccess);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
@@ -612,7 +612,7 @@ public sealed class ResultTest
 			.Bind(createResultToBind);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -628,7 +628,7 @@ public sealed class ResultTest
 			.Bind(createResultToBind);
 
 		// Assert
-		ResultAsserter.AreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
 	}
 
 	[Fact]
@@ -645,7 +645,7 @@ public sealed class ResultTest
 			.Bind(createResultToBind);
 
 		// Assert
-		ResultAsserter.AreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
 	}
 
 	#endregion
