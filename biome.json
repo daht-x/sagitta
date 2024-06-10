@@ -12,7 +12,7 @@
 		"formatter": {
 			"arrowParentheses": "asNeeded",
 			"quoteStyle": "double",
-			"trailingComma": "none"
+			"trailingCommas": "none"
 		}
 	},
 	"json": {
