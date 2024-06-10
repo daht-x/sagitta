@@ -20,7 +20,7 @@ release of the .NET platform.
 
 ***Please do not report security vulnerabilities through public GitHub issues***
 
-Please send a direct message (DM) to [@_daht_x](https://twitter.com/_daht_x) and include as much of the requested information
+Please send a direct message (DM) to [@_daht_x](https://x.com/_daht_x) and include as much of the requested information
 as possible, as detailed below:
 
 - Type of vulnerability.

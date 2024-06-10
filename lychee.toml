@@ -3,7 +3,7 @@ max_cache_age = "3m"
 max_concurrency = 50
 exclude = [
 	'^https:\/\/www.linkedin.com\/.*$',
-	'^https:\/\/twitter.com\/.*$'
+	'^https:\/\/x.com\/.*$'
 ]
 timeout = 10
 retry_wait_time = 3
