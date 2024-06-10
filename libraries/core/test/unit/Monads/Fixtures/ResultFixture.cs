@@ -6,9 +6,6 @@ internal static class ResultFixture
 
 	internal const string Auxiliary = nameof(Auxiliary);
 
-	internal static string RandomFailure
-		=> $"{Failure} | {Guid.NewGuid()}";
-
 	internal static Constellation Success
 		=> new()
 		{
@@ -18,16 +15,10 @@ internal static class ResultFixture
 			Symbolism = "The arrow"
 		};
 
-	internal static Constellation RandomSuccess
-		=> Success with
-		{
-			Abbreviation = $"{Success.Name} | {Guid.NewGuid()}"
-		};
-
 	internal static Start SuccessToMap
 		=> new()
 		{
-			Constellation = Success.Name,
+			Constellation = "Sagitta",
 			Name = "Gamma Sagittae",
 			EvolutionaryStage = "Red Giant"
 		};

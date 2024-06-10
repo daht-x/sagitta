@@ -228,7 +228,7 @@ public sealed class ResultTest
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
 		Func<Constellation, bool> predicate = _ => true;
-		Func<Constellation, string> createFailure = _ => ResultFixture.RandomFailure;
+		Func<Constellation, string> createFailure = _ => string.Empty;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
@@ -283,7 +283,7 @@ public sealed class ResultTest
 		// Arrange
 		const string expectedFailure = ResultFixture.Failure;
 		Func<Constellation, bool> predicate = _ => true;
-		string failure = ResultFixture.RandomFailure;
+		string failure = string.Empty;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
@@ -338,7 +338,7 @@ public sealed class ResultTest
 		const string expectedFailure = ResultFixture.Failure;
 		Func<string> createAuxiliary = () => ResultFixture.Auxiliary;
 		Func<Constellation, string, bool> predicate = (_, _) => true;
-		Func<Constellation, string, string> createFailure = (_, _) => ResultFixture.RandomFailure;
+		Func<Constellation, string, string> createFailure = (_, _) => string.Empty;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
@@ -396,7 +396,7 @@ public sealed class ResultTest
 		const string expectedFailure = ResultFixture.Failure;
 		const string auxiliary = ResultFixture.Auxiliary;
 		Func<Constellation, string, bool> predicate = (_, _) => true;
-		Func<Constellation, string, string> createFailure = (_, _) => ResultFixture.RandomFailure;
+		Func<Constellation, string, string> createFailure = (_, _) => string.Empty;
 
 		// Act
 		Result<string, Constellation> actualResult = ResultMother.Fail(expectedFailure)
@@ -636,12 +636,19 @@ public sealed class ResultTest
 	public void Bind_SuccessfulResultPlusCreateResultToBindWithSuccessfulResult_SuccessfulResult()
 	{
 		// Arrange
+		Constellation success = new()
+		{
+			Galaxy = string.Empty,
+			Abbreviation = string.Empty,
+			Name = string.Empty,
+			Symbolism = string.Empty
+		};
 		Constellation expectedSuccess = ResultFixture.Success;
 		Func<Constellation, Result<string, Constellation>> createResultToBind = _
 			=> ResultMother.Succeed(expectedSuccess);
 
 		// Act
-		Result<string, Constellation> actualResult = ResultMother.SucceedRandomly()
+		Result<string, Constellation> actualResult = ResultMother.Succeed(success)
 			.Bind(createResultToBind);
 
 		// Assert

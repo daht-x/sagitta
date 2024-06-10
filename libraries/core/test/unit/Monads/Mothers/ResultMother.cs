@@ -13,7 +13,4 @@ internal static class ResultMother
 
 	internal static Result<string, Constellation> Succeed(Constellation success)
 		=> new(success);
-
-	internal static Result<string, Constellation> SucceedRandomly()
-		=> new(ResultFixture.RandomSuccess);
 }
