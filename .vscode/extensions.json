@@ -10,7 +10,6 @@
 		"ms-dotnettools.csharp",
 		"ms-dotnettools.csdevkit",
 		"ms-dotnettools.vscodeintellicode-csharp",
-		"tintoy.msbuild-project-tools",
 		"github.vscode-github-actions",
 		"github.vscode-pull-request-github",
 		"streetsidesoftware.code-spell-checker",
