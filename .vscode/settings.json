@@ -29,6 +29,7 @@
 		"Codecov",
 		"commitlint",
 		"daht",
+		"Discarder",
 		"Hernández",
 		"markdownlc",
 		"markdownlint",
@@ -36,9 +37,10 @@
 		"Paket",
 		"Sagittae",
 		"shellcheck",
+		"shfmt",
+		"struct",
 		"Triana",
-		"Xunit",
-		"shfmt"
+		"Xunit"
 	],
 	"editor.codeActionsOnSave": {
 		"quickfix.biome": "explicit",
