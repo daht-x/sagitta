@@ -109,11 +109,11 @@ jobs:
         uses: "actions/setup-dotnet@v4.0.0"
       - name: "Publish packages"
         run: |
-          dotnet nuget push '${{ env.NUGET_OUTPUT_DIRECTORY }}${{ env.NUGET_SEARCH_PATTERN }}' \
+          dotnet nuget push '${{ env.NUGET_OUTPUT_DIRECTORY }}/${{ env.NUGET_SEARCH_PATTERN }}' \
             --source 'nuget' \
             --api-key '${{ secrets.NUGET_TOKEN }}' \
             --skip-duplicate
-          dotnet nuget push '${{ env.NUGET_OUTPUT_DIRECTORY }}${{ env.NUGET_SEARCH_PATTERN }}' \
+          dotnet nuget push '${{ env.NUGET_OUTPUT_DIRECTORY }}/${{ env.NUGET_SEARCH_PATTERN }}' \
             --source 'https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json' \
             --api-key '${{ secrets.GITHUB_TOKEN }}' \
             --skip-duplicate
