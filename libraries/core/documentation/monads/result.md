@@ -60,7 +60,7 @@ Type of expected success.
 - Declaration
 
   ```cs
-  public bool IsFailed { get; }
+  public bool IsFailed
   ```
 
 - Description: Indicates whether the status is failed.
@@ -72,7 +72,7 @@ Type of expected success.
 - Declaration
 
   ```cs
-  public TFailure Failure { get; }
+  public TFailure Failure
   ```
 
 - Description: The possible failure.
@@ -84,7 +84,7 @@ Type of expected success.
 - Declaration
 
   ```cs
-  public bool IsSuccessful { get; }
+  public bool IsSuccessful
   ```
 
 - Description: Indicates whether the status is successful.
@@ -96,7 +96,7 @@ Type of expected success.
 - Declaration
 
   ```cs
-  public TSuccess Success { get; }
+  public TSuccess Success
   ```
 
 - Description: The expected success.
@@ -115,9 +115,9 @@ Type of expected success.
 
 - Description: Creates a new failed result.
 - Parameters:
-  | Name      | Description          |
-  |:----------|:---------------------|
-  | `failure` | The possible failure |
+  | Name      | Description        |
+  |:----------|:-------------------|
+  | `failure` | A possible failure |
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -131,9 +131,9 @@ Type of expected success.
 
 - Description: Creates a new successful result.
 - Parameters:
-  | Name      | Description          |
-  |:----------|:---------------------|
-  | `success` | The expected success |
+  | Name      | Description         |
+  |:----------|:--------------------|
+  | `success` | An expected success |
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -149,9 +149,9 @@ Type of expected success.
 
 - Description: Creates a new failed result.
 - Parameters:
-  | Name      | Description          |
-  |:----------|:---------------------|
-  | `failure` | The possible failure |
+  | Name      | Description        |
+  |:----------|:-------------------|
+  | `failure` | A possible failure |
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -165,15 +165,15 @@ Type of expected success.
 
 - Description: Creates a new successful result.
 - Parameters:
-  | Name      | Description          |
-  |:----------|:---------------------|
-  | `success` | The expected success |
+  | Name      | Description         |
+  |:----------|:--------------------|
+  | `success` | An expected success |
 
 ***[Top](#resulttfailure-tsuccess)***
 
 ### Methods
 
-### `Catch<TException>(execute, createFailure`
+#### `Catch<TException>(execute, createFailure`
 
 - Declaration:
 
@@ -188,10 +188,10 @@ Type of expected success.
   |:-------------|:---------------------------|
   | `TException` | Type of possible exception |
 - Parameters:
-  | Name            | Description                  |
-  |:----------------|:-----------------------------|
-  | `execute`       | The action to execute        |
-  | `createFailure` | Creates the possible failure |
+  | Name            | Description                |
+  |:----------------|:---------------------------|
+  | `execute`       | The action to execute      |
+  | `createFailure` | Creates a possible failure |
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -211,10 +211,10 @@ successful result.
   |:-------------|:---------------------------|
   | `TException` | Type of possible exception |
 - Parameters:
-  | Name            | Description                  |
-  |:----------------|:-----------------------------|
-  | `createSuccess` | Creates the expected success |
-  | `createFailure` | Creates the possible failure |
+  | Name            | Description                 |
+  |:----------------|:----------------------------|
+  | `createSuccess` | Creates an expected success |
+  | `createFailure` | Creates a possible failure  |
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -231,7 +231,7 @@ successful result.
   | Name        | Description               |
   |:------------|:--------------------------|
   | `predicate` | Creates a set of criteria |
-  | `failure`   | The possible failure      |
+  | `failure`   | A possible failure        |
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -245,10 +245,10 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, returns the previous result.
 - Parameters:
-  | Name            | Description                  |
-  |:----------------|:-----------------------------|
-  | `predicate`     | Creates a set of criteria    |
-  | `createFailure` | Creates the possible failure |
+  | Name            | Description                |
+  |:----------------|:---------------------------|
+  | `predicate`     | Creates a set of criteria  |
+  | `createFailure` | Creates a possible failure |
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -266,11 +266,11 @@ successful result.
   |:-------------|:------------------|
   | `TAuxiliary` | Type of auxiliary |
 - Parameters:
-  | Name            | Description                                                              |
-  |:----------------|:-------------------------------------------------------------------------|
-  | `auxiliary`     | The auxiliary to use in combination with `predicate` and `createFailure` |
-  | `predicate`     | Creates a set of criteria                                                |
-  | `createFailure` | Creates the possible failure                                             |
+  | Name            | Description                                                             |
+  |:----------------|:------------------------------------------------------------------------|
+  | `auxiliary`     | An auxiliary to use in combination with `predicate` and `createFailure` |
+  | `predicate`     | Creates a set of criteria                                               |
+  | `createFailure` | Creates a possible failure                                              |
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -288,11 +288,11 @@ successful result.
   |:-------------|:------------------|
   | `TAuxiliary` | Type of auxiliary |
 - Parameters:
-  | Name              | Description                                                                      |
-  |:------------------|:---------------------------------------------------------------------------------|
-  | `createAuxiliary` | Creates the auxiliary to use in combination with `predicate` and `createFailure` |
-  | `predicate`       | Creates a set of criteria                                                        |
-  | `createFailure`   | Creates the possible failure                                                     |
+  | Name              | Description                                                                     |
+  |:------------------|:--------------------------------------------------------------------------------|
+  | `createAuxiliary` | Creates an auxiliary to use in combination with `predicate` and `createFailure` |
+  | `predicate`       | Creates a set of criteria                                                       |
+  | `createFailure`   | Creates a possible failure                                                      |
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -342,9 +342,9 @@ successful result.
   |:----------------|:--------------------------------|
   | `TSuccessToMap` | Type of expected success to map |
 - Parameters:
-  | Name           | Description                 |
-  |:---------------|:----------------------------|
-  | `successToMap` | The expected success to map |
+  | Name           | Description                |
+  |:---------------|:---------------------------|
+  | `successToMap` | An expected success to map |
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -362,9 +362,9 @@ successful result.
   |:----------------|:--------------------------------|
   | `TSuccessToMap` | Type of expected success to map |
 - Parameters:
-  | Name                 | Description                         |
-  |:---------------------|:------------------------------------|
-  | `createSuccessToMap` | Creates the expected success to map |
+  | Name                 | Description                        |
+  |:---------------------|:-----------------------------------|
+  | `createSuccessToMap` | Creates an expected success to map |
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -402,10 +402,10 @@ successful result.
   |:-----------|:----------------|
   | `TReducer` | Type of reducer |
 - Parameters:
-  | Name            | Description                          |
-  |:----------------|:-------------------------------------|
-  | `reduceFailure` | Creates the possible reduced failure |
-  | `reduceSuccess` | Creates the expected reduced success |
+  | Name            | Description                         |
+  |:----------------|:------------------------------------|
+  | `reduceFailure` | Creates a possible reduced failure  |
+  | `reduceSuccess` | Creates an expected reduced success |
 
 ***[Top](#resulttfailure-tsuccess)***
 
