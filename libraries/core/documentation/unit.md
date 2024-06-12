@@ -1,6 +1,6 @@
 # `Unit`
 
-***[home](../../../readme.md) / packages /  [core](../readme.md) / primitives /***
+***[home](../../../readme.md) / packages /  [core](../readme.md) /***
 
 ```cs
 public readonly record struct Unit

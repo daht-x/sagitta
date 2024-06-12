@@ -17,6 +17,7 @@
    - [Project file](#project-file)
    - [Central package management](#central-package-management)
 2. [API](#api)
+   - [Root](#root)
    - [Monads](#monads)
 3. [License](#license)
 4. [Security policy](#security-policy)
@@ -32,7 +33,7 @@
 #### .NET command-line interface
 
 ```shell
-dotnet add package Daht.Sagitta.Core --version x.x.x
+dotnet add package 'Daht.Sagitta.Core' --version 'x.x.x'
 ```
 
 For more information, please see [here](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-add-package).
@@ -84,9 +85,22 @@ For more information, please see [here](https://learn.microsoft.com/en-us/nuget/
 
 ### API
 
+#### Root
+
+Set of structures that act as integrations and complements for the pre-existing modules.
+
+[unit]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/unit.md
+[void]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/void
+
+| Type           | Description                                                                                              |
+|:---------------|:---------------------------------------------------------------------------------------------------------|
+| [`Unit`][unit] | Type intended to handle the absence of a specific value (explicit simulation of the [`void`][void] type) |
+
+***[Top](#dahtsagittacore)***
+
 #### Monads
 
-The monads represent a set of structures that provide ways to handle the state of an element through the composition of
+Set of structures that provide ways to handle the state of an element through the composition of
 sequential operations and the handling of side effects.
 
 [result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result.md
