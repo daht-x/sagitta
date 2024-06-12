@@ -1,6 +1,6 @@
 # `Unit`
 
-***[home](../../../../readme.md) / packages /  [core](../../readme.md) / primitives /***
+***[home](../../../readme.md) / packages /  [core](../readme.md) / primitives /***
 
 ```cs
 public readonly record struct Unit
@@ -31,9 +31,9 @@ type).
 
 ### Additional resources
 
-- [License](../../../../license)
-- [Security policy](../../../../security.md)
-- [Code of conduct](../../../../code-of-conduct.md)
-- [Contributing guidelines](../../../../contributing.md)
+- [License](../../../license)
+- [Security policy](../../../security.md)
+- [Code of conduct](../../../code-of-conduct.md)
+- [Contributing guidelines](../../../contributing.md)
 
 ***[Top](#unit)***
