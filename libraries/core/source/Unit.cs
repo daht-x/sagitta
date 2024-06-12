@@ -1,4 +1,4 @@
-namespace Daht.Sagitta.Core.Primitives;
+namespace Daht.Sagitta.Core;
 
 /// <summary>Type intended to handle the absence of a specific value (explicit simulation of the <see langword="void"/> type).</summary>
 public readonly record struct Unit
