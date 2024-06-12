@@ -43,9 +43,9 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
 - Parameters:
-  | Name      | Description          |
-  |:----------|:---------------------|
-  | `failure` | The possible failure |
+  | Name      | Description        |
+  |:----------|:-------------------|
+  | `failure` | A possible failure |
 
 ***[Top](#resultfactory)***
 
@@ -64,9 +64,9 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
 - Parameters:
-  | Name            | Description                  |
-  |:----------------|:-----------------------------|
-  | `createFailure` | Creates the possible failure |
+  | Name            | Description                |
+  |:----------------|:---------------------------|
+  | `createFailure` | Creates a possible failure |
 
 ***[Top](#resultfactory)***
 
@@ -85,9 +85,9 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
 - Parameters:
-  | Name      | Description          |
-  |:----------|:---------------------|
-  | `success` | The expected success |
+  | Name      | Description         |
+  |:----------|:--------------------|
+  | `success` | An expected success |
 
 ***[Top](#resultfactory)***
 
@@ -106,9 +106,9 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
 - Parameters:
-  | Name            | Description                  |
-  |:----------------|:-----------------------------|
-  | `createSuccess` | Creates the expected success |
+  | Name            | Description                 |
+  |:----------------|:----------------------------|
+  | `createSuccess` | Creates an expected success |
 
 ***[Top](#resultfactory)***
 
@@ -130,10 +130,10 @@ successful result.
   | `TFailure`   | Type of possible failure   |
   | `TSuccess`   | Type of expected success   |
 - Parameters:
-  | Name            | Description                  |
-  |:----------------|:-----------------------------|
-  | `createSuccess` | Creates the expected success |
-  | `createFailure` | Creates the possible failure |
+  | Name            | Description                 |
+  |:----------------|:----------------------------|
+  | `createSuccess` | Creates an expected success |
+  | `createFailure` | Creates a possible failure  |
 
 ***[Top](#resultfactory)***
 
@@ -154,9 +154,9 @@ successful result.
 - Parameters:
   | Name        | Description               |
   |:------------|:--------------------------|
-  | `success`   | The expected success      |
+  | `success`   | An expected success       |
   | `predicate` | Creates a set of criteria |
-  | `failure`   | The possible failure      |
+  | `failure`   | A possible failure        |
 
 ***[Top](#resultfactory)***
 
@@ -175,11 +175,11 @@ successful result.
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
 - Parameters:
-  | Name            | Description                  |
-  |:----------------|:-----------------------------|
-  | `success`       | The expected success         |
-  | `predicate`     | Creates a set of criteria    |
-  | `createFailure` | Creates the possible failure |
+  | Name            | Description                |
+  |:----------------|:---------------------------|
+  | `success`       | An expected success        |
+  | `predicate`     | Creates a set of criteria  |
+  | `createFailure` | Creates a possible failure |
 
 ***[Top](#resultfactory)***
 
@@ -198,11 +198,11 @@ successful result.
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
 - Parameters:
-  | Name            | Description                  |
-  |:----------------|:-----------------------------|
-  | `createSuccess` | Creates the expected success |
-  | `predicate`     | Creates a set of criteria    |
-  | `failure`       | The possible failure         |
+  | Name            | Description                 |
+  |:----------------|:----------------------------|
+  | `createSuccess` | Creates an expected success |
+  | `predicate`     | Creates a set of criteria   |
+  | `failure`       | A possible failure          |
 
 ***[Top](#resultfactory)***
 
@@ -221,11 +221,11 @@ successful result.
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
 - Parameters:
-  | Name            | Description                  |
-  |:----------------|:-----------------------------|
-  | `createSuccess` | Creates the expected success |
-  | `predicate`     | Creates a set of criteria    |
-  | `createFailure` | Creates the possible failure |
+  | Name            | Description                 |
+  |:----------------|:----------------------------|
+  | `createSuccess` | Creates an expected success |
+  | `predicate`     | Creates a set of criteria   |
+  | `createFailure` | Creates a possible failure  |
 
 ***[Top](#resultfactory)***
 
@@ -245,12 +245,12 @@ successful result.
   | `TFailure`   | Type of possible failure |
   | `TSuccess`   | Type of expected success |
 - Parameters:
-  | Name            | Description                                                              |
-  |:----------------|:-------------------------------------------------------------------------|
-  | `success`       | The expected success                                                     |
-  | `auxiliary`     | The auxiliary to use in combination with `predicate` and `createFailure` |
-  | `predicate`     | Creates a set of criteria                                                |
-  | `createFailure` | Creates the possible failure                                             |
+  | Name            | Description                                                             |
+  |:----------------|:------------------------------------------------------------------------|
+  | `success`       | An expected success                                                     |
+  | `auxiliary`     | An auxiliary to use in combination with `predicate` and `createFailure` |
+  | `predicate`     | Creates a set of criteria                                               |
+  | `createFailure` | Creates a possible failure                                              |
 
 ***[Top](#resultfactory)***
 
@@ -270,12 +270,12 @@ successful result.
   | `TFailure`   | Type of possible failure |
   | `TSuccess`   | Type of expected success |
 - Parameters:
-  | Name              | Description                                                                      |
-  |:------------------|:---------------------------------------------------------------------------------|
-  | `success`         | The expected success                                                             |
-  | `createAuxiliary` | Creates the auxiliary to use in combination with `predicate` and `createFailure` |
-  | `predicate`       | Creates a set of criteria                                                        |
-  | `createFailure`   | Creates the possible failure                                                     |
+  | Name              | Description                                                                     |
+  |:------------------|:--------------------------------------------------------------------------------|
+  | `success`         | An expected success                                                             |
+  | `createAuxiliary` | Creates an auxiliary to use in combination with `predicate` and `createFailure` |
+  | `predicate`       | Creates a set of criteria                                                       |
+  | `createFailure`   | Creates a possible failure                                                      |
 
 ***[Top](#resultfactory)***
 
@@ -295,12 +295,12 @@ successful result.
   | `TFailure`   | Type of possible failure |
   | `TSuccess`   | Type of expected success |
 - Parameters:
-  | Name            | Description                                                              |
-  |:----------------|:-------------------------------------------------------------------------|
-  | `createSuccess` | Creates the expected success                                             |
-  | `auxiliary`     | The auxiliary to use in combination with `predicate` and `createFailure` |
-  | `predicate`     | Creates a set of criteria                                                |
-  | `createFailure` | Creates the possible failure                                             |
+  | Name            | Description                                                             |
+  |:----------------|:------------------------------------------------------------------------|
+  | `createSuccess` | Creates an expected success                                             |
+  | `auxiliary`     | An auxiliary to use in combination with `predicate` and `createFailure` |
+  | `predicate`     | Creates a set of criteria                                               |
+  | `createFailure` | Creates a possible failure                                              |
 
 ***[Top](#resultfactory)***
 
@@ -320,12 +320,12 @@ successful result.
   | `TFailure`   | Type of possible failure |
   | `TSuccess`   | Type of expected success |
 - Parameters:
-  | Name              | Description                                                                      |
-  |:------------------|:---------------------------------------------------------------------------------|
-  | `createSuccess`   | Creates the expected success                                                     |
-  | `createAuxiliary` | Creates the auxiliary to use in combination with `predicate` and `createFailure` |
-  | `predicate`       | Creates a set of criteria                                                        |
-  | `createFailure`   | Creates the possible failure                                                     |
+  | Name              | Description                                                                     |
+  |:------------------|:--------------------------------------------------------------------------------|
+  | `createSuccess`   | Creates an expected success                                                     |
+  | `createAuxiliary` | Creates an auxiliary to use in combination with `predicate` and `createFailure` |
+  | `predicate`       | Creates a set of criteria                                                       |
+  | `createFailure`   | Creates a possible failure                                                      |
 
 ***[Top](#resultfactory)***
 

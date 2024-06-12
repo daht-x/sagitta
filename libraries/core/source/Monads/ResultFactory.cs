@@ -5,8 +5,8 @@ namespace Daht.Sagitta.Core.Monads;
 public static class ResultFactory
 {
 	/// <summary>Creates a new failed result if the value of <paramref name="createSuccess" /> throws <typeparamref name="TException" />; otherwise, creates a new successful result.</summary>
-	/// <param name="createSuccess">Creates the expected success.</param>
-	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <param name="createSuccess">Creates an expected success.</param>
+	/// <param name="createFailure">Creates a possible failure.</param>
 	/// <typeparam name="TException">Type of possible exception.</typeparam>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
@@ -26,9 +26,9 @@ public static class ResultFactory
 	}
 
 	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
-	/// <param name="success">The expected success.</param>
+	/// <param name="success">An expected success.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
-	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <param name="createFailure">Creates a possible failure.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, a new successful result.</returns>
@@ -37,9 +37,9 @@ public static class ResultFactory
 		=> Ensure(success, predicate, createFailure(success));
 
 	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
-	/// <param name="createSuccess">Creates the expected success.</param>
+	/// <param name="createSuccess">Creates an expected success.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
-	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <param name="createFailure">Creates a possible failure.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, a new successful result.</returns>
@@ -48,9 +48,9 @@ public static class ResultFactory
 		=> Ensure(createSuccess(), predicate, createFailure);
 
 	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
-	/// <param name="createSuccess">Creates the expected success.</param>
+	/// <param name="createSuccess">Creates an expected success.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
-	/// <param name="failure">The possible failure.</param>
+	/// <param name="failure">A possible failure.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, a new successful result.</returns>
@@ -59,9 +59,9 @@ public static class ResultFactory
 		=> Ensure(createSuccess(), predicate, failure);
 
 	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
-	/// <param name="success">The expected success.</param>
+	/// <param name="success">An expected success.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
-	/// <param name="failure">The possible failure.</param>
+	/// <param name="failure">A possible failure.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, a new successful result.</returns>
@@ -72,10 +72,10 @@ public static class ResultFactory
 			: Succeed<TFailure, TSuccess>(success);
 
 	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
-	/// <param name="success">The expected success.</param>
-	/// <param name="createAuxiliary">Creates the auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
+	/// <param name="success">An expected success.</param>
+	/// <param name="createAuxiliary">Creates an auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
-	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <param name="createFailure">Creates a possible failure.</param>
 	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
@@ -86,10 +86,10 @@ public static class ResultFactory
 		=> Ensure(success, createAuxiliary(), predicate, createFailure);
 
 	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
-	/// <param name="createSuccess">Creates the expected success.</param>
-	/// <param name="createAuxiliary">Creates the auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
+	/// <param name="createSuccess">Creates an expected success.</param>
+	/// <param name="createAuxiliary">Creates an auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
-	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <param name="createFailure">Creates a possible failure.</param>
 	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
@@ -100,10 +100,10 @@ public static class ResultFactory
 		=> Ensure(createSuccess(), createAuxiliary, predicate, createFailure);
 
 	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
-	/// <param name="createSuccess">Creates the expected success.</param>
-	/// <param name="auxiliary">The auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
+	/// <param name="createSuccess">Creates an expected success.</param>
+	/// <param name="auxiliary">An auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
-	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <param name="createFailure">Creates a possible failure.</param>
 	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
@@ -114,10 +114,10 @@ public static class ResultFactory
 		=> Ensure(createSuccess(), auxiliary, predicate, createFailure);
 
 	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
-	/// <param name="success">The expected success.</param>
-	/// <param name="auxiliary">The auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
+	/// <param name="success">An expected success.</param>
+	/// <param name="auxiliary">An auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
-	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <param name="createFailure">Creates a possible failure.</param>
 	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
@@ -130,7 +130,7 @@ public static class ResultFactory
 			: Succeed<TFailure, TSuccess>(success);
 
 	/// <summary>Creates a new failed result.</summary>
-	/// <param name="failure">The possible failure.</param>
+	/// <param name="failure">A possible failure.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new failed result.</returns>
@@ -138,7 +138,7 @@ public static class ResultFactory
 		=> new(failure);
 
 	/// <summary>Creates a new failed result.</summary>
-	/// <param name="createFailure">Creates the possible failure.</param>
+	/// <param name="createFailure">Creates a possible failure.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new failed result.</returns>
@@ -146,7 +146,7 @@ public static class ResultFactory
 		=> new(createFailure());
 
 	/// <summary>Creates a new successful result.</summary>
-	/// <param name="success">The expected success.</param>
+	/// <param name="success">An expected success.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new successful result.</returns>
@@ -154,7 +154,7 @@ public static class ResultFactory
 		=> new(success);
 
 	/// <summary>Creates a new successful result.</summary>
-	/// <param name="createSuccess">Creates the expected success.</param>
+	/// <param name="createSuccess">Creates an expected success.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new successful result.</returns>
