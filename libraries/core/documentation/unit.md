@@ -22,7 +22,7 @@ type).
 - Declaration
 
   ```cs
-  public static Unit Discarder
+  public static Unit Discarder { get; }
   ```
 
 - Description: The placeholder that indicates the discarding of a specific value.

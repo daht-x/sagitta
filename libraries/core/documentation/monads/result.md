@@ -60,7 +60,7 @@ Type of expected success.
 - Declaration
 
   ```cs
-  public bool IsFailed
+  public bool IsFailed { get; }
   ```
 
 - Description: Indicates whether the status is failed.
@@ -72,7 +72,7 @@ Type of expected success.
 - Declaration
 
   ```cs
-  public TFailure Failure
+  public TFailure Failure { get; }
   ```
 
 - Description: The possible failure.
@@ -84,7 +84,7 @@ Type of expected success.
 - Declaration
 
   ```cs
-  public bool IsSuccessful
+  public bool IsSuccessful { get; }
   ```
 
 - Description: Indicates whether the status is successful.
@@ -96,7 +96,7 @@ Type of expected success.
 - Declaration
 
   ```cs
-  public TSuccess Success
+  public TSuccess Success { get; }
   ```
 
 - Description: The expected success.
