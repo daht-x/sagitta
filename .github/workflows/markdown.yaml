@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 0
       - name: "Get all changed files"
         id: "markdown-files"
-        uses: "tj-actions/changed-files@v44.5.2"
+        uses: "tj-actions/changed-files@v44.5.3"
         with:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Run linter for all changed files"
@@ -54,7 +54,7 @@ jobs:
       - name: "Get all changed files"
         id: "markdown-files"
         if: "${{ env.IS_PUSH_OR_PULL_REQUEST_EVENT == vars.POSITIVE }}"
-        uses: "tj-actions/changed-files@v44.5.2"
+        uses: "tj-actions/changed-files@v44.5.3"
         with:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Run link checker for all changed files"
