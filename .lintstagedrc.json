@@ -1,7 +1,7 @@
 {
 	"(**.sh|.husky/**)": ["shfmt --write", "shellcheck --severity 'style'"],
 	"**.md": ["markdownlint --fix", "lychee"],
-	"**.{json,js,ts}": "pnpm exec biome check --apply",
+	"**.{json,js,ts}": "pnpm exec biome check --write",
 	"**.{yaml,yml}": "yamllint --strict",
 	"**/*.cs": "dotnet format --include"
 }
