@@ -4,18 +4,18 @@ public sealed class ResultFactoryTest
 {
 	private const string @base = nameof(ResultFactory);
 
-	private const string @catch = nameof(ResultFactory.Catch);
+	private const string catchMember = nameof(ResultFactory.Catch);
 
-	private const string ensure = nameof(ResultFactory.Ensure);
+	private const string ensureMember = nameof(ResultFactory.Ensure);
 
-	private const string fail = nameof(ResultFactory.Fail);
+	private const string failMember = nameof(ResultFactory.Fail);
 
-	private const string succeed = nameof(ResultFactory.Succeed);
+	private const string succeedMember = nameof(ResultFactory.Succeed);
 
 	#region Catch
 
 	[Fact]
-	[Trait(@base, @catch)]
+	[Trait(@base, catchMember)]
 	public void Catch_CreateSuccessPlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -31,7 +31,7 @@ public sealed class ResultFactoryTest
 	}
 
 	[Fact]
-	[Trait(@base, @catch)]
+	[Trait(@base, catchMember)]
 	public void Catch_ExceptionInCreateSuccessPlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -53,7 +53,7 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_SuccessPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -70,7 +70,7 @@ public sealed class ResultFactoryTest
 	}
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_SuccessPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -90,7 +90,7 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_CreateSuccessPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -107,7 +107,7 @@ public sealed class ResultFactoryTest
 	}
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_CreateSuccessPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -128,7 +128,7 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_CreateSuccessPlusTruePredicatePlusFailure_FailedResult()
 	{
 		// Arrange
@@ -144,7 +144,7 @@ public sealed class ResultFactoryTest
 	}
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_CreateSuccessPlusFalsePredicatePlusFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -165,7 +165,7 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_SuccessPlusTruePredicatePlusFailure_FailedResult()
 	{
 		// Arrange
@@ -181,7 +181,7 @@ public sealed class ResultFactoryTest
 	}
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_SuccessPlusFalsePredicatePlusFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -201,7 +201,7 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_SuccessPlusCreateAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -220,7 +220,7 @@ public sealed class ResultFactoryTest
 	}
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_SuccessPlusCreateAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -242,7 +242,7 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_CreateSuccessPlusCreateAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -261,7 +261,7 @@ public sealed class ResultFactoryTest
 	}
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_CreateSuccessPlusCreateAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -284,7 +284,7 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_CreateSuccessPlusAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -303,7 +303,7 @@ public sealed class ResultFactoryTest
 	}
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_CreateSuccessPlusAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -326,7 +326,7 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_SuccessPlusAuxiliaryPlusTruePredicatePlusCreateFailure_FailedResult()
 	{
 		// Arrange
@@ -344,7 +344,7 @@ public sealed class ResultFactoryTest
 	}
 
 	[Fact]
-	[Trait(@base, ensure)]
+	[Trait(@base, ensureMember)]
 	public void Ensure_SuccessPlusAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
@@ -370,7 +370,7 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(@base, fail)]
+	[Trait(@base, failMember)]
 	public void Fail_Failure_FailedResult()
 	{
 		// Arrange
@@ -388,7 +388,7 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(@base, fail)]
+	[Trait(@base, failMember)]
 	public void Fail_CreateFailure_FailedResult()
 	{
 		// Arrange
@@ -411,7 +411,7 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(@base, succeed)]
+	[Trait(@base, succeedMember)]
 	public void Succeed_Success_SuccessfulResult()
 	{
 		// Arrange
@@ -429,7 +429,7 @@ public sealed class ResultFactoryTest
 	#region Overload
 
 	[Fact]
-	[Trait(@base, succeed)]
+	[Trait(@base, succeedMember)]
 	public void Succeed_CreateSuccess_SuccessfulResult()
 	{
 		// Arrange
