@@ -1,9 +1,9 @@
 namespace Daht.Sagitta.Core.Monads;
 
-#pragma warning disable CA1062
 /// <summary>Type intended to handle both the possible failure and the expected success of a given action.</summary>
 /// <typeparam name="TFailure">Type of possible failure.</typeparam>
 /// <typeparam name="TSuccess">Type of expected success.</typeparam>
+[SuppressMessage("Design", "CA1062: Validate arguments of public methods")]
 public sealed class Result<TFailure, TSuccess>
 {
 	/// <summary>Indicates whether the status is failed.</summary>
@@ -203,4 +203,3 @@ public sealed class Result<TFailure, TSuccess>
 			? reduceFailure(Failure)
 			: reduceSuccess(Success);
 }
-#pragma warning restore CA1062
