@@ -1,4 +1,4 @@
-namespace Daht.Sagitta.Core.UnitTest.Common.Fakers;
+namespace Daht.Sagitta.Core.UnitTest.Fakers;
 
 internal sealed record Constellation
 {
