@@ -5,7 +5,7 @@ set -o 'nounset'
 set -o 'pipefail'
 run() {
 	local message="$1"
-	pnpm exec commitlint --edit "${message}"
+	commitlint --edit "${message}"
 	exit 0
 }
 message="$1"
