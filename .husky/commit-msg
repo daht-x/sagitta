@@ -6,7 +6,7 @@ set -o 'pipefail'
 run() {
 	local message="$1"
 	commitlint --edit "${message}"
-	exit 0
+	exit $?
 }
 message="$1"
 run "${message}"

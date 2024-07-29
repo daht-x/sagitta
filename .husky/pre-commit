@@ -5,6 +5,6 @@ set -o 'nounset'
 set -o 'pipefail'
 run() {
 	lint-staged --relative
-	exit 0
+	exit $?
 }
 run
