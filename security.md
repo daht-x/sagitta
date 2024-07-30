@@ -11,8 +11,15 @@
 
 ### Support
 
-The support will only be available for the latest [LTS (Long Term Support)](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core)
-release of the .NET platform.
+> #### Release types
+>
+> - **Long Term Support**: **LTS** releases are supported for 3 years after the initial release.
+> - **Standard Term Support**: **STS** releases are supported for 6 months after a subsequent STS or LTS release.
+Releases happen every 12 months so the support period for STS is 18 months.
+>
+> [.NET Core policy](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core)
+
+Support will be available for both **LTS** and **STS** releases of the .NET platform.
 
 ***[Top](#security-policy)***
 
