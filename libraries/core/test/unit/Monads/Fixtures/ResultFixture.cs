@@ -6,6 +6,14 @@ internal static class ResultFixture
 
 	internal const string Auxiliary = nameof(Auxiliary);
 
+	internal static Start SuccessToMap
+		=> new()
+		{
+			Constellation = Success,
+			Name = "Gamma Sagittae",
+			EvolutionaryStage = "Red Giant"
+		};
+
 	internal static Constellation Success
 		=> new()
 		{
@@ -13,13 +21,5 @@ internal static class ResultFixture
 			Abbreviation = "Sge",
 			Name = "Sagitta",
 			Symbolism = "The arrow"
-		};
-
-	internal static Start SuccessToMap
-		=> new()
-		{
-			Constellation = "Sagitta",
-			Name = "Gamma Sagittae",
-			EvolutionaryStage = "Red Giant"
 		};
 }
