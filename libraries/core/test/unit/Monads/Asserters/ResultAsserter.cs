@@ -6,27 +6,31 @@ internal static class ResultAsserter
 		Result<TFailure, TSuccess> actualResult)
 	{
 		CheckIfIsFailed(actualResult);
-		Assert.Equal(default, actualResult.Success);
+		Assert.NotNull(expectedFailure);
 		Assert.Equal(expectedFailure, actualResult.Failure);
+		Assert.Equal(default, actualResult.Success);
 	}
 
 	internal static void CheckIfIsFailed<TFailure, TSuccess>(Result<TFailure, TSuccess> actualResult)
 	{
-		Assert.False(actualResult.IsSuccessful);
+		Assert.NotNull(actualResult);
 		Assert.True(actualResult.IsFailed);
+		Assert.False(actualResult.IsSuccessful);
 	}
 
 	internal static void CheckIfAreSuccessful<TFailure, TSuccess>(TSuccess expectedSuccess,
 		Result<TFailure, TSuccess> actualResult)
 	{
 		CheckIfIsSuccessful(actualResult);
-		Assert.Equal(expectedSuccess, actualResult.Success);
+		Assert.NotNull(expectedSuccess);
 		Assert.Equal(default, actualResult.Failure);
+		Assert.Equal(expectedSuccess, actualResult.Success);
 	}
 
 	internal static void CheckIfIsSuccessful<TFailure, TSuccess>(Result<TFailure, TSuccess> actualResult)
 	{
-		Assert.True(actualResult.IsSuccessful);
+		Assert.NotNull(actualResult);
 		Assert.False(actualResult.IsFailed);
+		Assert.True(actualResult.IsSuccessful);
 	}
 }
