@@ -19,15 +19,15 @@ public sealed class ResultFactoryTest
 	public void Catch_CreateSuccessPlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
-		Func<Constellation> createSuccess = () => expectedSuccess;
+		Constellation expected = ResultFixture.Success;
+		Func<Constellation> createSuccess = () => expected;
 		Func<InvalidOperationException, string> createFailure = exception => exception.Message;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Catch(createSuccess, createFailure);
+		Result<string, Constellation> actual = ResultFactory.Catch(createSuccess, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 
 	[Fact]
@@ -37,13 +37,13 @@ public sealed class ResultFactoryTest
 		// Arrange
 		Func<Constellation> createSuccess = () => throw new InvalidOperationException();
 		Func<InvalidOperationException, string> createFailure = exception => exception.Message;
-		const string expectedFailure = "Operation is not valid due to the current state of the object.";
+		const string expected = "Operation is not valid due to the current state of the object.";
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Catch(createSuccess, createFailure);
+		Result<string, Constellation> actual = ResultFactory.Catch(createSuccess, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expected, actual);
 	}
 
 	#endregion
@@ -59,14 +59,14 @@ public sealed class ResultFactoryTest
 		// Arrange
 		Constellation success = ResultFixture.Success;
 		Func<Constellation, bool> predicate = _ => true;
-		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, string> createFailure = _ => expectedFailure;
+		const string expected = ResultFixture.Failure;
+		Func<Constellation, string> createFailure = _ => expected;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(success, predicate, createFailure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(success, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expected, actual);
 	}
 
 	[Fact]
@@ -74,15 +74,15 @@ public sealed class ResultFactoryTest
 	public void Ensure_SuccessPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
+		Constellation expected = ResultFixture.Success;
 		Func<Constellation, bool> predicate = _ => false;
 		Func<Constellation, string> createFailure = _ => ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(expectedSuccess, predicate, createFailure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(expected, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 
 	#endregion
@@ -96,14 +96,14 @@ public sealed class ResultFactoryTest
 		// Arrange
 		Func<Constellation> createSuccess = () => ResultFixture.Success;
 		Func<Constellation, bool> predicate = _ => true;
-		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, string> createFailure = _ => expectedFailure;
+		const string expected = ResultFixture.Failure;
+		Func<Constellation, string> createFailure = _ => expected;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(createSuccess, predicate, createFailure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(createSuccess, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expected, actual);
 	}
 
 	[Fact]
@@ -111,16 +111,16 @@ public sealed class ResultFactoryTest
 	public void Ensure_CreateSuccessPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
-		Func<Constellation> createSuccess = () => expectedSuccess;
+		Constellation expected = ResultFixture.Success;
+		Func<Constellation> createSuccess = () => expected;
 		Func<Constellation, bool> predicate = _ => false;
 		Func<Constellation, string> createFailure = _ => ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(createSuccess, predicate, createFailure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(createSuccess, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 
 	#endregion
@@ -134,13 +134,13 @@ public sealed class ResultFactoryTest
 		// Arrange
 		Func<Constellation> createSuccess = () => ResultFixture.Success;
 		Func<Constellation, bool> predicate = _ => true;
-		const string expectedFailure = ResultFixture.Failure;
+		const string expected = ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(createSuccess, predicate, expectedFailure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(createSuccess, predicate, expected);
 
 		// Assert
-		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expected, actual);
 	}
 
 	[Fact]
@@ -148,16 +148,16 @@ public sealed class ResultFactoryTest
 	public void Ensure_CreateSuccessPlusFalsePredicatePlusFailure_SuccessfulResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
-		Func<Constellation> createSuccess = () => expectedSuccess;
+		Constellation expected = ResultFixture.Success;
+		Func<Constellation> createSuccess = () => expected;
 		Func<Constellation, bool> predicate = _ => false;
 		const string failure = ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(createSuccess, predicate, failure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(createSuccess, predicate, failure);
 
 		// Assert
-		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 
 	#endregion
@@ -171,13 +171,13 @@ public sealed class ResultFactoryTest
 		// Arrange
 		Constellation success = ResultFixture.Success;
 		Func<Constellation, bool> predicate = _ => true;
-		const string expectedFailure = ResultFixture.Failure;
+		const string expected = ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(success, predicate, expectedFailure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(success, predicate, expected);
 
 		// Assert
-		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expected, actual);
 	}
 
 	[Fact]
@@ -185,15 +185,15 @@ public sealed class ResultFactoryTest
 	public void Ensure_SuccessPlusFalsePredicatePlusFailure_SuccessfulResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
+		Constellation expected = ResultFixture.Success;
 		Func<Constellation, bool> predicate = _ => false;
 		const string failure = ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(expectedSuccess, predicate, failure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(expected, predicate, failure);
 
 		// Assert
-		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 
 	#endregion
@@ -208,15 +208,14 @@ public sealed class ResultFactoryTest
 		Constellation success = ResultFixture.Success;
 		Func<string> createAuxiliary = () => ResultFixture.Auxiliary;
 		Func<Constellation, string, bool> predicate = (_, _) => true;
-		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, string, string> createFailure = (_, _) => expectedFailure;
+		const string expected = ResultFixture.Failure;
+		Func<Constellation, string, string> createFailure = (_, _) => expected;
 
 		// Act
-		Result<string, Constellation> actualResult =
-			ResultFactory.Ensure(success, createAuxiliary, predicate, createFailure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(success, createAuxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expected, actual);
 	}
 
 	[Fact]
@@ -224,17 +223,17 @@ public sealed class ResultFactoryTest
 	public void Ensure_SuccessPlusCreateAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
+		Constellation expected = ResultFixture.Success;
 		Func<string> createAuxiliary = () => ResultFixture.Auxiliary;
 		Func<Constellation, string, bool> predicate = (_, _) => false;
 		Func<Constellation, string, string> createFailure = (_, _) => ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult =
-			ResultFactory.Ensure(expectedSuccess, createAuxiliary, predicate, createFailure);
+		Result<string, Constellation> actual =
+			ResultFactory.Ensure(expected, createAuxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 
 	#endregion
@@ -249,15 +248,15 @@ public sealed class ResultFactoryTest
 		Func<Constellation> createSuccess = () => ResultFixture.Success;
 		Func<string> createAuxiliary = () => ResultFixture.Auxiliary;
 		Func<Constellation, string, bool> predicate = (_, _) => true;
-		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, string, string> createFailure = (_, _) => expectedFailure;
+		const string expected = ResultFixture.Failure;
+		Func<Constellation, string, string> createFailure = (_, _) => expected;
 
 		// Act
-		Result<string, Constellation> actualResult =
+		Result<string, Constellation> actual =
 			ResultFactory.Ensure(createSuccess, createAuxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expected, actual);
 	}
 
 	[Fact]
@@ -265,18 +264,18 @@ public sealed class ResultFactoryTest
 	public void Ensure_CreateSuccessPlusCreateAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
-		Func<Constellation> createSuccess = () => expectedSuccess;
+		Constellation expected = ResultFixture.Success;
+		Func<Constellation> createSuccess = () => expected;
 		Func<string> createAuxiliary = () => ResultFixture.Auxiliary;
 		Func<Constellation, string, bool> predicate = (_, _) => false;
 		Func<Constellation, string, string> createFailure = (_, _) => ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult =
+		Result<string, Constellation> actual =
 			ResultFactory.Ensure(createSuccess, createAuxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 
 	#endregion
@@ -291,15 +290,14 @@ public sealed class ResultFactoryTest
 		Func<Constellation> createSuccess = () => ResultFixture.Success;
 		const string auxiliary = ResultFixture.Auxiliary;
 		Func<Constellation, string, bool> predicate = (_, _) => true;
-		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, string, string> createFailure = (_, _) => expectedFailure;
+		const string expected = ResultFixture.Failure;
+		Func<Constellation, string, string> createFailure = (_, _) => expected;
 
 		// Act
-		Result<string, Constellation> actualResult =
-			ResultFactory.Ensure(createSuccess, auxiliary, predicate, createFailure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(createSuccess, auxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expected, actual);
 	}
 
 	[Fact]
@@ -307,18 +305,17 @@ public sealed class ResultFactoryTest
 	public void Ensure_CreateSuccessPlusAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
-		Func<Constellation> createSuccess = () => expectedSuccess;
+		Constellation expected = ResultFixture.Success;
+		Func<Constellation> createSuccess = () => expected;
 		const string auxiliary = ResultFixture.Auxiliary;
 		Func<Constellation, string, bool> predicate = (_, _) => false;
 		Func<Constellation, string, string> createFailure = (_, _) => ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult =
-			ResultFactory.Ensure(createSuccess, auxiliary, predicate, createFailure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(createSuccess, auxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 
 	#endregion
@@ -333,14 +330,14 @@ public sealed class ResultFactoryTest
 		Constellation success = ResultFixture.Success;
 		const string auxiliary = ResultFixture.Auxiliary;
 		Func<Constellation, string, bool> predicate = (_, _) => true;
-		const string expectedFailure = ResultFixture.Failure;
-		Func<Constellation, string, string> createFailure = (_, _) => expectedFailure;
+		const string expected = ResultFixture.Failure;
+		Func<Constellation, string, string> createFailure = (_, _) => expected;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Ensure(success, auxiliary, predicate, createFailure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(success, auxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expected, actual);
 	}
 
 	[Fact]
@@ -348,17 +345,16 @@ public sealed class ResultFactoryTest
 	public void Ensure_SuccessPlusAuxiliaryPlusFalsePredicatePlusCreateFailure_SuccessfulResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
+		Constellation expected = ResultFixture.Success;
 		const string auxiliary = ResultFixture.Auxiliary;
 		Func<Constellation, string, bool> predicate = (_, _) => false;
 		Func<Constellation, string, string> createFailure = (_, _) => ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult =
-			ResultFactory.Ensure(expectedSuccess, auxiliary, predicate, createFailure);
+		Result<string, Constellation> actual = ResultFactory.Ensure(expected, auxiliary, predicate, createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 
 	#endregion
@@ -374,13 +370,13 @@ public sealed class ResultFactoryTest
 	public void Fail_Failure_FailedResult()
 	{
 		// Arrange
-		const string expectedFailure = ResultFixture.Failure;
+		const string expected = ResultFixture.Failure;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Fail<string, Constellation>(expectedFailure);
+		Result<string, Constellation> actual = ResultFactory.Fail<string, Constellation>(expected);
 
 		// Assert
-		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expected, actual);
 	}
 
 	#endregion
@@ -392,14 +388,14 @@ public sealed class ResultFactoryTest
 	public void Fail_CreateFailure_FailedResult()
 	{
 		// Arrange
-		const string expectedFailure = ResultFixture.Failure;
-		Func<string> createFailure = () => expectedFailure;
+		const string expected = ResultFixture.Failure;
+		Func<string> createFailure = () => expected;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Fail<string, Constellation>(createFailure);
+		Result<string, Constellation> actual = ResultFactory.Fail<string, Constellation>(createFailure);
 
 		// Assert
-		ResultAsserter.CheckIfAreFailed(expectedFailure, actualResult);
+		ResultAsserter.CheckIfAreFailed(expected, actual);
 	}
 
 	#endregion
@@ -415,13 +411,13 @@ public sealed class ResultFactoryTest
 	public void Succeed_Success_SuccessfulResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
+		Constellation expected = ResultFixture.Success;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Succeed<string, Constellation>(expectedSuccess);
+		Result<string, Constellation> actual = ResultFactory.Succeed<string, Constellation>(expected);
 
 		// Assert
-		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 
 	#endregion
@@ -433,14 +429,14 @@ public sealed class ResultFactoryTest
 	public void Succeed_CreateSuccess_SuccessfulResult()
 	{
 		// Arrange
-		Constellation expectedSuccess = ResultFixture.Success;
-		Func<Constellation> createSuccess = () => expectedSuccess;
+		Constellation expected = ResultFixture.Success;
+		Func<Constellation> createSuccess = () => expected;
 
 		// Act
-		Result<string, Constellation> actualResult = ResultFactory.Succeed<string, Constellation>(createSuccess);
+		Result<string, Constellation> actual = ResultFactory.Succeed<string, Constellation>(createSuccess);
 
 		// Assert
-		ResultAsserter.CheckIfAreSuccessful(expectedSuccess, actualResult);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 
 	#endregion

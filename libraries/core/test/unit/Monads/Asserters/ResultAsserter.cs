@@ -2,35 +2,33 @@ namespace Daht.Sagitta.Core.UnitTest.Monads.Asserters;
 
 internal static class ResultAsserter
 {
-	internal static void CheckIfAreFailed<TFailure, TSuccess>(TFailure expectedFailure,
-		Result<TFailure, TSuccess> actualResult)
+	internal static void CheckIfAreFailed<TFailure, TSuccess>(TFailure expected, Result<TFailure, TSuccess> actual)
 	{
-		CheckIfIsFailed(actualResult);
-		Assert.NotNull(expectedFailure);
-		Assert.Equal(expectedFailure, actualResult.Failure);
-		Assert.Equal(default, actualResult.Success);
+		CheckIfIsFailed(actual);
+		Assert.NotNull(expected);
+		Assert.Equal(expected, actual.Failure);
+		Assert.Equal(default, actual.Success);
 	}
 
-	internal static void CheckIfIsFailed<TFailure, TSuccess>(Result<TFailure, TSuccess> actualResult)
+	internal static void CheckIfIsFailed<TFailure, TSuccess>(Result<TFailure, TSuccess> actual)
 	{
-		Assert.NotNull(actualResult);
-		Assert.True(actualResult.IsFailed);
-		Assert.False(actualResult.IsSuccessful);
+		Assert.NotNull(actual);
+		Assert.True(actual.IsFailed);
+		Assert.False(actual.IsSuccessful);
 	}
 
-	internal static void CheckIfAreSuccessful<TFailure, TSuccess>(TSuccess expectedSuccess,
-		Result<TFailure, TSuccess> actualResult)
+	internal static void CheckIfAreSuccessful<TFailure, TSuccess>(TSuccess expected, Result<TFailure, TSuccess> actual)
 	{
-		CheckIfIsSuccessful(actualResult);
-		Assert.NotNull(expectedSuccess);
-		Assert.Equal(default, actualResult.Failure);
-		Assert.Equal(expectedSuccess, actualResult.Success);
+		CheckIfIsSuccessful(actual);
+		Assert.NotNull(expected);
+		Assert.Equal(default, actual.Failure);
+		Assert.Equal(expected, actual.Success);
 	}
 
-	internal static void CheckIfIsSuccessful<TFailure, TSuccess>(Result<TFailure, TSuccess> actualResult)
+	internal static void CheckIfIsSuccessful<TFailure, TSuccess>(Result<TFailure, TSuccess> actual)
 	{
-		Assert.NotNull(actualResult);
-		Assert.False(actualResult.IsFailed);
-		Assert.True(actualResult.IsSuccessful);
+		Assert.NotNull(actual);
+		Assert.False(actual.IsFailed);
+		Assert.True(actual.IsSuccessful);
 	}
 }
