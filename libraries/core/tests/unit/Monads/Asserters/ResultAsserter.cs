@@ -1,4 +1,4 @@
-namespace Daht.Sagitta.Core.UnitTest.Monads.Asserters;
+namespace Daht.Sagitta.Core.UnitTests.Monads.Asserters;
 
 internal static class ResultAsserter
 {

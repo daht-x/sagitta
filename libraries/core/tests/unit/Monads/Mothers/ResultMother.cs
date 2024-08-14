@@ -1,4 +1,4 @@
-namespace Daht.Sagitta.Core.UnitTest.Monads.Mothers;
+namespace Daht.Sagitta.Core.UnitTests.Monads.Mothers;
 
 internal static class ResultMother
 {

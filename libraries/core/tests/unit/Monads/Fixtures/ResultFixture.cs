@@ -1,4 +1,4 @@
-namespace Daht.Sagitta.Core.UnitTest.Monads.Fixtures;
+namespace Daht.Sagitta.Core.UnitTests.Monads.Fixtures;
 
 internal static class ResultFixture
 {

@@ -1,6 +1,6 @@
-namespace Daht.Sagitta.Core.UnitTest.Monads;
+namespace Daht.Sagitta.Core.UnitTests.Monads;
 
-public sealed class ResultFactoryTest
+public sealed class ResultFactoryTests
 {
 	private const string @base = nameof(ResultFactory);
 

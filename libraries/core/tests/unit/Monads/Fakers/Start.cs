@@ -1,4 +1,4 @@
-namespace Daht.Sagitta.Core.UnitTest.Monads.Fakers;
+namespace Daht.Sagitta.Core.UnitTests.Monads.Fakers;
 
 internal sealed record Start
 {
