@@ -1,7 +1,7 @@
 namespace Daht.Sagitta.Core.Monads;
 
 /// <summary>Type intended to expose a set of ways to initialize <see cref="Result{TFailure,TSuccess}" />.</summary>
-[SuppressMessage("Design", "CA1062: Validate arguments of public methods")]
+[SuppressMessage(AnalysisCategories.Design, AnalysisRules.ValidateArgumentsOfPublicMethods)]
 public static class ResultFactory
 {
 	/// <summary>Creates a new failed result if the value of <paramref name="createSuccess" /> throws <typeparamref name="TException" />; otherwise, creates a new successful result.</summary>
