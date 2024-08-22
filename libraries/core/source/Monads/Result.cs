@@ -4,7 +4,7 @@ namespace Daht.Sagitta.Core.Monads;
 /// <typeparam name="TFailure">Type of possible failure.</typeparam>
 /// <typeparam name="TSuccess">Type of expected success.</typeparam>
 [SuppressMessage(AnalysisCategories.Design, AnalysisRules.ValidateArgumentsOfPublicMethods)]
-public sealed class Result<TFailure, TSuccess>
+public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSuccess>>
 {
 	/// <summary>Indicates whether the status is failed.</summary>
 	public bool IsFailed { get; }
@@ -33,6 +33,20 @@ public sealed class Result<TFailure, TSuccess>
 		IsSuccessful = true;
 		Success = success;
 	}
+
+	/// <summary>Determines whether the left result is not equal to the right result (equality is determined by value).</summary>
+	/// <param name="left">The main result.</param>
+	/// <param name="right">The result to compare.</param>
+	/// <returns><see langword="true" /> if the left result is not equal to the right result; otherwise, <see langword="false" />.</returns>
+	public static bool operator !=(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
+		=> !(left == right);
+
+	/// <summary>Determines whether the left result is equal to the right result (equality is determined by value).</summary>
+	/// <param name="left">The main result.</param>
+	/// <param name="right">The result to compare.</param>
+	/// <returns><see langword="true" /> if the left result is equal to the right result; otherwise, <see langword="false" />.</returns>
+	public static bool operator ==(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
+		=> (left is null && right is null) || (left is not null && right is not null && left.Equals(right));
 
 	/// <summary>Creates a new failed result.</summary>
 	/// <param name="failure">A possible failure.</param>
@@ -202,4 +216,25 @@ public sealed class Result<TFailure, TSuccess>
 		=> IsFailed
 			? reduceFailure(Failure)
 			: reduceSuccess(Success);
+
+	/// <summary>Determines whether the specified result is equal to the current result (equality is determined by value).</summary>
+	/// <param name="obj">The result to compare with the current.</param>
+	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
+	public override bool Equals(object? obj)
+		=> obj is Result<TFailure, TSuccess> other && Equals(other);
+
+	/// <summary>Determines whether the specified result is equal to the current result (equality is determined by value).</summary>
+	/// <param name="other">The result to compare with the current.</param>
+	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
+	public bool Equals(Result<TFailure, TSuccess>? other)
+		=> other is not null &&
+			IsFailed == other.IsFailed &&
+			EqualityComparer<TFailure>.Default.Equals(Failure, other.Failure) &&
+			IsSuccessful == other.IsSuccessful &&
+			EqualityComparer<TSuccess>.Default.Equals(Success, other.Success);
+
+	/// <summary>Get the hash code based on the possible failure and the expected success.</summary>
+	/// <returns>The hash code based on the possible failure and the expected success.</returns>
+	public override int GetHashCode()
+		=> HashCode.Combine(IsFailed, Failure, Success, IsSuccessful);
 }
