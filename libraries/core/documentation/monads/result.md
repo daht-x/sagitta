@@ -491,7 +491,7 @@ successful result.
   public override int GetHashCode()
   ```
 
-- Description: Get the hash code based on the expected success and the possible failure.
+- Description: Get the hash code based on the possible failure and the expected success.
 
 ***[Top](#resulttfailure-tsuccess)***
 

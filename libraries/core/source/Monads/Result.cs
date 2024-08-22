@@ -233,8 +233,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			IsSuccessful == other.IsSuccessful &&
 			EqualityComparer<TSuccess>.Default.Equals(Success, other.Success);
 
-	/// <summary>Get the hash code based on the expected success and the possible failure.</summary>
-	/// <returns>The hash code based on the expected success and the possible failure.</returns>
+	/// <summary>Get the hash code based on the possible failure and the expected success.</summary>
+	/// <returns>The hash code based on the possible failure and the expected success.</returns>
 	public override int GetHashCode()
 		=> HashCode.Combine(IsFailed, Failure, Success, IsSuccessful);
 }
