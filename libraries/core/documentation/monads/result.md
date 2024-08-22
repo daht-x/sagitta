@@ -21,11 +21,14 @@ Type intended to handle both the possible failure and the expected success of a 
 3. [Constructors](#constructors)
     - [`Result(failure)`](#resultfailure)
     - [`Result(success)`](#resultsuccess)
-4. [Implicit operators](#implicit-operators)
+4. [Equality operators](#equality-operators)
+    - [`==(left, right)`](#left-right)
+    - [`!=(left, right)`](#left-right-1)
+5. [Implicit operators](#implicit-operators)
    - [`Result<TFailure, TSuccess>(failure)`](#resulttfailure-tsuccessfailure)
    - [`Result<TFailure, TSuccess>(success)`](#resulttfailure-tsuccesssuccess)
-5. [Methods](#methods)
-   - [`Catch<TException>(execute, createFailure`](#catchtexceptionexecute-createfailure)
+6. [Methods](#methods)
+   - [`Catch<TException>(execute, createFailure)`](#catchtexceptionexecute-createfailure)
    - [`Catch<TException>(createSuccess, createFailure)`](#catchtexceptioncreatesuccess-createfailure)
    - [`Ensure(predicate, failure)`](#ensurepredicate-failure)
    - [`Ensure(predicate, createFailure)`](#ensurepredicate-createfailure)
@@ -37,7 +40,10 @@ Type intended to handle both the possible failure and the expected success of a 
    - [`Map<TSuccessToMap>(createSuccessToMap)`](#maptsuccesstomapcreatesuccesstomap)
    - [`Bind<TSuccessToBind>(createResultToBind)`](#bindtsuccesstobindcreateresulttobind)
    - [`Reduce<TReducer>(reduceFailure, reduceSuccess)`](#reducetreducerreducefailure-reducesuccess)
-6. [Additional resources](#additional-resources)
+   - [`Equals(obj)`](#equalsobj)
+   - [`Equals(other)`](#equalsother)
+   - [`GetHashCode()`](#gethashcode)
+7. [Additional resources](#additional-resources)
 
 ### Generics
 
@@ -137,6 +143,42 @@ Type of expected success.
 
 ***[Top](#resulttfailure-tsuccess)***
 
+### Equality operators
+
+#### `==(left, right)`
+
+- Declaration:
+
+  ```cs
+  public static bool operator ==(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
+  ```
+
+- Description: Determines whether the left result is equal to the right result (equality is determined by value).
+- Parameters:
+  | Name    | Description           |
+  |:--------|:----------------------|
+  | `left`  | The main result       |
+  | `right` | The result to compare |
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `!=(left, right)`
+
+- Declaration:
+
+  ```cs
+  public static bool operator !=(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
+  ```
+
+- Description: Determines whether the left result is not equal to the right result (equality is determined by value).
+- Parameters:
+  | Name    | Description           |
+  |:--------|:----------------------|
+  | `left`  | The main result       |
+  | `right` | The result to compare |
+
+***[Top](#resulttfailure-tsuccess)***
+
 ### Implicit operators
 
 #### `Result<TFailure, TSuccess>(failure)`
@@ -173,7 +215,7 @@ Type of expected success.
 
 ### Methods
 
-#### `Catch<TException>(execute, createFailure`
+#### `Catch<TException>(execute, createFailure)`
 
 - Declaration:
 
@@ -406,6 +448,50 @@ successful result.
   |:----------------|:------------------------------------|
   | `reduceFailure` | Creates a possible reduced failure  |
   | `reduceSuccess` | Creates an expected reduced success |
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `Equals(obj)`
+
+- Declaration:
+
+  ```cs
+  public override bool Equals(object? obj)
+  ```
+
+- Description: Determines whether the specified result is equal to the current result (equality is determined by value).
+- Parameters:
+  | Name  | Description                            |
+  |:------|:---------------------------------------|
+  | `obj` | The result to compare with the current |
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `Equals(other)`
+
+- Declaration:
+
+  ```cs
+  public bool Equals(Result<TFailure, TSuccess>? other)
+  ```
+
+- Description: Determines whether the specified result is equal to the current result (equality is determined by value).
+- Parameters:
+  | Name    | Description                            |
+  |:--------|:---------------------------------------|
+  | `other` | The result to compare with the current |
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `GetHashCode()`
+
+- Declaration:
+
+  ```cs
+  public override int GetHashCode()
+  ```
+
+- Description: Get the hash code based on the expected success and the possible failure.
 
 ***[Top](#resulttfailure-tsuccess)***
 
