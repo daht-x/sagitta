@@ -4,6 +4,10 @@ public sealed class ResultTests
 {
 	private const string @base = nameof(Result<object, object>);
 
+	private const string memberEqualOperator = "==";
+
+	private const string memberNotEqualOperator = "!=";
+
 	private const string memberConstructor = "Constructor";
 
 	private const string memberImplicitOperator = "Implicit Operator";
@@ -21,6 +25,120 @@ public sealed class ResultTests
 	private const string memberBind = nameof(Result<object, object>.Bind);
 
 	private const string memberReduce = nameof(Result<object, object>.Reduce);
+
+	private const string memberEquals = nameof(Result<object, object>.Equals);
+
+	private const string memberGetHashCode = nameof(Result<object, object>.GetHashCode);
+
+	#region ==
+
+	[Fact]
+	[Trait(@base, memberEqualOperator)]
+	public void EqualOperator_NullLeftPlusRight_False()
+	{
+		Result<string, Constellation> left = null!;
+		Result<string, Constellation> right = ResultMother.Succeed();
+		bool actual = left == right;
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEqualOperator)]
+	public void EqualOperator_LeftPlusNullRight_False()
+	{
+		Result<string, Constellation> left = ResultMother.Succeed();
+		Result<string, Constellation> right = null!;
+		bool actual = left == right;
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEqualOperator)]
+	public void EqualOperator_LeftPlusRightWithDifferentStates_False()
+	{
+		Result<string, Constellation> left = ResultMother.Succeed();
+		Result<string, Constellation> right = ResultMother.Fail();
+		bool actual = left == right;
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEqualOperator)]
+	[SuppressMessage(AnalysisCategories.Maintainability, AnalysisRules.AvoidDeadConditionalCode)]
+	public void EqualOperator_LeftPlusRightWithNulls_True()
+	{
+		Result<string, Constellation> left = null!;
+		Result<string, Constellation> right = null!;
+		bool actual = left == right;
+		Assert.True(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEqualOperator)]
+	public void EqualOperator_LeftPlusRightWithEqualStates_True()
+	{
+		Result<string, Constellation> left = ResultMother.Succeed();
+		Result<string, Constellation> right = ResultMother.Succeed();
+		bool actual = left == right;
+		Assert.True(actual);
+	}
+
+	#endregion
+
+	#region !=
+
+	[Fact]
+	[Trait(@base, memberNotEqualOperator)]
+	public void NotEqualOperator_LeftPlusRightWithEqualStates_False()
+	{
+		Result<string, Constellation> left = ResultMother.Succeed();
+		Result<string, Constellation> right = ResultMother.Succeed();
+		bool actual = left != right;
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberNotEqualOperator)]
+	[SuppressMessage(AnalysisCategories.Maintainability, AnalysisRules.AvoidDeadConditionalCode)]
+	public void NotEqualOperator_LeftPlusRightWithNulls_False()
+	{
+		Result<string, Constellation> left = null!;
+		Result<string, Constellation> right = null!;
+		bool actual = left != right;
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberNotEqualOperator)]
+	public void NotEqualOperator_LeftPlusRightWithDifferentStates_True()
+	{
+		Result<string, Constellation> left = ResultMother.Succeed();
+		Result<string, Constellation> right = ResultMother.Fail();
+		bool actual = left != right;
+		Assert.True(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberNotEqualOperator)]
+	public void NotEqualOperator_LeftPlusNullRight_True()
+	{
+		Result<string, Constellation> left = ResultMother.Succeed();
+		Result<string, Constellation> right = null!;
+		bool actual = left != right;
+		Assert.True(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberNotEqualOperator)]
+	public void NotEqualOperator_NullLeftPlusRight_True()
+	{
+		Result<string, Constellation> left = null!;
+		Result<string, Constellation> right = ResultMother.Succeed();
+		bool actual = left != right;
+		Assert.True(actual);
+	}
+
+	#endregion
 
 	#region Constructor
 
@@ -515,6 +633,104 @@ public sealed class ResultTests
 		Func<Constellation, object> reduceSuccess = _ => expected;
 		object actual = ResultMother.Succeed()
 			.Reduce(reduceFailure, reduceSuccess);
+		Assert.Equal(expected, actual);
+	}
+
+	#endregion
+
+	#region Equals
+
+	#region Overload
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_NullObj_False()
+	{
+		Result<string, Constellation> current = ResultMother.Succeed();
+		object obj = null!;
+		bool actual = current.Equals(obj);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_ObjWithDifferentState_False()
+	{
+		Result<string, Constellation> current = ResultMother.Succeed();
+		object obj = ResultMother.Fail();
+		bool actual = current.Equals(obj);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_ObjWithEqualState_True()
+	{
+		Result<string, Constellation> current = ResultMother.Succeed();
+		object obj = ResultMother.Succeed();
+		bool actual = current.Equals(obj);
+		Assert.True(actual);
+	}
+
+	#endregion
+
+	#region Overload
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_NullOther_False()
+	{
+		Result<string, Constellation> current = ResultMother.Succeed();
+		Result<string, Constellation> other = null!;
+		bool actual = current.Equals(other);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_OtherWithDifferentState_False()
+	{
+		Result<string, Constellation> current = ResultMother.Succeed();
+		Result<string, Constellation> other = ResultMother.Fail();
+		bool actual = current.Equals(other);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_OtherWithEqualState_True()
+	{
+		Result<string, Constellation> current = ResultMother.Succeed();
+		Result<string, Constellation> other = ResultMother.Succeed();
+		bool actual = current.Equals(other);
+		Assert.True(actual);
+	}
+
+	#endregion
+
+	#endregion
+
+	#region GetHashCode
+
+	[Fact]
+	[Trait(@base, memberGetHashCode)]
+	public void GetHashCode_ResultsWithDifferentStates_DifferentHashCodes()
+	{
+		Result<string, Constellation> left = ResultMother.Succeed();
+		Result<string, Constellation> right = ResultMother.Fail();
+		int expected = left.GetHashCode();
+		int actual = right.GetHashCode();
+		Assert.NotEqual(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberGetHashCode)]
+	public void GetHashCode_ResultsWithEqualStates_EqualHashCodes()
+	{
+		Result<string, Constellation> left = ResultMother.Succeed();
+		Result<string, Constellation> right = ResultMother.Succeed();
+		int expected = left.GetHashCode();
+		int actual = right.GetHashCode();
 		Assert.Equal(expected, actual);
 	}
 
