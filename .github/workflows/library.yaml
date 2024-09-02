@@ -47,7 +47,7 @@ jobs:
         run: "dotnet restore"
       - name: "Get all changed files"
         id: "csharp-files"
-        uses: "tj-actions/changed-files@v45.0.0"
+        uses: "tj-actions/changed-files@v45.0.1"
         with:
           files: "**/*.cs"
       - name: "Run formatter for all changed files"
@@ -85,7 +85,7 @@ jobs:
             -property:"PackageVersion=${GITHUB_REF_NAME#v}" \
             -property:'PackageReleaseNotes=Please see ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.ref_name }}'
       - name: "Upload artifacts"
-        uses: "actions/upload-artifact@v4.3.6"
+        uses: "actions/upload-artifact@v4.4.0"
         if: "${{ env.IS_RELEASE == vars.POSITIVE }}"
         with:
           name: "${{ env.RELEASE_NAME }}"
