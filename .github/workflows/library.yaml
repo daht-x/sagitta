@@ -47,7 +47,7 @@ jobs:
         run: "dotnet restore"
       - name: "Get all changed files"
         id: "csharp-files"
-        uses: "tj-actions/changed-files@v45.0.1"
+        uses: "tj-actions/changed-files@v45.0.2"
         with:
           files: "**/*.cs"
       - name: "Run formatter for all changed files"
