@@ -23,7 +23,7 @@ jobs:
     runs-on: "${{ vars.DEFAULT_UBUNTU }}"
     steps:
       - name: "Set up repository with all history"
-        uses: "actions/checkout@v4.1.7"
+        uses: "actions/checkout@v4.2.0"
         with:
           fetch-depth: 0
       - name: "Get all changed files"
@@ -45,12 +45,12 @@ jobs:
     steps:
       - name: "Set up repository with all history"
         if: "${{ env.IS_PUSH_OR_PULL_REQUEST_EVENT == vars.POSITIVE }}"
-        uses: "actions/checkout@v4.1.7"
+        uses: "actions/checkout@v4.2.0"
         with:
           fetch-depth: 0
       - name: "Set up repository with the latest commit"
         if: "${{ env.IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT == vars.POSITIVE }}"
-        uses: "actions/checkout@v4.1.7"
+        uses: "actions/checkout@v4.2.0"
       - name: "Get all changed files"
         id: "markdown-files"
         if: "${{ env.IS_PUSH_OR_PULL_REQUEST_EVENT == vars.POSITIVE }}"
@@ -71,7 +71,7 @@ jobs:
           fail: true
       - name: "Create issue if inaccessible links are found"
         if: "${{ (env.IS_PUSH_EVENT == vars.POSITIVE || env.IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT == vars.POSITIVE) && failure() }}"
-        uses: "peter-evans/create-issue-from-file@v5.0.0"
+        uses: "peter-evans/create-issue-from-file@v5.0.1"
         with:
           title: "Inaccessible Markdown links found"
           assignees: "${{ github.repository_owner }}"
