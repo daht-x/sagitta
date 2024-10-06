@@ -1,6 +1,6 @@
 {
 	"devDependencies": {
-		"@biomejs/biome": "1.9.2",
+		"@biomejs/biome": "1.9.3",
 		"@commitlint/cli": "19.5.0",
 		"@commitlint/types": "19.5.0",
 		"husky": "9.1.6",
