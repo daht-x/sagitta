@@ -85,7 +85,7 @@ jobs:
             -property:"PackageVersion=${GITHUB_REF_NAME#v}" \
             -property:'PackageReleaseNotes=Please see ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.ref_name }}'
       - name: "Upload artifacts"
-        uses: "actions/upload-artifact@v4.4.1"
+        uses: "actions/upload-artifact@v4.4.2"
         if: "${{ env.IS_RELEASE == vars.POSITIVE }}"
         with:
           name: "${{ env.RELEASE_NAME }}"
