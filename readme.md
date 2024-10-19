@@ -2,7 +2,7 @@
 
 ***Functional paradigm abstractions for .NET***
 
-[![Stars](https://img.shields.io/github/stars/daht-x/sagitta?style=for-the-badge&logo=starship&logoColor=cdd6f4&label=Stars&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta)
+[![Stars](https://img.shields.io/github/stars/daht-x/sagitta?style=for-the-badge&logo=starship&logoColor=cdd6f4&label=Stars&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta/stargazers)
 [![Release](https://img.shields.io/github/v/release/daht-x/sagitta?style=for-the-badge&logo=github&logoColor=cdd6f4&label=Release&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta/releases)
 [![Coverage](https://img.shields.io/codecov/c/github/daht-x/sagitta?style=for-the-badge&logo=codecov&logoColor=cdd6f4&label=Coverage&labelColor=313244&color=b4befe)](https://app.codecov.io/gh/daht-x/sagitta)
 [![Issues](https://img.shields.io/github/issues/daht-x/sagitta?style=for-the-badge&logo=gitbook&logoColor=cdd6f4&label=Issues&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta/issues)
