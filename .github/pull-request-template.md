@@ -7,30 +7,24 @@ Please read and follow our [code of conduct](https://github.com/daht-x/sagitta/b
 
 ## Table of contents
 
-1. [Tickets](#tickets)
-2. [Description](#description)
-3. [Additional information](#additional-information)
+<!-- 1. [Tickets](#tickets) -->
+1. [Description](#description)
+<!-- 3. [Additional information](#additional-information) -->
 
-### Tickets
+<!-- ### Tickets -->
 
 <!-- Provide related issue tickets | Optional -->
 
-Undefined.
-
-***[Top](#pull-request)***
+<!-- ***[Top](#pull-request)*** -->
 
 ### Description
 
 <!-- Provide a concise and clear description | Required -->
 
-Undefined.
-
 ***[Top](#pull-request)***
 
-### Additional information
+<!-- ### Additional information -->
 
 <!-- Provide related features or enhancements, relevant changes, suggestions, etc. | Optional -->
 
-Undefined.
-
-***[Top](#pull-request)***
+<!-- ***[Top](#pull-request)*** -->
