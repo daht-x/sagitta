@@ -45,7 +45,7 @@ jobs:
           - "csharp"
     steps:
       - name: "Set up repository with the latest commit"
-        uses: "actions/checkout@v4.2.1"
+        uses: "actions/checkout@v4.2.2"
       - name: "Set up analyzer"
         uses: "github/codeql-action/init@v3.27.0"
         with:
