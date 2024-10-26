@@ -45,14 +45,14 @@ jobs:
           - "csharp"
     steps:
       - name: "Set up repository with the latest commit"
-        uses: "actions/checkout@v4.2.1"
+        uses: "actions/checkout@v4.2.2"
       - name: "Set up analyzer"
-        uses: "github/codeql-action/init@v3.26.13"
+        uses: "github/codeql-action/init@v3.27.0"
         with:
           languages: "${{ matrix.languages }}"
       - name: "Build assemblies"
-        uses: "github/codeql-action/autobuild@v3.26.13"
+        uses: "github/codeql-action/autobuild@v3.27.0"
       - name: "Run analyzer"
-        uses: "github/codeql-action/analyze@v3.26.13"
+        uses: "github/codeql-action/analyze@v3.27.0"
         with:
           category: "/language:${{ matrix.languages }}"
