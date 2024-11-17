@@ -1,7 +1,7 @@
 <Project>
 	<PropertyGroup>
 		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-		<DefaultAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</DefaultAssets>
+		<DefaultAssets>runtime; build; native; contentfiles; analyzers</DefaultAssets>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageVersion Include="SonarAnalyzer.CSharp" Version="9.32.0.97167">
