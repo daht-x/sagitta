@@ -121,6 +121,7 @@ Type of expected success.
 
 - Description: Creates a new failed result.
 - Parameters:
+
   | Name      | Description        |
   |:----------|:-------------------|
   | `failure` | A possible failure |
@@ -137,6 +138,7 @@ Type of expected success.
 
 - Description: Creates a new successful result.
 - Parameters:
+
   | Name      | Description         |
   |:----------|:--------------------|
   | `success` | An expected success |
@@ -155,6 +157,7 @@ Type of expected success.
 
 - Description: Determines whether the left result is equal to the right result (equality is determined by value).
 - Parameters:
+
   | Name    | Description           |
   |:--------|:----------------------|
   | `left`  | The main result       |
@@ -172,6 +175,7 @@ Type of expected success.
 
 - Description: Determines whether the left result is not equal to the right result (equality is determined by value).
 - Parameters:
+
   | Name    | Description           |
   |:--------|:----------------------|
   | `left`  | The main result       |
@@ -191,6 +195,7 @@ Type of expected success.
 
 - Description: Creates a new failed result.
 - Parameters:
+
   | Name      | Description        |
   |:----------|:-------------------|
   | `failure` | A possible failure |
@@ -207,6 +212,7 @@ Type of expected success.
 
 - Description: Creates a new successful result.
 - Parameters:
+
   | Name      | Description         |
   |:----------|:--------------------|
   | `success` | An expected success |
@@ -226,10 +232,13 @@ Type of expected success.
 
 - Description: Creates a new failed result if `execute` throws `TException`; otherwise, returns the previous result.
 - Generics:
+
   | Name         | Description                |
   |:-------------|:---------------------------|
   | `TException` | Type of possible exception |
+
 - Parameters:
+
   | Name            | Description                |
   |:----------------|:---------------------------|
   | `execute`       | The action to execute      |
@@ -249,10 +258,13 @@ Type of expected success.
 - Description: Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new
 successful result.
 - Generics:
+
   | Name         | Description                |
   |:-------------|:---------------------------|
   | `TException` | Type of possible exception |
+
 - Parameters:
+
   | Name            | Description                 |
   |:----------------|:----------------------------|
   | `createSuccess` | Creates an expected success |
@@ -270,6 +282,7 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, returns the previous result.
 - Parameters:
+
   | Name        | Description               |
   |:------------|:--------------------------|
   | `predicate` | Creates a set of criteria |
@@ -287,6 +300,7 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, returns the previous result.
 - Parameters:
+
   | Name            | Description                |
   |:----------------|:---------------------------|
   | `predicate`     | Creates a set of criteria  |
@@ -304,10 +318,13 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, returns the previous result.
 - Generics:
+
   | Name         | Description       |
   |:-------------|:------------------|
   | `TAuxiliary` | Type of auxiliary |
+
 - Parameters:
+
   | Name            | Description                                                             |
   |:----------------|:------------------------------------------------------------------------|
   | `auxiliary`     | An auxiliary to use in combination with `predicate` and `createFailure` |
@@ -326,10 +343,13 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, returns the previous result.
 - Generics:
+
   | Generic      | Description       |
   |:-------------|:------------------|
   | `TAuxiliary` | Type of auxiliary |
+
 - Parameters:
+
   | Name              | Description                                                                     |
   |:------------------|:--------------------------------------------------------------------------------|
   | `createAuxiliary` | Creates an auxiliary to use in combination with `predicate` and `createFailure` |
@@ -348,6 +368,7 @@ successful result.
 
 - Description: Executes an action if the previous result is failed.
 - Parameters:
+
   | Name      | Description           |
   |:----------|:----------------------|
   | `execute` | The action to execute |
@@ -364,6 +385,7 @@ successful result.
 
 - Description: Executes an action if the previous result is successful.
 - Parameters:
+
   | Name      | Description           |
   |:----------|:----------------------|
   | `execute` | The action to execute |
@@ -380,10 +402,13 @@ successful result.
 
 - Description: Creates a new result with the same or different type of expected success.
 - Generics:
+
   | Name            | Description                     |
   |:----------------|:--------------------------------|
   | `TSuccessToMap` | Type of expected success to map |
+
 - Parameters:
+
   | Name           | Description                |
   |:---------------|:---------------------------|
   | `successToMap` | An expected success to map |
@@ -400,10 +425,13 @@ successful result.
 
 - Description: Creates a new result with the same or different type of expected success.
 - Generics:
+
   | Name            | Description                     |
   |:----------------|:--------------------------------|
   | `TSuccessToMap` | Type of expected success to map |
+
 - Parameters:
+
   | Name                 | Description                        |
   |:---------------------|:-----------------------------------|
   | `createSuccessToMap` | Creates an expected success to map |
@@ -420,10 +448,13 @@ successful result.
 
 - Description: Creates a new result in combination with another result with the same or different type of expected success.
 - Generics:
+
   | Name             | Description                      |
   |:-----------------|:---------------------------------|
   | `TSuccessToBind` | Type of expected success to bind |
+
 - Parameters:
+
   | Name                 | Description                  |
   |:---------------------|:-----------------------------|
   | `createResultToBind` | Creates a new result to bind |
@@ -440,10 +471,13 @@ successful result.
 
 - Description: Creates a new reduced failure if the previous result is failed; otherwise, creates a new reduced success.
 - Generics:
+
   | Name       | Description     |
   |:-----------|:----------------|
   | `TReducer` | Type of reducer |
+
 - Parameters:
+
   | Name            | Description                         |
   |:----------------|:------------------------------------|
   | `reduceFailure` | Creates a possible reduced failure  |
@@ -461,6 +495,7 @@ successful result.
 
 - Description: Determines whether the specified result is equal to the current result (equality is determined by value).
 - Parameters:
+
   | Name  | Description                            |
   |:------|:---------------------------------------|
   | `obj` | The result to compare with the current |
@@ -477,6 +512,7 @@ successful result.
 
 - Description: Determines whether the specified result is equal to the current result (equality is determined by value).
 - Parameters:
+
   | Name    | Description                            |
   |:--------|:---------------------------------------|
   | `other` | The result to compare with the current |

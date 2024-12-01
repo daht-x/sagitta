@@ -38,11 +38,14 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 - Description: Creates a new failed result.
 - Generics:
+
   | Name       | Description              |
   |:-----------|:-------------------------|
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
+
 - Parameters:
+
   | Name      | Description        |
   |:----------|:-------------------|
   | `failure` | A possible failure |
@@ -59,11 +62,14 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 - Description: Creates a new failed result.
 - Generics:
+
   | Name       | Description              |
   |:-----------|:-------------------------|
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
+
 - Parameters:
+
   | Name            | Description                |
   |:----------------|:---------------------------|
   | `createFailure` | Creates a possible failure |
@@ -80,11 +86,14 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 - Description: Creates a new successful result.
 - Generics:
+
   | Name       | Description              |
   |:-----------|:-------------------------|
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
+
 - Parameters:
+
   | Name      | Description         |
   |:----------|:--------------------|
   | `success` | An expected success |
@@ -101,11 +110,14 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 - Description: Creates a new successful result.
 - Generics:
+
   | Name       | Description              |
   |:-----------|:-------------------------|
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
+
 - Parameters:
+
   | Name            | Description                 |
   |:----------------|:----------------------------|
   | `createSuccess` | Creates an expected success |
@@ -124,12 +136,15 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 - Description: Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new
 successful result.
 - Generics:
+
   | Name         | Description                |
   |:-------------|:---------------------------|
   | `TException` | Type of possible exception |
   | `TFailure`   | Type of possible failure   |
   | `TSuccess`   | Type of expected success   |
+
 - Parameters:
+
   | Name            | Description                 |
   |:----------------|:----------------------------|
   | `createSuccess` | Creates an expected success |
@@ -147,11 +162,14 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
 - Generics:
+
   | Name       | Description              |
   |:-----------|:-------------------------|
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
+
 - Parameters:
+
   | Name        | Description               |
   |:------------|:--------------------------|
   | `success`   | An expected success       |
@@ -170,11 +188,14 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
 - Generics:
+
   | Name       | Description              |
   |:-----------|:-------------------------|
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
+
 - Parameters:
+
   | Name            | Description                |
   |:----------------|:---------------------------|
   | `success`       | An expected success        |
@@ -193,11 +214,14 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
 - Generics:
+
   | Name       | Description              |
   |:-----------|:-------------------------|
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
+
 - Parameters:
+
   | Name            | Description                 |
   |:----------------|:----------------------------|
   | `createSuccess` | Creates an expected success |
@@ -216,11 +240,14 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
 - Generics:
+
   | Name       | Description              |
   |:-----------|:-------------------------|
   | `TFailure` | Type of possible failure |
   | `TSuccess` | Type of expected success |
+
 - Parameters:
+
   | Name            | Description                 |
   |:----------------|:----------------------------|
   | `createSuccess` | Creates an expected success |
@@ -239,12 +266,15 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
 - Generics:
+
   | Name         | Description              |
   |:-------------|:-------------------------|
   | `TAuxiliary` | Type of auxiliary        |
   | `TFailure`   | Type of possible failure |
   | `TSuccess`   | Type of expected success |
+
 - Parameters:
+
   | Name            | Description                                                             |
   |:----------------|:------------------------------------------------------------------------|
   | `success`       | An expected success                                                     |
@@ -264,12 +294,15 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
 - Generics:
+
   | Name         | Description              |
   |:-------------|:-------------------------|
   | `TAuxiliary` | Type of auxiliary        |
   | `TFailure`   | Type of possible failure |
   | `TSuccess`   | Type of expected success |
+
 - Parameters:
+
   | Name              | Description                                                                     |
   |:------------------|:--------------------------------------------------------------------------------|
   | `success`         | An expected success                                                             |
@@ -289,12 +322,15 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
 - Generics:
+
   | Name         | Description              |
   |:-------------|:-------------------------|
   | `TAuxiliary` | Type of auxiliary        |
   | `TFailure`   | Type of possible failure |
   | `TSuccess`   | Type of expected success |
+
 - Parameters:
+
   | Name            | Description                                                             |
   |:----------------|:------------------------------------------------------------------------|
   | `createSuccess` | Creates an expected success                                             |
@@ -314,12 +350,15 @@ successful result.
 
 - Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
 - Generics:
+
   | Name         | Description              |
   |:-------------|:-------------------------|
   | `TAuxiliary` | Type of auxiliary        |
   | `TFailure`   | Type of possible failure |
   | `TSuccess`   | Type of expected success |
+
 - Parameters:
+
   | Name              | Description                                                                     |
   |:------------------|:--------------------------------------------------------------------------------|
   | `createSuccess`   | Creates an expected success                                                     |
