@@ -1,10 +1,18 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A54D676C-8E58-4B21-AF99-7CD6A5A71DBC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagitta.Core", "libraries\core\source\Sagitta.Core.csproj", "{B8F9C50D-F81F-4621-A07B-FC87BA14CACD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagitta.Core.UnitTests", "libraries\core\tests\unit\Sagitta.Core.UnitTests.csproj", "{6C86C780-A9C7-4377-B1A8-8ECD9842D89D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{D891F17C-C226-4D87-B61D-F20951A9AD99}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		global.json = global.json
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

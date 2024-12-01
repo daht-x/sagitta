@@ -1,17 +1,18 @@
 <Project>
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
-		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
-		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-		<AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<AnalysisLevel>latest</AnalysisLevel>
 		<AnalysisMode>all</AnalysisMode>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
 		<Company>Daht</Company>
 		<AssemblyName>$(Company).$(MSBuildProjectName)</AssemblyName>
 		<RootNamespace>$(AssemblyName)</RootNamespace>
+		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+		<AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
 		<UseArtifactsOutput>true</UseArtifactsOutput>
 	</PropertyGroup>
 	<ItemGroup>
