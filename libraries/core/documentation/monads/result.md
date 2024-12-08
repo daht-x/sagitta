@@ -34,7 +34,8 @@ Type intended to handle both the possible failure and the expected success of a 
    - [`Ensure(predicate, createFailure)`](#ensurepredicate-createfailure)
    - [`Ensure<TAuxiliary>(auxiliary, predicate, createFailure)`](#ensuretauxiliaryauxiliary-predicate-createfailure)
    - [`Ensure<TAuxiliary>(createAuxiliary, predicate, createFailure)`](#ensuretauxiliarycreateauxiliary-predicate-createfailure)
-   - [`DoOnFailure(execute)`](#doonfailureexecute)
+   - [`DoOnFailure(Action execute)`](#doonfailureaction-execute)
+   - [`DoOnFailure(Action<TFailure> execute)`](#doonfailureactiontfailure-execute)
    - [`DoOnSuccess(execute)`](#doonsuccessexecute)
    - [`Map<TSuccessToMap>(successToMap)`](#maptsuccesstomapsuccesstomap)
    - [`Map<TSuccessToMap>(createSuccessToMap)`](#maptsuccesstomapcreatesuccesstomap)
@@ -358,7 +359,24 @@ successful result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
-#### `DoOnFailure(execute)`
+#### `DoOnFailure(Action execute)`
+
+- Declaration:
+
+  ```cs
+  public Result<TFailure, TSuccess> DoOnFailure(Action execute)
+  ```
+
+- Description: Executes an action if the previous result is failed.
+- Parameters:
+
+  | Name      | Description           |
+  |:----------|:----------------------|
+  | `execute` | The action to execute |
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `DoOnFailure(Action<TFailure> execute)`
 
 - Declaration:
 
