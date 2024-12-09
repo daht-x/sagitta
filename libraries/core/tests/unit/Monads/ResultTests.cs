@@ -516,12 +516,14 @@ public sealed class ResultTests
 
 	#region DoOnSuccess
 
+	#region Overload
+
 	[Fact]
 	[Trait(@base, memberDoOnSuccess)]
 	public void DoOnSuccess_FailedResultPlusExecute_FailedResult()
 	{
 		bool status = false;
-		Action<Constellation> execute = _ => status = true;
+		Action execute = () => status = true;
 		Result<string, Constellation> actual = ResultMother.Fail()
 			.DoOnSuccess(execute);
 		Assert.False(status);
@@ -533,12 +535,42 @@ public sealed class ResultTests
 	public void DoOnSuccess_SuccessfulResultPlusExecute_SuccessfulResult()
 	{
 		bool status = false;
+		Action execute = () => status = true;
+		Result<string, Constellation> actual = ResultMother.Succeed()
+			.DoOnSuccess(execute);
+		Assert.True(status);
+		ResultAsserter.CheckIfIsSuccessful(actual);
+	}
+
+	#endregion
+
+	#region Overload
+
+	[Fact]
+	[Trait(@base, memberDoOnSuccess)]
+	public void DoOnSuccess_FailedResultPlusExecuteWithSuccess_FailedResult()
+	{
+		bool status = false;
+		Action<Constellation> execute = _ => status = true;
+		Result<string, Constellation> actual = ResultMother.Fail()
+			.DoOnSuccess(execute);
+		Assert.False(status);
+		ResultAsserter.CheckIfIsFailed(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberDoOnSuccess)]
+	public void DoOnSuccess_SuccessfulResultPlusExecuteWithSuccess_SuccessfulResult()
+	{
+		bool status = false;
 		Action<Constellation> execute = _ => status = true;
 		Result<string, Constellation> actual = ResultMother.Succeed()
 			.DoOnSuccess(execute);
 		Assert.True(status);
 		ResultAsserter.CheckIfIsSuccessful(actual);
 	}
+
+	#endregion
 
 	#endregion
 
