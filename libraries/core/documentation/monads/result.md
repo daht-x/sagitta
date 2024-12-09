@@ -39,6 +39,7 @@ Type intended to handle both the possible failure and the expected success of a 
    - [`Map<TSuccessToMap>(successToMap)`](#maptsuccesstomapsuccesstomap)
    - [`Map<TSuccessToMap>(createSuccessToMap)`](#maptsuccesstomapcreatesuccesstomap)
    - [`Bind<TSuccessToBind>(createResultToBind)`](#bindtsuccesstobindcreateresulttobind)
+   - [`Reset<TSuccessToInitialize>(initializerResult)`](#resettsuccesstoinitializeinitializerresult)
    - [`Reduce<TReducer>(reduceFailure, reduceSuccess)`](#reducetreducerreducefailure-reducesuccess)
    - [`Equals(obj)`](#equalsobj)
    - [`Equals(other)`](#equalsother)
@@ -454,7 +455,8 @@ successful result.
   public Result<TFailure, TSuccessToBind> Bind<TSuccessToBind>(Func<TSuccess, Result<TFailure, TSuccessToBind>> createResultToBind)
   ```
 
-- Description: Creates a new result in combination with another result with the same or different type of expected success.
+- Description: Creates a new result in combination with another result,
+which may have the same or different type of expected success.
 - Generics:
 
   | Name             | Description                      |
@@ -466,6 +468,30 @@ successful result.
   | Name                 | Description                  |
   |:---------------------|:-----------------------------|
   | `createResultToBind` | Creates a new result to bind |
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `Reset<TSuccessToInitialize>(initializerResult)`
+
+- Signature:
+
+  ```cs
+  public Result<TFailure, TSuccessToInitialize> Reset<TSuccessToInitialize>(Result<TFailure, TSuccessToInitialize> initializerResult)
+  ```
+
+- Description: Creates a new result with the same or different type of expected success
+(similar to [`Map<TSuccessToMap>(successToMap)`](#maptsuccesstomapsuccesstomap), but only works with results).
+- Generics:
+
+  | Name                  | Description                                       |
+  |:----------------------|:--------------------------------------------------|
+  | `TSuccessInitializer` | Type of expected success that acts as initializer |
+
+- Parameters:
+
+  | Name                | Description              |
+  |:--------------------|:-------------------------|
+  | `initializerResult` | A new initializer result |
 
 ***[Top](#resulttfailure-tsuccess)***
 
