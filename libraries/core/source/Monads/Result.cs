@@ -184,6 +184,19 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	/// <summary>Executes an action if the previous result is successful.</summary>
 	/// <param name="execute">The action to execute.</param>
 	/// <returns>The previous result.</returns>
+	public Result<TFailure, TSuccess> DoOnSuccess(Action execute)
+	{
+		if (IsFailed)
+		{
+			return this;
+		}
+		execute();
+		return this;
+	}
+
+	/// <summary>Executes an action if the previous result is successful.</summary>
+	/// <param name="execute">The action to execute.</param>
+	/// <returns>The previous result.</returns>
 	public Result<TFailure, TSuccess> DoOnSuccess(Action<TSuccess> execute)
 	{
 		if (IsFailed)

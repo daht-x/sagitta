@@ -381,11 +381,15 @@ successful result.
 
 #### `DoOnSuccess(execute)`
 
-- Signature:
+- Signatures:
 
-  ```cs
-  public Result<TFailure, TSuccess> DoOnSuccess(Action<TSuccess> execute)
-  ```
+  - ```cs
+    public Result<TFailure, TSuccess> DoOnSuccess(Action execute)
+    ```
+
+  - ```cs
+    public Result<TFailure, TSuccess> DoOnSuccess(Action<TSuccess> execute)
+    ```
 
 - Description: Executes an action if the previous result is successful.
 - Parameters:
