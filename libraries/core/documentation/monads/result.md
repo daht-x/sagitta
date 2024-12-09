@@ -34,8 +34,7 @@ Type intended to handle both the possible failure and the expected success of a 
    - [`Ensure(predicate, createFailure)`](#ensurepredicate-createfailure)
    - [`Ensure<TAuxiliary>(auxiliary, predicate, createFailure)`](#ensuretauxiliaryauxiliary-predicate-createfailure)
    - [`Ensure<TAuxiliary>(createAuxiliary, predicate, createFailure)`](#ensuretauxiliarycreateauxiliary-predicate-createfailure)
-   - [`DoOnFailure(Action execute)`](#doonfailureaction-execute)
-   - [`DoOnFailure(Action<TFailure> execute)`](#doonfailureactiontfailure-execute)
+   - [`DoOnFailure(execute)`](#doonfailureexecute)
    - [`DoOnSuccess(execute)`](#doonsuccessexecute)
    - [`Map<TSuccessToMap>(successToMap)`](#maptsuccesstomapsuccesstomap)
    - [`Map<TSuccessToMap>(createSuccessToMap)`](#maptsuccesstomapcreatesuccesstomap)
@@ -64,7 +63,7 @@ Type of expected success.
 
 #### `IsFailed`
 
-- Declaration
+- Signature
 
   ```cs
   public bool IsFailed { get; }
@@ -76,7 +75,7 @@ Type of expected success.
 
 #### `Failure`
 
-- Declaration
+- Signature
 
   ```cs
   public TFailure Failure { get; }
@@ -88,7 +87,7 @@ Type of expected success.
 
 #### `IsSuccessful`
 
-- Declaration
+- Signature
 
   ```cs
   public bool IsSuccessful { get; }
@@ -100,7 +99,7 @@ Type of expected success.
 
 #### `Success`
 
-- Declaration
+- Signature
 
   ```cs
   public TSuccess Success { get; }
@@ -114,7 +113,7 @@ Type of expected success.
 
 #### `Result(failure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public Result(TFailure failure)
@@ -131,7 +130,7 @@ Type of expected success.
 
 #### `Result(success)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public Result(TSuccess success)
@@ -150,7 +149,7 @@ Type of expected success.
 
 #### `==(left, right)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static bool operator ==(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
@@ -168,7 +167,7 @@ Type of expected success.
 
 #### `!=(left, right)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static bool operator !=(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
@@ -188,7 +187,7 @@ Type of expected success.
 
 #### `Result<TFailure, TSuccess>(failure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static implicit operator Result<TFailure, TSuccess>(TFailure failure)
@@ -205,7 +204,7 @@ Type of expected success.
 
 #### `Result<TFailure, TSuccess>(success)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static implicit operator Result<TFailure, TSuccess>(TSuccess success)
@@ -224,7 +223,7 @@ Type of expected success.
 
 #### `Catch<TException>(execute, createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public Result<TFailure, TSuccess> Catch<TException>(Action<TSuccess> execute, Func<TException, TFailure> createFailure)
@@ -249,7 +248,7 @@ Type of expected success.
 
 #### `Catch<TException>(createSuccess, createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public Result<TFailure, TSuccess> Catch<TException>(Func<TSuccess, TSuccess> createSuccess, Func<TException, TFailure> createFailure)
@@ -275,7 +274,7 @@ successful result.
 
 #### `Ensure(predicate, failure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public Result<TFailure, TSuccess> Ensure(Func<TSuccess, bool> predicate, TFailure failure)
@@ -293,7 +292,7 @@ successful result.
 
 #### `Ensure(predicate, createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public Result<TFailure, TSuccess> Ensure(Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
@@ -311,7 +310,7 @@ successful result.
 
 #### `Ensure<TAuxiliary>(auxiliary, predicate, createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public Result<TFailure, TSuccess> Ensure<TAuxiliary>(TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
@@ -336,7 +335,7 @@ successful result.
 
 #### `Ensure<TAuxiliary>(createAuxiliary, predicate, createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public Result<TFailure, TSuccess> Ensure<TAuxiliary>(Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
@@ -359,30 +358,17 @@ successful result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
-#### `DoOnFailure(Action execute)`
+#### `DoOnFailure(execute)`
 
-- Declaration:
+- Signatures:
 
-  ```cs
-  public Result<TFailure, TSuccess> DoOnFailure(Action execute)
-  ```
+  - ```cs
+    public Result<TFailure, TSuccess> DoOnFailure(Action execute)
+    ```
 
-- Description: Executes an action if the previous result is failed.
-- Parameters:
-
-  | Name      | Description           |
-  |:----------|:----------------------|
-  | `execute` | The action to execute |
-
-***[Top](#resulttfailure-tsuccess)***
-
-#### `DoOnFailure(Action<TFailure> execute)`
-
-- Declaration:
-
-  ```cs
-  public Result<TFailure, TSuccess> DoOnFailure(Action<TFailure> execute)
-  ```
+  - ```cs
+    public Result<TFailure, TSuccess> DoOnFailure(Action<TFailure> execute)
+    ```
 
 - Description: Executes an action if the previous result is failed.
 - Parameters:
@@ -395,7 +381,7 @@ successful result.
 
 #### `DoOnSuccess(execute)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public Result<TFailure, TSuccess> DoOnSuccess(Action<TSuccess> execute)
@@ -412,7 +398,7 @@ successful result.
 
 #### `Map<TSuccessToMap>(successToMap)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(TSuccessToMap successToMap)
@@ -435,7 +421,7 @@ successful result.
 
 #### `Map<TSuccessToMap>(createSuccessToMap)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(Func<TSuccess, TSuccessToMap> createSuccessToMap)
@@ -458,7 +444,7 @@ successful result.
 
 #### `Bind<TSuccessToBind>(createResultToBind)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public Result<TFailure, TSuccessToBind> Bind<TSuccessToBind>(Func<TSuccess, Result<TFailure, TSuccessToBind>> createResultToBind)
@@ -481,7 +467,7 @@ successful result.
 
 #### `Reduce<TReducer>(reduceFailure, reduceSuccess)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public TReducer Reduce<TReducer>(Func<TFailure, TReducer> reduceFailure, Func<TSuccess, TReducer> reduceSuccess)
@@ -505,7 +491,7 @@ successful result.
 
 #### `Equals(obj)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public override bool Equals(object? obj)
@@ -522,7 +508,7 @@ successful result.
 
 #### `Equals(other)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public bool Equals(Result<TFailure, TSuccess>? other)
@@ -539,7 +525,7 @@ successful result.
 
 #### `GetHashCode()`
 
-- Declaration:
+- Signature:
 
   ```cs
   public override int GetHashCode()

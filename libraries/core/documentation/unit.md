@@ -19,7 +19,7 @@ type).
 
 #### `Discarder`
 
-- Declaration
+- Signature
 
   ```cs
   public static Unit Discarder { get; }

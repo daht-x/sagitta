@@ -30,7 +30,7 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 #### `Fail<TFailure, TSuccess>(failure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Fail<TFailure, TSuccess>(TFailure failure)
@@ -54,7 +54,7 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 #### `Fail<TFailure, TSuccess>(createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Fail<TFailure, TSuccess>(Func<TFailure> createFailure)
@@ -78,7 +78,7 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 #### `Succeed<TFailure, TSuccess>(success)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Succeed<TFailure, TSuccess>(TSuccess success)
@@ -102,7 +102,7 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 #### `Succeed<TFailure, TSuccess>(createSuccess)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Succeed<TFailure, TSuccess>(Func<TSuccess> createSuccess)
@@ -126,7 +126,7 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 #### `Catch<TException, TFailure, TSuccess>(createSuccess, createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Catch<TException, TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TException, TFailure> createFailure)
@@ -154,7 +154,7 @@ successful result.
 
 #### `Ensure<TFailure, TSuccess>(success, predicate, failure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(TSuccess success, Func<TSuccess, bool> predicate, TFailure failure)
@@ -180,7 +180,7 @@ successful result.
 
 #### `Ensure<TFailure, TSuccess>(success, predicate, createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(TSuccess success, Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
@@ -206,7 +206,7 @@ successful result.
 
 #### `Ensure<TFailure, TSuccess>(createSuccess, predicate, failure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TSuccess, bool> predicate, TFailure failure)
@@ -232,7 +232,7 @@ successful result.
 
 #### `Ensure<TFailure, TSuccess>(createSuccess, predicate, createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
@@ -258,7 +258,7 @@ successful result.
 
 #### `Ensure<TAuxiliary, TFailure, TSuccess>(success, auxiliary, predicate, createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Ensure<TAuxiliary, TFailure, TSuccess>(TSuccess success, TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
@@ -286,7 +286,7 @@ successful result.
 
 #### `Ensure<TAuxiliary, TFailure, TSuccess>(success, createAuxiliary, predicate, createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Ensure<TAuxiliary, TFailure, TSuccess>(TSuccess success, Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
@@ -314,7 +314,7 @@ successful result.
 
 #### `Ensure<TAuxiliary, TFailure, TSuccess>(createSuccess, auxiliary, predicate, createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Ensure<TAuxiliary, TFailure, TSuccess>(Func<TSuccess> createSuccess, TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
@@ -342,7 +342,7 @@ successful result.
 
 #### `Ensure<TAuxiliary, TFailure, TSuccess>(createSuccess, createAuxiliary, predicate, createFailure)`
 
-- Declaration:
+- Signature:
 
   ```cs
   public static Result<TFailure, TSuccess> Ensure<TAuxiliary, TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
