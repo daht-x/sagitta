@@ -14,6 +14,14 @@ internal static class ResultFixture
 			EvolutionaryStage = "Red Giant"
 		};
 
+	internal static Start SuccessToInitialize
+		=> new()
+		{
+			Constellation = Success,
+			Name = "Alpha Sagittae",
+			EvolutionaryStage = "Bright Giant"
+		};
+
 	internal static Constellation Success
 		=> new()
 		{

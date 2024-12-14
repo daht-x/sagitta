@@ -28,6 +28,8 @@ public sealed class ResultTests
 
 	private const string memberEquals = nameof(Result<object, object>.Equals);
 
+	private const string memberReset = nameof(Result<object, object>.Reset);
+
 	private const string memberGetHashCode = nameof(Result<object, object>.GetHashCode);
 
 	#region ==
@@ -698,6 +700,32 @@ public sealed class ResultTests
 		object actual = ResultMother.Succeed()
 			.Reduce(reduceFailure, reduceSuccess);
 		Assert.Equal(expected, actual);
+	}
+
+	#endregion
+
+	#region Reset
+
+	[Fact]
+	[Trait(@base, memberReset)]
+	public void Reset_FailedResultPlusInitializerResult_FailedResult()
+	{
+		const string expected = ResultFixture.Failure;
+		Result<string, Start> initializerResult = new(ResultFixture.SuccessToInitialize);
+		Result<string, Start> actual = ResultMother.Fail(expected)
+			.Reset(initializerResult);
+		ResultAsserter.CheckIfAreFailed(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberReset)]
+	public void Reset_SuccessfulResultPlusInitializerResult_SuccessfulResult()
+	{
+		Start expected = ResultFixture.SuccessToInitialize;
+		Result<string, Start> initializerResult = new(expected);
+		Result<string, Start> actual = ResultMother.Succeed()
+			.Reset(initializerResult);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 
 	#endregion
