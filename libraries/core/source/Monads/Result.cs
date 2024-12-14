@@ -223,15 +223,25 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			? new(Failure)
 			: new(successToMap);
 
-	/// <summary>Creates a new result in combination with another result with the same or different type of expected success.</summary>
+	/// <summary>Creates a new result in combination with another result, which may have the same or different type of expected success.</summary>
 	/// <param name="createResultToBind">Creates a new result to bind.</param>
 	/// <typeparam name="TSuccessToBind">Type of expected success to bind.</typeparam>
-	/// <returns>A new result in combination with another result with the same or different type of expected success.</returns>
+	/// <returns>A new result in combination with another result, which may have the same or different type of expected success.</returns>
 	public Result<TFailure, TSuccessToBind> Bind<TSuccessToBind>(
 		Func<TSuccess, Result<TFailure, TSuccessToBind>> createResultToBind)
 		=> IsFailed
 			? new(Failure)
 			: createResultToBind(Success);
+
+	/// <summary>Creates a new result with the same or different type of expected success (similar to <see cref="Map{TSuccessToMap}(TSuccessToMap)"/>, but only works with results).</summary>
+	/// <param name="initializerResult">A new initializer result.</param>
+	/// <typeparam name="TSuccessInitializer">Type of expected success that acts as initializer.</typeparam>
+	/// <returns>A new result with the same or different type of expected success.</returns>
+	public Result<TFailure, TSuccessInitializer> Reset<TSuccessInitializer>(
+		Result<TFailure, TSuccessInitializer> initializerResult)
+		=> IsFailed
+			? new(Failure)
+			: initializerResult;
 
 	/// <summary>Creates a new reduced failure if the previous result is failed; otherwise, creates a new reduced success.</summary>
 	/// <param name="reduceFailure">Creates a possible reduced failure.</param>
