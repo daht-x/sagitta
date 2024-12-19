@@ -3,7 +3,7 @@
 		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageVersion Include="SonarAnalyzer.CSharp" Version="10.3.0.106239" PrivateAssets="all" />
+		<PackageVersion Include="SonarAnalyzer.CSharp" Version="10.4.0.108396" PrivateAssets="all" />
 		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="all" />
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
 		<PackageVersion Include="xunit" Version="2.9.2" />
