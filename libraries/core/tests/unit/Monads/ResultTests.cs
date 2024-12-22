@@ -24,6 +24,8 @@ public sealed class ResultTests
 
 	private const string memberBind = nameof(Result<object, object>.Bind);
 
+	private const string memberDiscard = nameof(Result<object, object>.Discard);
+
 	private const string memberReduce = nameof(Result<object, object>.Reduce);
 
 	private const string memberEquals = nameof(Result<object, object>.Equals);
@@ -671,6 +673,30 @@ public sealed class ResultTests
 		Func<Constellation, Result<string, Constellation>> createResultToBind = _ => ResultMother.Succeed(expected);
 		Result<string, Constellation> actual = ResultMother.Succeed(success)
 			.Bind(createResultToBind);
+		ResultAsserter.CheckIfAreSuccessful(expected, actual);
+	}
+
+	#endregion
+
+	#region Discard
+
+	[Fact]
+	[Trait(@base, memberDiscard)]
+	public void Discard_FailedResult_FailedResult()
+	{
+		const string expected = ResultFixture.Failure;
+		Result<string, Unit> actual = ResultMother.Fail(expected)
+			.Discard();
+		ResultAsserter.CheckIfAreFailed(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberDiscard)]
+	public void Discard_SuccessfulResult_Unit()
+	{
+		Unit expected = Unit.Discarder;
+		Result<string, Unit> actual = ResultMother.Succeed(ResultFixture.Success)
+			.Discard();
 		ResultAsserter.CheckIfAreSuccessful(expected, actual);
 	}
 

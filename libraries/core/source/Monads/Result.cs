@@ -243,6 +243,13 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			? new(Failure)
 			: initializerResult;
 
+	/// <summary>Replaces the previous success with <see cref="Unit"/>.</summary>
+	/// <returns>A new failed result if <see cref="IsFailed"/> is <see langword="true" />; otherwise, a new success result containing <see cref="Unit"/>.</returns>
+	public Result<TFailure, Unit> Discard()
+		=> IsFailed
+			? new(Failure)
+			: new(Unit.Discarder);
+
 	/// <summary>Creates a new reduced failure if the previous result is failed; otherwise, creates a new reduced success.</summary>
 	/// <param name="reduceFailure">Creates a possible reduced failure.</param>
 	/// <param name="reduceSuccess">Creates an expected reduced success.</param>
