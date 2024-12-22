@@ -40,6 +40,7 @@ Type intended to handle both the possible failure and the expected success of a 
    - [`Map<TSuccessToMap>(createSuccessToMap)`](#maptsuccesstomapcreatesuccesstomap)
    - [`Bind<TSuccessToBind>(createResultToBind)`](#bindtsuccesstobindcreateresulttobind)
    - [`Reset<TSuccessToInitialize>(initializerResult)`](#resettsuccesstoinitializeinitializerresult)
+   - [`Discard()`](#discard)
    - [`Reduce<TReducer>(reduceFailure, reduceSuccess)`](#reducetreducerreducefailure-reducesuccess)
    - [`Equals(obj)`](#equalsobj)
    - [`Equals(other)`](#equalsother)
@@ -492,6 +493,18 @@ which may have the same or different type of expected success.
   | Name                | Description              |
   |:--------------------|:-------------------------|
   | `initializerResult` | A new initializer result |
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `Discard()`
+
+- Signature:
+
+  ```cs
+  public Result<TFailure, Unit> Discard()
+  ```
+
+- Description: Replaces the previous success with [`Unit`](../unit.md).
 
 ***[Top](#resulttfailure-tsuccess)***
 
