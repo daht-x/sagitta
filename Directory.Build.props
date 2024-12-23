@@ -17,6 +17,6 @@
 		<UseArtifactsOutput>true</UseArtifactsOutput>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="SonarAnalyzer.CSharp" />
+		<GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.4.0.108396" />
 	</ItemGroup>
 </Project>
