@@ -36,6 +36,7 @@ Type intended to handle both the possible failure and the expected success of a 
    - [`Ensure<TAuxiliary>(createAuxiliary, predicate, createFailure)`](#ensuretauxiliarycreateauxiliary-predicate-createfailure)
    - [`DoOnFailure(execute)`](#doonfailureexecute)
    - [`DoOnSuccess(execute)`](#doonsuccessexecute)
+   - [`Match(doOnFailure, doOnSuccess)`](#matchdoonfailure-doonsuccess)
    - [`Map<TSuccessToMap>(successToMap)`](#maptsuccesstomapsuccesstomap)
    - [`Map<TSuccessToMap>(createSuccessToMap)`](#maptsuccesstomapcreatesuccesstomap)
    - [`Bind<TSuccessToBind>(createResultToBind)`](#bindtsuccesstobindcreateresulttobind)
@@ -424,6 +425,30 @@ Type of expected success.
   | Name      | Description           |
   |:----------|:----------------------|
   | `execute` | The action to execute |
+
+- Return: The previous result.
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `Match(doOnFailure, doOnSuccess)`
+
+- Signatures:
+
+  - ```cs
+    public Result<TFailure, TSuccess> Match(Action doOnFailure, Action doOnSuccess)
+    ```
+
+  - ```cs
+    public Result<TFailure, TSuccess> Match(Action<TFailure> doOnFailure, Action<TSuccess> doOnSuccess)
+    ```
+
+- Description: Executes an action based on the state of the previous result.
+- Parameters:
+
+  | Name          | Description                                                |
+  |:--------------|:-----------------------------------------------------------|
+  | `doOnFailure` | The action to execute if the previous result is failed     |
+  | `doOnSuccess` | The action to execute if the previous result is successful |
 
 - Return: The previous result.
 

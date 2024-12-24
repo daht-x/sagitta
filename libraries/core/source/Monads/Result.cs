@@ -224,6 +224,36 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		return this;
 	}
 
+	/// <summary>Executes an actions based on the state of the previous result.</summary>
+	/// <param name="doOnFailure">The action to execute if the previous result is failed.</param>
+	/// <param name="doOnSuccess">The action to execute if the previous result is successful.</param>
+	/// <returns>The previous result.</returns>
+	public Result<TFailure, TSuccess> Match(Action doOnFailure, Action doOnSuccess)
+	{
+		if (IsFailed)
+		{
+			doOnFailure();
+			return this;
+		}
+		doOnSuccess();
+		return this;
+	}
+
+	/// <summary>Executes an action based on the state of the previous result.</summary>
+	/// <param name="doOnFailure">The action to execute if the previous result is failed.</param>
+	/// <param name="doOnSuccess">The action to execute if the previous result is successful.</param>
+	/// <returns>The previous result.</returns>
+	public Result<TFailure, TSuccess> Match(Action<TFailure> doOnFailure, Action<TSuccess> doOnSuccess)
+	{
+		if (IsFailed)
+		{
+			doOnFailure(Failure);
+			return this;
+		}
+		doOnSuccess(Success);
+		return this;
+	}
+
 	/// <summary>Maps the expected success to a value of another type.</summary>
 	/// <param name="successToMap">An expected success to map.</param>
 	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
