@@ -20,6 +20,8 @@ public sealed class ResultTests
 
 	private const string memberDoOnSuccess = nameof(Result<object, object>.DoOnSuccess);
 
+	private const string memberMatch = nameof(Result<object, object>.Match);
+
 	private const string memberMap = nameof(Result<object, object>.Map);
 
 	private const string memberBind = nameof(Result<object, object>.Bind);
@@ -570,6 +572,70 @@ public sealed class ResultTests
 		Action<Constellation> execute = _ => status = true;
 		Result<string, Constellation> actual = ResultMother.Succeed()
 			.DoOnSuccess(execute);
+		Assert.True(status);
+		ResultAsserter.CheckIfIsSuccessful(actual);
+	}
+
+	#endregion
+
+	#endregion
+
+	#region Match
+
+	#region Overload
+
+	[Fact]
+	[Trait(@base, memberMatch)]
+	public void Match_FailedResultPlusDoOnFailurePlusDoOnSuccess_FailedResult()
+	{
+		bool status = false;
+		Action doOnFailure = () => status = true;
+		Action doOnSuccess = () => status = false;
+		Result<string, Constellation> actual = ResultMother.Fail()
+			.Match(doOnFailure, doOnSuccess);
+		Assert.True(status);
+		ResultAsserter.CheckIfIsFailed(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberMatch)]
+	public void Match_SuccessfulResultPlusDoOnFailurePlusDoOnSuccess_SuccessfulResult()
+	{
+		bool status = false;
+		Action doOnFailure = () => status = false;
+		Action doOnSuccess = () => status = true;
+		Result<string, Constellation> actual = ResultMother.Succeed()
+			.Match(doOnFailure, doOnSuccess);
+		Assert.True(status);
+		ResultAsserter.CheckIfIsSuccessful(actual);
+	}
+
+	#endregion
+
+	#region Overload
+
+	[Fact]
+	[Trait(@base, memberMatch)]
+	public void Match_FailedResultPlusDoOnFailureWithFailurePlusDoOnSuccessWithSuccess_FailedResult()
+	{
+		bool status = false;
+		Action<string> doOnFailure = _ => status = true;
+		Action<Constellation> doOnSuccess = _ => status = false;
+		Result<string, Constellation> actual = ResultMother.Fail()
+			.Match(doOnFailure, doOnSuccess);
+		Assert.True(status);
+		ResultAsserter.CheckIfIsFailed(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberMatch)]
+	public void Match_SuccessfulResultPlusDoOnFailureWithFailurePlusDoOnSuccessWithSuccess_SuccessfulResult()
+	{
+		bool status = false;
+		Action<string> doOnFailure = _ => status = false;
+		Action<Constellation> doOnSuccess = _ => status = true;
+		Result<string, Constellation> actual = ResultMother.Succeed()
+			.Match(doOnFailure, doOnSuccess);
 		Assert.True(status);
 		ResultAsserter.CheckIfIsSuccessful(actual);
 	}
