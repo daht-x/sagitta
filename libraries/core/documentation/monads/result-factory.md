@@ -50,6 +50,8 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
   |:----------|:-------------------|
   | `failure` | A possible failure |
 
+- Return: A new failed result.
+
 ***[Top](#resultfactory)***
 
 #### `Fail<TFailure, TSuccess>(createFailure)`
@@ -73,6 +75,8 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
   | Name            | Description                |
   |:----------------|:---------------------------|
   | `createFailure` | Creates a possible failure |
+
+- Return: A new failed result.
 
 ***[Top](#resultfactory)***
 
@@ -98,6 +102,8 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
   |:----------|:--------------------|
   | `success` | An expected success |
 
+- Return: A new successful result.
+
 ***[Top](#resultfactory)***
 
 #### `Succeed<TFailure, TSuccess>(createSuccess)`
@@ -122,6 +128,8 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
   |:----------------|:----------------------------|
   | `createSuccess` | Creates an expected success |
 
+- Return: A new successful result.
+
 ***[Top](#resultfactory)***
 
 #### `Catch<TException, TFailure, TSuccess>(createSuccess, createFailure)`
@@ -133,8 +141,7 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
     where TException : Exception
   ```
 
-- Description: Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new
-successful result.
+- Description: Treats `TException` as a new failed result.
 - Generics:
 
   | Name         | Description                |
@@ -150,6 +157,8 @@ successful result.
   | `createSuccess` | Creates an expected success |
   | `createFailure` | Creates a possible failure  |
 
+- Return: A new failed result if the value of `createSuccess` throws `TException`; otherwise, a new successful result.
+
 ***[Top](#resultfactory)***
 
 #### `Ensure<TFailure, TSuccess>(success, predicate, failure)`
@@ -160,7 +169,7 @@ successful result.
   public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(TSuccess success, Func<TSuccess, bool> predicate, TFailure failure)
   ```
 
-- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Description: Ensures a new failed result if `predicate` evaluates to `true`.
 - Generics:
 
   | Name       | Description              |
@@ -176,6 +185,8 @@ successful result.
   | `predicate` | Creates a set of criteria |
   | `failure`   | A possible failure        |
 
+- Return: A new failed result if the value of `predicate` is `true` otherwise, a new successful result.
+
 ***[Top](#resultfactory)***
 
 #### `Ensure<TFailure, TSuccess>(success, predicate, createFailure)`
@@ -186,7 +197,7 @@ successful result.
   public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(TSuccess success, Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
   ```
 
-- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Description: Ensures a new failed result if `predicate` evaluates to `true`.
 - Generics:
 
   | Name       | Description              |
@@ -202,6 +213,8 @@ successful result.
   | `predicate`     | Creates a set of criteria  |
   | `createFailure` | Creates a possible failure |
 
+- Return: A new failed result if the value of `predicate` is `true` otherwise, a new successful result.
+
 ***[Top](#resultfactory)***
 
 #### `Ensure<TFailure, TSuccess>(createSuccess, predicate, failure)`
@@ -212,7 +225,7 @@ successful result.
   public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TSuccess, bool> predicate, TFailure failure)
   ```
 
-- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Description: Ensures a new failed result if `predicate` evaluates to `true`.
 - Generics:
 
   | Name       | Description              |
@@ -228,6 +241,8 @@ successful result.
   | `predicate`     | Creates a set of criteria   |
   | `failure`       | A possible failure          |
 
+- Return: A new failed result if the value of `predicate` is `true` otherwise, a new successful result.
+
 ***[Top](#resultfactory)***
 
 #### `Ensure<TFailure, TSuccess>(createSuccess, predicate, createFailure)`
@@ -238,7 +253,7 @@ successful result.
   public static Result<TFailure, TSuccess> Ensure<TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
   ```
 
-- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Description: Ensures a new failed result if `predicate` evaluates to `true`.
 - Generics:
 
   | Name       | Description              |
@@ -254,6 +269,8 @@ successful result.
   | `predicate`     | Creates a set of criteria   |
   | `createFailure` | Creates a possible failure  |
 
+- Return: A new failed result if the value of `predicate` is `true` otherwise, a new successful result.
+
 ***[Top](#resultfactory)***
 
 #### `Ensure<TAuxiliary, TFailure, TSuccess>(success, auxiliary, predicate, createFailure)`
@@ -264,7 +281,7 @@ successful result.
   public static Result<TFailure, TSuccess> Ensure<TAuxiliary, TFailure, TSuccess>(TSuccess success, TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
   ```
 
-- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Description: Ensures a new failed result if `predicate` evaluates to `true`.
 - Generics:
 
   | Name         | Description              |
@@ -282,6 +299,8 @@ successful result.
   | `predicate`     | Creates a set of criteria                                               |
   | `createFailure` | Creates a possible failure                                              |
 
+- Return: A new failed result if the value of `predicate` is `true` otherwise, a new successful result.
+
 ***[Top](#resultfactory)***
 
 #### `Ensure<TAuxiliary, TFailure, TSuccess>(success, createAuxiliary, predicate, createFailure)`
@@ -292,7 +311,7 @@ successful result.
   public static Result<TFailure, TSuccess> Ensure<TAuxiliary, TFailure, TSuccess>(TSuccess success, Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
   ```
 
-- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Description: Ensures a new failed result if `predicate` evaluates to `true`.
 - Generics:
 
   | Name         | Description              |
@@ -310,6 +329,8 @@ successful result.
   | `predicate`       | Creates a set of criteria                                                       |
   | `createFailure`   | Creates a possible failure                                                      |
 
+- Return: A new failed result if the value of `predicate` is `true` otherwise, a new successful result.
+
 ***[Top](#resultfactory)***
 
 #### `Ensure<TAuxiliary, TFailure, TSuccess>(createSuccess, auxiliary, predicate, createFailure)`
@@ -320,7 +341,7 @@ successful result.
   public static Result<TFailure, TSuccess> Ensure<TAuxiliary, TFailure, TSuccess>(Func<TSuccess> createSuccess, TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
   ```
 
-- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Description: Ensures a new failed result if `predicate` evaluates to `true`.
 - Generics:
 
   | Name         | Description              |
@@ -338,6 +359,8 @@ successful result.
   | `predicate`     | Creates a set of criteria                                               |
   | `createFailure` | Creates a possible failure                                              |
 
+- Return: A new failed result if the value of `predicate` is `true` otherwise, a new successful result.
+
 ***[Top](#resultfactory)***
 
 #### `Ensure<TAuxiliary, TFailure, TSuccess>(createSuccess, createAuxiliary, predicate, createFailure)`
@@ -348,7 +371,7 @@ successful result.
   public static Result<TFailure, TSuccess> Ensure<TAuxiliary, TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
   ```
 
-- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, creates a new successful result.
+- Description: Ensures a new failed result if `predicate` evaluates to `true`.
 - Generics:
 
   | Name         | Description              |
@@ -365,6 +388,8 @@ successful result.
   | `createAuxiliary` | Creates an auxiliary to use in combination with `predicate` and `createFailure` |
   | `predicate`       | Creates a set of criteria                                                       |
   | `createFailure`   | Creates a possible failure                                                      |
+
+- Return: A new failed result if the value of `predicate` is `true` otherwise, a new successful result.
 
 ***[Top](#resultfactory)***
 

@@ -128,6 +128,8 @@ Type of expected success.
   |:----------|:-------------------|
   | `failure` | A possible failure |
 
+- Return: A new failed result.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `Result(success)`
@@ -144,6 +146,8 @@ Type of expected success.
   | Name      | Description         |
   |:----------|:--------------------|
   | `success` | An expected success |
+
+- Return: A new successful result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -165,6 +169,8 @@ Type of expected success.
   | `left`  | The main result       |
   | `right` | The result to compare |
 
+- Return: `true` if the left result is equal to the right result; otherwise,`false`.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `!=(left, right)`
@@ -182,6 +188,8 @@ Type of expected success.
   |:--------|:----------------------|
   | `left`  | The main result       |
   | `right` | The result to compare |
+
+- Return: `true` if the left result is not equal to the right result; otherwise, `false`.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -202,6 +210,8 @@ Type of expected success.
   |:----------|:-------------------|
   | `failure` | A possible failure |
 
+- Return: A new failed result.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `Result<TFailure, TSuccess>(success)`
@@ -219,6 +229,8 @@ Type of expected success.
   |:----------|:--------------------|
   | `success` | An expected success |
 
+- Return: A new successful result.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 ### Methods
@@ -232,7 +244,7 @@ Type of expected success.
     where TException : Exception
   ```
 
-- Description: Creates a new failed result if `execute` throws `TException`; otherwise, returns the previous result.
+- Description: Treats `TException` as a new failed result.
 - Generics:
 
   | Name         | Description                |
@@ -246,6 +258,8 @@ Type of expected success.
   | `execute`       | The action to execute      |
   | `createFailure` | Creates a possible failure |
 
+- Return: A new failed result if `execute` throws `TException` otherwise, the previous result.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `Catch<TException>(createSuccess, createFailure)`
@@ -257,8 +271,7 @@ Type of expected success.
     where TException : Exception
   ```
 
-- Description: Creates a new failed result if the value of `createSuccess` throws `TException`; otherwise, creates a new
-successful result.
+- Description: Treats `TException` as a new failed result.
 - Generics:
 
   | Name         | Description                |
@@ -272,6 +285,8 @@ successful result.
   | `createSuccess` | Creates an expected success |
   | `createFailure` | Creates a possible failure  |
 
+- Return: A new failed result if the value of `createSuccess` throws `TException`; otherwise, a new successful result.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `Ensure(predicate, failure)`
@@ -282,13 +297,15 @@ successful result.
   public Result<TFailure, TSuccess> Ensure(Func<TSuccess, bool> predicate, TFailure failure)
   ```
 
-- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, returns the previous result.
+- Description: Ensures a new failed result if `predicate` evaluates to `true`.
 - Parameters:
 
   | Name        | Description               |
   |:------------|:--------------------------|
   | `predicate` | Creates a set of criteria |
   | `failure`   | A possible failure        |
+
+- Return: A new failed result if the value of `predicate` is `true`; otherwise, the previous result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -300,13 +317,15 @@ successful result.
   public Result<TFailure, TSuccess> Ensure(Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
   ```
 
-- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, returns the previous result.
+- Description: Ensures a new failed result if `predicate` evaluates to `true`.
 - Parameters:
 
   | Name            | Description                |
   |:----------------|:---------------------------|
   | `predicate`     | Creates a set of criteria  |
   | `createFailure` | Creates a possible failure |
+
+- Return: A new failed result if the value of `predicate` is `true`; otherwise, the previous result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -318,7 +337,7 @@ successful result.
   public Result<TFailure, TSuccess> Ensure<TAuxiliary>(TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
   ```
 
-- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, returns the previous result.
+- Description: Ensures a new failed result if `predicate` evaluates to `true`.
 - Generics:
 
   | Name         | Description       |
@@ -333,6 +352,8 @@ successful result.
   | `predicate`     | Creates a set of criteria                                               |
   | `createFailure` | Creates a possible failure                                              |
 
+- Return: A new failed result if the value of `predicate` is `true`; otherwise, the previous result.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `Ensure<TAuxiliary>(createAuxiliary, predicate, createFailure)`
@@ -343,7 +364,7 @@ successful result.
   public Result<TFailure, TSuccess> Ensure<TAuxiliary>(Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
   ```
 
-- Description: Creates a new failed result if the value of `predicate` is `true`; otherwise, returns the previous result.
+- Description: Ensures a new failed result if `predicate` evaluates to `true`.
 - Generics:
 
   | Generic      | Description       |
@@ -357,6 +378,8 @@ successful result.
   | `createAuxiliary` | Creates an auxiliary to use in combination with `predicate` and `createFailure` |
   | `predicate`       | Creates a set of criteria                                                       |
   | `createFailure`   | Creates a possible failure                                                      |
+
+- Return: A new failed result if the value of `predicate` is `true`; otherwise, the previous result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -379,6 +402,8 @@ successful result.
   |:----------|:----------------------|
   | `execute` | The action to execute |
 
+- Return: The previous result.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `DoOnSuccess(execute)`
@@ -400,6 +425,8 @@ successful result.
   |:----------|:----------------------|
   | `execute` | The action to execute |
 
+- Return: The previous result.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `Map<TSuccessToMap>(successToMap)`
@@ -410,7 +437,7 @@ successful result.
   public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(TSuccessToMap successToMap)
   ```
 
-- Description: Creates a new result with the same or different type of expected success.
+- Description: Maps the expected success to a value of another type.
 - Generics:
 
   | Name            | Description                     |
@@ -423,6 +450,8 @@ successful result.
   |:---------------|:---------------------------|
   | `successToMap` | An expected success to map |
 
+- Return: A new result with a different type of expected success.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `Map<TSuccessToMap>(createSuccessToMap)`
@@ -433,7 +462,7 @@ successful result.
   public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(Func<TSuccess, TSuccessToMap> createSuccessToMap)
   ```
 
-- Description: Creates a new result with the same or different type of expected success.
+- Description: Maps the expected success to a value of another type.
 - Generics:
 
   | Name            | Description                     |
@@ -446,6 +475,8 @@ successful result.
   |:---------------------|:-----------------------------------|
   | `createSuccessToMap` | Creates an expected success to map |
 
+- Return: A new result with a different type of expected success.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `Bind<TSuccessToBind>(createResultToBind)`
@@ -456,8 +487,7 @@ successful result.
   public Result<TFailure, TSuccessToBind> Bind<TSuccessToBind>(Func<TSuccess, Result<TFailure, TSuccessToBind>> createResultToBind)
   ```
 
-- Description: Creates a new result in combination with another result,
-which may have the same or different type of expected success.
+- Description: Binds the previous result to a new one.
 - Generics:
 
   | Name             | Description                      |
@@ -470,6 +500,8 @@ which may have the same or different type of expected success.
   |:---------------------|:-----------------------------|
   | `createResultToBind` | Creates a new result to bind |
 
+- Return: A new result with a different type of expected success.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `Reset<TSuccessToInitialize>(initializerResult)`
@@ -480,8 +512,7 @@ which may have the same or different type of expected success.
   public Result<TFailure, TSuccessToInitialize> Reset<TSuccessToInitialize>(Result<TFailure, TSuccessToInitialize> initializerResult)
   ```
 
-- Description: Creates a new result with the same or different type of expected success
-(similar to [`Map<TSuccessToMap>(successToMap)`](#maptsuccesstomapsuccesstomap), but only works with results).
+- Description: Resets the state of the expected success.
 - Generics:
 
   | Name                  | Description                                       |
@@ -494,6 +525,8 @@ which may have the same or different type of expected success.
   |:--------------------|:-------------------------|
   | `initializerResult` | A new initializer result |
 
+- Return: A new result with a different type of expected success.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `Discard()`
@@ -504,7 +537,8 @@ which may have the same or different type of expected success.
   public Result<TFailure, Unit> Discard()
   ```
 
-- Description: Replaces the previous success with [`Unit`](../unit.md).
+- Description: Discards the expected success.
+- Return: A new result that replaces the expected success by [`Unit`](../unit.md).
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -516,7 +550,7 @@ which may have the same or different type of expected success.
   public TReducer Reduce<TReducer>(Func<TFailure, TReducer> reduceFailure, Func<TSuccess, TReducer> reduceSuccess)
   ```
 
-- Description: Creates a new reduced failure if the previous result is failed; otherwise, creates a new reduced success.
+- Description: Reduces the possible failure or expected success to a single value.
 - Generics:
 
   | Name       | Description     |
@@ -529,6 +563,8 @@ which may have the same or different type of expected success.
   |:----------------|:------------------------------------|
   | `reduceFailure` | Creates a possible reduced failure  |
   | `reduceSuccess` | Creates an expected reduced success |
+
+- Return: A new value that can be the possible failure or the expected success.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -547,6 +583,8 @@ which may have the same or different type of expected success.
   |:------|:---------------------------------------|
   | `obj` | The result to compare with the current |
 
+- Return: `true` if the specified result is equal to the current result; otherwise, `false`.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `Equals(other)`
@@ -564,6 +602,8 @@ which may have the same or different type of expected success.
   |:--------|:---------------------------------------|
   | `other` | The result to compare with the current |
 
+- Return: `true` if the specified result is equal to the current result; otherwise, `false`.
+
 ***[Top](#resulttfailure-tsuccess)***
 
 #### `GetHashCode()`
@@ -574,7 +614,8 @@ which may have the same or different type of expected success.
   public override int GetHashCode()
   ```
 
-- Description: Get the hash code based on the possible failure and the expected success.
+- Description: Gets the hash code based on the primary members of the current result.
+- Return: The calculated hash code.
 
 ***[Top](#resulttfailure-tsuccess)***
 

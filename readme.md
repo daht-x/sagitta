@@ -52,4 +52,4 @@ Please read and follow our [contributing guidelines](./contributing.md).
 ### Contact
 
 - [LinkedIn](https://www.linkedin.com/in/daht-x)
-- [X](https://x.com/_daht_x)
+- [X (Twitter)](https://x.com/_daht_x)

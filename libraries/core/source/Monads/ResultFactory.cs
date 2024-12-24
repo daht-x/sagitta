@@ -4,7 +4,7 @@ namespace Daht.Sagitta.Core.Monads;
 [SuppressMessage(AnalysisCategories.Design, AnalysisRules.ValidateArgumentsOfPublicMethods)]
 public static class ResultFactory
 {
-	/// <summary>Creates a new failed result if the value of <paramref name="createSuccess" /> throws <typeparamref name="TException" />; otherwise, creates a new successful result.</summary>
+	/// <summary>Treats <typeparamref name="TException" /> as a new failed result.</summary>
 	/// <param name="createSuccess">Creates an expected success.</param>
 	/// <param name="createFailure">Creates a possible failure.</param>
 	/// <typeparam name="TException">Type of possible exception.</typeparam>
@@ -25,7 +25,7 @@ public static class ResultFactory
 		}
 	}
 
-	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
+	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
 	/// <param name="success">An expected success.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
 	/// <param name="createFailure">Creates a possible failure.</param>
@@ -36,7 +36,7 @@ public static class ResultFactory
 		Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
 		=> Ensure(success, predicate, createFailure(success));
 
-	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
+	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
 	/// <param name="createSuccess">Creates an expected success.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
 	/// <param name="createFailure">Creates a possible failure.</param>
@@ -47,7 +47,7 @@ public static class ResultFactory
 		Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
 		=> Ensure(createSuccess(), predicate, createFailure);
 
-	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
+	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
 	/// <param name="createSuccess">Creates an expected success.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
 	/// <param name="failure">A possible failure.</param>
@@ -58,7 +58,7 @@ public static class ResultFactory
 		Func<TSuccess, bool> predicate, TFailure failure)
 		=> Ensure(createSuccess(), predicate, failure);
 
-	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
+	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
 	/// <param name="success">An expected success.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
 	/// <param name="failure">A possible failure.</param>
@@ -71,7 +71,7 @@ public static class ResultFactory
 			? Fail<TFailure, TSuccess>(failure)
 			: Succeed<TFailure, TSuccess>(success);
 
-	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
+	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
 	/// <param name="success">An expected success.</param>
 	/// <param name="createAuxiliary">Creates an auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
@@ -85,7 +85,7 @@ public static class ResultFactory
 		Func<TSuccess, TAuxiliary, TFailure> createFailure)
 		=> Ensure(success, createAuxiliary(), predicate, createFailure);
 
-	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
+	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
 	/// <param name="createSuccess">Creates an expected success.</param>
 	/// <param name="createAuxiliary">Creates an auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
@@ -99,7 +99,7 @@ public static class ResultFactory
 		Func<TSuccess, TAuxiliary, TFailure> createFailure)
 		=> Ensure(createSuccess(), createAuxiliary, predicate, createFailure);
 
-	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
+	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
 	/// <param name="createSuccess">Creates an expected success.</param>
 	/// <param name="auxiliary">An auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
@@ -113,7 +113,7 @@ public static class ResultFactory
 		Func<TSuccess, TAuxiliary, TFailure> createFailure)
 		=> Ensure(createSuccess(), auxiliary, predicate, createFailure);
 
-	/// <summary>Creates a new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, creates a new successful result.</summary>
+	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
 	/// <param name="success">An expected success.</param>
 	/// <param name="auxiliary">An auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
