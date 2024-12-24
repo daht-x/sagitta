@@ -107,13 +107,6 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 
 	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
 	/// <param name="predicate">Creates a set of criteria.</param>
-	/// <param name="createFailure">Creates a possible failure.</param>
-	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
-	public Result<TFailure, TSuccess> Ensure(Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
-		=> Ensure(predicate, createFailure(Success));
-
-	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
-	/// <param name="predicate">Creates a set of criteria.</param>
 	/// <param name="failure">A possible failure.</param>
 	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
 	public Result<TFailure, TSuccess> Ensure(Func<TSuccess, bool> predicate, TFailure failure)
@@ -128,14 +121,19 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	}
 
 	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
-	/// <param name="createAuxiliary">Creates an auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
 	/// <param name="createFailure">Creates a possible failure.</param>
-	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
 	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
-	public Result<TFailure, TSuccess> Ensure<TAuxiliary>(Func<TAuxiliary> createAuxiliary,
-		Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
-		=> Ensure(createAuxiliary(), predicate, createFailure);
+	public Result<TFailure, TSuccess> Ensure(Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
+	{
+		if (IsFailed)
+		{
+			return this;
+		}
+		return predicate(Success)
+			? new(createFailure(Success))
+			: this;
+	}
 
 	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
 	/// <param name="auxiliary">An auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
@@ -152,6 +150,25 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		}
 		return predicate(Success, auxiliary)
 			? new(createFailure(Success, auxiliary))
+			: this;
+	}
+
+	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
+	/// <param name="createAuxiliary">Creates an auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
+	/// <param name="predicate">Creates a set of criteria.</param>
+	/// <param name="createFailure">Creates a possible failure.</param>
+	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
+	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
+	public Result<TFailure, TSuccess> Ensure<TAuxiliary>(Func<TAuxiliary> createAuxiliary,
+		Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
+	{
+		if (IsFailed)
+		{
+			return this;
+		}
+		TAuxiliary auxiliary = createAuxiliary();
+		return predicate(Success, auxiliary)
+			? createFailure(Success, auxiliary)
 			: this;
 	}
 
@@ -208,13 +225,6 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	}
 
 	/// <summary>Maps the expected success to a value of another type.</summary>
-	/// <param name="createSuccessToMap">Creates an expected success to map.</param>
-	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
-	/// <returns>A new result with a different type of expected success.</returns>
-	public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(Func<TSuccess, TSuccessToMap> createSuccessToMap)
-		=> Map(createSuccessToMap(Success));
-
-	/// <summary>Maps the expected success to a value of another type.</summary>
 	/// <param name="successToMap">An expected success to map.</param>
 	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
 	/// <returns>A new result with a different type of expected success.</returns>
@@ -222,6 +232,15 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		=> IsFailed
 			? new(Failure)
 			: new(successToMap);
+
+	/// <summary>Maps the expected success to a value of another type.</summary>
+	/// <param name="createSuccessToMap">Creates an expected success to map.</param>
+	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
+	/// <returns>A new result with a different type of expected success.</returns>
+	public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(Func<TSuccess, TSuccessToMap> createSuccessToMap)
+		=> IsFailed
+			? new(Failure)
+			: new(createSuccessToMap(Success));
 
 	/// <summary>Binds the previous result to a new one.</summary>
 	/// <param name="createResultToBind">Creates a new result to bind.</param>
