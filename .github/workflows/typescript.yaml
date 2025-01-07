@@ -28,7 +28,7 @@ jobs:
         with:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Set up formatter"
-        uses: "biomejs/setup-biome@v2.2.1"
+        uses: "biomejs/setup-biome@v2.3.0"
       - name: "Run formatter for all changed files"
         run: "biome format ${{ steps.typescript-files.outputs.all_changed_files }}"
   linter:
@@ -45,6 +45,6 @@ jobs:
         with:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Set up linter"
-        uses: "biomejs/setup-biome@v2.2.1"
+        uses: "biomejs/setup-biome@v2.3.0"
       - name: "Run linter for all changed files"
         run: "biome lint ${{ steps.typescript-files.outputs.all_changed_files }}"
