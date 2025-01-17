@@ -4,7 +4,7 @@
 		"@commitlint/cli": "19.6.1",
 		"@commitlint/types": "19.5.0",
 		"husky": "9.1.7",
-		"lint-staged": "15.3.0",
+		"lint-staged": "15.4.1",
 		"markdownlint-cli": "0.43.0"
 	},
 	"engines": {
