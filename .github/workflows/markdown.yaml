@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 0
       - name: "Get all changed files"
         id: "markdown-files"
-        uses: "tj-actions/changed-files@v45.0.6"
+        uses: "tj-actions/changed-files@v45.0.7"
         with:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Run linter for all changed files"
@@ -54,18 +54,18 @@ jobs:
       - name: "Get all changed files"
         id: "markdown-files"
         if: "${{ env.IS_PUSH_OR_PULL_REQUEST_EVENT == vars.POSITIVE }}"
-        uses: "tj-actions/changed-files@v45.0.6"
+        uses: "tj-actions/changed-files@v45.0.7"
         with:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Run link checker for all changed files"
         if: "${{ env.IS_PUSH_OR_PULL_REQUEST_EVENT == vars.POSITIVE }}"
-        uses: "lycheeverse/lychee-action@v2.2.0"
+        uses: "lycheeverse/lychee-action@v2.3.0"
         with:
           args: "${{ steps.markdown-files.outputs.all_changed_files }}"
           fail: true
       - name: "Run link checker for all files"
         if: "${{ env.IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT == vars.POSITIVE }}"
-        uses: "lycheeverse/lychee-action@v2.2.0"
+        uses: "lycheeverse/lychee-action@v2.3.0"
         with:
           args: "'**/*.md'"
           fail: true
