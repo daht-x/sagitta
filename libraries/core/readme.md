@@ -140,4 +140,4 @@ Please read and follow our [contributing guidelines](https://github.com/daht-x/s
 ### Contact
 
 - [LinkedIn](https://www.linkedin.com/in/daht-x)
-- [X (Twitter)](https://x.com/_daht_x)
+- [Email (FOSS)](mailto:daht.x.foss@gmail.com)
