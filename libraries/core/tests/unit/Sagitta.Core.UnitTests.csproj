@@ -3,7 +3,7 @@
 		<IsTestProject>true</IsTestProject>
 		<NoWarn>$(NoWarn); CA1707; IDE0005; CA1515</NoWarn>
 		<CoverletOutputFormat>opencover</CoverletOutputFormat>
-		<CoverletOutput>$(ArtifactsPath)/coverage/$(AssemblyName).xml</CoverletOutput>
+		<CoverletOutput>$(ArtifactsPath)/coverage/core.xml</CoverletOutput>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="all" />
