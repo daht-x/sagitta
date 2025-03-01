@@ -70,7 +70,7 @@ jobs:
             -property:'CollectCoverage=${{ env.IS_PUSH_EVENT_TO_MAIN_BRANCH }}'
       - name: "Upload coverage results"
         if: "${{ env.IS_PUSH_EVENT_TO_MAIN_BRANCH == vars.POSITIVE }}"
-        uses: "codecov/codecov-action@v5.3.1"
+        uses: "codecov/codecov-action@v5.4.0"
         with:
           directory: "./artifacts/coverage"
           files: "*.xml"
@@ -102,7 +102,7 @@ jobs:
       NUGET_SEARCH_PATTERN: "*.nupkg"
     steps:
       - name: "Download artifacts"
-        uses: "actions/download-artifact@v4.1.8"
+        uses: "actions/download-artifact@v4.1.9"
         with:
           name: "${{ env.RELEASE_NAME }}"
       - name: "Set up .NET SDK"
