@@ -72,8 +72,7 @@ jobs:
         if: "${{ env.IS_PUSH_EVENT_TO_MAIN_BRANCH == vars.POSITIVE }}"
         uses: "codecov/codecov-action@v5.4.0"
         with:
-          directory: "./artifacts/coverage"
-          files: "*.xml"
+          files: "./artifacts/coverage/core.xml"
           fail_ci_if_error: true
           token: "${{ secrets.CODECOV_TOKEN }}"
       - name: "Build packages"
