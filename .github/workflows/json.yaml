@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
       - name: "Get all changed files"
         id: "json-files"
-        uses: "tj-actions/changed-files@v45.0.7"
+        uses: "tj-actions/changed-files@v45.0.8"
         with:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Set up formatter"
@@ -41,7 +41,7 @@ jobs:
           fetch-depth: 0
       - name: "Get all changed files"
         id: "json-files"
-        uses: "tj-actions/changed-files@v45.0.7"
+        uses: "tj-actions/changed-files@v45.0.8"
         with:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Set up linter"
