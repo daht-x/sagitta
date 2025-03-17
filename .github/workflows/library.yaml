@@ -42,7 +42,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: "Set up .NET SDK"
-        uses: "actions/setup-dotnet@v4.3.0"
+        uses: "actions/setup-dotnet@v4.3.1"
       - name: "Restore dependencies"
         run: "dotnet restore"
       - name: "Get all changed files"
@@ -105,7 +105,7 @@ jobs:
         with:
           name: "${{ env.RELEASE_NAME }}"
       - name: "Set up .NET SDK"
-        uses: "actions/setup-dotnet@v4.3.0"
+        uses: "actions/setup-dotnet@v4.3.1"
       - name: "Publish packages"
         run: |
           dotnet nuget push '${{ env.NUGET_OUTPUT_DIRECTORY }}/${{ env.NUGET_SEARCH_PATTERN }}' \
