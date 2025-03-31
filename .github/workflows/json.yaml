@@ -24,11 +24,11 @@ jobs:
           fetch-depth: 0
       - name: "Get all changed files"
         id: "json-files"
-        uses: "tj-actions/changed-files@v46.0.1"
+        uses: "tj-actions/changed-files@v46.0.3"
         with:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Set up formatter"
-        uses: "biomejs/setup-biome@v2.3.0"
+        uses: "biomejs/setup-biome@v2.5.0"
       - name: "Run formatter for all changed files"
         run: "biome format ${{ steps.json-files.outputs.all_changed_files }}"
   linter:
@@ -41,10 +41,10 @@ jobs:
           fetch-depth: 0
       - name: "Get all changed files"
         id: "json-files"
-        uses: "tj-actions/changed-files@v46.0.1"
+        uses: "tj-actions/changed-files@v46.0.3"
         with:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Set up linter"
-        uses: "biomejs/setup-biome@v2.3.0"
+        uses: "biomejs/setup-biome@v2.5.0"
       - name: "Run linter for all changed files"
         run: "biome lint ${{ steps.json-files.outputs.all_changed_files }}"

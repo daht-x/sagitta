@@ -42,12 +42,12 @@ jobs:
         with:
           fetch-depth: 0
       - name: "Set up .NET SDK"
-        uses: "actions/setup-dotnet@v4.3.0"
+        uses: "actions/setup-dotnet@v4.3.1"
       - name: "Restore dependencies"
         run: "dotnet restore"
       - name: "Get all changed files"
         id: "csharp-files"
-        uses: "tj-actions/changed-files@v46.0.1"
+        uses: "tj-actions/changed-files@v46.0.3"
         with:
           files: "**/*.cs"
       - name: "Run formatter for all changed files"
@@ -84,7 +84,7 @@ jobs:
             -property:"PackageVersion=${GITHUB_REF_NAME#v}" \
             -property:'PackageReleaseNotes=Please see ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.ref_name }}'
       - name: "Upload artifacts"
-        uses: "actions/upload-artifact@v4.6.1"
+        uses: "actions/upload-artifact@v4.6.2"
         if: "${{ env.IS_RELEASE == vars.POSITIVE }}"
         with:
           name: "${{ env.RELEASE_NAME }}"
@@ -101,11 +101,11 @@ jobs:
       NUGET_SEARCH_PATTERN: "*.nupkg"
     steps:
       - name: "Download artifacts"
-        uses: "actions/download-artifact@v4.1.9"
+        uses: "actions/download-artifact@v4.2.1"
         with:
           name: "${{ env.RELEASE_NAME }}"
       - name: "Set up .NET SDK"
-        uses: "actions/setup-dotnet@v4.3.0"
+        uses: "actions/setup-dotnet@v4.3.1"
       - name: "Publish packages"
         run: |
           dotnet nuget push '${{ env.NUGET_OUTPUT_DIRECTORY }}/${{ env.NUGET_SEARCH_PATTERN }}' \
