@@ -8,11 +8,9 @@ run() {
 	dotnet restore
 	local build_configuration='Release'
 	readonly build_configuration
-	dotnet build \
-		--no-restore \
+	dotnet build --no-restore \
 		--configuration "${build_configuration}"
-	dotnet test \
-		--no-build \
+	dotnet test --no-build \
 		--configuration "${build_configuration}"
 	exit $?
 }
