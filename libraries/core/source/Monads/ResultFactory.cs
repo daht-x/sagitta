@@ -11,8 +11,9 @@ public static class ResultFactory
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new failed result if the value of <paramref name="createSuccess" /> throws <typeparamref name="TException" />; otherwise, a new successful result.</returns>
-	public static Result<TFailure, TSuccess> Catch<TException, TFailure, TSuccess>(Func<TSuccess> createSuccess,
-		Func<TException, TFailure> createFailure)
+	public static Result<TFailure, TSuccess> Catch<TException, TFailure, TSuccess>(
+		Func<TSuccess> createSuccess, Func<TException, TFailure> createFailure
+	)
 		where TException : Exception
 	{
 		try
