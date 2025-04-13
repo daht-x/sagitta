@@ -55,6 +55,10 @@
 		"source.organizeImports.biome": "explicit",
 		"source.sort.json": "explicit"
 	},
+	"files.associations": {
+		"license": "text",
+		"nuget.config": "xml"
+	},
 	"markdown.extension.toc.orderedList": true,
 	"markdown.extension.toc.updateOnSave": false,
 	"markdown.occurrencesHighlight.enabled": true,
