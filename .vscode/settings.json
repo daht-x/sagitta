@@ -23,6 +23,7 @@
 	"[yaml]": {
 		"editor.defaultFormatter": "redhat.vscode-yaml"
 	},
+	"biome.enabled": true,
 	"cSpell.ignorePaths": ["node_modules", "pnpm-lock.yaml", ".gitignore", ".editorconfig", ".vscode"],
 	"cSpell.useGitignore": true,
 	"cSpell.words": [
