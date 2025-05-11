@@ -1,9 +1,14 @@
 cache = true
 max_cache_age = "3m"
-max_concurrency = 50
+max_concurrency = 10
+require_https = true
+accept = [
+	'100..=103',
+	'200..=226',
+	'429',
+]
 exclude = [
 	'^https:\/\/www.linkedin.com\/.*$',
 ]
 timeout = 10
 retry_wait_time = 3
-require_https = true
