@@ -1,10 +1,10 @@
 {
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@commitlint/cli": "19.8.0",
-		"@commitlint/types": "19.8.0",
+		"@commitlint/cli": "19.8.1",
+		"@commitlint/types": "19.8.1",
 		"husky": "9.1.7",
-		"lint-staged": "15.5.1",
+		"lint-staged": "16.0.0",
 		"markdownlint-cli": "0.44.0"
 	},
 	"engines": {
