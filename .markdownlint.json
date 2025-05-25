@@ -1,5 +1,6 @@
 {
 	"$schema": "https://raw.githubusercontent.com/DavidAnson/markdownlint/main/schema/markdownlint-config-schema.json",
+	"descriptive-link-text": false,
 	"first-line-heading": true,
 	"heading-style": false,
 	"hr-style": {
