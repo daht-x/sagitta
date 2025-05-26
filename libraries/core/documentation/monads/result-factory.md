@@ -157,7 +157,7 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 - [`Result<TFailure, TSuccess>`](./result.md): Type intended to handle both the possible failure and the expected success
 of a given action.
-- [License](../../../../license)
+- [License](../../../../license.txt)
 - [Security policy](../../../../security.md)
 - [Code of conduct](../../../../code-of-conduct.md)
 - [Contributing guidelines](../../../../contributing.md)

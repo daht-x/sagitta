@@ -57,7 +57,6 @@
 		"source.sort.json": "explicit"
 	},
 	"files.associations": {
-		"license": "text",
 		"nuget.config": "xml"
 	},
 	"markdown.extension.toc.orderedList": true,

@@ -31,7 +31,7 @@ type).
 
 ### Additional resources
 
-- [License](../../../license)
+- [License](../../../license.txt)
 - [Security policy](../../../security.md)
 - [Code of conduct](../../../code-of-conduct.md)
 - [Contributing guidelines](../../../contributing.md)

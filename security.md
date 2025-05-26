@@ -46,7 +46,7 @@ etc. to automatically update dependencies.
 
 ### Additional resources
 
-- [License](./license)
+- [License](./license.txt)
 - [Code of conduct](./code-of-conduct.md)
 - [Contributing guidelines](./contributing.md)
 

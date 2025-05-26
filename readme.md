@@ -27,7 +27,7 @@
 
 ### License
 
-Licensed under the [MIT License](./license).
+Licensed under the [MIT License](./license.txt).
 
 ***[Top](#sagitta)***
 

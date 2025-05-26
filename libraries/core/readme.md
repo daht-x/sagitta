@@ -115,7 +115,7 @@ sequential operations and the handling of side effects.
 
 ### License
 
-Licensed under the [MIT License](https://github.com/daht-x/sagitta/blob/main/license).
+Licensed under the [MIT License](https://github.com/daht-x/sagitta/blob/main/license.txt).
 
 ***[Top](#dahtsagittacore)***
 

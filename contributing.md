@@ -63,6 +63,6 @@ Please read and keep in mind our [security policy](./security.md).
 
 ### Additional resources
 
-- [License](./license)
+- [License](./license.txt)
 
 ***[Top](#contributing-guidelines)***

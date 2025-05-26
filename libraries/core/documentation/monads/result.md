@@ -647,7 +647,7 @@ Type of expected success.
 ### Additional resources
 
 - [`ResultFactory`](./result-factory.md): Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>`](#resulttfailure-tsuccess).
-- [License](../../../../license)
+- [License](../../../../license.txt)
 - [Security policy](../../../../security.md)
 - [Code of conduct](../../../../code-of-conduct.md)
 - [Contributing guidelines](../../../../contributing.md)

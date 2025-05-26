@@ -146,7 +146,7 @@ For answers to common questions about this code of conduct, see the FAQ at
 
 ### Additional resources
 
-- [License](./license)
+- [License](./license.txt)
 - [Security policy](./security.md)
 - [Contributing guidelines](./contributing.md)
 
