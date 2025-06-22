@@ -51,7 +51,7 @@
 		"Xunit"
 	],
 	"editor.codeActionsOnSave": {
-		"quickfix.biome": "explicit",
+		"source.fixAll.biome": "explicit",
 		"source.fixAll.shellcheck": "explicit",
 		"source.organizeImports.biome": "explicit",
 		"source.sort.json": "explicit"
