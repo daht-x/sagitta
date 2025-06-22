@@ -1,6 +1,6 @@
 {
 	"(**.sh|.husky/**)": ["shfmt --write", "shellcheck --severity 'style'"],
-	"**.md": ["markdownlint --fix", "lychee"],
+	"**.md": ["markdownlint-cli2 --fix", "lychee"],
 	"**.{json,js,ts}": "biome check --write",
 	"**.{yaml,yml}": "yamllint --strict",
 	"**/*.cs": "dotnet format --include"
