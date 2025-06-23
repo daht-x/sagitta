@@ -15,13 +15,16 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	public bool IsFailed { get; }
 
 	/// <summary>The possible failure.</summary>
-	public TFailure Failure { get; } = default!;
+	/// <remarks>If the result is not failed, the <see cref="Failure" /> value will be <see langword="default" />.</remarks>
+	public TFailure Failure { get; }
 
 	/// <summary>Indicates whether the status is successful.</summary>
-	public bool IsSuccessful { get; }
+	public bool IsSuccessful
+		=> !IsFailed;
 
 	/// <summary>The expected success.</summary>
-	public TSuccess Success { get; } = default!;
+	/// <remarks>If the result is not successful, the <see cref="Success" /> value will be <see langword="default" />.</remarks>
+	public TSuccess Success { get; }
 
 	/// <summary>Creates a new failed result.</summary>
 	/// <param name="failure">A possible failure.</param>
@@ -29,13 +32,14 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	{
 		IsFailed = true;
 		Failure = failure;
+		Success = default!;
 	}
 
 	/// <summary>Creates a new successful result.</summary>
 	/// <param name="success">An expected success.</param>
 	public Result(TSuccess success)
 	{
-		IsSuccessful = true;
+		Failure = default!;
 		Success = success;
 	}
 
@@ -332,12 +336,20 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	/// <param name="other">The result to compare with the current.</param>
 	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
 	public bool Equals(Result<TFailure, TSuccess>? other)
-		=> other is not null && (IsFailed == other.IsFailed) &&
-			EqualityComparer<TFailure>.Default.Equals(Failure, other.Failure) && (IsSuccessful == other.IsSuccessful) &&
-			EqualityComparer<TSuccess>.Default.Equals(Success, other.Success);
+	{
+		if (other is null)
+		{
+			return false;
+		}
+		return IsFailed == other.IsFailed
+			? EqualityComparer<TFailure>.Default.Equals(Failure, other.Failure)
+			: EqualityComparer<TSuccess>.Default.Equals(Success, other.Success);
+	}
 
 	/// <summary>Gets the hash code based on the primary members of the current result.</summary>
 	/// <returns>The calculated hash code.</returns>
 	public override int GetHashCode()
-		=> HashCode.Combine(IsFailed, Failure, Success, IsSuccessful);
+		=> IsFailed
+			? HashCode.Combine(IsFailed, Failure)
+			: HashCode.Combine(IsSuccessful, Success);
 }
