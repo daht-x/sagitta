@@ -563,7 +563,7 @@ Type of expected success.
   ```
 
 - Description: Discards the expected success.
-- Return: A new result that replaces the expected success by [`Unit`](../unit.md).
+- Return: A new result that replaces the expected success with [`Unit`](../unit.md).
 
 ***[Top](#resulttfailure-tsuccess)***
 

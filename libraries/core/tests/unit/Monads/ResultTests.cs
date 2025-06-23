@@ -791,7 +791,7 @@ public sealed class ResultTests
 	[Trait(@base, memberDiscard)]
 	public void Discard_SuccessfulResult_Unit()
 	{
-		Unit expected = Unit.Discarder;
+		Unit expected = Unit.Default;
 		Result<string, Unit> actual = ResultMother.Succeed(ResultFixture.Success)
 			.Discard();
 		ResultAsserter.CheckIfAreSuccessful(expected, actual);
