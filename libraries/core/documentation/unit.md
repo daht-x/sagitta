@@ -12,17 +12,17 @@ type).
 ## Table of contents
 
 1. [Properties](#properties)
-   - [`Discarder`](#discarder)
+   - [`Default`](#default)
 2. [Additional resources](#additional-resources)
 
 ### Properties
 
-#### `Discarder`
+#### `Default`
 
 - Signature
 
   ```cs
-  public static Unit Discarder { get; }
+  public static Unit Default { get; }
   ```
 
 - Description: The placeholder that indicates the discarding of a specific value.

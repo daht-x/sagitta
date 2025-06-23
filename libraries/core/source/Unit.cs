@@ -9,6 +9,6 @@ namespace Daht.Sagitta.Core;
 public readonly record struct Unit
 {
 	/// <summary>The placeholder that indicates the discarding of a specific value.</summary>
-	public static Unit Discarder
-		=> new();
+	public static Unit Default
+		=> default;
 }

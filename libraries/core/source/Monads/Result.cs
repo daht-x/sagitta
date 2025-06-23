@@ -306,11 +306,11 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: initializerResult;
 
 	/// <summary>Discards the expected success.</summary>
-	/// <returns>A new result that replaces the expected success by <see cref="Unit"/>.</returns>
+	/// <returns>A new result that replaces the expected success with <see cref="Unit"/>.</returns>
 	public Result<TFailure, Unit> Discard()
 		=> IsFailed
 			? new(Failure)
-			: new(Unit.Discarder);
+			: new(Unit.Default);
 
 	/// <summary>Reduces the possible failure or expected success to a single value.</summary>
 	/// <param name="reduceFailure">Creates a possible reduced failure.</param>
