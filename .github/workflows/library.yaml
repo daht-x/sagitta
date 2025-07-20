@@ -53,21 +53,18 @@ jobs:
       - name: "Run formatter for all changed files"
         if: "${{ steps.csharp-files.outputs.any_changed == vars.POSITIVE }}"
         run: |
-           dotnet format \
-            --include ${{ steps.csharp-files.outputs.all_changed_files }} \
+           dotnet format --include ${{ steps.csharp-files.outputs.all_changed_files }} \
             --no-restore \
             --verify-no-changes
       - name: "Build artifacts"
         run: |
-          dotnet build \
-            --no-restore \
+          dotnet build --no-restore \
             --configuration '${{ env.BUILD_CONFIGURATION }}'
-      - name: "Run tests"
+      - name: "Run unit tests"
         run: |
-          dotnet test \
+          dotnet run --project './libraries/core/tests/unit/Sagitta.Core.UnitTests.csproj' \
             --no-build \
-            --configuration '${{ env.BUILD_CONFIGURATION }}' \
-            -property:'CollectCoverage=${{ env.IS_PUSH_EVENT_TO_MAIN_BRANCH }}'
+            --configuration '${{ env.BUILD_CONFIGURATION }}'
       - name: "Upload coverage results"
         if: "${{ env.IS_PUSH_EVENT_TO_MAIN_BRANCH == vars.POSITIVE }}"
         uses: "codecov/codecov-action@v5.4.3"
@@ -78,8 +75,7 @@ jobs:
       - name: "Build packages"
         if: "${{ env.IS_RELEASE == vars.POSITIVE }}"
         run: |
-          dotnet pack \
-            --no-build \
+          dotnet pack --no-build \
             --configuration '${{ env.BUILD_CONFIGURATION }}' \
             -property:"PackageVersion=${GITHUB_REF_NAME#v}" \
             -property:'PackageReleaseNotes=Please see ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.ref_name }}'

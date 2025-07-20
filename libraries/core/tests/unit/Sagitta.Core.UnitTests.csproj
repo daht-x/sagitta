@@ -1,15 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<IsTestProject>true</IsTestProject>
+		<OutputType>exe</OutputType>
+		<UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+		<TestingPlatformCommandLineArguments Condition="'$(GITHUB_ACTIONS)' == 'true'">--coverage --coverage-output-format cobertura --coverage-output $(ArtifactsPath)/coverage/core.xml</TestingPlatformCommandLineArguments>
 		<NoWarn>$(NoWarn); CA1707; IDE0005; CA1515</NoWarn>
-		<CoverletOutputFormat>opencover</CoverletOutputFormat>
-		<CoverletOutput>$(ArtifactsPath)/coverage/core.xml</CoverletOutput>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="all" />
-		<PackageReference Include="xunit" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" />
+		<PackageReference Include="xunit.v3" />
 		<PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
-		<PackageReference Include="coverlet.msbuild" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="../../source/Sagitta.Core.csproj" />

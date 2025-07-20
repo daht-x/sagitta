@@ -12,7 +12,7 @@
 		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
 	},
 	"[shellscript]": {
-		"editor.defaultFormatter": "foxundermoon.shell-format"
+		"editor.defaultFormatter": "mads-hartmann.bash-ide-vscode"
 	},
 	"[typescript]": {
 		"editor.defaultFormatter": "biomejs.biome"

@@ -10,7 +10,8 @@ run() {
 	readonly build_configuration
 	dotnet build --no-restore \
 		--configuration "${build_configuration}"
-	dotnet test --no-build \
+	dotnet run --project './libraries/core/tests/unit/Sagitta.Core.UnitTests.csproj' \
+		--no-build \
 		--configuration "${build_configuration}"
 	exit $?
 }
