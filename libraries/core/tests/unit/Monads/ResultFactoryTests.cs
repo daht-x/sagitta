@@ -3,6 +3,8 @@
 // Licensed under the MIT License. Please refer to the license file in the project root for more information. 
 // ----------------------------------------------------------------------------------------------------------
 
+using Daht.Sagitta.Core.UnitTests.Exceptions;
+
 namespace Daht.Sagitta.Core.UnitTests.Monads;
 
 public sealed class ResultFactoryTests
@@ -21,22 +23,22 @@ public sealed class ResultFactoryTests
 	[Trait(@base, memberCatch)]
 	public void Catch_CreateSuccessPlusCreateFailure_SuccessfulResult()
 	{
-		Constellation expected = ResultFixture.Success;
-		Func<Constellation> createSuccess = () => expected;
-		Func<InvalidOperationException, string> createFailure = exception => exception.Message;
-		Result<string, Constellation> actual = ResultFactory.Catch(createSuccess, createFailure);
-		ResultAsserter.CheckIfAreSuccessful(expected, actual);
+		const sbyte expected = ResultFixture.Success;
+		Func<sbyte> createSuccess = static () => expected;
+		Func<ProofOfConceptException, string> createFailure = static exception => exception.Message;
+		Result<string, sbyte> actual = ResultFactory.Catch(createSuccess, createFailure);
+		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
 	[Fact]
 	[Trait(@base, memberCatch)]
 	public void Catch_ExceptionInCreateSuccessPlusCreateFailure_FailedResult()
 	{
-		Func<Constellation> createSuccess = () => throw new InvalidOperationException();
-		Func<InvalidOperationException, string> createFailure = exception => exception.Message;
-		const string expected = "Operation is not valid due to the current state of the object.";
-		Result<string, Constellation> actual = ResultFactory.Catch(createSuccess, createFailure);
-		ResultAsserter.CheckIfAreFailed(expected, actual);
+		Func<sbyte> createSuccess = static () => throw new ProofOfConceptException();
+		Func<ProofOfConceptException, string> createFailure = static exception => exception.Message;
+		const string expected = ProofOfConceptException.DefaultMessage;
+		Result<string, sbyte> actual = ResultFactory.Catch(createSuccess, createFailure);
+		ResultAsserter.IsFailed(expected, actual);
 	}
 
 	#endregion
@@ -50,8 +52,8 @@ public sealed class ResultFactoryTests
 	public void Fail_Failure_FailedResult()
 	{
 		const string expected = ResultFixture.Failure;
-		Result<string, Constellation> actual = ResultFactory.Fail<string, Constellation>(expected);
-		ResultAsserter.CheckIfAreFailed(expected, actual);
+		Result<string, sbyte> actual = ResultFactory.Fail<string, sbyte>(expected);
+		ResultAsserter.IsFailed(expected, actual);
 	}
 
 	#endregion
@@ -63,9 +65,9 @@ public sealed class ResultFactoryTests
 	public void Fail_CreateFailure_FailedResult()
 	{
 		const string expected = ResultFixture.Failure;
-		Func<string> createFailure = () => expected;
-		Result<string, Constellation> actual = ResultFactory.Fail<string, Constellation>(createFailure);
-		ResultAsserter.CheckIfAreFailed(expected, actual);
+		Func<string> createFailure = static () => expected;
+		Result<string, sbyte> actual = ResultFactory.Fail<string, sbyte>(createFailure);
+		ResultAsserter.IsFailed(expected, actual);
 	}
 
 	#endregion
@@ -80,9 +82,9 @@ public sealed class ResultFactoryTests
 	[Trait(@base, memberSucceed)]
 	public void Succeed_Success_SuccessfulResult()
 	{
-		Constellation expected = ResultFixture.Success;
-		Result<string, Constellation> actual = ResultFactory.Succeed<string, Constellation>(expected);
-		ResultAsserter.CheckIfAreSuccessful(expected, actual);
+		const sbyte expected = ResultFixture.Success;
+		Result<string, sbyte> actual = ResultFactory.Succeed<string, sbyte>(expected);
+		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
 	#endregion
@@ -93,10 +95,10 @@ public sealed class ResultFactoryTests
 	[Trait(@base, memberSucceed)]
 	public void Succeed_CreateSuccess_SuccessfulResult()
 	{
-		Constellation expected = ResultFixture.Success;
-		Func<Constellation> createSuccess = () => expected;
-		Result<string, Constellation> actual = ResultFactory.Succeed<string, Constellation>(createSuccess);
-		ResultAsserter.CheckIfAreSuccessful(expected, actual);
+		const sbyte expected = ResultFixture.Success;
+		Func<sbyte> createSuccess = static () => expected;
+		Result<string, sbyte> actual = ResultFactory.Succeed<string, sbyte>(createSuccess);
+		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
 	#endregion

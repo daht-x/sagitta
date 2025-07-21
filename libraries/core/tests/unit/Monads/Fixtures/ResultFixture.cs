@@ -7,32 +7,15 @@ namespace Daht.Sagitta.Core.UnitTests.Monads.Fixtures;
 
 internal static class ResultFixture
 {
+	internal const char Auxiliary = char.MaxValue;
+
 	internal const string Failure = nameof(Failure);
 
-	internal const string Auxiliary = nameof(Auxiliary);
+	internal const sbyte Success = sbyte.MinValue;
 
-	internal static Start SuccessToMap
-		=> new()
-		{
-			Constellation = Success,
-			Name = "Gamma Sagittae",
-			EvolutionaryStage = "Red Giant"
-		};
+	internal const sbyte SuccessToBind = sbyte.MaxValue;
 
-	internal static Start SuccessToInitialize
-		=> new()
-		{
-			Constellation = Success,
-			Name = "Alpha Sagittae",
-			EvolutionaryStage = "Bright Giant"
-		};
+	internal const short SuccessToMap = short.MinValue;
 
-	internal static Constellation Success
-		=> new()
-		{
-			Galaxy = "Milky Way",
-			Abbreviation = "Sge",
-			Name = "Sagitta",
-			Symbolism = "The arrow"
-		};
+	internal const short SuccessToInitialize = short.MaxValue;
 }

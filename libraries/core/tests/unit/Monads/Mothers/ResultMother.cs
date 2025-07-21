@@ -7,15 +7,15 @@ namespace Daht.Sagitta.Core.UnitTests.Monads.Mothers;
 
 internal static class ResultMother
 {
-	internal static Result<string, Constellation> Fail()
+	internal static Result<string, sbyte> Fail()
 		=> new(ResultFixture.Failure);
 
-	internal static Result<string, Constellation> Fail(string failure)
+	internal static Result<string, sbyte> Fail(string failure)
 		=> new(failure);
 
-	internal static Result<string, Constellation> Succeed()
+	internal static Result<string, sbyte> Succeed()
 		=> new(ResultFixture.Success);
 
-	internal static Result<string, Constellation> Succeed(Constellation success)
+	internal static Result<string, sbyte> Succeed(sbyte success)
 		=> new(success);
 }
