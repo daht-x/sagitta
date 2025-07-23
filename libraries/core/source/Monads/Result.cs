@@ -341,7 +341,11 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		{
 			return false;
 		}
-		return IsFailed == other.IsFailed
+		if (IsFailed != other.IsFailed)
+		{
+			return false;
+		}
+		return IsFailed
 			? EqualityComparer<TFailure>.Default.Equals(Failure, other.Failure)
 			: EqualityComparer<TSuccess>.Default.Equals(Success, other.Success);
 	}
