@@ -27,11 +27,11 @@ Support will be available for both **LTS** and **STS** releases of the .NET plat
 
 ***Please do not report security vulnerabilities through public GitHub issues***
 
-Please send an [Email (FOSS)](mailto:daht.x.foss@gmail.com) and
-include as much of the requested information as possible, as detailed below:
+Please send an email to [daht.x.foss@gmail.com](mailto:daht.x.foss@gmail.com) and include as much of the requested
+information as possible, as detailed below:
 
 - Type of vulnerability.
-- The location of the affected source code (git details (tag, branch, commit) and full paths of source files(s)).
+- Location of the affected source code, including Git details (e.g., tag, branch and commit) and full file path(s).
 - Environment setup, instructions, and proof of concept (if possible) to reproduce or replicate the issue.
 
 ***[Top](#security-policy)***

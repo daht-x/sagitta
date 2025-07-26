@@ -52,4 +52,4 @@ Please read and follow our [contributing guidelines](./contributing.md).
 ### Contact
 
 - [LinkedIn](https://www.linkedin.com/in/daht-x)
-- [Email (FOSS)](mailto:daht.x.foss@gmail.com)
+- Email (FOSS): [daht.x.foss@gmail.com](mailto:daht.x.foss@gmail.com)
