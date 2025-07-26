@@ -69,6 +69,17 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	public static implicit operator Result<TFailure, TSuccess>(TSuccess success)
 		=> new(success);
 
+	/// <summary>Deconstructs the root state of the result.</summary>
+	/// <param name="isFailed">Indicates whether the status is failed.</param>
+	/// <param name="failure">The possible failure.</param>
+	/// <param name="success">The expected success.</param>
+	public void Deconstruct(out bool isFailed, out TFailure failure, out TSuccess success)
+	{
+		isFailed = IsFailed;
+		failure = Failure;
+		success = Success;
+	}
+
 	/// <summary>Treats <typeparamref name="TException" /> as a new failed result.</summary>
 	/// <param name="execute">The action to execute.</param>
 	/// <param name="createFailure">Creates a possible failure.</param>

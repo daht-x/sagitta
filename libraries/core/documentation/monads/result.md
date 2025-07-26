@@ -28,6 +28,7 @@ Type intended to handle both the possible failure and the expected success of a 
    - [`Result<TFailure, TSuccess>(failure)`](#resulttfailure-tsuccessfailure)
    - [`Result<TFailure, TSuccess>(success)`](#resulttfailure-tsuccesssuccess)
 6. [Methods](#methods)
+   - [`Deconstruct(isFailed, failure, success)`](#deconstructisfailed-failure-success)
    - [`Catch<TException>(execute, createFailure)`](#catchtexceptionexecute-createfailure)
    - [`Catch<TException>(createSuccess, createFailure)`](#catchtexceptioncreatesuccess-createfailure)
    - [`Ensure(predicate, failure)`](#ensurepredicate-failure)
@@ -235,6 +236,23 @@ Type of expected success.
 ***[Top](#resulttfailure-tsuccess)***
 
 ### Methods
+
+#### `Deconstruct(isFailed, failure, success)`
+
+- Signature:
+
+  ```cs
+   public void Deconstruct(out bool isFailed, out TFailure failure, out TSuccess success)
+  ```
+
+- Description: Deconstructs the root state of the result.
+- Parameters:
+
+  | Name       | Description                            |
+  |:-----------|:---------------------------------------|
+  | `isFailed` | Indicates whether the status is failed |
+  | `failure`  | The possible failure                   |
+  | `success`  | The expected success                   |
 
 #### `Catch<TException>(execute, createFailure)`
 

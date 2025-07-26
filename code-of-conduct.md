@@ -80,7 +80,7 @@ representative at an online or offline event.
 ### Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at [David Hernández - Email (FOSS)](mailto:daht.x.foss@gmail.com).
+reported to the community leaders responsible for enforcement at [daht.x.foss@gmail.com](mailto:daht.x.foss@gmail.com).
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
