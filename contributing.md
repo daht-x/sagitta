@@ -1,5 +1,8 @@
 # Contributing guidelines
 
+[issue-templates]: https://github.com/daht-x/sagitta/issues/new/choose
+[new-issue]: https://github.com/daht-x/sagitta/issues/new
+
 ***[home](./readme.md) /***
 
 ## Table of contents
@@ -39,9 +42,6 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 - All enhancements, features or bug fixes must be tested.
 
 ***[Top](#contributing-guidelines)***
-
-[issue-templates]: https://github.com/daht-x/sagitta/issues/new/choose
-[new-issue]: https://github.com/daht-x/sagitta/issues/new
 
 ### Bug report
 

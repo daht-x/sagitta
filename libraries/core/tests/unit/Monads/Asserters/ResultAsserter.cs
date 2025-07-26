@@ -14,7 +14,7 @@ internal static class ResultAsserter
 		Assert.True(actual.IsFailed);
 		Assert.False(actual.IsSuccessful);
 		Assert.Equal(expected, actual.Failure);
-		Assert.Equal(default, actual.Success);
+		_ = Assert.Throws<InvalidOperationException>(() => actual.Success);
 	}
 
 	internal static void IsSuccessful<TFailure, TSuccess>(TSuccess expected, Result<TFailure, TSuccess> actual)
@@ -23,7 +23,7 @@ internal static class ResultAsserter
 		Assert.NotNull(actual);
 		Assert.False(actual.IsFailed);
 		Assert.True(actual.IsSuccessful);
-		Assert.Equal(default, actual.Failure);
+		_ = Assert.Throws<InvalidOperationException>(() => actual.Failure);
 		Assert.Equal(expected, actual.Success);
 	}
 }
