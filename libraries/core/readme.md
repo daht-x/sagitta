@@ -1,5 +1,10 @@
 # Daht.Sagitta.Core
 
+[unit]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/unit.md
+[void]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/void
+[result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result.md
+[result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result-factory.md
+
 ***[home](https://github.com/daht-x/sagitta/blob/main/readme.md) / packages /***
 
 ***Functional paradigm abstractions for .NET - Core***
@@ -89,9 +94,6 @@ For more information, please see [here](https://learn.microsoft.com/en-us/nuget/
 
 Set of structures that act as integrations and complements for the pre-existing modules.
 
-[unit]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/unit.md
-[void]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/void
-
 | Type           | Description                                                                                              |
 |:---------------|:---------------------------------------------------------------------------------------------------------|
 | [`Unit`][unit] | Type intended to handle the absence of a specific value (explicit simulation of the [`void`][void] type) |
@@ -102,9 +104,6 @@ Set of structures that act as integrations and complements for the pre-existing 
 
 Set of structures that provide ways to handle the state of an element through the composition of
 sequential operations and the handling of side effects.
-
-[result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result.md
-[result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result-factory.md
 
 | Type                                   | Description                                                                                  |
 |:---------------------------------------|:---------------------------------------------------------------------------------------------|

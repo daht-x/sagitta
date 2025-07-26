@@ -1,5 +1,7 @@
 # `Result<TFailure, TSuccess>`
 
+[invalid-operation-exception]: https://learn.microsoft.com/en-us/dotnet/api/system.invalidoperationexception
+
 ***[home](../../../../readme.md) / packages /  [core](../../readme.md) / monads /***
 
 ```cs
@@ -86,6 +88,7 @@ Type of expected success.
   ```
 
 - Description: The possible failure.
+- Remarks: If the result is not failed, `Failure` throws [`InvalidOperationException`][invalid-operation-exception].
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -110,6 +113,7 @@ Type of expected success.
   ```
 
 - Description: The expected success.
+- Remarks: If the result is not successful, `Success` throws [`InvalidOperationException`][invalid-operation-exception].
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -242,7 +246,7 @@ Type of expected success.
 - Signature:
 
   ```cs
-   public void Deconstruct(out bool isFailed, out TFailure failure, out TSuccess success)
+   public void Deconstruct(out bool isFailed, out TFailure? failure, out TSuccess? success)
   ```
 
 - Description: Deconstructs the root state of the result.

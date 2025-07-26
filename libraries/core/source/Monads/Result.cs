@@ -12,36 +12,44 @@ namespace Daht.Sagitta.Core.Monads;
 public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSuccess>>
 {
 	/// <summary>Indicates whether the status is failed.</summary>
+	[MemberNotNullWhen(true, nameof(failure))]
 	public bool IsFailed { get; }
 
+	private readonly TFailure? failure;
+
 	/// <summary>The possible failure.</summary>
-	/// <remarks>If the result is not failed, the <see cref="Failure" /> value will be <see langword="default" />.</remarks>
-	public TFailure Failure { get; }
+	/// <remarks>If the result is not failed, the <see cref="Failure" /> throws <see cref="InvalidOperationException" />.</remarks>
+	/// <exception cref="InvalidOperationException"/>
+	public TFailure Failure => !IsFailed
+		? throw new InvalidOperationException("The failure cannot be accessed when the state is successful.")
+		: this.failure;
 
 	/// <summary>Indicates whether the status is successful.</summary>
+	[MemberNotNullWhen(true, nameof(success))]
 	public bool IsSuccessful
 		=> !IsFailed;
 
+	private readonly TSuccess? success;
+
 	/// <summary>The expected success.</summary>
-	/// <remarks>If the result is not successful, the <see cref="Success" /> value will be <see langword="default" />.</remarks>
-	public TSuccess Success { get; }
+	/// <remarks>If the result is not successful, the <see cref="Success" /> throws <see cref="InvalidOperationException" />.</remarks>
+	/// <exception cref="InvalidOperationException" />
+	public TSuccess Success => !IsSuccessful
+		? throw new InvalidOperationException("The success cannot be accessed when the state is failed.")
+		: this.success!;
 
 	/// <summary>Creates a new failed result.</summary>
 	/// <param name="failure">A possible failure.</param>
 	public Result(TFailure failure)
 	{
 		IsFailed = true;
-		Failure = failure;
-		Success = default!;
+		this.failure = failure;
 	}
 
 	/// <summary>Creates a new successful result.</summary>
 	/// <param name="success">An expected success.</param>
 	public Result(TSuccess success)
-	{
-		Failure = default!;
-		Success = success;
-	}
+		=> this.success = success;
 
 	/// <summary>Determines whether the left result is not equal to the right result (equality is determined by value).</summary>
 	/// <param name="left">The main result.</param>
@@ -73,11 +81,11 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	/// <param name="isFailed">Indicates whether the status is failed.</param>
 	/// <param name="failure">The possible failure.</param>
 	/// <param name="success">The expected success.</param>
-	public void Deconstruct(out bool isFailed, out TFailure failure, out TSuccess success)
+	public void Deconstruct(out bool isFailed, out TFailure? failure, out TSuccess? success)
 	{
 		isFailed = IsFailed;
-		failure = Failure;
-		success = Success;
+		failure = this.failure;
+		success = this.success;
 	}
 
 	/// <summary>Treats <typeparamref name="TException" /> as a new failed result.</summary>

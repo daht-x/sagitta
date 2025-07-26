@@ -223,7 +223,7 @@ public sealed class ResultTests
 	{
 		const string expectedFailure = ResultFixture.Failure;
 		Result<string, sbyte> actual = ResultMother.Fail(expectedFailure);
-		(bool isFailed, string failure, sbyte success) = actual;
+		(bool isFailed, string? failure, sbyte success) = actual;
 		Assert.True(isFailed);
 		Assert.Equal(expectedFailure, failure);
 		Assert.Equal(default, success);
@@ -235,7 +235,7 @@ public sealed class ResultTests
 	{
 		const sbyte expectedSuccess = ResultFixture.Success;
 		Result<string, sbyte> actual = ResultMother.Succeed(expectedSuccess);
-		(bool isFailed, string failure, sbyte success) = actual;
+		(bool isFailed, string? failure, sbyte success) = actual;
 		Assert.False(isFailed);
 		Assert.Null(failure);
 		Assert.Equal(expectedSuccess, success);
