@@ -88,6 +88,24 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		success = this.success;
 	}
 
+	/// <summary>Determines whether the result represents a failure.</summary>
+	/// <param name="output">The possible failure.</param>
+	/// <returns><see langword="true" /> if the result is failed; otherwise, <see langword="false" />.</returns>
+	public bool TryGetFailure([NotNullWhen(true)] out TFailure? output)
+	{
+		output = this.failure;
+		return IsFailed;
+	}
+
+	/// <summary>Determines whether the result represents a success.</summary>
+	/// <param name="output">The expected success.</param>
+	/// <returns><see langword="true" /> if the result is successful; otherwise, <see langword="false" />.</returns>
+	public bool TryGetSuccess([NotNullWhen(true)] out TSuccess? output)
+	{
+		output = this.success;
+		return IsSuccessful;
+	}
+
 	/// <summary>Treats <typeparamref name="TException" /> as a new failed result.</summary>
 	/// <param name="execute">The action to execute.</param>
 	/// <param name="createFailure">Creates a possible failure.</param>

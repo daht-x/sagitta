@@ -5,7 +5,7 @@
 ***[home](../../../../readme.md) / packages /  [core](../../readme.md) / monads /***
 
 ```cs
-public sealed class Result<TFailure, TSuccess>
+public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSuccess>>
  ```
 
 Type intended to handle both the possible failure and the expected success of a given action.
@@ -31,6 +31,8 @@ Type intended to handle both the possible failure and the expected success of a 
    - [`Result<TFailure, TSuccess>(success)`](#resulttfailure-tsuccesssuccess)
 6. [Methods](#methods)
    - [`Deconstruct(isFailed, failure, success)`](#deconstructisfailed-failure-success)
+   - [`TryGetFailure(output)`](#trygetfailureoutput)
+   - [`TryGetSuccess(output)`](#trygetsuccessoutput)
    - [`Catch<TException>(execute, createFailure)`](#catchtexceptionexecute-createfailure)
    - [`Catch<TException>(createSuccess, createFailure)`](#catchtexceptioncreatesuccess-createfailure)
    - [`Ensure(predicate, failure)`](#ensurepredicate-failure)
@@ -246,7 +248,7 @@ Type of expected success.
 - Signature:
 
   ```cs
-   public void Deconstruct(out bool isFailed, out TFailure? failure, out TSuccess? success)
+  public void Deconstruct(out bool isFailed, out TFailure? failure, out TSuccess? success)
   ```
 
 - Description: Deconstructs the root state of the result.
@@ -257,6 +259,46 @@ Type of expected success.
   | `isFailed` | Indicates whether the status is failed |
   | `failure`  | The possible failure                   |
   | `success`  | The expected success                   |
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `TryGetFailure(output)`
+
+- Signature:
+
+  ```cs
+  public bool TryGetFailure(out TFailure? output)
+  ```
+
+- Description: Determines whether the result represents a failure.
+- Parameters:
+
+  | Name       | Description                            |
+  |:-----------|:---------------------------------------|
+  | `output` | The possible failure. |
+
+- Return: `true` if the result is failed; otherwise, `false`.
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `TryGetSuccess(output)`
+
+- Signature:
+
+  ```cs
+  public bool TryGetSuccess(out TSuccess? output)
+  ```
+
+- Description: Determines whether the result represents a success.
+- Parameters:
+
+  | Name       | Description                            |
+  |:-----------|:---------------------------------------|
+  | `output` | The expected success. |
+
+- Return: `true` if the result is successful; otherwise, `false`.
+
+***[Top](#resulttfailure-tsuccess)***
 
 #### `Catch<TException>(execute, createFailure)`
 

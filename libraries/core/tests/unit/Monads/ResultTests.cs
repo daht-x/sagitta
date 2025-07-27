@@ -3,8 +3,6 @@
 // Licensed under the MIT License. Please refer to the license file in the project root for more information. 
 // ----------------------------------------------------------------------------------------------------------
 
-using Daht.Sagitta.Core.UnitTests.Exceptions;
-
 namespace Daht.Sagitta.Core.UnitTests.Monads;
 
 public sealed class ResultTests
@@ -18,6 +16,10 @@ public sealed class ResultTests
 	private const string memberConstructor = "Constructor";
 
 	private const string memberImplicitOperator = "Implicit Operator";
+
+	private const string memberTryGetFailure = nameof(Result<object, object>.TryGetFailure);
+
+	private const string memberTryGetSuccess = nameof(Result<object, object>.TryGetSuccess);
 
 	private const string memberDeconstruct = nameof(Result<object, object>.Deconstruct);
 
@@ -239,6 +241,56 @@ public sealed class ResultTests
 		Assert.False(isFailed);
 		Assert.Null(failure);
 		Assert.Equal(expectedSuccess, success);
+	}
+
+	#endregion
+
+	#region TryGetFailure
+
+	[Fact]
+	[Trait(@base, memberTryGetFailure)]
+	public void TryGetFailure_SuccessfulResult_False()
+	{
+		Result<string, sbyte> actual = ResultMother.Succeed();
+		bool status = actual.TryGetFailure(out string? output);
+		Assert.False(status);
+		Assert.Null(output);
+	}
+
+	[Fact]
+	[Trait(@base, memberTryGetFailure)]
+	public void TryGetFailure_FailedResult_True()
+	{
+		const string expected = ResultFixture.Failure;
+		Result<string, sbyte> actual = ResultMother.Fail(expected);
+		bool status = actual.TryGetFailure(out string? output);
+		Assert.True(status);
+		Assert.Equal(expected, output);
+	}
+
+	#endregion
+
+	#region TryGetSuccess
+
+	[Fact]
+	[Trait(@base, memberTryGetSuccess)]
+	public void TryGetSuccess_FailedResult_False()
+	{
+		Result<string, sbyte> actual = ResultMother.Fail();
+		bool status = actual.TryGetSuccess(out sbyte output);
+		Assert.False(status);
+		Assert.Equal(default, output);
+	}
+
+	[Fact]
+	[Trait(@base, memberTryGetSuccess)]
+	public void TryGetSuccess_SuccessfulResult_True()
+	{
+		const sbyte expected = ResultFixture.Success;
+		Result<string, sbyte> actual = ResultMother.Succeed(expected);
+		bool status = actual.TryGetSuccess(out sbyte output);
+		Assert.True(status);
+		Assert.Equal(expected, output);
 	}
 
 	#endregion
