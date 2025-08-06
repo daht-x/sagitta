@@ -97,7 +97,7 @@ jobs:
       NUGET_SEARCH_PATTERN: "*.nupkg"
     steps:
       - name: "Download artifacts"
-        uses: "actions/download-artifact@v4.3.0"
+        uses: "actions/download-artifact@v5.0.0"
         with:
           name: "${{ env.RELEASE_NAME }}"
       - name: "Set up .NET SDK"
