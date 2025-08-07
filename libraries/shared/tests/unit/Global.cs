@@ -3,11 +3,5 @@
 // Licensed under the MIT License. Please refer to the license file in the project root for more information. 
 // ----------------------------------------------------------------------------------------------------------
 
-namespace Daht.Sagitta.Core.UnitTests.Analysis;
-
-internal static class AnalysisRules
-{
-	internal const string AvoidDeadConditionalCode = "CA1508: Avoid dead conditional code";
-
-	internal const string ImplementStandardExceptionConstructors = "CA1032: Implement standard exception constructors";
-}
+global using System.Diagnostics.CodeAnalysis;
+global using Daht.Sagitta.Shared.Analysis;
