@@ -70,7 +70,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	/// <param name="right">The result to compare.</param>
 	/// <returns><see langword="true" /> if the left result is equal to the right result; otherwise, <see langword="false" />.</returns>
 	public static bool operator ==(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
-		=> (left is null && right is null) || (left is not null && right is not null && left.Equals(right));
+		=> (left is null && right is null) || (left is not null && left.Equals(right));
 
 	/// <summary>Creates a new failed result.</summary>
 	/// <param name="failure">A possible failure.</param>
