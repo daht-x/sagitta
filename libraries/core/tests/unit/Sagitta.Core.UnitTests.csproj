@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<IsPackable>false</IsPackable>
 		<OutputType>exe</OutputType>
 		<UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
 		<TestingPlatformCommandLineArguments Condition="'$(GITHUB_ACTIONS)' == 'true'">--coverage --coverage-output-format cobertura --coverage-output $(ArtifactsPath)/coverage/core.xml</TestingPlatformCommandLineArguments>
@@ -13,8 +14,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="../../source/Sagitta.Core.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Exceptions\" />
+		<ProjectReference Include="../../../shared/tests/unit/Sagitta.Shared.UnitTests.csproj" />
 	</ItemGroup>
 </Project>
