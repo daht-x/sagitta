@@ -5,7 +5,7 @@
 
 namespace Daht.Sagitta.Core.Monads;
 
-/// <summary>Type intended to expose a set of ways to initialize <see cref="Result{TFailure,TSuccess}" />.</summary>
+/// <summary>Provide global factory methods to initialize <see cref="Result{TFailure,TSuccess}" />.</summary>
 [SuppressMessage(DesignAnalysisCategory.Name, DesignAnalysisCategory.Rules.ValidateArgumentsOfPublicMethods)]
 public static class ResultFactory
 {
@@ -32,7 +32,7 @@ public static class ResultFactory
 	}
 
 	/// <summary>Creates a new failed result.</summary>
-	/// <param name="failure">A possible failure.</param>
+	/// <param name="failure">The possible failure.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new failed result.</returns>
@@ -48,7 +48,7 @@ public static class ResultFactory
 		=> new(createFailure());
 
 	/// <summary>Creates a new successful result.</summary>
-	/// <param name="success">An expected success.</param>
+	/// <param name="success">The expected success.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new successful result.</returns>

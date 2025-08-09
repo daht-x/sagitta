@@ -5,7 +5,8 @@
 
 namespace Daht.Sagitta.Core.Monads;
 
-/// <summary>Type intended to handle both the possible failure and the expected success of a given action.</summary>
+/// <summary>Encapsulates both a possible failure and an expected success for a given action.</summary>
+/// <remarks>Type intended to handle both value and reference types.</remarks>
 /// <typeparam name="TFailure">Type of possible failure.</typeparam>
 /// <typeparam name="TSuccess">Type of expected success.</typeparam>
 [SuppressMessage(DesignAnalysisCategory.Name, DesignAnalysisCategory.Rules.ValidateArgumentsOfPublicMethods)]
@@ -19,7 +20,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	private readonly TFailure? failure;
 
 	/// <summary>The possible failure.</summary>
-	/// <remarks>If the result is not failed, the <see cref="Failure" /> throws <see cref="InvalidOperationException" />.</remarks>
+	/// <remarks>If the result is not failed, accessing <see cref="Failure" /> throws an <see cref="InvalidOperationException" />.</remarks>
 	/// <exception cref="InvalidOperationException"/>
 	public TFailure Failure
 		=> !IsFailed
@@ -35,7 +36,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	private readonly TSuccess? success;
 
 	/// <summary>The expected success.</summary>
-	/// <remarks>If the result is not successful, the <see cref="Success" /> throws <see cref="InvalidOperationException" />.</remarks>
+	/// <remarks>If the result is not successful, accessing <see cref="Success" /> throws an <see cref="InvalidOperationException" />.</remarks>
 	/// <exception cref="InvalidOperationException" />
 	public TSuccess Success
 		=> !IsSuccessful
@@ -43,7 +44,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: this.success;
 
 	/// <summary>Creates a new failed result.</summary>
-	/// <param name="failure">A possible failure.</param>
+	/// <param name="failure">The possible failure.</param>
 	public Result(TFailure failure)
 	{
 		IsFailed = true;
@@ -51,21 +52,21 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	}
 
 	/// <summary>Creates a new successful result.</summary>
-	/// <param name="success">An expected success.</param>
+	/// <param name="success">The expected success.</param>
 	public Result(TSuccess success)
 	{
 		IsFailed = false;
 		this.success = success;
 	}
 
-	/// <summary>Determines whether the left result is not equal to the right result (equality is determined by value).</summary>
+	/// <summary>Determines whether the left result is not equal to the right result.</summary>
 	/// <param name="left">The main result.</param>
 	/// <param name="right">The result to compare.</param>
 	/// <returns><see langword="true" /> if the left result is not equal to the right result; otherwise, <see langword="false" />.</returns>
 	public static bool operator !=(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
 		=> !(left == right);
 
-	/// <summary>Determines whether the left result is equal to the right result (equality is determined by value).</summary>
+	/// <summary>Determines whether the left result is equal to the right result.</summary>
 	/// <param name="left">The main result.</param>
 	/// <param name="right">The result to compare.</param>
 	/// <returns><see langword="true" /> if the left result is equal to the right result; otherwise, <see langword="false" />.</returns>
@@ -73,13 +74,13 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		=> (left is null && right is null) || (left is not null && left.Equals(right));
 
 	/// <summary>Creates a new failed result.</summary>
-	/// <param name="failure">A possible failure.</param>
+	/// <param name="failure">The possible failure.</param>
 	/// <returns>A new failed result.</returns>
 	public static implicit operator Result<TFailure, TSuccess>(TFailure failure)
 		=> new(failure);
 
 	/// <summary>Creates a new successful result.</summary>
-	/// <param name="success">An expected success.</param>
+	/// <param name="success">The expected success.</param>
 	/// <returns>A new successful result.</returns>
 	public static implicit operator Result<TFailure, TSuccess>(TSuccess success)
 		=> new(success);
@@ -162,7 +163,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 
 	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
 	/// <param name="predicate">Creates a set of criteria.</param>
-	/// <param name="failure">A possible failure.</param>
+	/// <param name="failure">The possible failure.</param>
 	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
 	public Result<TFailure, TSuccess> Ensure(Func<TSuccess, bool> predicate, TFailure failure)
 	{
@@ -191,7 +192,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	}
 
 	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
-	/// <param name="auxiliary">An auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
+	/// <param name="auxiliary"> auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
 	/// <param name="createFailure">Creates a possible failure.</param>
 	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
@@ -314,7 +315,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	}
 
 	/// <summary>Maps the expected success to a value of another type.</summary>
-	/// <param name="successToMap">An expected success to map.</param>
+	/// <param name="successToMap">The expected success to map.</param>
 	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(TSuccessToMap successToMap)
@@ -343,7 +344,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: createResultToBind(this.success);
 
 	/// <summary>Resets the state of the expected success.</summary>
-	/// <param name="initializerResult">A new initializer result.</param>
+	/// <param name="initializerResult">The initializer result.</param>
 	/// <typeparam name="TSuccessInitializer">Type of expected success that acts as initializer.</typeparam>
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TSuccessInitializer> Reset<TSuccessInitializer>(
@@ -370,14 +371,14 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			? reduceFailure(this.failure)
 			: reduceSuccess(this.success);
 
-	/// <summary>Determines whether the specified result is equal to the current result (equality is determined by value).</summary>
-	/// <param name="obj">The result to compare with the current.</param>
+	/// <summary>Determines whether the specified result is equal to the current result.</summary>
+	/// <param name="obj">The result to compare with the current reference.</param>
 	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
 	public override bool Equals(object? obj)
 		=> obj is Result<TFailure, TSuccess> other && Equals(other);
 
-	/// <summary>Determines whether the specified result is equal to the current result (equality is determined by value).</summary>
-	/// <param name="other">The result to compare with the current.</param>
+	/// <summary>Determines whether the specified result is equal to the current result.</summary>
+	/// <param name="other">The result to compare with the current reference.</param>
 	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
 	public bool Equals(Result<TFailure, TSuccess>? other)
 	{

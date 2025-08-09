@@ -5,7 +5,8 @@
 
 namespace Daht.Sagitta.Core.Monads;
 
-/// <summary>Type intended to handle both the possible failure and the expected success of a given action.</summary>
+/// <summary>Encapsulates both a possible failure and an expected success for a given action.</summary>
+/// <remarks>Type intended to handle only value types.</remarks>
 /// <typeparam name="TFailure">Type of possible failure.</typeparam>
 /// <typeparam name="TSuccess">Type of expected success.</typeparam>
 [StructLayout(LayoutKind.Auto)]
@@ -21,13 +22,13 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	private readonly TFailure failure;
 
 	/// <summary>The possible failure.</summary>
-	/// <remarks>If the result is <see langword="default" /> (uninitialized) or not failed, the <see cref="Failure" /> throws <see cref="InvalidOperationException" />.</remarks>
+	/// <remarks>If the result is <see langword="default" /> (uninitialized) or not failed, accessing <see cref="Failure" /> throws an <see cref="InvalidOperationException" />.</remarks>
 	/// <exception cref="InvalidOperationException"/>
 	public TFailure Failure
 	{
 		get
 		{
-			ThrowIfIsDefault();
+			ThrowInvalidOperationExceptionIfIsDefault();
 			if (!IsFailed)
 			{
 				throw new InvalidOperationException(ResultExceptionMessages.AccessToFailureWhenSuccessful);
@@ -39,13 +40,13 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	private readonly TSuccess success;
 
 	/// <summary>The expected success.</summary>
-	/// <remarks>If the result is <see langword="default" /> (uninitialized) or not successful, the <see cref="Success" /> throws <see cref="InvalidOperationException" />.</remarks>
+	/// <remarks>If the result is <see langword="default" /> (uninitialized) or not successful, accessing <see cref="Success" /> throws an <see cref="InvalidOperationException" />.</remarks>
 	/// <exception cref="InvalidOperationException" />
 	public TSuccess Success
 	{
 		get
 		{
-			ThrowIfIsDefault();
+			ThrowInvalidOperationExceptionIfIsDefault();
 			if (IsFailed)
 			{
 				throw new InvalidOperationException(ResultExceptionMessages.AccessToSuccessWhenFailed);
@@ -71,7 +72,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 		=> left.Equals(right);
 
 	/// <summary>Creates a new failed result.</summary>
-	/// <param name="failure">A possible failure.</param>
+	/// <param name="failure">The possible failure.</param>
 	public ValueResult(TFailure failure)
 	{
 		Unsafe.SkipInit(out this.success);
@@ -81,7 +82,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	}
 
 	/// <summary>Creates a new successful result.</summary>
-	/// <param name="success">An expected success.</param>
+	/// <param name="success">The expected success.</param>
 	public ValueResult(TSuccess success)
 	{
 		Unsafe.SkipInit(out this.failure);
@@ -91,7 +92,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	}
 
 	/// <summary>Creates a new failed result.</summary>
-	/// <param name="failure">A possible failure.</param>
+	/// <param name="failure">The possible failure.</param>
 	/// <returns>A new failed result.</returns>
 	[Pure]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -99,7 +100,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 		=> new(failure);
 
 	/// <summary>Creates a new successful result.</summary>
-	/// <param name="success">An expected success.</param>
+	/// <param name="success">The expected success.</param>
 	/// <returns>A new successful result.</returns>
 	[Pure]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -137,40 +138,40 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	}
 
 	/// <summary>Deconstructs the root state of the result.</summary>
-	/// <remarks>If the result is <see langword="default" /> (uninitialized), <see cref="InvalidOperationException" /> is thrown.</remarks>
+	/// <remarks>If the result is <see langword="default" /> (uninitialized), an <see cref="InvalidOperationException" /> will be thrown.</remarks>
 	/// <param name="isFailed">Indicates whether the status is failed.</param>
 	/// <param name="failure">The possible failure.</param>
 	/// <param name="success">The expected success.</param>
 	/// <exception cref="InvalidOperationException" />
 	public void Deconstruct(out bool isFailed, out TFailure failure, out TSuccess success)
 	{
-		ThrowIfIsDefault();
+		ThrowInvalidOperationExceptionIfIsDefault();
 		isFailed = IsFailed;
 		failure = this.failure;
 		success = this.success;
 	}
 
 	/// <summary>Discards the expected success.</summary>
-	/// <remarks>If the result is <see langword="default" /> (uninitialized), <see cref="InvalidOperationException" /> is thrown.</remarks>
+	/// <remarks>If the result is <see langword="default" /> (uninitialized), an <see cref="InvalidOperationException" /> will be thrown.</remarks>
 	/// <returns>A new result that replaces the expected success with <see cref="Unit"/>.</returns>
 	/// <exception cref="InvalidOperationException" />
 	public ValueResult<TFailure, Unit> Discard()
 	{
-		ThrowIfIsDefault();
+		ThrowInvalidOperationExceptionIfIsDefault();
 		return IsFailed
 			? new(this.failure)
 			: new(Unit.Default);
 	}
 
 	/// <summary>Determines whether the specified result is equal to the current result.</summary>
-	/// <param name="obj">The result to compare with the current.</param>
+	/// <param name="obj">The result to compare with the current reference.</param>
 	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
 	[Pure]
 	public override bool Equals(object? obj)
 		=> obj is ValueResult<TFailure, TSuccess> other && Equals(other);
 
 	/// <summary>Determines whether the specified result is equal to the current result.</summary>
-	/// <param name="other">The result to compare with the current.</param>
+	/// <param name="other">The result to compare with the current reference.</param>
 	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
 	[Pure]
 	public bool Equals(ValueResult<TFailure, TSuccess> other)
@@ -218,7 +219,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	}
 
 	[StackTraceHidden]
-	private void ThrowIfIsDefault()
+	private void ThrowInvalidOperationExceptionIfIsDefault()
 	{
 		if (this.isInitialized)
 		{
