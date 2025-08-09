@@ -13,6 +13,7 @@ public static class DesignAnalysisCategory
 	{
 		public const string ValidateArgumentsOfPublicMethods = "CA1062: Validate arguments of public methods";
 
-		public const string ImplementStandardExceptionConstructors = "CA1032: Implement standard exception constructors";
+		public const string ImplementStandardExceptionConstructors =
+			"CA1032: Implement standard exception constructors";
 	}
 }

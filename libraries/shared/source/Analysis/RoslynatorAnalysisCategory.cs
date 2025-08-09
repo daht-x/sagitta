@@ -14,4 +14,3 @@ public static class RoslynatorAnalysisCategory
 		public const string ImplementExceptionConstructors = "RCS1194:Implement exception constructors";
 	}
 }
-

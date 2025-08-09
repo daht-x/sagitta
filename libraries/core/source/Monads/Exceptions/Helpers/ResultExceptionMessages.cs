@@ -7,7 +7,8 @@ namespace Daht.Sagitta.Core.Monads.Exceptions.Helpers;
 
 internal static class ResultExceptionMessages
 {
-	internal const string AccessToFailureWhenSuccessful = "The failure cannot be accessed when the state is successful.";
+	internal const string AccessToFailureWhenSuccessful =
+		"The failure cannot be accessed when the state is successful.";
 
 	internal const string AccessToSuccessWhenFailed = "The success cannot be accessed when the state is failed.";
 }

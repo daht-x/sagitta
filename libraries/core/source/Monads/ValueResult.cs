@@ -175,7 +175,8 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	[Pure]
 	public bool Equals(ValueResult<TFailure, TSuccess> other)
 	{
-		if ((this.isInitialized != other.isInitialized) || (this.isInitialized && other.isInitialized && (IsFailed != other.IsFailed)))
+		if ((this.isInitialized != other.isInitialized) ||
+			(this.isInitialized && other.isInitialized && (IsFailed != other.IsFailed)))
 		{
 			return false;
 		}

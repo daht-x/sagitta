@@ -81,7 +81,10 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberEqualOperator)]
-	[SuppressMessage(MaintainabilityAnalysisCategory.Name, MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode)]
+	[SuppressMessage(
+		MaintainabilityAnalysisCategory.Name,
+		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
+	)]
 	public void EqualOperator_LeftPlusRightWithNulls_True()
 	{
 		Result<string, sbyte> left = null!;
@@ -116,7 +119,10 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberNotEqualOperator)]
-	[SuppressMessage(MaintainabilityAnalysisCategory.Name, MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode)]
+	[SuppressMessage(
+		MaintainabilityAnalysisCategory.Name,
+		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
+	)]
 	public void NotEqualOperator_LeftPlusRightWithNulls_False()
 	{
 		Result<string, sbyte> left = null!;
@@ -930,7 +936,6 @@ public sealed class ResultTests
 	[Trait(@base, memberEquals)]
 	public void Equals_LeftFailedPlusObjFailed_True()
 	{
-
 		Result<string, sbyte> current = ResultMother.Fail();
 		object obj = ResultMother.Fail();
 		bool actual = current.Equals(obj);

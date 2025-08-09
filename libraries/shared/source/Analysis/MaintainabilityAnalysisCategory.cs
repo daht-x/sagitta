@@ -7,7 +7,6 @@ namespace Daht.Sagitta.Shared.Analysis;
 
 public static class MaintainabilityAnalysisCategory
 {
-
 	public const string Name = "Maintainability";
 
 	public static class Rules

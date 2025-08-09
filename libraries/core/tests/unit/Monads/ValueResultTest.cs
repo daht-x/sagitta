@@ -458,7 +458,10 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	[SuppressMessage(MaintainabilityAnalysisCategory.Name, MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode)]
+	[SuppressMessage(
+		MaintainabilityAnalysisCategory.Name,
+		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
+	)]
 	public void Equals_FailedLeftAndNullObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
@@ -499,7 +502,10 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	[SuppressMessage(MaintainabilityAnalysisCategory.Name, MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode)]
+	[SuppressMessage(
+		MaintainabilityAnalysisCategory.Name,
+		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
+	)]
 	public void Equals_SuccessfulLeftAndNullObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
@@ -580,7 +586,10 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	[SuppressMessage(MaintainabilityAnalysisCategory.Name, MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode)]
+	[SuppressMessage(
+		MaintainabilityAnalysisCategory.Name,
+		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
+	)]
 	public void Equals_DefaultLeftAndNullObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
@@ -825,7 +834,7 @@ public sealed class ValueResultTest
 	{
 		ValueResult<Failure, sbyte> result = ValueResultMother.GetDefault();
 		string actual = result.ToString();
-		Assert.Equal(string.Empty, actual);
+		Assert.Empty(actual);
 	}
 
 	[Fact]
@@ -836,6 +845,15 @@ public sealed class ValueResultTest
 		ValueResult<Failure, sbyte> result = ValueResultMother.Fail(expected);
 		string actual = result.ToString();
 		Assert.Equal(expected.ToString(), actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberToString)]
+	public void ToString_SuccessWithNullToString_Empty()
+	{
+		ValueResult<Failure, SuccessWithNullToString> result = new(new SuccessWithNullToString());
+		string actual = result.ToString();
+		Assert.Empty(actual);
 	}
 
 	[Fact]

@@ -3,13 +3,10 @@
 // Licensed under the MIT License. Please refer to the license file in the project root for more information.
 // ----------------------------------------------------------------------------------------------------------
 
-namespace Daht.Sagitta.Core.UnitTests.Monads.Fixtures;
+namespace Daht.Sagitta.Core.UnitTests.Monads.Fakers;
 
-internal enum Failure : byte
+internal readonly struct SuccessWithNullToString
 {
-	Default = 0,
-
-	Availability = 1,
-
-	Range = 2
+	public override string? ToString()
+		=> null;
 }
