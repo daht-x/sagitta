@@ -1,9 +1,9 @@
 # Pull request
 
-***Thank you very much for your contribution***
+<!-- Thank you very much for your contribution! -->
 
-Please read and follow our [code of conduct](https://github.com/daht-x/sagitta/blob/main/code-of-conduct.md) and
-[contributing guidelines](https://github.com/daht-x/sagitta/blob/main/contributing.md).
+<!-- Please read and follow our code of conduct (https://github.com/daht-x/sagitta/blob/main/code-of-conduct.md) and
+contributing guidelines (https://github.com/daht-x/sagitta/blob/main/contributing.md -->
 
 ## Table of contents
 
@@ -13,18 +13,12 @@ Please read and follow our [code of conduct](https://github.com/daht-x/sagitta/b
 
 <!-- ### Tickets -->
 
-<!-- Provide related issue tickets | Optional -->
-
-<!-- ***[Top](#pull-request)*** -->
+<!-- [provide related issue tickets | optional] -->
 
 ### Description
 
-<!-- Provide a concise and clear description | Required -->
-
-***[Top](#pull-request)***
+<!-- [provide a concise and clear description | required] -->
 
 <!-- ### Additional information -->
 
-<!-- Provide related features or enhancements, relevant changes, suggestions, etc. | Optional -->
-
-<!-- ***[Top](#pull-request)*** -->
+<!-- [provide related features or enhancements, relevant changes, suggestions, etc. | optional] -->
