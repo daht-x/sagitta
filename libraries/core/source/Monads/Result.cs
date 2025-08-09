@@ -13,6 +13,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 {
 	/// <summary>Indicates whether the status is failed.</summary>
 	[MemberNotNullWhen(true, nameof(failure))]
+	[MemberNotNullWhen(false, nameof(success))]
 	public bool IsFailed { get; }
 
 	private readonly TFailure? failure;
@@ -26,6 +27,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: this.failure;
 
 	/// <summary>Indicates whether the status is successful.</summary>
+	[MemberNotNullWhen(false, nameof(failure))]
 	[MemberNotNullWhen(true, nameof(success))]
 	public bool IsSuccessful
 		=> !IsFailed;
@@ -127,7 +129,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			{
 				return this;
 			}
-			execute(Success);
+			execute(this.success);
 			return this;
 		}
 		catch (TException exception)
@@ -150,7 +152,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		{
 			return IsFailed
 				? this
-				: new(createSuccess(Success));
+				: new(createSuccess(this.success));
 		}
 		catch (TException exception)
 		{
@@ -168,7 +170,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		{
 			return this;
 		}
-		return predicate(Success)
+		return predicate(this.success)
 			? new(failure)
 			: this;
 	}
@@ -183,8 +185,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		{
 			return this;
 		}
-		return predicate(Success)
-			? new(createFailure(Success))
+		return predicate(this.success)
+			? new(createFailure(this.success))
 			: this;
 	}
 
@@ -203,8 +205,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		{
 			return this;
 		}
-		return predicate(Success, auxiliary)
-			? new(createFailure(Success, auxiliary))
+		return predicate(this.success, auxiliary)
+			? new(createFailure(this.success, auxiliary))
 			: this;
 	}
 
@@ -224,8 +226,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			return this;
 		}
 		TAuxiliary auxiliary = createAuxiliary();
-		return predicate(Success, auxiliary)
-			? createFailure(Success, auxiliary)
+		return predicate(this.success, auxiliary)
+			? createFailure(this.success, auxiliary)
 			: this;
 	}
 
@@ -251,7 +253,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		{
 			return this;
 		}
-		execute(Failure);
+		execute(this.failure);
 		return this;
 	}
 
@@ -277,7 +279,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		{
 			return this;
 		}
-		execute(Success);
+		execute(this.success);
 		return this;
 	}
 
@@ -304,10 +306,10 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	{
 		if (IsFailed)
 		{
-			doOnFailure(Failure);
+			doOnFailure(this.failure);
 			return this;
 		}
-		doOnSuccess(Success);
+		doOnSuccess(this.success);
 		return this;
 	}
 
@@ -317,7 +319,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(TSuccessToMap successToMap)
 		=> IsFailed
-			? new(Failure)
+			? new(this.failure)
 			: new(successToMap);
 
 	/// <summary>Maps the expected success to a value of another type.</summary>
@@ -326,8 +328,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(Func<TSuccess, TSuccessToMap> createSuccessToMap)
 		=> IsFailed
-			? new(Failure)
-			: new(createSuccessToMap(Success));
+			? new(this.failure)
+			: new(createSuccessToMap(this.success));
 
 	/// <summary>Binds the previous result to a new one.</summary>
 	/// <param name="createResultToBind">Creates a new result to bind.</param>
@@ -337,8 +339,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		Func<TSuccess, Result<TFailure, TSuccessToBind>> createResultToBind
 	)
 		=> IsFailed
-			? new(Failure)
-			: createResultToBind(Success);
+			? new(this.failure)
+			: createResultToBind(this.success);
 
 	/// <summary>Resets the state of the expected success.</summary>
 	/// <param name="initializerResult">A new initializer result.</param>
@@ -348,14 +350,14 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		Result<TFailure, TSuccessInitializer> initializerResult
 	)
 		=> IsFailed
-			? new(Failure)
+			? new(this.failure)
 			: initializerResult;
 
 	/// <summary>Discards the expected success.</summary>
 	/// <returns>A new result that replaces the expected success with <see cref="Unit"/>.</returns>
 	public Result<TFailure, Unit> Discard()
 		=> IsFailed
-			? new(Failure)
+			? new(this.failure)
 			: new(Unit.Default);
 
 	/// <summary>Reduces the possible failure or expected success to a single value.</summary>
@@ -365,8 +367,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	/// <returns>A new value that can be the possible failure or the expected success.</returns>
 	public TReducer Reduce<TReducer>(Func<TFailure, TReducer> reduceFailure, Func<TSuccess, TReducer> reduceSuccess)
 		=> IsFailed
-			? reduceFailure(Failure)
-			: reduceSuccess(Success);
+			? reduceFailure(this.failure)
+			: reduceSuccess(this.success);
 
 	/// <summary>Determines whether the specified result is equal to the current result (equality is determined by value).</summary>
 	/// <param name="obj">The result to compare with the current.</param>
@@ -388,14 +390,14 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			return false;
 		}
 		return IsFailed
-			? EqualityComparer<TFailure>.Default.Equals(Failure, other.Failure)
-			: EqualityComparer<TSuccess>.Default.Equals(Success, other.Success);
+			? EqualityComparer<TFailure>.Default.Equals(this.failure, other.failure)
+			: EqualityComparer<TSuccess>.Default.Equals(this.success, other.success);
 	}
 
 	/// <summary>Gets the hash code based on the primary members of the current result.</summary>
 	/// <returns>The calculated hash code.</returns>
 	public override int GetHashCode()
 		=> IsFailed
-			? HashCode.Combine(IsFailed, Failure)
-			: HashCode.Combine(IsSuccessful, Success);
+			? HashCode.Combine(IsFailed, this.failure)
+			: HashCode.Combine(IsSuccessful, this.success);
 }
