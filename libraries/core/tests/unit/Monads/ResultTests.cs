@@ -15,7 +15,7 @@ public sealed class ResultTests
 
 	private const string memberConstructor = "Constructor";
 
-	private const string memberImplicitOperator = "Implicit Operator";
+	private const string memberImplicitOperator = "Implicit operator";
 
 	private const string memberTryGetFailure = nameof(Result<object, object>.TryGetFailure);
 
@@ -81,7 +81,7 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberEqualOperator)]
-	[SuppressMessage(AnalysisCategories.Maintainability, AnalysisRules.AvoidDeadConditionalCode)]
+	[SuppressMessage(MaintainabilityAnalysisCategory.Name, MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode)]
 	public void EqualOperator_LeftPlusRightWithNulls_True()
 	{
 		Result<string, sbyte> left = null!;
@@ -100,7 +100,7 @@ public sealed class ResultTests
 		Assert.True(actual);
 	}
 
-	#endregion
+	#endregion ==
 
 	#region !=
 
@@ -116,7 +116,7 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberNotEqualOperator)]
-	[SuppressMessage(AnalysisCategories.Maintainability, AnalysisRules.AvoidDeadConditionalCode)]
+	[SuppressMessage(MaintainabilityAnalysisCategory.Name, MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode)]
 	public void NotEqualOperator_LeftPlusRightWithNulls_False()
 	{
 		Result<string, sbyte> left = null!;
@@ -155,11 +155,11 @@ public sealed class ResultTests
 		Assert.True(actual);
 	}
 
-	#endregion
+	#endregion !=
 
 	#region Constructor
 
-	#region Overload
+	#region Constructor overload
 
 	[Fact]
 	[Trait(@base, memberConstructor)]
@@ -170,9 +170,9 @@ public sealed class ResultTests
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
-	#endregion
+	#endregion Constructor overload
 
-	#region Overload
+	#region Constructor overload
 
 	[Fact]
 	[Trait(@base, memberConstructor)]
@@ -183,13 +183,13 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Constructor overload
 
-	#endregion
+	#endregion Constructor
 
-	#region Implicit Operator
+	#region Implicit operator
 
-	#region Overload
+	#region Implicit operator overload
 
 	[Fact]
 	[Trait(@base, memberImplicitOperator)]
@@ -200,9 +200,9 @@ public sealed class ResultTests
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
-	#endregion
+	#endregion Implicit operator overload
 
-	#region Overload
+	#region Implicit operator overload
 
 	[Fact]
 	[Trait(@base, memberImplicitOperator)]
@@ -213,9 +213,9 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Implicit operator overload
 
-	#endregion
+	#endregion Implicit operator
 
 	#region Deconstruct
 
@@ -224,8 +224,7 @@ public sealed class ResultTests
 	public void Deconstruct_FailedResult_FailedStates()
 	{
 		const string expectedFailure = ResultFixture.Failure;
-		Result<string, sbyte> actual = ResultMother.Fail(expectedFailure);
-		(bool isFailed, string? failure, sbyte success) = actual;
+		(bool isFailed, string? failure, sbyte success) = ResultMother.Fail(expectedFailure);
 		Assert.True(isFailed);
 		Assert.Equal(expectedFailure, failure);
 		Assert.Equal(default, success);
@@ -236,14 +235,13 @@ public sealed class ResultTests
 	public void Deconstruct_SuccessfulResult_SuccessfulStates()
 	{
 		const sbyte expectedSuccess = ResultFixture.Success;
-		Result<string, sbyte> actual = ResultMother.Succeed(expectedSuccess);
-		(bool isFailed, string? failure, sbyte success) = actual;
+		(bool isFailed, string? failure, sbyte success) = ResultMother.Succeed(expectedSuccess);
 		Assert.False(isFailed);
 		Assert.Null(failure);
 		Assert.Equal(expectedSuccess, success);
 	}
 
-	#endregion
+	#endregion Deconstruct
 
 	#region TryGetFailure
 
@@ -268,7 +266,7 @@ public sealed class ResultTests
 		Assert.Equal(expected, output);
 	}
 
-	#endregion
+	#endregion TryGetFailure
 
 	#region TryGetSuccess
 
@@ -293,11 +291,11 @@ public sealed class ResultTests
 		Assert.Equal(expected, output);
 	}
 
-	#endregion
+	#endregion TryGetSuccess
 
 	#region Catch
 
-	#region Overload
+	#region Catch overload
 
 	[Fact]
 	[Trait(@base, memberCatch)]
@@ -337,9 +335,9 @@ public sealed class ResultTests
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
-	#endregion
+	#endregion Catch overload
 
-	#region Overload
+	#region Catch overload
 
 	[Fact]
 	[Trait(@base, memberCatch)]
@@ -376,13 +374,13 @@ public sealed class ResultTests
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
-	#endregion
+	#endregion Catch overload
 
-	#endregion
+	#endregion Catch
 
 	#region Ensure
 
-	#region Overload
+	#region Ensure overload
 
 	[Fact]
 	[Trait(@base, memberEnsure)]
@@ -419,9 +417,9 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Ensure overload
 
-	#region Overload
+	#region Ensure overload
 
 	[Fact]
 	[Trait(@base, memberEnsure)]
@@ -459,9 +457,9 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Ensure overload
 
-	#region Overload
+	#region Ensure overload
 
 	[Fact]
 	[Trait(@base, memberEnsure)]
@@ -502,9 +500,9 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Ensure overload
 
-	#region Overload
+	#region Ensure overload
 
 	[Fact]
 	[Trait(@base, memberEnsure)]
@@ -545,13 +543,13 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Ensure overload
 
-	#endregion
+	#endregion Ensure
 
 	#region DoOnFailure
 
-	#region Overload
+	#region DoOnFailure overload
 
 	[Fact]
 	[Trait(@base, memberDoOnFailure)]
@@ -577,9 +575,9 @@ public sealed class ResultTests
 		ResultAsserter.IsFailed(ResultFixture.Failure, actual);
 	}
 
-	#endregion
+	#endregion DoOnFailure overload
 
-	#region Overload
+	#region DoOnFailure overload
 
 	[Fact]
 	[Trait(@base, memberDoOnFailure)]
@@ -605,13 +603,13 @@ public sealed class ResultTests
 		ResultAsserter.IsFailed(ResultFixture.Failure, actual);
 	}
 
-	#endregion
+	#endregion DoOnFailure overload
 
-	#endregion
+	#endregion DoOnFailure
 
 	#region DoOnSuccess
 
-	#region Overload
+	#region DoOnSuccess overload
 
 	[Fact]
 	[Trait(@base, memberDoOnSuccess)]
@@ -637,9 +635,9 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(ResultFixture.Success, actual);
 	}
 
-	#endregion
+	#endregion DoOnSuccess overload
 
-	#region Overload
+	#region DoOnSuccess overload
 
 	[Fact]
 	[Trait(@base, memberDoOnSuccess)]
@@ -665,13 +663,13 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(ResultFixture.Success, actual);
 	}
 
-	#endregion
+	#endregion DoOnSuccess overload
 
-	#endregion
+	#endregion DoOnSuccess
 
 	#region Match
 
-	#region Overload
+	#region Match overload
 
 	[Fact]
 	[Trait(@base, memberMatch)]
@@ -699,9 +697,9 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(ResultFixture.Success, actual);
 	}
 
-	#endregion
+	#endregion Match overload
 
-	#region Overload
+	#region Match overload
 
 	[Fact]
 	[Trait(@base, memberMatch)]
@@ -729,13 +727,13 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(ResultFixture.Success, actual);
 	}
 
-	#endregion
+	#endregion Match overload
 
-	#endregion
+	#endregion Match
 
 	#region Map
 
-	#region Overload
+	#region Map overload
 
 	[Fact]
 	[Trait(@base, memberMap)]
@@ -758,9 +756,9 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Map overload
 
-	#region Overload
+	#region Map overload
 
 	[Fact]
 	[Trait(@base, memberMap)]
@@ -784,9 +782,9 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Map overload
 
-	#endregion
+	#endregion Map
 
 	#region Bind
 
@@ -824,7 +822,7 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Bind
 
 	#region Reset
 
@@ -850,7 +848,7 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Reset
 
 	#region Discard
 
@@ -874,7 +872,7 @@ public sealed class ResultTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Discard
 
 	#region Reduce
 
@@ -902,11 +900,11 @@ public sealed class ResultTests
 		Assert.Equal(expected, actual);
 	}
 
-	#endregion
+	#endregion Reduce
 
 	#region Equals
 
-	#region Overload
+	#region Equals overload
 
 	[Fact]
 	[Trait(@base, memberEquals)]
@@ -949,9 +947,9 @@ public sealed class ResultTests
 		Assert.True(actual);
 	}
 
-	#endregion
+	#endregion Equals overload
 
-	#region Overload
+	#region Equals overload
 
 	[Fact]
 	[Trait(@base, memberEquals)]
@@ -993,9 +991,9 @@ public sealed class ResultTests
 		Assert.True(actual);
 	}
 
-	#endregion
+	#endregion Equals overload
 
-	#endregion
+	#endregion Equals
 
 	#region GetHashCode
 
@@ -1021,5 +1019,5 @@ public sealed class ResultTests
 		Assert.Equal(expected, actual);
 	}
 
-	#endregion
+	#endregion GetHashCode
 }

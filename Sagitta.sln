@@ -1,4 +1,8 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36401.2 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A54D676C-8E58-4B21-AF99-7CD6A5A71DBC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagitta.Core", "libraries\core\source\Sagitta.Core.csproj", "{B8F9C50D-F81F-4621-A07B-FC87BA14CACD}"
@@ -7,21 +11,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagitta.Core.UnitTests", "l
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{D891F17C-C226-4D87-B61D-F20951A9AD99}"
 	ProjectSection(SolutionItems) = preProject
-		nuget.config = nuget.config
+		.editorconfig = .editorconfig
 		Directory.Build.props = Directory.Build.props
 		Directory.Packages.props = Directory.Packages.props
 		global.json = global.json
-		.editorconfig = .editorconfig
+		nuget.config = nuget.config
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagitta.Shared", "libraries\shared\source\Sagitta.Shared.csproj", "{96CD0672-525B-F82C-0DFB-35985D9D52DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagitta.Shared.UnitTests", "libraries\shared\tests\unit\Sagitta.Shared.UnitTests.csproj", "{9BFEF333-BB66-7F57-653F-82C78D210528}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{B8F9C50D-F81F-4621-A07B-FC87BA14CACD} = {A54D676C-8E58-4B21-AF99-7CD6A5A71DBC}
-		{6C86C780-A9C7-4377-B1A8-8ECD9842D89D} = {A54D676C-8E58-4B21-AF99-7CD6A5A71DBC}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B8F9C50D-F81F-4621-A07B-FC87BA14CACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -32,5 +38,25 @@ Global
 		{6C86C780-A9C7-4377-B1A8-8ECD9842D89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C86C780-A9C7-4377-B1A8-8ECD9842D89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C86C780-A9C7-4377-B1A8-8ECD9842D89D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96CD0672-525B-F82C-0DFB-35985D9D52DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96CD0672-525B-F82C-0DFB-35985D9D52DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96CD0672-525B-F82C-0DFB-35985D9D52DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96CD0672-525B-F82C-0DFB-35985D9D52DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BFEF333-BB66-7F57-653F-82C78D210528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BFEF333-BB66-7F57-653F-82C78D210528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BFEF333-BB66-7F57-653F-82C78D210528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BFEF333-BB66-7F57-653F-82C78D210528}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8F9C50D-F81F-4621-A07B-FC87BA14CACD} = {A54D676C-8E58-4B21-AF99-7CD6A5A71DBC}
+		{6C86C780-A9C7-4377-B1A8-8ECD9842D89D} = {A54D676C-8E58-4B21-AF99-7CD6A5A71DBC}
+		{96CD0672-525B-F82C-0DFB-35985D9D52DD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9BFEF333-BB66-7F57-653F-82C78D210528} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E47AB261-08C8-428A-9B02-0B0E30B8AF9E}
 	EndGlobalSection
 EndGlobal

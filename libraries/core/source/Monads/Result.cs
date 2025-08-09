@@ -8,7 +8,7 @@ namespace Daht.Sagitta.Core.Monads;
 /// <summary>Type intended to handle both the possible failure and the expected success of a given action.</summary>
 /// <typeparam name="TFailure">Type of possible failure.</typeparam>
 /// <typeparam name="TSuccess">Type of expected success.</typeparam>
-[SuppressMessage(AnalysisCategories.Design, AnalysisRules.ValidateArgumentsOfPublicMethods)]
+[SuppressMessage(DesignAnalysisCategory.Name, DesignAnalysisCategory.Rules.ValidateArgumentsOfPublicMethods)]
 public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSuccess>>
 {
 	/// <summary>Indicates whether the status is failed.</summary>
@@ -20,9 +20,10 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	/// <summary>The possible failure.</summary>
 	/// <remarks>If the result is not failed, the <see cref="Failure" /> throws <see cref="InvalidOperationException" />.</remarks>
 	/// <exception cref="InvalidOperationException"/>
-	public TFailure Failure => !IsFailed
-		? throw new InvalidOperationException("The failure cannot be accessed when the state is successful.")
-		: this.failure;
+	public TFailure Failure
+		=> !IsFailed
+			? throw new InvalidOperationException(ResultExceptionMessages.AccessToFailureWhenSuccessful)
+			: this.failure;
 
 	/// <summary>Indicates whether the status is successful.</summary>
 	[MemberNotNullWhen(true, nameof(success))]
@@ -34,9 +35,10 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	/// <summary>The expected success.</summary>
 	/// <remarks>If the result is not successful, the <see cref="Success" /> throws <see cref="InvalidOperationException" />.</remarks>
 	/// <exception cref="InvalidOperationException" />
-	public TSuccess Success => !IsSuccessful
-		? throw new InvalidOperationException("The success cannot be accessed when the state is failed.")
-		: this.success;
+	public TSuccess Success
+		=> !IsSuccessful
+			? throw new InvalidOperationException(ResultExceptionMessages.AccessToSuccessWhenFailed)
+			: this.success;
 
 	/// <summary>Creates a new failed result.</summary>
 	/// <param name="failure">A possible failure.</param>
@@ -49,7 +51,10 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	/// <summary>Creates a new successful result.</summary>
 	/// <param name="success">An expected success.</param>
 	public Result(TSuccess success)
-		=> this.success = success;
+	{
+		IsFailed = false;
+		this.success = success;
+	}
 
 	/// <summary>Determines whether the left result is not equal to the right result (equality is determined by value).</summary>
 	/// <param name="left">The main result.</param>

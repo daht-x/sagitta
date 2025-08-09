@@ -39,11 +39,11 @@ public sealed class ResultFactoryTests
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
-	#endregion
+	#endregion Catch
 
 	#region Fail
 
-	#region Overload
+	#region Fail overload
 
 	[Fact]
 	[Trait(@base, memberFail)]
@@ -54,9 +54,9 @@ public sealed class ResultFactoryTests
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
-	#endregion
+	#endregion Fail overload
 
-	#region Overload
+	#region Fail overload
 
 	[Fact]
 	[Trait(@base, memberFail)]
@@ -68,13 +68,13 @@ public sealed class ResultFactoryTests
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
-	#endregion
+	#endregion Fail overload
 
-	#endregion
+	#endregion Fail
 
 	#region Succeed
 
-	#region Overload
+	#region Succeed overload
 
 	[Fact]
 	[Trait(@base, memberSucceed)]
@@ -85,9 +85,9 @@ public sealed class ResultFactoryTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Succeed overload
 
-	#region Overload
+	#region Succeed overload
 
 	[Fact]
 	[Trait(@base, memberSucceed)]
@@ -99,7 +99,7 @@ public sealed class ResultFactoryTests
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion
+	#endregion Succeed overload
 
-	#endregion
+	#endregion Succeed
 }

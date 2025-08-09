@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<NoWarn>$(NoWarn); CA2225</NoWarn>
 		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -10,7 +11,7 @@
 		<Description>Functional paradigm abstractions - Core</Description>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<PackageTags>$(Company); Sagitta; Functional; Paradigm; Result; ResultFactory; Unit</PackageTags>
+		<PackageTags>$(Company); Sagitta; Functional; Paradigm; Result; ResultFactory; ValueResult; ValueResultFactory; Unit</PackageTags>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/daht-x/sagitta</RepositoryUrl>
@@ -35,5 +36,8 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="all" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="../../shared/source/Sagitta.Shared.csproj" />
 	</ItemGroup>
 </Project>

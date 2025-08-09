@@ -3,18 +3,16 @@
 // Licensed under the MIT License. Please refer to the license file in the project root for more information.
 // ----------------------------------------------------------------------------------------------------------
 
-namespace Daht.Sagitta.Core.UnitTests.Exceptions;
+namespace Daht.Sagitta.Shared.Analysis;
 
-[SuppressMessage(AnalysisCategories.Design, AnalysisRules.ImplementStandardExceptionConstructors)]
-public sealed class ProofOfConceptException : Exception
+public static class DesignAnalysisCategory
 {
-	internal const string DefaultMessage = "This is a proof of concept";
+	public const string Name = "Design";
 
-	internal ProofOfConceptException()
-		: base(DefaultMessage)
+	public static class Rules
 	{
-	}
+		public const string ValidateArgumentsOfPublicMethods = "CA1062: Validate arguments of public methods";
 
-	internal static void Throw()
-		=> throw new ProofOfConceptException();
+		public const string ImplementStandardExceptionConstructors = "CA1032: Implement standard exception constructors";
+	}
 }
