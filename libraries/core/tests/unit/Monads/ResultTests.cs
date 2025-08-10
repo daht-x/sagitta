@@ -739,33 +739,6 @@ public sealed class ResultTests
 
 	#region Map
 
-	#region Map overload
-
-	[Fact]
-	[Trait(@base, memberMap)]
-	public void Map_FailedResultPlusSuccessToMap_FailedResult()
-	{
-		const string expected = ResultFixture.Failure;
-		const short successToMap = ResultFixture.SuccessToMap;
-		Result<string, short> actual = ResultMother.Fail(expected)
-			.Map(successToMap);
-		ResultAsserter.IsFailed(expected, actual);
-	}
-
-	[Fact]
-	[Trait(@base, memberMap)]
-	public void Map_SuccessfulResultPlusSuccessToMap_SuccessfulResult()
-	{
-		const short expected = ResultFixture.SuccessToMap;
-		Result<string, short> actual = ResultMother.Succeed()
-			.Map(expected);
-		ResultAsserter.IsSuccessful(expected, actual);
-	}
-
-	#endregion Map overload
-
-	#region Map overload
-
 	[Fact]
 	[Trait(@base, memberMap)]
 	public void Map_FailedResultPlusCreateSuccessToMap_FailedResult()
@@ -787,8 +760,6 @@ public sealed class ResultTests
 			.Map(createSuccessToMap);
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
-
-	#endregion Map overload
 
 	#endregion Map
 
@@ -832,27 +803,56 @@ public sealed class ResultTests
 
 	#region Reset
 
+	#region Reset overload
+
 	[Fact]
 	[Trait(@base, memberReset)]
-	public void Reset_FailedResultPlusInitializerResult_FailedResult()
+	public void Reset_FailedResultPlusSuccessInitializer_FailedResult()
 	{
 		const string expected = ResultFixture.Failure;
-		Result<string, short> initializerResult = new(ResultFixture.SuccessToInitialize);
+		const short successInitializer = ResultFixture.SuccessInitializer;
 		Result<string, short> actual = ResultMother.Fail(expected)
-			.Reset(initializerResult);
+			.Reset(successInitializer);
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
 	[Fact]
 	[Trait(@base, memberReset)]
-	public void Reset_SuccessfulResultPlusInitializerResult_SuccessfulResult()
+	public void Reset_SuccessfulResultPlusSuccessInitializer_SuccessfulResult()
 	{
-		const short expected = ResultFixture.SuccessToInitialize;
-		Result<string, short> initializerResult = new(expected);
+		const short expected = ResultFixture.SuccessInitializer;
 		Result<string, short> actual = ResultMother.Succeed()
-			.Reset(initializerResult);
+			.Reset(expected);
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
+
+	#endregion Reset overload
+
+	#region Reset overload
+
+	[Fact]
+	[Trait(@base, memberReset)]
+	public void Reset_FailedResultPlusResultInitializer_FailedResult()
+	{
+		const string expected = ResultFixture.Failure;
+		Result<string, short> resultInitializer = new(ResultFixture.SuccessInitializer);
+		Result<string, short> actual = ResultMother.Fail(expected)
+			.Reset(resultInitializer);
+		ResultAsserter.IsFailed(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberReset)]
+	public void Reset_SuccessfulResultPlusResultInitializer_SuccessfulResult()
+	{
+		const short expected = ResultFixture.SuccessInitializer;
+		Result<string, short> resultInitializer = new(expected);
+		Result<string, short> actual = ResultMother.Succeed()
+			.Reset(resultInitializer);
+		ResultAsserter.IsSuccessful(expected, actual);
+	}
+
+	#endregion Reset overload
 
 	#endregion Reset
 

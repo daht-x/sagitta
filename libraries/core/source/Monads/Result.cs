@@ -315,15 +315,6 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	}
 
 	/// <summary>Maps the expected success to a value of another type.</summary>
-	/// <param name="successToMap">The expected success to map.</param>
-	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
-	/// <returns>A new result with a different type of expected success.</returns>
-	public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(TSuccessToMap successToMap)
-		=> IsFailed
-			? new(this.failure)
-			: new(successToMap);
-
-	/// <summary>Maps the expected success to a value of another type.</summary>
 	/// <param name="createSuccessToMap">Creates an expected success to map.</param>
 	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
 	/// <returns>A new result with a different type of expected success.</returns>
@@ -344,15 +335,24 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: createResultToBind(this.success);
 
 	/// <summary>Resets the state of the expected success.</summary>
-	/// <param name="initializerResult">The initializer result.</param>
+	/// <param name="successInitializer">The expected success that acts as initializer.</param>
+	/// <typeparam name="TSuccessInitializer">Type of expected success that acts as initializer.</typeparam>
+	/// <returns>A new result with a different type of expected success.</returns>
+	public Result<TFailure, TSuccessInitializer> Reset<TSuccessInitializer>(TSuccessInitializer successInitializer)
+		=> IsFailed
+			? new(this.failure)
+			: new(successInitializer);
+
+	/// <summary>Resets the state of the expected success.</summary>
+	/// <param name="resultInitializer">The result that acts as initializer.</param>
 	/// <typeparam name="TSuccessInitializer">Type of expected success that acts as initializer.</typeparam>
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TSuccessInitializer> Reset<TSuccessInitializer>(
-		Result<TFailure, TSuccessInitializer> initializerResult
+		Result<TFailure, TSuccessInitializer> resultInitializer
 	)
 		=> IsFailed
 			? new(this.failure)
-			: initializerResult;
+			: resultInitializer;
 
 	/// <summary>Discards the expected success.</summary>
 	/// <returns>A new result that replaces the expected success with <see cref="Unit"/>.</returns>
