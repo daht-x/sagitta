@@ -95,7 +95,6 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	/// <param name="failure">The possible failure.</param>
 	/// <returns>A new failed result.</returns>
 	[Pure]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator ValueResult<TFailure, TSuccess>(TFailure failure)
 		=> new(failure);
 
@@ -103,7 +102,6 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	/// <param name="success">The expected success.</param>
 	/// <returns>A new successful result.</returns>
 	[Pure]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator ValueResult<TFailure, TSuccess>(TSuccess success)
 		=> new(success);
 

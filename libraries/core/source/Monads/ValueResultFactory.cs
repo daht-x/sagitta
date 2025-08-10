@@ -14,7 +14,6 @@ public static class ValueResultFactory
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new failed result.</returns>
 	[Pure]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ValueResult<TFailure, TSuccess> Fail<TFailure, TSuccess>(TFailure failure)
 		where TFailure : struct, Enum
 		where TSuccess : struct
@@ -26,7 +25,6 @@ public static class ValueResultFactory
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new successful result.</returns>
 	[Pure]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ValueResult<TFailure, TSuccess> Succeed<TFailure, TSuccess>(TSuccess success)
 		where TFailure : struct, Enum
 		where TSuccess : struct
