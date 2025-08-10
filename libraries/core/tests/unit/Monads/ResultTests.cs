@@ -33,7 +33,7 @@ public sealed class ResultTests
 
 	private const string memberMatch = nameof(Result<object, object>.Match);
 
-	private const string memberMap = nameof(Result<object, object>.Map);
+	private const string memberMapSuccess = nameof(Result<object, object>.MapSuccess);
 
 	private const string memberBind = nameof(Result<object, object>.Bind);
 
@@ -737,31 +737,31 @@ public sealed class ResultTests
 
 	#endregion Match
 
-	#region Map
+	#region MapSuccess
 
 	[Fact]
-	[Trait(@base, memberMap)]
-	public void Map_FailedResultPlusCreateSuccessToMap_FailedResult()
+	[Trait(@base, memberMapSuccess)]
+	public void MapSuccess_FailedResultPlusCreate_FailedResult()
 	{
 		const string expected = ResultFixture.Failure;
-		Func<sbyte, short> createSuccessToMap = static _ => ResultFixture.SuccessToMap;
+		Func<sbyte, short> create = static _ => ResultFixture.SuccessToMap;
 		Result<string, short> actual = ResultMother.Fail(expected)
-			.Map(createSuccessToMap);
+			.MapSuccess(create);
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
 	[Fact]
-	[Trait(@base, memberMap)]
-	public void Map_SuccessfulResultPlusCreateSuccessToMap_SuccessfulResult()
+	[Trait(@base, memberMapSuccess)]
+	public void MapSuccess_SuccessfulResultPlusCreate_SuccessfulResult()
 	{
 		const short expected = ResultFixture.SuccessToMap;
-		Func<sbyte, short> createSuccessToMap = static _ => expected;
+		Func<sbyte, short> create = static _ => expected;
 		Result<string, short> actual = ResultMother.Succeed()
-			.Map(createSuccessToMap);
+			.MapSuccess(create);
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
-	#endregion Map
+	#endregion MapSuccess
 
 	#region Bind
 
