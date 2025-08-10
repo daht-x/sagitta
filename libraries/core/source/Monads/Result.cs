@@ -315,13 +315,13 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	}
 
 	/// <summary>Maps the expected success to a value of another type.</summary>
-	/// <param name="createSuccessToMap">Creates an expected success to map.</param>
-	/// <typeparam name="TSuccessToMap">Type of expected success to map.</typeparam>
+	/// <param name="create">Creates an expected success.</param>
+	/// <typeparam name="TNewSuccess">The type of the new expected success.</typeparam>
 	/// <returns>A new result with a different type of expected success.</returns>
-	public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(Func<TSuccess, TSuccessToMap> createSuccessToMap)
+	public Result<TFailure, TNewSuccess> MapSuccess<TNewSuccess>(Func<TSuccess, TNewSuccess> create)
 		=> IsFailed
 			? new(this.failure)
-			: new(createSuccessToMap(this.success));
+			: new(create(this.success));
 
 	/// <summary>Binds the previous result to a new one.</summary>
 	/// <param name="createResultToBind">Creates a new result to bind.</param>
