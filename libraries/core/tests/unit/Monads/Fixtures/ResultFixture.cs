@@ -17,5 +17,5 @@ internal static class ResultFixture
 
 	internal const short SuccessToMap = short.MinValue;
 
-	internal const short SuccessToInitialize = short.MaxValue;
+	internal const short SuccessInitializer = short.MaxValue;
 }
