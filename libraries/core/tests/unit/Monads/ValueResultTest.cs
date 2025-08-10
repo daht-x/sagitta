@@ -462,7 +462,7 @@ public sealed class ValueResultTest
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void Equals_FailedLeftAndNullObject_False()
+	public void Equals_FailedResultAndNullObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		object? right = null;
@@ -472,7 +472,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_FailedLeftAndDifferentObject_False()
+	public void Equals_FailedResultAndDifferentObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		object right = string.Empty;
@@ -482,7 +482,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_DefaultLeftAndFailedObject_False()
+	public void Equals_DefaultResultAndFailedObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		object right = ValueResultMother.Fail();
@@ -492,7 +492,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_FailedLeftAndDefaultObject_False()
+	public void Equals_FailedResultAndDefaultObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		object right = ValueResultMother.GetDefault();
@@ -506,7 +506,7 @@ public sealed class ValueResultTest
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void Equals_SuccessfulLeftAndNullObject_False()
+	public void Equals_SuccessfulResultAndNullObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		object? right = null;
@@ -516,7 +516,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_SuccessfulLeftAndDifferentObject_False()
+	public void Equals_SuccessfulResultAndDifferentObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		object right = string.Empty;
@@ -526,7 +526,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_DefaultLeftAndSuccessfulObject_False()
+	public void Equals_DefaultResultAndSuccessfulObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		object right = ValueResultMother.Succeed();
@@ -536,7 +536,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_SuccessfulLeftAndDefaultObject_False()
+	public void Equals_SuccessfulResultAndDefaultObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		object right = ValueResultMother.GetDefault();
@@ -546,7 +546,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_FailedLeftAndSuccessfulObject_False()
+	public void Equals_FailedResultAndSuccessfulObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		object right = ValueResultMother.Succeed();
@@ -556,7 +556,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_SuccessfulLeftAndFailedObject_False()
+	public void Equals_SuccessfulResultAndFailedObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		object right = ValueResultMother.Fail();
@@ -566,7 +566,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_DifferentFailedLeftAndDifferentFailedObject_False()
+	public void Equals_DifferentFailedResultAndDifferentFailedObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail(Failure.Availability);
 		object right = ValueResultMother.Fail(Failure.Range);
@@ -576,7 +576,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_DifferentSuccessfulLeftAndDifferentSuccessfulObject_False()
+	public void Equals_DifferentSuccessfulResultAndDifferentSuccessfulObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed(1);
 		object right = ValueResultMother.Succeed(2);
@@ -590,7 +590,7 @@ public sealed class ValueResultTest
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void Equals_DefaultLeftAndNullObject_False()
+	public void Equals_DefaultResultAndNullObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		object? right = null;
@@ -600,7 +600,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_DefaultLeftAndDifferentObject_False()
+	public void Equals_DefaultResultAndDifferentObject_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		object right = string.Empty;
@@ -610,7 +610,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_DefaultLeftAndDefaultObject_True()
+	public void Equals_DefaultResultAndDefaultObject_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		object right = ValueResultMother.GetDefault();
@@ -620,7 +620,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_FailedLeftAndFailedObject_True()
+	public void Equals_FailedResultAndFailedObject_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		object right = ValueResultMother.Fail();
@@ -630,7 +630,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_SuccessfulLeftAndSuccessfulObject_True()
+	public void Equals_SuccessfulResultAndSuccessfulObject_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		object right = ValueResultMother.Succeed();
@@ -644,7 +644,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_DefaultLeftAndFailedRight_False()
+	public void Equals_DefaultResultAndFailedResult_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Fail();
@@ -654,7 +654,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_FailedLeftAndDefaultRight_False()
+	public void Equals_FailedResultAndDefaultResult_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		ValueResult<Failure, sbyte> right = ValueResultMother.GetDefault();
@@ -664,7 +664,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_DefaultLeftAndSuccessfulRight_False()
+	public void Equals_DefaultResultAndSuccessfulResult_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Succeed();
@@ -674,7 +674,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_SuccessfulLeftAndDefaultRight_False()
+	public void Equals_SuccessfulResultAndDefaultResult_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		ValueResult<Failure, sbyte> right = ValueResultMother.GetDefault();
@@ -684,7 +684,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_FailedLeftAndSuccessfulRight_False()
+	public void Equals_FailedResultAndSuccessfulResult_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Succeed();
@@ -694,7 +694,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_SuccessfulLeftAndFailedRight_False()
+	public void Equals_SuccessfulResultAndFailedResult_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Fail();
@@ -704,7 +704,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_DifferentFailedLeftAndDifferentFailedRight_False()
+	public void Equals_DifferentFailedResultAndDifferentFailedResult_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail(Failure.Availability);
 		ValueResult<Failure, sbyte> right = ValueResultMother.Fail(Failure.Range);
@@ -714,7 +714,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_DifferentSuccessfulLeftAndDifferentSuccessfulRight_False()
+	public void Equals_DifferentSuccessfulResultAndDifferentSuccessfulResult_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed(1);
 		ValueResult<Failure, sbyte> right = ValueResultMother.Succeed(2);
@@ -724,7 +724,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_DefaultLeftAndDefaultRight_True()
+	public void Equals_DefaultResultAndDefaultResult_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		ValueResult<Failure, sbyte> right = ValueResultMother.GetDefault();
@@ -734,7 +734,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_FailedLeftAndFailedRight_True()
+	public void Equals_FailedResultAndFailedResult_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Fail();
@@ -744,7 +744,7 @@ public sealed class ValueResultTest
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_SuccessfulLeftAndSuccessfulRight_True()
+	public void Equals_SuccessfulResultAndSuccessfulResult_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Succeed();
