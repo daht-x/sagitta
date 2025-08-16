@@ -33,6 +33,8 @@ public sealed class ResultTests
 
 	private const string memberMatch = nameof(Result<object, object>.Match);
 
+	private const string memberMapFailure = nameof(Result<object, object>.MapFailure);
+
 	private const string memberMapSuccess = nameof(Result<object, object>.MapSuccess);
 
 	private const string memberBind = nameof(Result<object, object>.Bind);
@@ -736,6 +738,32 @@ public sealed class ResultTests
 	#endregion Match overload
 
 	#endregion Match
+
+	#region MapFailure
+
+	[Fact]
+	[Trait(@base, memberMapFailure)]
+	public void MapFailure_SuccessfulResultPlusCreate_SuccessfulResult()
+	{
+		const sbyte expected = ResultFixture.Success;
+		Func<Failure, string> create = static _ => ResultFixture.Failure;
+		Result<string, sbyte> actual = new Result<Failure, sbyte>(expected)
+			.MapFailure(create);
+		ResultAsserter.IsSuccessful(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberMapFailure)]
+	public void MapFailure_FailedResultPlusCreate_FailedResult()
+	{
+		const string expected = ResultFixture.Failure;
+		Func<Failure, string> create = static _ => expected;
+		Result<string, sbyte> actual = new Result<Failure, sbyte>(Failure.Availability)
+			.MapFailure(create);
+		ResultAsserter.IsFailed(expected, actual);
+	}
+
+	#endregion MapFailure
 
 	#region MapSuccess
 

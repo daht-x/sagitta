@@ -314,9 +314,18 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		return this;
 	}
 
+	/// <summary>Maps the possible failure to a value of another type.</summary>
+	/// <param name="create">Creates a possible failure.</param>
+	/// <typeparam name="TNewFailure">Type of possible failure.</typeparam>
+	/// <returns>A new result with a different type of possible failure.</returns>
+	public Result<TNewFailure, TSuccess> MapFailure<TNewFailure>(Func<TFailure, TNewFailure> create)
+		=> IsSuccessful
+			? new(this.success)
+			: new(create(this.failure));
+
 	/// <summary>Maps the expected success to a value of another type.</summary>
 	/// <param name="create">Creates an expected success.</param>
-	/// <typeparam name="TNewSuccess">The type of the new expected success.</typeparam>
+	/// <typeparam name="TNewSuccess">Type of expected success.</typeparam>
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TNewSuccess> MapSuccess<TNewSuccess>(Func<TSuccess, TNewSuccess> create)
 		=> IsFailed
