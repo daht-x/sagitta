@@ -49,6 +49,8 @@ public sealed class ResultTests
 
 	private const string memberGetHashCode = nameof(Result<object, object>.GetHashCode);
 
+	private const string memberToString = nameof(Result<object, object>.ToString);
+
 	#region ==
 
 	[Fact]
@@ -1337,4 +1339,46 @@ public sealed class ResultTests
 	}
 
 	#endregion GetHashCode
+
+	#region ToString
+
+	[Fact]
+	[Trait(@base, memberToString)]
+	public void ToString_FailureWithNullToString_Empty()
+	{
+		Result<FailureWithNullToString, sbyte> result = new(new FailureWithNullToString());
+		string actual = result.ToString();
+		Assert.Empty(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberToString)]
+	public void ToString_FailedResult_Failure()
+	{
+		const string expected = ResultFixture.Failure;
+		Result<string, sbyte> result = ResultMother.Fail(expected);
+		string actual = result.ToString();
+		Assert.Equal(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberToString)]
+	public void ToString_SuccessWithNullToString_Empty()
+	{
+		Result<Failure, SuccessWithNullToString> result = new(new SuccessWithNullToString());
+		string actual = result.ToString();
+		Assert.Empty(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberToString)]
+	public void ToString_SuccessfulResult_Success()
+	{
+		const sbyte expected = ResultFixture.Success;
+		Result<string, sbyte> result = ResultMother.Succeed(expected);
+		string actual = result.ToString();
+		Assert.Equal(expected.ToString(CultureInfo.InvariantCulture), actual);
+	}
+
+	#endregion ToString
 }
