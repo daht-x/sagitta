@@ -406,4 +406,11 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		=> IsFailed
 			? HashCode.Combine(IsFailed, this.failure)
 			: HashCode.Combine(IsSuccessful, this.success);
+
+	/// <summary>Gets the value of the current result.</summary>
+	/// <returns>The value of the current result.</returns>
+	public override string ToString()
+		=> IsFailed
+			? this.failure?.ToString() ?? string.Empty
+			: this.success?.ToString() ?? string.Empty;
 }
