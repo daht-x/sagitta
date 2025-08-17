@@ -71,6 +71,7 @@ jobs:
         with:
           files: "./artifacts/coverage/core.xml"
           fail_ci_if_error: true
+          override_commit: "${{ github.sha }}"
           token: "${{ secrets.CODECOV_TOKEN }}"
       - name: "Build packages"
         if: "${{ env.IS_RELEASE == vars.POSITIVE }}"
