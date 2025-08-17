@@ -1344,6 +1344,16 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberToString)]
+	public void ToString_FailedResultWithNullFailure_Empty()
+	{
+		const string? failure = null;
+		Result<string?, sbyte> result = new(failure);
+		string actual = result.ToString();
+		Assert.Empty(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberToString)]
 	public void ToString_FailureWithNullToString_Empty()
 	{
 		Result<FailureWithNullToString, sbyte> result = new(new FailureWithNullToString());
@@ -1359,6 +1369,16 @@ public sealed class ResultTests
 		Result<string, sbyte> result = ResultMother.Fail(expected);
 		string actual = result.ToString();
 		Assert.Equal(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberToString)]
+	public void ToString_SuccessfulResultWithNullSuccess_Empty()
+	{
+		sbyte? success = null;
+		Result<string, sbyte?> result = new(success!);
+		string actual = result.ToString();
+		Assert.Empty(actual);
 	}
 
 	[Fact]
