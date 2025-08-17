@@ -29,11 +29,9 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 		get
 		{
 			ThrowInvalidOperationExceptionIfIsDefault();
-			if (!IsFailed)
-			{
-				throw new InvalidOperationException(ResultExceptionMessages.AccessToFailureWhenSuccessful);
-			}
-			return this.failure;
+			return !IsFailed
+				? throw new InvalidOperationException(ResultExceptionMessages.AccessToFailureWhenSuccessful)
+				: this.failure;
 		}
 	}
 
@@ -47,11 +45,9 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 		get
 		{
 			ThrowInvalidOperationExceptionIfIsDefault();
-			if (IsFailed)
-			{
-				throw new InvalidOperationException(ResultExceptionMessages.AccessToSuccessWhenFailed);
-			}
-			return this.success;
+			return IsFailed
+				? throw new InvalidOperationException(ResultExceptionMessages.AccessToSuccessWhenFailed)
+				: this.success;
 		}
 	}
 

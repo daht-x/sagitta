@@ -333,35 +333,31 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: new(create(this.success));
 
 	/// <summary>Binds the previous result to a new one.</summary>
-	/// <param name="createResultToBind">Creates a new result to bind.</param>
-	/// <typeparam name="TSuccessToBind">Type of expected success to bind.</typeparam>
+	/// <param name="create">Creates a new result with the current success.</param>
+	/// <typeparam name="TNewSuccess">Type of expected success.</typeparam>
 	/// <returns>A new result with a different type of expected success.</returns>
-	public Result<TFailure, TSuccessToBind> Bind<TSuccessToBind>(
-		Func<TSuccess, Result<TFailure, TSuccessToBind>> createResultToBind
-	)
+	public Result<TFailure, TNewSuccess> Bind<TNewSuccess>(Func<TSuccess, Result<TFailure, TNewSuccess>> create)
 		=> IsFailed
 			? new(this.failure)
-			: createResultToBind(this.success);
+			: create(this.success);
 
 	/// <summary>Resets the state of the expected success.</summary>
-	/// <param name="successInitializer">The expected success that acts as initializer.</param>
-	/// <typeparam name="TSuccessInitializer">Type of expected success that acts as initializer.</typeparam>
+	/// <param name="success">The expected success that acts as initializer.</param>
+	/// <typeparam name="TNewSuccess">Type of expected success.</typeparam>
 	/// <returns>A new result with a different type of expected success.</returns>
-	public Result<TFailure, TSuccessInitializer> Reset<TSuccessInitializer>(TSuccessInitializer successInitializer)
+	public Result<TFailure, TNewSuccess> Reset<TNewSuccess>(TNewSuccess success)
 		=> IsFailed
 			? new(this.failure)
-			: new(successInitializer);
+			: new(success);
 
 	/// <summary>Resets the state of the expected success.</summary>
-	/// <param name="resultInitializer">The result that acts as initializer.</param>
-	/// <typeparam name="TSuccessInitializer">Type of expected success that acts as initializer.</typeparam>
+	/// <param name="result">The result that acts as initializer.</param>
+	/// <typeparam name="TNewSuccess">Type of expected success.</typeparam>
 	/// <returns>A new result with a different type of expected success.</returns>
-	public Result<TFailure, TSuccessInitializer> Reset<TSuccessInitializer>(
-		Result<TFailure, TSuccessInitializer> resultInitializer
-	)
+	public Result<TFailure, TNewSuccess> Reset<TNewSuccess>(Result<TFailure, TNewSuccess> result)
 		=> IsFailed
 			? new(this.failure)
-			: resultInitializer;
+			: result;
 
 	/// <summary>Discards the expected success.</summary>
 	/// <returns>A new result that replaces the expected success with <see cref="Unit"/>.</returns>
@@ -371,8 +367,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: new(Unit.Default);
 
 	/// <summary>Reduces the possible failure or expected success to a single value.</summary>
-	/// <param name="reduceFailure">Creates a possible reduced failure.</param>
-	/// <param name="reduceSuccess">Creates an expected reduced success.</param>
+	/// <param name="reduceFailure">Reduces the possible failure.</param>
+	/// <param name="reduceSuccess">Reduces the expected success.</param>
 	/// <typeparam name="TReducer">Type of reducer.</typeparam>
 	/// <returns>A new value that can be the possible failure or the expected success.</returns>
 	public TReducer Reduce<TReducer>(Func<TFailure, TReducer> reduceFailure, Func<TSuccess, TReducer> reduceSuccess)

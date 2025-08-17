@@ -40,12 +40,12 @@ public static class ResultFactory
 		=> new(failure);
 
 	/// <summary>Creates a new failed result.</summary>
-	/// <param name="createFailure">Creates a possible failure.</param>
+	/// <param name="create">Creates a possible failure.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new failed result.</returns>
-	public static Result<TFailure, TSuccess> Fail<TFailure, TSuccess>(Func<TFailure> createFailure)
-		=> new(createFailure());
+	public static Result<TFailure, TSuccess> Fail<TFailure, TSuccess>(Func<TFailure> create)
+		=> new(create());
 
 	/// <summary>Creates a new successful result.</summary>
 	/// <param name="success">The expected success.</param>
@@ -56,10 +56,10 @@ public static class ResultFactory
 		=> new(success);
 
 	/// <summary>Creates a new successful result.</summary>
-	/// <param name="createSuccess">Creates an expected success.</param>
+	/// <param name="create">Creates an expected success.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
 	/// <returns>A new successful result.</returns>
-	public static Result<TFailure, TSuccess> Succeed<TFailure, TSuccess>(Func<TSuccess> createSuccess)
-		=> new(createSuccess());
+	public static Result<TFailure, TSuccess> Succeed<TFailure, TSuccess>(Func<TSuccess> create)
+		=> new(create());
 }

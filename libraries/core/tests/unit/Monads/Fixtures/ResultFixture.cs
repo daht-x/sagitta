@@ -11,6 +11,8 @@ internal static class ResultFixture
 
 	internal const string Failure = nameof(Failure);
 
+	internal static string RandomFailure => $"{Failure} {Guid.CreateVersion7()}";
+
 	internal const sbyte Success = sbyte.MinValue;
 
 	internal const sbyte SuccessToBind = sbyte.MaxValue;
