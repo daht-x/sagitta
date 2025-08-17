@@ -60,11 +60,11 @@ public sealed class ResultFactoryTests
 
 	[Fact]
 	[Trait(@base, memberFail)]
-	public void Fail_CreateFailure_FailedResult()
+	public void Fail_Create_FailedResult()
 	{
 		const string expected = ResultFixture.Failure;
-		Func<string> createFailure = static () => expected;
-		Result<string, sbyte> actual = ResultFactory.Fail<string, sbyte>(createFailure);
+		Func<string> create = static () => expected;
+		Result<string, sbyte> actual = ResultFactory.Fail<string, sbyte>(create);
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
@@ -91,11 +91,11 @@ public sealed class ResultFactoryTests
 
 	[Fact]
 	[Trait(@base, memberSucceed)]
-	public void Succeed_CreateSuccess_SuccessfulResult()
+	public void Succeed_Create_SuccessfulResult()
 	{
 		const sbyte expected = ResultFixture.Success;
-		Func<sbyte> createSuccess = static () => expected;
-		Result<string, sbyte> actual = ResultFactory.Succeed<string, sbyte>(createSuccess);
+		Func<sbyte> create = static () => expected;
+		Result<string, sbyte> actual = ResultFactory.Succeed<string, sbyte>(create);
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 

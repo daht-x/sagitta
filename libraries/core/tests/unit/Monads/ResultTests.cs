@@ -53,7 +53,7 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_NullLeftPlusRight_False()
+	public void EqualOperator_NullLeftAndFailedRight_False()
 	{
 		Result<string, sbyte> left = null!;
 		Result<string, sbyte> right = ResultMother.Fail();
@@ -63,7 +63,7 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_LeftPlusNullRight_False()
+	public void EqualOperator_FailedLeftAndNullRight_False()
 	{
 		Result<string, sbyte> left = ResultMother.Fail();
 		Result<string, sbyte> right = null!;
@@ -73,10 +73,60 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_LeftPlusRightWithDifferentStates_False()
+	public void EqualOperator_NullLeftAndSuccessfulRight_False()
+	{
+		Result<string, sbyte> left = null!;
+		Result<string, sbyte> right = ResultMother.Succeed();
+		bool actual = left == right;
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEqualOperator)]
+	public void EqualOperator_SuccessfulLeftAndNullRight_False()
+	{
+		Result<string, sbyte> left = ResultMother.Succeed();
+		Result<string, sbyte> right = null!;
+		bool actual = left == right;
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEqualOperator)]
+	public void EqualOperator_FailedLeftAndSuccessfulRight_False()
 	{
 		Result<string, sbyte> left = ResultMother.Fail();
 		Result<string, sbyte> right = ResultMother.Succeed();
+		bool actual = left == right;
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEqualOperator)]
+	public void EqualOperator_SuccessfulLeftAndFailedRight_False()
+	{
+		Result<string, sbyte> left = ResultMother.Succeed();
+		Result<string, sbyte> right = ResultMother.Fail();
+		bool actual = left == right;
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEqualOperator)]
+	public void EqualOperator_DifferentFailedLeftAndDifferentFailedRight_False()
+	{
+		Result<string, sbyte> left = ResultMother.FailRandomly();
+		Result<string, sbyte> right = ResultMother.FailRandomly();
+		bool actual = left == right;
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEqualOperator)]
+	public void EqualOperator_DifferentSuccessfulLeftAndDifferentSuccessfulRight_False()
+	{
+		Result<string, sbyte> left = ResultMother.Succeed(1);
+		Result<string, sbyte> right = ResultMother.Succeed(2);
 		bool actual = left == right;
 		Assert.False(actual);
 	}
@@ -87,7 +137,7 @@ public sealed class ResultTests
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void EqualOperator_LeftPlusRightWithNulls_True()
+	public void EqualOperator_NullLeftAndNullRight_True()
 	{
 		Result<string, sbyte> left = null!;
 		Result<string, sbyte> right = null!;
@@ -97,7 +147,17 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_LeftPlusRightWithEqualStates_True()
+	public void EqualOperator_FailedLeftAndFailedRight_True()
+	{
+		Result<string, sbyte> left = ResultMother.Fail();
+		Result<string, sbyte> right = ResultMother.Fail();
+		bool actual = left == right;
+		Assert.True(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEqualOperator)]
+	public void EqualOperator_SuccessfulLeftAndSuccessfulRight_True()
 	{
 		Result<string, sbyte> left = ResultMother.Succeed();
 		Result<string, sbyte> right = ResultMother.Succeed();
@@ -111,7 +171,17 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_LeftPlusRightWithEqualStates_False()
+	public void NotEqualOperator_SuccessfulLeftAndSuccessfulRight_False()
+	{
+		Result<string, sbyte> left = ResultMother.Succeed();
+		Result<string, sbyte> right = ResultMother.Succeed();
+		bool actual = left != right;
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberNotEqualOperator)]
+	public void NotEqualOperator_FailedLeftAndFailedRight_False()
 	{
 		Result<string, sbyte> left = ResultMother.Fail();
 		Result<string, sbyte> right = ResultMother.Fail();
@@ -125,7 +195,7 @@ public sealed class ResultTests
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void NotEqualOperator_LeftPlusRightWithNulls_False()
+	public void NotEqualOperator_NullLeftAndNullRight_False()
 	{
 		Result<string, sbyte> left = null!;
 		Result<string, sbyte> right = null!;
@@ -135,7 +205,37 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_LeftPlusRightWithDifferentStates_True()
+	public void NotEqualOperator_DifferentSuccessfulLeftAndDifferentSuccessfulRight_True()
+	{
+		Result<string, sbyte> left = ResultMother.Succeed(1);
+		Result<string, sbyte> right = ResultMother.Succeed(2);
+		bool actual = left != right;
+		Assert.True(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberNotEqualOperator)]
+	public void NotEqualOperator_DifferentFailedLeftAndDifferentFailedRight_True()
+	{
+		Result<string, sbyte> left = ResultMother.FailRandomly();
+		Result<string, sbyte> right = ResultMother.FailRandomly();
+		bool actual = left != right;
+		Assert.True(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberNotEqualOperator)]
+	public void NotEqualOperator_SuccessfulLeftAndFailedRight_True()
+	{
+		Result<string, sbyte> left = ResultMother.Succeed();
+		Result<string, sbyte> right = ResultMother.Fail();
+		bool actual = left != right;
+		Assert.True(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberNotEqualOperator)]
+	public void NotEqualOperator_FailedLeftAndSuccessfulRight_True()
 	{
 		Result<string, sbyte> left = ResultMother.Fail();
 		Result<string, sbyte> right = ResultMother.Succeed();
@@ -145,7 +245,27 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_LeftPlusNullRight_True()
+	public void NotEqualOperator_SuccessfulLeftAndNullRight_True()
+	{
+		Result<string, sbyte> left = ResultMother.Succeed();
+		Result<string, sbyte> right = null!;
+		bool actual = left != right;
+		Assert.True(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberNotEqualOperator)]
+	public void NotEqualOperator_NullLeftAndSuccessfulRight_True()
+	{
+		Result<string, sbyte> left = null!;
+		Result<string, sbyte> right = ResultMother.Succeed();
+		bool actual = left != right;
+		Assert.True(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberNotEqualOperator)]
+	public void NotEqualOperator_FailedLeftAndNullRight_True()
 	{
 		Result<string, sbyte> left = ResultMother.Fail();
 		Result<string, sbyte> right = null!;
@@ -155,7 +275,7 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_NullLeftPlusRight_True()
+	public void NotEqualOperator_NullLeftAndFailedRight_True()
 	{
 		Result<string, sbyte> left = null!;
 		Result<string, sbyte> right = ResultMother.Fail();
@@ -747,8 +867,7 @@ public sealed class ResultTests
 	{
 		const sbyte expected = ResultFixture.Success;
 		Func<Failure, string> create = static _ => ResultFixture.Failure;
-		Result<string, sbyte> actual = new Result<Failure, sbyte>(expected)
-			.MapFailure(create);
+		Result<string, sbyte> actual = new Result<Failure, sbyte>(expected).MapFailure(create);
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
@@ -758,8 +877,7 @@ public sealed class ResultTests
 	{
 		const string expected = ResultFixture.Failure;
 		Func<Failure, string> create = static _ => expected;
-		Result<string, sbyte> actual = new Result<Failure, sbyte>(Failure.Availability)
-			.MapFailure(create);
+		Result<string, sbyte> actual = new Result<Failure, sbyte>(Failure.Availability).MapFailure(create);
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
@@ -795,35 +913,46 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberBind)]
-	public void Bind_FailedResultPlusCreateResultToBindWithSuccessfulResult_FailedResult()
+	public void Bind_FailedResultPlusCreateWithFailedResult_FailedResult()
 	{
-		const string expected = ResultFixture.Failure;
-		Func<sbyte, Result<string, sbyte>> createResultToBind = static _ => ResultMother.Succeed();
+		string expected = ResultFixture.RandomFailure;
+		Func<sbyte, Result<string, sbyte>> create = static _ => ResultMother.Fail();
 		Result<string, sbyte> actual = ResultMother.Fail(expected)
-			.Bind(createResultToBind);
+			.Bind(create);
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
 	[Fact]
 	[Trait(@base, memberBind)]
-	public void Bind_SuccessfulResultPlusCreateResultToBindWithFailedResult_FailedResult()
+	public void Bind_FailedResultPlusCreateWithSuccessfulResult_FailedResult()
 	{
 		const string expected = ResultFixture.Failure;
-		Func<sbyte, Result<string, sbyte>> createResultToBind = static _ => ResultMother.Fail(expected);
-		Result<string, sbyte> actual = ResultMother.Succeed()
-			.Bind(createResultToBind);
+		Func<sbyte, Result<string, sbyte>> create = static _ => ResultMother.Succeed();
+		Result<string, sbyte> actual = ResultMother.Fail(expected)
+			.Bind(create);
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
 	[Fact]
 	[Trait(@base, memberBind)]
-	public void Bind_SuccessfulResultPlusCreateResultToBindWithSuccessfulResult_SuccessfulResult()
+	public void Bind_SuccessfulResultPlusCreateWithFailedResult_FailedResult()
+	{
+		const string expected = ResultFixture.Failure;
+		Func<sbyte, Result<string, sbyte>> create = static _ => ResultMother.Fail(expected);
+		Result<string, sbyte> actual = ResultMother.Succeed()
+			.Bind(create);
+		ResultAsserter.IsFailed(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberBind)]
+	public void Bind_SuccessfulResultPlusCreateWithSuccessfulResult_SuccessfulResult()
 	{
 		const sbyte success = ResultFixture.SuccessToBind;
 		const sbyte expected = ResultFixture.Success;
-		Func<sbyte, Result<string, sbyte>> createResultToBind = static _ => ResultMother.Succeed(expected);
+		Func<sbyte, Result<string, sbyte>> create = static _ => ResultMother.Succeed(expected);
 		Result<string, sbyte> actual = ResultMother.Succeed(success)
-			.Bind(createResultToBind);
+			.Bind(create);
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
@@ -835,18 +964,18 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberReset)]
-	public void Reset_FailedResultPlusSuccessInitializer_FailedResult()
+	public void Reset_FailedResultPlusSuccess_FailedResult()
 	{
 		const string expected = ResultFixture.Failure;
-		const short successInitializer = ResultFixture.SuccessInitializer;
+		const short success = ResultFixture.SuccessInitializer;
 		Result<string, short> actual = ResultMother.Fail(expected)
-			.Reset(successInitializer);
+			.Reset(success);
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
 	[Fact]
 	[Trait(@base, memberReset)]
-	public void Reset_SuccessfulResultPlusSuccessInitializer_SuccessfulResult()
+	public void Reset_SuccessfulResultPlusSuccess_SuccessfulResult()
 	{
 		const short expected = ResultFixture.SuccessInitializer;
 		Result<string, short> actual = ResultMother.Succeed()
@@ -860,23 +989,45 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberReset)]
-	public void Reset_FailedResultPlusResultInitializer_FailedResult()
+	public void Reset_FailedResultPlusFailedResult_FailedResult()
 	{
-		const string expected = ResultFixture.Failure;
-		Result<string, short> resultInitializer = new(ResultFixture.SuccessInitializer);
+		string expected = ResultFixture.RandomFailure;
+		Result<string, short> result = new(ResultFixture.Failure);
 		Result<string, short> actual = ResultMother.Fail(expected)
-			.Reset(resultInitializer);
+			.Reset(result);
 		ResultAsserter.IsFailed(expected, actual);
 	}
 
 	[Fact]
 	[Trait(@base, memberReset)]
-	public void Reset_SuccessfulResultPlusResultInitializer_SuccessfulResult()
+	public void Reset_FailedResultPlusSuccessfulResult_FailedResult()
+	{
+		const string expected = ResultFixture.Failure;
+		Result<string, short> result = new(ResultFixture.SuccessInitializer);
+		Result<string, short> actual = ResultMother.Fail(expected)
+			.Reset(result);
+		ResultAsserter.IsFailed(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberReset)]
+	public void Reset_SuccessfulResultPlusFailedResult_FailedResult()
+	{
+		const string expected = ResultFixture.Failure;
+		Result<string, short> result = new(expected);
+		Result<string, short> actual = ResultMother.Succeed()
+			.Reset(result);
+		ResultAsserter.IsFailed(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberReset)]
+	public void Reset_SuccessfulResultPlusSuccessfulResult_SuccessfulResult()
 	{
 		const short expected = ResultFixture.SuccessInitializer;
-		Result<string, short> resultInitializer = new(expected);
+		Result<string, short> result = new(expected);
 		Result<string, short> actual = ResultMother.Succeed()
-			.Reset(resultInitializer);
+			.Reset(result);
 		ResultAsserter.IsSuccessful(expected, actual);
 	}
 
@@ -942,41 +1093,101 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_LeftPlusNullObj_False()
+	public void Equals_FailedResultAndNullObject_False()
 	{
-		Result<string, sbyte> current = ResultMother.Fail();
-		object obj = null!;
-		bool actual = current.Equals(obj);
+		Result<string, sbyte> left = ResultMother.Fail();
+		object? right = null;
+		bool actual = left.Equals(right);
 		Assert.False(actual);
 	}
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_LeftPlusObjWithDifferentStates_False()
+	public void Equals_FailedResultAndDifferentObject_False()
 	{
-		Result<string, sbyte> current = ResultMother.Fail();
-		object obj = ResultMother.Succeed();
-		bool actual = current.Equals(obj);
+		Result<string, sbyte> left = ResultMother.Fail();
+		object right = string.Empty;
+		bool actual = left.Equals(right);
 		Assert.False(actual);
 	}
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_LeftFailedPlusObjFailed_True()
+	public void Equals_SuccessfulResultAndNullObject_False()
 	{
-		Result<string, sbyte> current = ResultMother.Fail();
-		object obj = ResultMother.Fail();
-		bool actual = current.Equals(obj);
+		Result<string, sbyte> left = ResultMother.Succeed();
+		object? right = null;
+		bool actual = left.Equals(right);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_SuccessfulResultAndDifferentObject_False()
+	{
+		Result<string, sbyte> left = ResultMother.Succeed();
+		object right = string.Empty;
+		bool actual = left.Equals(right);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_FailedResultAndSuccessfulObject_False()
+	{
+		Result<string, sbyte> left = ResultMother.Fail();
+		object right = ResultMother.Succeed();
+		bool actual = left.Equals(right);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_SuccessfulResultAndFailedObject_False()
+	{
+		Result<string, sbyte> left = ResultMother.Succeed();
+		object right = ResultMother.Fail();
+		bool actual = left.Equals(right);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_DifferentFailedResultAndDifferentFailedObject_False()
+	{
+		Result<string, sbyte> left = ResultMother.FailRandomly();
+		object right = ResultMother.FailRandomly();
+		bool actual = left.Equals(right);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_DifferentSuccessfulResultAndDifferentSuccessfulObject_False()
+	{
+		Result<string, sbyte> left = ResultMother.Succeed(1);
+		object right = ResultMother.Succeed(2);
+		bool actual = left.Equals(right);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_FailedResultAndFailedObject_True()
+	{
+		Result<string, sbyte> left = ResultMother.Fail();
+		object right = ResultMother.Fail();
+		bool actual = left.Equals(right);
 		Assert.True(actual);
 	}
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_LeftSuccessfulPlusObjSuccessful_True()
+	public void Equals_SuccessfulResultAndSuccessfulObject_True()
 	{
-		Result<string, sbyte> current = ResultMother.Succeed();
-		object obj = ResultMother.Succeed();
-		bool actual = current.Equals(obj);
+		Result<string, sbyte> left = ResultMother.Succeed();
+		object right = ResultMother.Succeed();
+		bool actual = left.Equals(right);
 		Assert.True(actual);
 	}
 
@@ -986,41 +1197,81 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_LeftPlusNullRight_False()
+	public void Equals_FailedResultAndNullResult_False()
 	{
-		Result<string, sbyte> current = ResultMother.Fail();
-		Result<string, sbyte> other = null!;
-		bool actual = current.Equals(other);
+		Result<string, sbyte> left = ResultMother.Fail();
+		Result<string, sbyte> right = null!;
+		bool actual = left.Equals(right);
 		Assert.False(actual);
 	}
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_LeftPlusRightWithDifferentStates_False()
+	public void Equals_SuccessfulResultAndNullResult_False()
 	{
-		Result<string, sbyte> current = ResultMother.Fail();
-		Result<string, sbyte> other = ResultMother.Succeed();
-		bool actual = current.Equals(other);
+		Result<string, sbyte> left = ResultMother.Succeed();
+		Result<string, sbyte> right = null!;
+		bool actual = left.Equals(right);
 		Assert.False(actual);
 	}
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_LeftFailedPlusRightFailed_True()
+	public void Equals_FailedResultAndSuccessfulResult_False()
 	{
-		Result<string, sbyte> current = ResultMother.Fail();
-		Result<string, sbyte> other = ResultMother.Fail();
-		bool actual = current.Equals(other);
+		Result<string, sbyte> left = ResultMother.Fail();
+		Result<string, sbyte> right = ResultMother.Succeed();
+		bool actual = left.Equals(right);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_SuccessfulResultAndFailedResult_False()
+	{
+		Result<string, sbyte> left = ResultMother.Succeed();
+		Result<string, sbyte> right = ResultMother.Fail();
+		bool actual = left.Equals(right);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_DifferentFailedResultAndDifferentFailedResult_False()
+	{
+		Result<string, sbyte> left = ResultMother.FailRandomly();
+		Result<string, sbyte> right = ResultMother.FailRandomly();
+		bool actual = left.Equals(right);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_DifferentSuccessfulResultAndDifferentSuccessfulResult_False()
+	{
+		Result<string, sbyte> left = ResultMother.Succeed(1);
+		Result<string, sbyte> right = ResultMother.Succeed(2);
+		bool actual = left.Equals(right);
+		Assert.False(actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberEquals)]
+	public void Equals_FailedResultAndFailedResult_True()
+	{
+		Result<string, sbyte> left = ResultMother.Fail();
+		Result<string, sbyte> right = ResultMother.Fail();
+		bool actual = left.Equals(right);
 		Assert.True(actual);
 	}
 
 	[Fact]
 	[Trait(@base, memberEquals)]
-	public void Equals_LeftSuccessfulPlusRightSuccessful_True()
+	public void Equals_SuccessfulResultAndSuccessfulResult_True()
 	{
-		Result<string, sbyte> current = ResultMother.Succeed();
-		Result<string, sbyte> other = ResultMother.Succeed();
-		bool actual = current.Equals(other);
+		Result<string, sbyte> left = ResultMother.Succeed();
+		Result<string, sbyte> right = ResultMother.Succeed();
+		bool actual = left.Equals(right);
 		Assert.True(actual);
 	}
 
@@ -1032,7 +1283,7 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberGetHashCode)]
-	public void GetHashCode_ResultsWithDifferentStates_DifferentHashCodes()
+	public void GetHashCode_DifferentStates_DifferentHashCodes()
 	{
 		int expected = ResultMother.Succeed()
 			.GetHashCode();
@@ -1043,7 +1294,40 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberGetHashCode)]
-	public void GetHashCode_ResultsWithEqualStates_EqualHashCodes()
+	public void GetHashCode_DifferentFailedStates_DifferentHashCodes()
+	{
+		int expected = ResultMother.FailRandomly()
+			.GetHashCode();
+		int actual = ResultMother.FailRandomly()
+			.GetHashCode();
+		Assert.NotEqual(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberGetHashCode)]
+	public void GetHashCode_DifferentSuccessfulStates_DifferentHashCodes()
+	{
+		int expected = ResultMother.Succeed(1)
+			.GetHashCode();
+		int actual = ResultMother.Succeed(2)
+			.GetHashCode();
+		Assert.NotEqual(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberGetHashCode)]
+	public void GetHashCode_FailedStates_EqualHashCodes()
+	{
+		int expected = ResultMother.Fail()
+			.GetHashCode();
+		int actual = ResultMother.Fail()
+			.GetHashCode();
+		Assert.Equal(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberGetHashCode)]
+	public void GetHashCode_SuccessfulStates_EqualHashCodes()
 	{
 		int expected = ResultMother.Succeed()
 			.GetHashCode();

@@ -13,6 +13,9 @@ internal static class ResultMother
 	internal static Result<string, sbyte> Fail(string failure)
 		=> new(failure);
 
+	internal static Result<string, sbyte> FailRandomly()
+		=> new(ResultFixture.RandomFailure);
+
 	internal static Result<string, sbyte> Succeed()
 		=> new(ResultFixture.Success);
 
