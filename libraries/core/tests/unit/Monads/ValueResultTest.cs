@@ -9,9 +9,9 @@ public sealed class ValueResultTest
 {
 	private const string @base = nameof(ValueResult<Failure, byte>);
 
-	private const string memberEqualOperator = "==";
+	private const string memberEqualityOperator = "Equality operator ==";
 
-	private const string memberNotEqualOperator = "!=";
+	private const string memberInequalityOperator = "Inequality operator !=";
 
 	private const string memberConstructor = "Constructor";
 
@@ -31,11 +31,11 @@ public sealed class ValueResultTest
 
 	private const string memberToString = nameof(ValueResult<Failure, sbyte>.ToString);
 
-	#region ==
+	#region Equality operator ==
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_DefaultLeftAndFailedRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_DefaultLeftAndFailedRight_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Fail();
@@ -44,8 +44,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_FailedLeftAndDefaultRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_FailedLeftAndDefaultRight_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		ValueResult<Failure, sbyte> right = ValueResultMother.GetDefault();
@@ -54,8 +54,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_DefaultLeftAndSuccessfulRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_DefaultLeftAndSuccessfulRight_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Succeed();
@@ -64,8 +64,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_SuccessfulLeftAndDefaultRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_SuccessfulLeftAndDefaultRight_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		ValueResult<Failure, sbyte> right = ValueResultMother.GetDefault();
@@ -74,8 +74,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_FailedLeftAndSuccessfulRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_FailedLeftAndSuccessfulRight_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Succeed();
@@ -84,8 +84,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_SuccessfulLeftAndFailedRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_SuccessfulLeftAndFailedRight_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Fail();
@@ -94,8 +94,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_DifferentFailedLeftAndDifferentFailedRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_DifferentFailedLeftAndDifferentFailedRight_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail(Failure.Availability);
 		ValueResult<Failure, sbyte> right = ValueResultMother.Fail(Failure.Range);
@@ -104,8 +104,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_DifferentSuccessfulLeftAndDifferentSuccessfulRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_DifferentSuccessfulLeftAndDifferentSuccessfulRight_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed(1);
 		ValueResult<Failure, sbyte> right = ValueResultMother.Succeed(2);
@@ -114,8 +114,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_DefaultLeftAndDefaultRight_True()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_DefaultLeftAndDefaultRight_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		ValueResult<Failure, sbyte> right = ValueResultMother.GetDefault();
@@ -124,8 +124,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_FailedLeftAndFailedRight_True()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_FailedLeftAndFailedRight_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Fail();
@@ -134,8 +134,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_SuccessfulLeftAndSuccessfulRight_True()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_SuccessfulLeftAndSuccessfulRight_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Succeed();
@@ -143,13 +143,13 @@ public sealed class ValueResultTest
 		Assert.True(actual);
 	}
 
-	#endregion ==
+	#endregion Equality operator ==
 
-	#region !=
+	#region Inequality operator !=
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_SuccessfulLeftAndSuccessfulRight_False()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_SuccessfulLeftAndSuccessfulRight_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Succeed();
@@ -158,8 +158,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_FailedLeftAndFailedRight_False()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_FailedLeftAndFailedRight_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Fail();
@@ -168,8 +168,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_DefaultLeftAndDefaultRight_False()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_DefaultLeftAndDefaultRight_False()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		ValueResult<Failure, sbyte> right = ValueResultMother.GetDefault();
@@ -178,8 +178,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_DifferentSuccessfulLeftAndDifferentSuccessfulRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_DifferentSuccessfulLeftAndDifferentSuccessfulRight_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed(1);
 		ValueResult<Failure, sbyte> right = ValueResultMother.Succeed(2);
@@ -188,8 +188,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_DifferentFailedLeftAndDifferentFailedRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_DifferentFailedLeftAndDifferentFailedRight_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail(Failure.Availability);
 		ValueResult<Failure, sbyte> right = ValueResultMother.Fail(Failure.Range);
@@ -198,8 +198,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_FailedLeftAndSuccessfulRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_FailedLeftAndSuccessfulRight_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Succeed();
@@ -208,8 +208,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_SuccessfulLeftAndFailedRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_SuccessfulLeftAndFailedRight_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Fail();
@@ -218,8 +218,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_SuccessfulLeftAndDefaultRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_SuccessfulLeftAndDefaultRight_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Succeed();
 		ValueResult<Failure, sbyte> right = ValueResultMother.GetDefault();
@@ -228,8 +228,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_DefaultLeftAndSuccessfulRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_DefaultLeftAndSuccessfulRight_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Succeed();
@@ -238,8 +238,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_FailedLeftAndDefaultRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_FailedLeftAndDefaultRight_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.Fail();
 		ValueResult<Failure, sbyte> right = ValueResultMother.GetDefault();
@@ -248,8 +248,8 @@ public sealed class ValueResultTest
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_DefaultLeftAndFailedRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_DefaultLeftAndFailedRight_True()
 	{
 		ValueResult<Failure, sbyte> left = ValueResultMother.GetDefault();
 		ValueResult<Failure, sbyte> right = ValueResultMother.Fail();
@@ -257,7 +257,7 @@ public sealed class ValueResultTest
 		Assert.True(actual);
 	}
 
-	#endregion !=
+	#endregion Inequality operator !=
 
 	#region Constructor
 
@@ -290,6 +290,68 @@ public sealed class ValueResultTest
 	#endregion Constructor
 
 	#region Implicit operator
+
+	#region Implicit operator overload
+
+	[Fact]
+	[Trait(@base, memberImplicitOperator)]
+	public void ImplicitOperator_FailureOnDefaultResult_InvalidOperationException()
+		=> ValueResultAsserter.CatchInvalidOperationException(static () =>
+			{
+				Failure _ = ValueResultMother.GetDefault();
+			}
+		);
+
+	[Fact]
+	[Trait(@base, memberImplicitOperator)]
+	public void ImplicitOperator_SuccessOnFailedResult_InvalidOperationException()
+		=> ValueResultAsserter.CatchInvalidOperationException(static () =>
+			{
+				Failure _ = ValueResultMother.Succeed();
+			}
+		);
+
+	[Fact]
+	[Trait(@base, memberImplicitOperator)]
+	public void ImplicitOperator_FailedResult_Failure()
+	{
+		Failure expected = ValueResultFixture.Failure;
+		Failure actual = ValueResultMother.Fail(expected);
+		Assert.Equal(expected, actual);
+	}
+
+	#endregion Implicit operator overload
+
+	#region Implicit operator overload
+
+	[Fact]
+	[Trait(@base, memberImplicitOperator)]
+	public void ImplicitOperator_SuccessOnDefaultResult_InvalidOperationException()
+		=> ValueResultAsserter.CatchInvalidOperationException(static () =>
+			{
+				sbyte _ = ValueResultMother.GetDefault();
+			}
+		);
+
+	[Fact]
+	[Trait(@base, memberImplicitOperator)]
+	public void ImplicitOperator_FailureOnSuccessfulResult_InvalidOperationException()
+		=> ValueResultAsserter.CatchInvalidOperationException(static () =>
+			{
+				Failure _ = ValueResultMother.Succeed();
+			}
+		);
+
+	[Fact]
+	[Trait(@base, memberImplicitOperator)]
+	public void ImplicitOperator_SuccessfulResult_Success()
+	{
+		const sbyte expected = ValueResultFixture.Success;
+		sbyte actual = ValueResultMother.Succeed(expected);
+		Assert.Equal(expected, actual);
+	}
+
+	#endregion Implicit operator overload
 
 	#region Implicit operator overload
 
