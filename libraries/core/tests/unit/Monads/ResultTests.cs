@@ -436,10 +436,19 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberImplicitOperator)]
+	public void ImplicitOperator_SuccessOnFailedResult_InvalidOperationException()
+		=> Assert.Throws<InvalidOperationException>(static () =>
+			{
+				sbyte _ = ResultMother.Fail();
+			}
+		);
+
+	[Fact]
+	[Trait(@base, memberImplicitOperator)]
 	public void ImplicitOperator_FailedResult_Failure()
 	{
 		const string expected = ResultFixture.Failure;
-		string? actual = ResultMother.Fail(expected);
+		string actual = ResultMother.Fail(expected);
 		Assert.Equal(expected, actual);
 	}
 
@@ -449,10 +458,19 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberImplicitOperator)]
+	public void ImplicitOperator_FailureOnSuccessfulResult_InvalidOperationException()
+		=> Assert.Throws<InvalidOperationException>(static () =>
+			{
+				string _ = ResultMother.Succeed();
+			}
+		);
+
+	[Fact]
+	[Trait(@base, memberImplicitOperator)]
 	public void ImplicitOperator_SuccessfulResult_Success()
 	{
 		const sbyte expected = ResultFixture.Success;
-		sbyte? actual = ResultMother.Succeed(expected);
+		sbyte actual = ResultMother.Succeed(expected);
 		Assert.Equal(expected, actual);
 	}
 

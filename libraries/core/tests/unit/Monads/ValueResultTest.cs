@@ -296,7 +296,7 @@ public sealed class ValueResultTest
 	[Fact]
 	[Trait(@base, memberImplicitOperator)]
 	public void ImplicitOperator_FailureOnDefaultResult_InvalidOperationException()
-		=> ValueResultAsserter.CatchInvalidOperationException(static () =>
+		=> Assert.Throws<InvalidOperationException>(static () =>
 			{
 				Failure _ = ValueResultMother.GetDefault();
 			}
@@ -305,9 +305,9 @@ public sealed class ValueResultTest
 	[Fact]
 	[Trait(@base, memberImplicitOperator)]
 	public void ImplicitOperator_SuccessOnFailedResult_InvalidOperationException()
-		=> ValueResultAsserter.CatchInvalidOperationException(static () =>
+		=> Assert.Throws<InvalidOperationException>(static () =>
 			{
-				Failure _ = ValueResultMother.Succeed();
+				sbyte _ = ValueResultMother.Fail();
 			}
 		);
 
@@ -327,7 +327,7 @@ public sealed class ValueResultTest
 	[Fact]
 	[Trait(@base, memberImplicitOperator)]
 	public void ImplicitOperator_SuccessOnDefaultResult_InvalidOperationException()
-		=> ValueResultAsserter.CatchInvalidOperationException(static () =>
+		=> Assert.Throws<InvalidOperationException>(static () =>
 			{
 				sbyte _ = ValueResultMother.GetDefault();
 			}
@@ -336,7 +336,7 @@ public sealed class ValueResultTest
 	[Fact]
 	[Trait(@base, memberImplicitOperator)]
 	public void ImplicitOperator_FailureOnSuccessfulResult_InvalidOperationException()
-		=> ValueResultAsserter.CatchInvalidOperationException(static () =>
+		=> Assert.Throws<InvalidOperationException>(static () =>
 			{
 				Failure _ = ValueResultMother.Succeed();
 			}
@@ -386,7 +386,7 @@ public sealed class ValueResultTest
 	[Fact]
 	[Trait(@base, memberDeconstruct)]
 	public void Deconstruct_DefaultResult_InvalidOperationException()
-		=> ValueResultAsserter.CatchInvalidOperationException(static () => (_, _, _) = ValueResultMother.GetDefault());
+		=> Assert.Throws<InvalidOperationException>(() => (_, _, _) = ValueResultMother.GetDefault());
 
 	[Fact]
 	[Trait(@base, memberDeconstruct)]
@@ -487,10 +487,12 @@ public sealed class ValueResultTest
 	[Fact]
 	[Trait(@base, memberDiscard)]
 	public void Discard_Default_InvalidOperationException()
-	{
-		ValueResult<Failure, Unit> actual = default;
-		ValueResultAsserter.CatchInvalidOperationException(() => actual.Discard());
-	}
+		=> Assert.Throws<InvalidOperationException>(() =>
+			{
+				ValueResult<Failure, Unit> actual = default;
+				_ = actual.Discard();
+			}
+		);
 
 	[Fact]
 	[Trait(@base, memberDiscard)]

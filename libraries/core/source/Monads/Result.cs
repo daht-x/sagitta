@@ -101,16 +101,20 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		=> result.Bind(create);
 
 	/// <summary>Gets the possible failure.</summary>
+	/// <remarks>If the result is not failed, an <see cref="InvalidOperationException" /> will be thrown.</remarks>
 	/// <param name="result">The current result.</param>
 	/// <returns>The possible failure.</returns>
-	public static implicit operator TFailure?(Result<TFailure, TSuccess> result)
-		=> result.failure;
+	/// <exception cref="InvalidOperationException" />
+	public static implicit operator TFailure(Result<TFailure, TSuccess> result)
+		=> result.Failure;
 
 	/// <summary>Gets the expected success.</summary>
+	/// <remarks>If the result is not successful, an <see cref="InvalidOperationException" /> will be thrown.</remarks>
 	/// <param name="result">The current result.</param>
 	/// <returns>The expected success.</returns>
-	public static implicit operator TSuccess?(Result<TFailure, TSuccess> result)
-		=> result.success;
+	/// <exception cref="InvalidOperationException" />
+	public static implicit operator TSuccess(Result<TFailure, TSuccess> result)
+		=> result.Success;
 
 	/// <summary>Creates a new failed result.</summary>
 	/// <param name="failure">The possible failure.</param>
