@@ -14,9 +14,10 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	where TFailure : struct, Enum
 	where TSuccess : struct
 {
-	private readonly bool isInitialized;
+	/// <summary>Indicates whether the current result is initialized.</summary>
+	public bool IsInitialized { get; }
 
-	/// <summary>Indicates whether the status is failed.</summary>
+	/// <summary>Indicates whether the state is failed.</summary>
 	public bool IsFailed { get; }
 
 	private readonly TFailure failure;
@@ -28,7 +29,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	{
 		get
 		{
-			ThrowInvalidOperationExceptionIfIsDefault();
+			ThrowInvalidOperationExceptionIfResultIsUninitialized();
 			return !IsFailed
 				? throw new InvalidOperationException(ResultExceptionMessages.AccessToFailureWhenSuccessful)
 				: this.failure;
@@ -44,7 +45,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	{
 		get
 		{
-			ThrowInvalidOperationExceptionIfIsDefault();
+			ThrowInvalidOperationExceptionIfResultIsUninitialized();
 			return IsFailed
 				? throw new InvalidOperationException(ResultExceptionMessages.AccessToSuccessWhenFailed)
 				: this.success;
@@ -70,7 +71,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	public ValueResult(TFailure failure)
 	{
 		Unsafe.SkipInit(out this.success);
-		this.isInitialized = true;
+		IsInitialized = true;
 		IsFailed = true;
 		this.failure = failure;
 	}
@@ -80,7 +81,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	public ValueResult(TSuccess success)
 	{
 		Unsafe.SkipInit(out this.failure);
-		this.isInitialized = true;
+		IsInitialized = true;
 		IsFailed = false;
 		this.success = success;
 	}
@@ -102,7 +103,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	/// <returns><see langword="true" /> if the result is failed; otherwise, <see langword="false" />.</returns>
 	public bool TryGetFailure(out TFailure output)
 	{
-		if (!this.isInitialized)
+		if (!IsInitialized)
 		{
 			output = default;
 			return false;
@@ -116,7 +117,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	/// <returns><see langword="true" /> if the result is successful; otherwise, <see langword="false" />.</returns>
 	public bool TryGetSuccess(out TSuccess output)
 	{
-		if (!this.isInitialized)
+		if (!IsInitialized)
 		{
 			output = default;
 			return false;
@@ -127,13 +128,13 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 
 	/// <summary>Deconstructs the root state of the result.</summary>
 	/// <remarks>If the result is <see langword="default" /> (uninitialized), an <see cref="InvalidOperationException" /> will be thrown.</remarks>
-	/// <param name="isFailed">Indicates whether the status is failed.</param>
+	/// <param name="isFailed">Indicates whether the state is failed.</param>
 	/// <param name="failure">The possible failure.</param>
 	/// <param name="success">The expected success.</param>
 	/// <exception cref="InvalidOperationException" />
 	public void Deconstruct(out bool isFailed, out TFailure failure, out TSuccess success)
 	{
-		ThrowInvalidOperationExceptionIfIsDefault();
+		ThrowInvalidOperationExceptionIfResultIsUninitialized();
 		isFailed = IsFailed;
 		failure = this.failure;
 		success = this.success;
@@ -145,7 +146,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	/// <exception cref="InvalidOperationException" />
 	public ValueResult<TFailure, Unit> Discard()
 	{
-		ThrowInvalidOperationExceptionIfIsDefault();
+		ThrowInvalidOperationExceptionIfResultIsUninitialized();
 		return IsFailed
 			? new(this.failure)
 			: new(Unit.Default);
@@ -162,12 +163,11 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
 	public bool Equals(ValueResult<TFailure, TSuccess> other)
 	{
-		if ((this.isInitialized != other.isInitialized) ||
-			(this.isInitialized && other.isInitialized && (IsFailed != other.IsFailed)))
+		if ((IsInitialized != other.IsInitialized) || (IsInitialized && other.IsInitialized && (IsFailed != other.IsFailed)))
 		{
 			return false;
 		}
-		if (!this.isInitialized && !other.isInitialized)
+		if (!IsInitialized && !other.IsInitialized)
 		{
 			return true;
 		}
@@ -180,20 +180,20 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	/// <returns>The calculated hash code.</returns>
 	public override int GetHashCode()
 	{
-		if (!this.isInitialized)
+		if (!IsInitialized)
 		{
 			return 0;
 		}
 		return IsFailed
-			? HashCode.Combine(this.isInitialized, IsFailed, this.failure)
-			: HashCode.Combine(this.isInitialized, this.success);
+			? HashCode.Combine(IsInitialized, IsFailed, this.failure)
+			: HashCode.Combine(IsInitialized, this.success);
 	}
 
 	/// <summary>Gets the value of the current result.</summary>
 	/// <returns>The value of the current result.</returns>
 	public override string ToString()
 	{
-		if (!this.isInitialized)
+		if (!IsInitialized)
 		{
 			return string.Empty;
 		}
@@ -203,14 +203,19 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	}
 
 	[StackTraceHidden]
-	private void ThrowInvalidOperationExceptionIfIsDefault()
+	private void ThrowInvalidOperationExceptionIfResultIsUninitialized()
 	{
-		if (this.isInitialized)
+		if (IsInitialized)
 		{
 			return;
 		}
-		throw new InvalidOperationException(
-			"Cannot access the result when it was not initialized as a failure or success."
-		);
+		ThrowInvalidOperationExceptionForUninitializedResult();
 	}
+
+	[DoesNotReturn]
+	[StackTraceHidden]
+	private static void ThrowInvalidOperationExceptionForUninitializedResult()
+		=> throw new InvalidOperationException(
+			"The result cannot be accessed when it was not initialized as a failure or success."
+		);
 }
