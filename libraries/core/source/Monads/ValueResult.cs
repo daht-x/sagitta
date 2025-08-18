@@ -18,6 +18,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	public bool IsInitialized { get; }
 
 	/// <summary>Indicates whether the state is failed.</summary>
+	/// <remarks>Access to this state is only semantically valid when <see cref="IsInitialized"/> is <see langword="true" />.</remarks>
 	public bool IsFailed { get; }
 
 	private readonly TFailure failure;
@@ -85,6 +86,22 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 		IsFailed = false;
 		this.success = success;
 	}
+
+	/// <summary>Gets the possible failure.</summary>
+	/// <remarks>If the result is <see langword="default" /> (uninitialized) or not failed, an <see cref="InvalidOperationException" /> will be thrown.</remarks>
+	/// <param name="result">The current result.</param>
+	/// <returns>The possible failure.</returns>
+	/// <exception cref="InvalidOperationException" />
+	public static implicit operator TFailure(ValueResult<TFailure, TSuccess> result)
+		=> result.Failure;
+
+	/// <summary>Gets the expected success.</summary>
+	/// <remarks>If the result is <see langword="default" /> (uninitialized) or not successful, an <see cref="InvalidOperationException" /> will be thrown.</remarks>
+	/// <param name="result">The current result.</param>
+	/// <returns>The expected success.</returns>
+	/// <exception cref="InvalidOperationException" />
+	public static implicit operator TSuccess(ValueResult<TFailure, TSuccess> result)
+		=> result.Success;
 
 	/// <summary>Creates a new failed result.</summary>
 	/// <param name="failure">The possible failure.</param>
@@ -163,7 +180,8 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
 	public bool Equals(ValueResult<TFailure, TSuccess> other)
 	{
-		if ((IsInitialized != other.IsInitialized) || (IsInitialized && other.IsInitialized && (IsFailed != other.IsFailed)))
+		if ((IsInitialized != other.IsInitialized) ||
+			(IsInitialized && other.IsInitialized && (IsFailed != other.IsFailed)))
 		{
 			return false;
 		}
