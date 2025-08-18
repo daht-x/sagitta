@@ -324,7 +324,7 @@ public sealed class ValueResultTest
 	[Fact]
 	[Trait(@base, memberDeconstruct)]
 	public void Deconstruct_DefaultResult_InvalidOperationException()
-		=> ValueResultAsserter.IsDefault(static () => (_, _, _) = ValueResultMother.GetDefault());
+		=> ValueResultAsserter.CatchInvalidOperationException(static () => (_, _, _) = ValueResultMother.GetDefault());
 
 	[Fact]
 	[Trait(@base, memberDeconstruct)]
@@ -427,7 +427,7 @@ public sealed class ValueResultTest
 	public void Discard_Default_InvalidOperationException()
 	{
 		ValueResult<Failure, Unit> actual = default;
-		ValueResultAsserter.IsDefault(() => actual.Discard());
+		ValueResultAsserter.CatchInvalidOperationException(() => actual.Discard());
 	}
 
 	[Fact]

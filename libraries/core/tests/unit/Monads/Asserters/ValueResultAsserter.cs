@@ -7,13 +7,14 @@ namespace Daht.Sagitta.Core.UnitTests.Monads.Asserters;
 
 internal static class ValueResultAsserter
 {
-	internal static void IsDefault(Action execute)
+	internal static void CatchInvalidOperationException(Action execute)
 		=> Assert.Throws<InvalidOperationException>(execute);
 
 	internal static void IsFailed<TFailure, TSuccess>(TFailure expected, ValueResult<TFailure, TSuccess> actual)
 		where TFailure : struct, Enum
 		where TSuccess : struct
 	{
+		Assert.True(actual.IsInitialized);
 		Assert.True(actual.IsFailed);
 		Assert.Equal(expected, actual.Failure);
 		_ = Assert.Throws<InvalidOperationException>(() => actual.Success);
@@ -23,6 +24,7 @@ internal static class ValueResultAsserter
 		where TFailure : struct, Enum
 		where TSuccess : struct
 	{
+		Assert.True(actual.IsInitialized);
 		Assert.False(actual.IsFailed);
 		_ = Assert.Throws<InvalidOperationException>(() => actual.Failure);
 		Assert.Equal(expected, actual.Success);

@@ -12,7 +12,7 @@ namespace Daht.Sagitta.Core.Monads;
 [SuppressMessage(DesignAnalysisCategory.Name, DesignAnalysisCategory.Rules.ValidateArgumentsOfPublicMethods)]
 public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSuccess>>
 {
-	/// <summary>Indicates whether the status is failed.</summary>
+	/// <summary>Indicates whether the state is failed.</summary>
 	[MemberNotNullWhen(true, nameof(failure))]
 	[MemberNotNullWhen(false, nameof(success))]
 	public bool IsFailed { get; }
@@ -27,7 +27,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			? throw new InvalidOperationException(ResultExceptionMessages.AccessToFailureWhenSuccessful)
 			: this.failure;
 
-	/// <summary>Indicates whether the status is successful.</summary>
+	/// <summary>Indicates whether the state is successful.</summary>
 	[MemberNotNullWhen(false, nameof(failure))]
 	[MemberNotNullWhen(true, nameof(success))]
 	public bool IsSuccessful
@@ -73,19 +73,19 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	public static bool operator ==(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
 		=> (left is null && right is null) || (left is not null && left.Equals(right));
 
-	/// <summary>Indicates whether the status is failed.</summary>
+	/// <summary>Indicates whether the state is failed.</summary>
 	/// <param name="result">The current result.</param>
 	/// <returns><see langword="true" /> if the current result is failed; otherwise, <see langword="false" />.</returns>
 	public static bool operator false(Result<TFailure, TSuccess> result)
 		=> result.IsFailed;
 
-	/// <summary>Indicates whether the status is successful.</summary>
+	/// <summary>Indicates whether the state is successful.</summary>
 	/// <param name="result">The current result.</param>
 	/// <returns><see langword="true" /> if the current result is successful; otherwise, <see langword="false" />.</returns>
 	public static bool operator true(Result<TFailure, TSuccess> result)
 		=> result.IsSuccessful;
 
-	/// <summary>Indicates whether the status is failed.</summary>
+	/// <summary>Indicates whether the state is failed.</summary>
 	/// <param name="result">The current result.</param>
 	/// <returns><see langword="true" /> if the current result is failed; otherwise, <see langword="false" />.</returns>
 	public static bool operator !(Result<TFailure, TSuccess> result)
@@ -125,7 +125,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 		=> new(success);
 
 	/// <summary>Deconstructs the root state of the result.</summary>
-	/// <param name="isFailed">Indicates whether the status is failed.</param>
+	/// <param name="isFailed">Indicates whether the state is failed.</param>
 	/// <param name="failure">The possible failure.</param>
 	/// <param name="success">The expected success.</param>
 	public void Deconstruct(out bool isFailed, out TFailure? failure, out TSuccess? success)
