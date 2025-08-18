@@ -73,6 +73,45 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	public static bool operator ==(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
 		=> (left is null && right is null) || (left is not null && left.Equals(right));
 
+	/// <summary>Indicates whether the status is failed.</summary>
+	/// <param name="result">The current result.</param>
+	/// <returns><see langword="true" /> if the current result is failed; otherwise, <see langword="false" />.</returns>
+	public static bool operator false(Result<TFailure, TSuccess> result)
+		=> result.IsFailed;
+
+	/// <summary>Indicates whether the status is successful.</summary>
+	/// <param name="result">The current result.</param>
+	/// <returns><see langword="true" /> if the current result is successful; otherwise, <see langword="false" />.</returns>
+	public static bool operator true(Result<TFailure, TSuccess> result)
+		=> result.IsSuccessful;
+
+	/// <summary>Indicates whether the status is failed.</summary>
+	/// <param name="result">The current result.</param>
+	/// <returns><see langword="true" /> if the current result is failed; otherwise, <see langword="false" />.</returns>
+	public static bool operator !(Result<TFailure, TSuccess> result)
+		=> result.IsFailed;
+
+	/// <summary>Binds the previous result to a new one.</summary>
+	/// <param name="result">The current result.</param>
+	/// <param name="create">Creates a new result with the current success.</param>
+	/// <returns>A new result with a different expected success.</returns>
+	public static Result<TFailure, TSuccess> operator |(
+		Result<TFailure, TSuccess> result, Func<TSuccess, Result<TFailure, TSuccess>> create
+	)
+		=> result.Bind(create);
+
+	/// <summary>Gets the possible failure.</summary>
+	/// <param name="result">The current result.</param>
+	/// <returns>The possible failure.</returns>
+	public static implicit operator TFailure?(Result<TFailure, TSuccess> result)
+		=> result.failure;
+
+	/// <summary>Gets the expected success.</summary>
+	/// <param name="result">The current result.</param>
+	/// <returns>The expected success.</returns>
+	public static implicit operator TSuccess?(Result<TFailure, TSuccess> result)
+		=> result.success;
+
 	/// <summary>Creates a new failed result.</summary>
 	/// <param name="failure">The possible failure.</param>
 	/// <returns>A new failed result.</returns>

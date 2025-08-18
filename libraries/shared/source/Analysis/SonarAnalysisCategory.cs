@@ -5,14 +5,12 @@
 
 namespace Daht.Sagitta.Shared.Analysis;
 
-public static class RoslynatorAnalysisCategory
+public static class SonarAnalysisCategory
 {
-	public const string Name = "Roslynator";
+	public const string Name = "Sonar";
 
 	public static class Rules
 	{
-		public const string ImplementExceptionConstructors = "RCS1194: Implement exception constructors";
-
-		public const string SimplifyConditionalExpression = "RCS1104: Simplify conditional expression";
+		public const string BooleanLiteralsShouldNotBeRedundant = "S1125: Boolean literals should not be redundant";
 	}
 }
