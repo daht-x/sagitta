@@ -9,9 +9,17 @@ public sealed class ResultTests
 {
 	private const string @base = nameof(Result<object, object>);
 
-	private const string memberEqualOperator = "==";
+	private const string memberEqualityOperator = "Equality operator ==";
 
-	private const string memberNotEqualOperator = "!=";
+	private const string memberInequalityOperator = "Inequality operator !=";
+
+	private const string memberFalseOperator = "False operator";
+
+	private const string memberTrueOperator = "True operator";
+
+	private const string memberLogicalNegationOperator = "Logical negation operator !";
+
+	private const string memberLogicalOrOperator = "Logical OR operator |";
 
 	private const string memberConstructor = "Constructor";
 
@@ -51,11 +59,11 @@ public sealed class ResultTests
 
 	private const string memberToString = nameof(Result<object, object>.ToString);
 
-	#region ==
+	#region Equality operator ==
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_NullLeftAndFailedRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_NullLeftAndFailedRight_False()
 	{
 		Result<string, sbyte> left = null!;
 		Result<string, sbyte> right = ResultMother.Fail();
@@ -64,8 +72,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_FailedLeftAndNullRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_FailedLeftAndNullRight_False()
 	{
 		Result<string, sbyte> left = ResultMother.Fail();
 		Result<string, sbyte> right = null!;
@@ -74,8 +82,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_NullLeftAndSuccessfulRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_NullLeftAndSuccessfulRight_False()
 	{
 		Result<string, sbyte> left = null!;
 		Result<string, sbyte> right = ResultMother.Succeed();
@@ -84,8 +92,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_SuccessfulLeftAndNullRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_SuccessfulLeftAndNullRight_False()
 	{
 		Result<string, sbyte> left = ResultMother.Succeed();
 		Result<string, sbyte> right = null!;
@@ -94,8 +102,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_FailedLeftAndSuccessfulRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_FailedLeftAndSuccessfulRight_False()
 	{
 		Result<string, sbyte> left = ResultMother.Fail();
 		Result<string, sbyte> right = ResultMother.Succeed();
@@ -104,8 +112,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_SuccessfulLeftAndFailedRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_SuccessfulLeftAndFailedRight_False()
 	{
 		Result<string, sbyte> left = ResultMother.Succeed();
 		Result<string, sbyte> right = ResultMother.Fail();
@@ -114,8 +122,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_DifferentFailedLeftAndDifferentFailedRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_DifferentFailedLeftAndDifferentFailedRight_False()
 	{
 		Result<string, sbyte> left = ResultMother.FailRandomly();
 		Result<string, sbyte> right = ResultMother.FailRandomly();
@@ -124,8 +132,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_DifferentSuccessfulLeftAndDifferentSuccessfulRight_False()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_DifferentSuccessfulLeftAndDifferentSuccessfulRight_False()
 	{
 		Result<string, sbyte> left = ResultMother.Succeed(1);
 		Result<string, sbyte> right = ResultMother.Succeed(2);
@@ -134,12 +142,12 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
+	[Trait(@base, memberEqualityOperator)]
 	[SuppressMessage(
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void EqualOperator_NullLeftAndNullRight_True()
+	public void EqualityOperator_NullLeftAndNullRight_True()
 	{
 		Result<string, sbyte> left = null!;
 		Result<string, sbyte> right = null!;
@@ -148,8 +156,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_FailedLeftAndFailedRight_True()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_FailedLeftAndFailedRight_True()
 	{
 		Result<string, sbyte> left = ResultMother.Fail();
 		Result<string, sbyte> right = ResultMother.Fail();
@@ -158,8 +166,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_SuccessfulLeftAndSuccessfulRight_True()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_SuccessfulLeftAndSuccessfulRight_True()
 	{
 		Result<string, sbyte> left = ResultMother.Succeed();
 		Result<string, sbyte> right = ResultMother.Succeed();
@@ -167,13 +175,13 @@ public sealed class ResultTests
 		Assert.True(actual);
 	}
 
-	#endregion ==
+	#endregion Equality operator ==
 
-	#region !=
+	#region Inequality operator !=
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_SuccessfulLeftAndSuccessfulRight_False()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_SuccessfulLeftAndSuccessfulRight_False()
 	{
 		Result<string, sbyte> left = ResultMother.Succeed();
 		Result<string, sbyte> right = ResultMother.Succeed();
@@ -182,8 +190,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_FailedLeftAndFailedRight_False()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_FailedLeftAndFailedRight_False()
 	{
 		Result<string, sbyte> left = ResultMother.Fail();
 		Result<string, sbyte> right = ResultMother.Fail();
@@ -192,12 +200,12 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
+	[Trait(@base, memberInequalityOperator)]
 	[SuppressMessage(
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void NotEqualOperator_NullLeftAndNullRight_False()
+	public void InequalityOperator_NullLeftAndNullRight_False()
 	{
 		Result<string, sbyte> left = null!;
 		Result<string, sbyte> right = null!;
@@ -206,8 +214,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_DifferentSuccessfulLeftAndDifferentSuccessfulRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_DifferentSuccessfulLeftAndDifferentSuccessfulRight_True()
 	{
 		Result<string, sbyte> left = ResultMother.Succeed(1);
 		Result<string, sbyte> right = ResultMother.Succeed(2);
@@ -216,8 +224,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_DifferentFailedLeftAndDifferentFailedRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_DifferentFailedLeftAndDifferentFailedRight_True()
 	{
 		Result<string, sbyte> left = ResultMother.FailRandomly();
 		Result<string, sbyte> right = ResultMother.FailRandomly();
@@ -226,8 +234,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_SuccessfulLeftAndFailedRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_SuccessfulLeftAndFailedRight_True()
 	{
 		Result<string, sbyte> left = ResultMother.Succeed();
 		Result<string, sbyte> right = ResultMother.Fail();
@@ -236,8 +244,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_FailedLeftAndSuccessfulRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_FailedLeftAndSuccessfulRight_True()
 	{
 		Result<string, sbyte> left = ResultMother.Fail();
 		Result<string, sbyte> right = ResultMother.Succeed();
@@ -246,8 +254,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_SuccessfulLeftAndNullRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_SuccessfulLeftAndNullRight_True()
 	{
 		Result<string, sbyte> left = ResultMother.Succeed();
 		Result<string, sbyte> right = null!;
@@ -256,8 +264,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_NullLeftAndSuccessfulRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_NullLeftAndSuccessfulRight_True()
 	{
 		Result<string, sbyte> left = null!;
 		Result<string, sbyte> right = ResultMother.Succeed();
@@ -266,8 +274,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_FailedLeftAndNullRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_FailedLeftAndNullRight_True()
 	{
 		Result<string, sbyte> left = ResultMother.Fail();
 		Result<string, sbyte> right = null!;
@@ -276,8 +284,8 @@ public sealed class ResultTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_NullLeftAndFailedRight_True()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_NullLeftAndFailedRight_True()
 	{
 		Result<string, sbyte> left = null!;
 		Result<string, sbyte> right = ResultMother.Fail();
@@ -285,7 +293,112 @@ public sealed class ResultTests
 		Assert.True(actual);
 	}
 
-	#endregion !=
+	#endregion Inequality operator !=
+
+	#region False operator
+
+	[Fact]
+	[Trait(@base, memberFalseOperator)]
+	[SuppressMessage(RoslynatorAnalysisCategory.Name, RoslynatorAnalysisCategory.Rules.SimplifyConditionalExpression)]
+	[SuppressMessage(SonarAnalysisCategory.Name, SonarAnalysisCategory.Rules.BooleanLiteralsShouldNotBeRedundant)]
+	public void FalseOperator_FailedResult_False()
+	{
+		Result<string, sbyte> actual = ResultMother.Fail();
+		bool status = actual
+			? true
+			: false;
+		Assert.False(status);
+	}
+
+	#endregion False operator
+
+	#region True operator
+
+	[Fact]
+	[Trait(@base, memberTrueOperator)]
+	[SuppressMessage(RoslynatorAnalysisCategory.Name, RoslynatorAnalysisCategory.Rules.SimplifyConditionalExpression)]
+	[SuppressMessage(SonarAnalysisCategory.Name, SonarAnalysisCategory.Rules.BooleanLiteralsShouldNotBeRedundant)]
+	public void TrueOperator_SuccessfulResult_True()
+	{
+		Result<string, sbyte> actual = ResultMother.Succeed();
+		bool status = actual
+			? true
+			: false;
+		Assert.True(status);
+	}
+
+	#endregion True operator
+
+	#region Logical negation operator !
+
+	[Fact]
+	[Trait(@base, memberLogicalNegationOperator)]
+	public void LogicalNegationOperator_FailedResult_True()
+	{
+		Result<string, sbyte> actual = ResultMother.Fail();
+		bool status = !actual;
+		Assert.True(status);
+	}
+
+	[Fact]
+	[Trait(@base, memberLogicalNegationOperator)]
+	public void LogicalNegationOperator_SuccessfulResult_False()
+	{
+		Result<string, sbyte> actual = ResultMother.Succeed();
+		bool status = !actual;
+		Assert.False(status);
+	}
+
+	#endregion Logical negation operator !
+
+	#region Logical OR operator |
+
+	[Fact]
+	[Trait(@base, memberLogicalOrOperator)]
+	public void LogicalOrOperator_FailedResultPlusCreateWithFailedResult_FailedResult()
+	{
+		string expected = ResultFixture.RandomFailure;
+		Func<sbyte, Result<string, sbyte>> create = static _ => ResultMother.Fail();
+		Result<string, sbyte> current = ResultMother.Fail(expected);
+		Result<string, sbyte> actual = current | create;
+		ResultAsserter.IsFailed(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberLogicalOrOperator)]
+	public void LogicalOrOperator_FailedResultPlusCreateWithSuccessfulResult_FailedResult()
+	{
+		const string expected = ResultFixture.Failure;
+		Func<sbyte, Result<string, sbyte>> create = static _ => ResultMother.Succeed();
+		Result<string, sbyte> current = ResultMother.Fail(expected);
+		Result<string, sbyte> actual = current | create;
+		ResultAsserter.IsFailed(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberLogicalOrOperator)]
+	public void LogicalOrOperator_SuccessfulResultPlusCreateWithFailedResult_FailedResult()
+	{
+		const string expected = ResultFixture.Failure;
+		Func<sbyte, Result<string, sbyte>> create = static _ => ResultMother.Fail(expected);
+		Result<string, sbyte> current = ResultMother.Succeed();
+		Result<string, sbyte> actual = current | create;
+		ResultAsserter.IsFailed(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberLogicalOrOperator)]
+	public void LogicalOrOperator_SuccessfulResultPlusCreateWithSuccessfulResult_SuccessfulResult()
+	{
+		const sbyte success = ResultFixture.SuccessToBind;
+		const sbyte expected = ResultFixture.Success;
+		Func<sbyte, Result<string, sbyte>> create = static _ => ResultMother.Succeed(expected);
+		Result<string, sbyte> current = ResultMother.Succeed(success);
+		Result<string, sbyte> actual = current | create;
+		ResultAsserter.IsSuccessful(expected, actual);
+	}
+
+	#endregion Logical OR operator |
 
 	#region Constructor
 
@@ -318,6 +431,32 @@ public sealed class ResultTests
 	#endregion Constructor
 
 	#region Implicit operator
+
+	#region Implicit operator overload
+
+	[Fact]
+	[Trait(@base, memberImplicitOperator)]
+	public void ImplicitOperator_FailedResult_Failure()
+	{
+		const string expected = ResultFixture.Failure;
+		string? actual = ResultMother.Fail(expected);
+		Assert.Equal(expected, actual);
+	}
+
+	#endregion Implicit operator overload
+
+	#region Implicit operator overload
+
+	[Fact]
+	[Trait(@base, memberImplicitOperator)]
+	public void ImplicitOperator_SuccessfulResult_Success()
+	{
+		const sbyte expected = ResultFixture.Success;
+		sbyte? actual = ResultMother.Succeed(expected);
+		Assert.Equal(expected, actual);
+	}
+
+	#endregion Implicit operator overload
 
 	#region Implicit operator overload
 
