@@ -227,13 +227,8 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 		{
 			return;
 		}
-		ThrowInvalidOperationExceptionForUninitializedResult();
-	}
-
-	[DoesNotReturn]
-	[StackTraceHidden]
-	private static void ThrowInvalidOperationExceptionForUninitializedResult()
-		=> throw new InvalidOperationException(
+		throw new InvalidOperationException(
 			"The result cannot be accessed when it was not initialized as a failure or success."
 		);
+	}
 }
