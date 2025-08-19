@@ -53,20 +53,6 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 		}
 	}
 
-	/// <summary>Determines whether the left result is not equal to the right result.</summary>
-	/// <param name="left">The main result.</param>
-	/// <param name="right">The result to compare.</param>
-	/// <returns><see langword="true" /> if the left result is not equal to the right result; otherwise, <see langword="false" />.</returns>
-	public static bool operator !=(ValueResult<TFailure, TSuccess> left, ValueResult<TFailure, TSuccess> right)
-		=> !(left == right);
-
-	/// <summary>Determines whether the left result is equal to the right result.</summary>
-	/// <param name="left">The main result.</param>
-	/// <param name="right">The result to compare.</param>
-	/// <returns><see langword="true" /> if the left result is equal to the right result; otherwise, <see langword="false" />.</returns>
-	public static bool operator ==(ValueResult<TFailure, TSuccess> left, ValueResult<TFailure, TSuccess> right)
-		=> left.Equals(right);
-
 	/// <summary>Creates a new failed result.</summary>
 	/// <param name="failure">The possible failure.</param>
 	public ValueResult(TFailure failure)
@@ -86,6 +72,20 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 		IsFailed = false;
 		this.success = success;
 	}
+
+	/// <summary>Determines whether the left result is not equal to the right result.</summary>
+	/// <param name="left">The main result.</param>
+	/// <param name="right">The result to compare.</param>
+	/// <returns><see langword="true" /> if the left result is not equal to the right result; otherwise, <see langword="false" />.</returns>
+	public static bool operator !=(ValueResult<TFailure, TSuccess> left, ValueResult<TFailure, TSuccess> right)
+		=> !(left == right);
+
+	/// <summary>Determines whether the left result is equal to the right result.</summary>
+	/// <param name="left">The main result.</param>
+	/// <param name="right">The result to compare.</param>
+	/// <returns><see langword="true" /> if the left result is equal to the right result; otherwise, <see langword="false" />.</returns>
+	public static bool operator ==(ValueResult<TFailure, TSuccess> left, ValueResult<TFailure, TSuccess> right)
+		=> left.Equals(right);
 
 	/// <summary>Gets the possible failure.</summary>
 	/// <remarks>If the result is <see langword="default" /> (uninitialized) or not failed, an <see cref="InvalidOperationException" /> will be thrown.</remarks>

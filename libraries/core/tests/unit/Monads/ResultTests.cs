@@ -299,15 +299,18 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberFalseOperator)]
-	[SuppressMessage(RoslynatorAnalysisCategory.Name, RoslynatorAnalysisCategory.Rules.SimplifyConditionalExpression)]
-	[SuppressMessage(SonarAnalysisCategory.Name, SonarAnalysisCategory.Rules.BooleanLiteralsShouldNotBeRedundant)]
 	public void FalseOperator_FailedResult_False()
 	{
 		Result<string, sbyte> actual = ResultMother.Fail();
-		bool status = actual
-			? true
-			: false;
-		Assert.False(status);
+		const bool status = false;
+		if (actual)
+		{
+			Assert.True(status);
+		}
+		else
+		{
+			Assert.False(status);
+		}
 	}
 
 	#endregion False operator
@@ -316,15 +319,18 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberTrueOperator)]
-	[SuppressMessage(RoslynatorAnalysisCategory.Name, RoslynatorAnalysisCategory.Rules.SimplifyConditionalExpression)]
-	[SuppressMessage(SonarAnalysisCategory.Name, SonarAnalysisCategory.Rules.BooleanLiteralsShouldNotBeRedundant)]
 	public void TrueOperator_SuccessfulResult_True()
 	{
 		Result<string, sbyte> actual = ResultMother.Succeed();
-		bool status = actual
-			? true
-			: false;
-		Assert.True(status);
+		const bool status = true;
+		if (actual)
+		{
+			Assert.True(status);
+		}
+		else
+		{
+			Assert.False(status);
+		}
 	}
 
 	#endregion True operator
