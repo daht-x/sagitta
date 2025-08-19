@@ -299,18 +299,32 @@ public sealed class ResultTests
 
 	[Fact]
 	[Trait(@base, memberFalseOperator)]
-	public void FalseOperator_FailedResult_False()
+	public void FalseOperator_SuccessfulResult_False()
+	{
+		Result<string, sbyte> actual = ResultMother.Succeed();
+		const string target = "op_False";
+		MethodInfo? method = typeof(Result<string, sbyte>).GetMethod(
+			target,
+			BindingFlags.Public | BindingFlags.Static
+		);
+		object?[] parameters = [actual];
+		bool status = (bool)(method?.Invoke(null, parameters) ?? throw new InvalidOperationException(target));
+		Assert.False(status);
+	}
+
+	[Fact]
+	[Trait(@base, memberFalseOperator)]
+	public void FalseOperator_FailedResult_True()
 	{
 		Result<string, sbyte> actual = ResultMother.Fail();
-		const bool status = false;
-		if (actual)
-		{
-			Assert.True(status);
-		}
-		else
-		{
-			Assert.False(status);
-		}
+		const string target = "op_False";
+		MethodInfo? method = typeof(Result<string, sbyte>).GetMethod(
+			target,
+			BindingFlags.Public | BindingFlags.Static
+		);
+		object?[] parameters = [actual];
+		bool status = (bool)(method?.Invoke(null, parameters) ?? throw new InvalidOperationException(target));
+		Assert.True(status);
 	}
 
 	#endregion False operator
@@ -318,19 +332,29 @@ public sealed class ResultTests
 	#region True operator
 
 	[Fact]
+	[Trait(@base, memberFalseOperator)]
+	[SuppressMessage(RoslynatorAnalysisCategory.Name, RoslynatorAnalysisCategory.Rules.SimplifyConditionalExpression)]
+	[SuppressMessage(SonarAnalysisCategory.Name, SonarAnalysisCategory.Rules.BooleanLiteralsShouldNotBeRedundant)]
+	public void TrueOperator_FailedResult_False()
+	{
+		Result<string, sbyte> actual = ResultMother.Fail();
+		bool status = actual
+			? true
+			: false;
+		Assert.False(status);
+	}
+
+	[Fact]
 	[Trait(@base, memberTrueOperator)]
+	[SuppressMessage(RoslynatorAnalysisCategory.Name, RoslynatorAnalysisCategory.Rules.SimplifyConditionalExpression)]
+	[SuppressMessage(SonarAnalysisCategory.Name, SonarAnalysisCategory.Rules.BooleanLiteralsShouldNotBeRedundant)]
 	public void TrueOperator_SuccessfulResult_True()
 	{
 		Result<string, sbyte> actual = ResultMother.Succeed();
-		const bool status = true;
-		if (actual)
-		{
-			Assert.True(status);
-		}
-		else
-		{
-			Assert.False(status);
-		}
+		bool status = actual
+			? true
+			: false;
+		Assert.True(status);
 	}
 
 	#endregion True operator
