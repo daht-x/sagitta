@@ -67,7 +67,7 @@ jobs:
             --configuration '${{ env.BUILD_CONFIGURATION }}'
       - name: "Upload coverage results"
         if: "${{ env.IS_PUSH_EVENT_TO_MAIN_BRANCH == vars.POSITIVE }}"
-        uses: "codecov/codecov-action@v5.4.3"
+        uses: "codecov/codecov-action@v5.5.0"
         with:
           files: "./artifacts/coverage/core.xml"
           fail_ci_if_error: true
