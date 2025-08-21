@@ -24,6 +24,7 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 ### Prerequisite software
 
 - [Git](https://git-scm.com)
+- [TruffleHog](https://github.com/trufflesecurity/trufflehog)
 - [yamllint](https://github.com/adrienverge/yamllint)
 - [ShellCheck](https://github.com/koalaman/shellcheck)
 - [shfmt](https://github.com/mvdan/sh)

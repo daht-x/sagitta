@@ -4,6 +4,10 @@ set -o 'errexit'
 set -o 'nounset'
 set -o 'pipefail'
 run() {
+	trufflehog git 'file://.' \
+		--since-commit 'HEAD' \
+		--results 'verified,unknown' \
+		--fail
 	lint-staged --relative
 	exit $?
 }
