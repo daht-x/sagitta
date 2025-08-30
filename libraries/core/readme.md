@@ -94,9 +94,9 @@ For more information, please see [here](https://learn.microsoft.com/en-us/nuget/
 
 Set of structures that act as integrations and complements for the pre-existing modules.
 
-| Type           | Description                                                                                              |
-|:---------------|:---------------------------------------------------------------------------------------------------------|
-| [`Unit`][unit] | Type intended to handle the absence of a specific value (explicit simulation of the [`void`][void] type) |
+| Type           | Description                                                                               |
+|:---------------|:------------------------------------------------------------------------------------------|
+| [`Unit`][unit] | Represents the absence of a specific value, explicitly simulating the [`void`][void] type |
 
 ***[Top](#dahtsagittacore)***
 
@@ -105,10 +105,10 @@ Set of structures that act as integrations and complements for the pre-existing 
 Set of structures that provide ways to handle the state of an element through the composition of
 sequential operations and the handling of side effects.
 
-| Type                                   | Description                                                                                  |
-|:---------------------------------------|:---------------------------------------------------------------------------------------------|
-| [`Result<TFailure, TSuccess>`][result] | Type intended to handle both the possible failure and the expected success of a given action |
-| [`ResultFactory`][result-factory]      | Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>`][result]   |
+| Type                                   | Description                                                                         |
+|:---------------------------------------|:------------------------------------------------------------------------------------|
+| [`Result<TFailure, TSuccess>`][result] | Encapsulates both a possible failure and an expected success for a given action     |
+| [`ResultFactory`][result-factory]      | Provide global factory methods to initialize [`Result<TFailure, TSuccess>`][result] |
 
 ***[Top](#dahtsagittacore)***
 

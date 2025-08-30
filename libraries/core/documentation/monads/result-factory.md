@@ -1,20 +1,22 @@
 # `ResultFactory`
 
+[exception]: https://learn.microsoft.com/en-us/dotnet/api/system.exception
+
 ***[home](../../../../readme.md) / packages /  [core](../../readme.md) / monads /***
 
 ```cs
 public static class ResultFactory
  ```
 
-Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>`](./result.md).
+Provide global factory methods to initialize [`Result<TFailure, TSuccess>`](./result.md).
 
 ## Table of contents
 
 1. [Methods](#methods)
    - [`Fail<TFailure, TSuccess>(failure)`](#failtfailure-tsuccessfailure)
-   - [`Fail<TFailure, TSuccess>(createFailure)`](#failtfailure-tsuccesscreatefailure)
+   - [`Fail<TFailure, TSuccess>(create)`](#failtfailure-tsuccesscreate)
    - [`Succeed<TFailure, TSuccess>(success)`](#succeedtfailure-tsuccesssuccess)
-   - [`Succeed<TFailure, TSuccess>(createSuccess)`](#succeedtfailure-tsuccesscreatesuccess)
+   - [`Succeed<TFailure, TSuccess>(create)`](#succeedtfailure-tsuccesscreate)
    - [`Catch<TException, TFailure, TSuccess>(createSuccess, createFailure)`](#catchtexception-tfailure-tsuccesscreatesuccess-createfailure)
 2. [Additional resources](#additional-resources)
 
@@ -38,20 +40,20 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 - Parameters:
 
-  | Name      | Description        |
-  |:----------|:-------------------|
-  | `failure` | A possible failure |
+  | Name      | Description          |
+  |:----------|:---------------------|
+  | `failure` | The possible failure |
 
-- Return: A new failed result.
+- Returns: A new failed result.
 
 ***[Top](#resultfactory)***
 
-#### `Fail<TFailure, TSuccess>(createFailure)`
+#### `Fail<TFailure, TSuccess>(create)`
 
 - Signature:
 
   ```cs
-  public static Result<TFailure, TSuccess> Fail<TFailure, TSuccess>(Func<TFailure> createFailure)
+  public static Result<TFailure, TSuccess> Fail<TFailure, TSuccess>(Func<TFailure> create)
   ```
 
 - Description: Creates a new failed result.
@@ -64,11 +66,11 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 - Parameters:
 
-  | Name            | Description                |
-  |:----------------|:---------------------------|
-  | `createFailure` | Creates a possible failure |
+  | Name     | Description                |
+  |:---------|:---------------------------|
+  | `create` | Creates a possible failure |
 
-- Return: A new failed result.
+- Returns: A new failed result.
 
 ***[Top](#resultfactory)***
 
@@ -90,20 +92,20 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 - Parameters:
 
-  | Name      | Description         |
-  |:----------|:--------------------|
-  | `success` | An expected success |
+  | Name      | Description          |
+  |:----------|:---------------------|
+  | `success` | The expected success |
 
-- Return: A new successful result.
+- Returns: A new successful result.
 
 ***[Top](#resultfactory)***
 
-#### `Succeed<TFailure, TSuccess>(createSuccess)`
+#### `Succeed<TFailure, TSuccess>(create)`
 
 - Signature:
 
   ```cs
-  public static Result<TFailure, TSuccess> Succeed<TFailure, TSuccess>(Func<TSuccess> createSuccess)
+  public static Result<TFailure, TSuccess> Succeed<TFailure, TSuccess>(Func<TSuccess> create)
   ```
 
 - Description: Creates a new successful result.
@@ -116,11 +118,11 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 
 - Parameters:
 
-  | Name            | Description                 |
-  |:----------------|:----------------------------|
-  | `createSuccess` | Creates an expected success |
+  | Name     | Description                 |
+  |:---------|:----------------------------|
+  | `create` | Creates an expected success |
 
-- Return: A new successful result.
+- Returns: A new successful result.
 
 ***[Top](#resultfactory)***
 
@@ -129,11 +131,13 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
 - Signature:
 
   ```cs
-  public static Result<TFailure, TSuccess> Catch<TException, TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TException, TFailure> createFailure)
+  public static Result<TFailure, TSuccess> Catch<TException, TFailure, TSuccess>(
+    Func<TSuccess> createSuccess, Func<TException, TFailure> createFailure
+  )
     where TException : Exception
   ```
 
-- Description: Treats `TException` as a new failed result.
+- Description: Treats [`TException`][exception] as a new failed result.
 - Generics:
 
   | Name         | Description                |
@@ -149,7 +153,8 @@ Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>
   | `createSuccess` | Creates an expected success |
   | `createFailure` | Creates a possible failure  |
 
-- Return: A new failed result if the value of `createSuccess` throws `TException`; otherwise, a new successful result.
+- Returns: A new failed result if the value of `createSuccess` throws [`TException`][exception]; otherwise, a new
+successful result.
 
 ***[Top](#resultfactory)***
 
