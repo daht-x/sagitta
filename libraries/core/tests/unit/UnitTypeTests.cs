@@ -9,9 +9,9 @@ public sealed class UnitTypeTests
 {
 	private const string @base = nameof(Unit);
 
-	private const string memberEqualOperator = "==";
+	private const string memberEqualityOperator = "==";
 
-	private const string memberNotEqualOperator = "!=";
+	private const string memberInequalityOperator = "!=";
 
 	private const string memberEquals = nameof(Unit.Equals);
 
@@ -19,15 +19,15 @@ public sealed class UnitTypeTests
 
 	private const string memberToString = nameof(Unit.ToString);
 
-	#region ==
+	#region Equality operator ==
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
+	[Trait(@base, memberEqualityOperator)]
 	[SuppressMessage(
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void EqualOperator_DefaultLeftAndNullRight_False()
+	public void EqualityOperator_DefaultLeftAndNullRight_False()
 	{
 		Unit left = Unit.Default;
 		Unit? right = null;
@@ -36,12 +36,12 @@ public sealed class UnitTypeTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
+	[Trait(@base, memberEqualityOperator)]
 	[SuppressMessage(
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void EqualOperator_NullLeftAndDefaultRight_False()
+	public void EqualityOperator_NullLeftAndDefaultRight_False()
 	{
 		Unit? left = null;
 		Unit right = Unit.Default;
@@ -50,12 +50,12 @@ public sealed class UnitTypeTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
+	[Trait(@base, memberEqualityOperator)]
 	[SuppressMessage(
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void EqualOperator_NullLeftAndNullRight_True()
+	public void EqualityOperator_NullLeftAndNullRight_True()
 	{
 		Unit? left = null;
 		Unit? right = null;
@@ -64,8 +64,8 @@ public sealed class UnitTypeTests
 	}
 
 	[Fact]
-	[Trait(@base, memberEqualOperator)]
-	public void EqualOperator_DefaultLeftAndDefaultRight_True()
+	[Trait(@base, memberEqualityOperator)]
+	public void EqualityOperator_DefaultLeftAndDefaultRight_True()
 	{
 		Unit left = Unit.Default;
 		Unit right = Unit.Default;
@@ -73,13 +73,13 @@ public sealed class UnitTypeTests
 		Assert.True(actual);
 	}
 
-	#endregion ==
+	#endregion Equality operator ==
 
-	#region !=
+	#region Inequality operator !=
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
-	public void NotEqualOperator_DefaultLeftAndDefaultRight_False()
+	[Trait(@base, memberInequalityOperator)]
+	public void InequalityOperator_DefaultLeftAndDefaultRight_False()
 	{
 		Unit left = Unit.Default;
 		Unit right = Unit.Default;
@@ -88,12 +88,12 @@ public sealed class UnitTypeTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
+	[Trait(@base, memberInequalityOperator)]
 	[SuppressMessage(
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void NotEqualOperator_NullLeftAndNullRight_False()
+	public void InequalityOperator_NullLeftAndNullRight_False()
 	{
 		Unit? left = null;
 		Unit? right = null;
@@ -102,12 +102,12 @@ public sealed class UnitTypeTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
+	[Trait(@base, memberInequalityOperator)]
 	[SuppressMessage(
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void NotEqualOperator_NullLeftAndDefaultRight_True()
+	public void InequalityOperator_NullLeftAndDefaultRight_True()
 	{
 		Unit? left = null;
 		Unit right = Unit.Default;
@@ -116,12 +116,12 @@ public sealed class UnitTypeTests
 	}
 
 	[Fact]
-	[Trait(@base, memberNotEqualOperator)]
+	[Trait(@base, memberInequalityOperator)]
 	[SuppressMessage(
 		MaintainabilityAnalysisCategory.Name,
 		MaintainabilityAnalysisCategory.Rules.AvoidDeadConditionalCode
 	)]
-	public void NotEqualOperator_DefaultLeftAndNullRight_True()
+	public void InequalityOperator_DefaultLeftAndNullRight_True()
 	{
 		Unit left = Unit.Default;
 		Unit? right = null;
@@ -129,7 +129,7 @@ public sealed class UnitTypeTests
 		Assert.True(actual);
 	}
 
-	#endregion !=
+	#endregion Inequality operator !=
 
 	#region Equals
 
