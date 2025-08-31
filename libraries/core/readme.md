@@ -4,6 +4,8 @@
 [void]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/void
 [result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result.md
 [result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result-factory.md
+[value-result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/value-result.md
+[value-result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/value-result-factory.md
 
 ***[home](https://github.com/daht-x/sagitta/blob/main/readme.md) / packages /***
 
@@ -94,9 +96,9 @@ For more information, please see [here](https://learn.microsoft.com/en-us/nuget/
 
 Set of structures that act as integrations and complements for the pre-existing modules.
 
-| Type           | Description                                                                               |
-|:---------------|:------------------------------------------------------------------------------------------|
-| [`Unit`][unit] | Represents the absence of a specific value, explicitly simulating the [`void`][void] type |
+| Type         | Description                                                                               |
+|:-------------|:------------------------------------------------------------------------------------------|
+| [Unit][unit] | Represents the absence of a specific value, explicitly simulating the [`void`][void] type |
 
 ***[Top](#dahtsagittacore)***
 
@@ -105,10 +107,12 @@ Set of structures that act as integrations and complements for the pre-existing 
 Set of structures that provide ways to handle the state of an element through the composition of
 sequential operations and the handling of side effects.
 
-| Type                                   | Description                                                                         |
-|:---------------------------------------|:------------------------------------------------------------------------------------|
-| [`Result<TFailure, TSuccess>`][result] | Encapsulates both a possible failure and an expected success for a given action     |
-| [`ResultFactory`][result-factory]      | Provide global factory methods to initialize [`Result<TFailure, TSuccess>`][result] |
+| Type                                            | Description                                                                                                      |
+|:------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------|
+| [Result<TFailure, TSuccess>][result]            | Encapsulates both a possible failure and an expected success for a given action (both value and reference types) |
+| [ResultFactory][result-factory]                 | Provide global factory methods to initialize [`Result<TFailure, TSuccess>`][result]                              |
+| [ValueResult<TFailure, TSuccess>][value-result] | Encapsulates both a possible failure and an expected success for a given action (only value types)               |
+| [ValueResultFactory][value-result-factory]      | Provide global factory methods to initialize [`ValueResult<TFailure, TSuccess>`][value-result]                   |
 
 ***[Top](#dahtsagittacore)***
 
