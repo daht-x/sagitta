@@ -115,6 +115,20 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	public static implicit operator ValueResult<TFailure, TSuccess>(TSuccess success)
 		=> new(success);
 
+	/// <summary>Deconstructs the root state of the result.</summary>
+	/// <remarks>If the result is <see langword="default" /> (uninitialized), an <see cref="InvalidOperationException" /> will be thrown.</remarks>
+	/// <param name="isFailed">Indicates whether the state is failed.</param>
+	/// <param name="failure">The possible failure.</param>
+	/// <param name="success">The expected success.</param>
+	/// <exception cref="InvalidOperationException" />
+	public void Deconstruct(out bool isFailed, out TFailure failure, out TSuccess success)
+	{
+		ThrowInvalidOperationExceptionIfResultIsUninitialized();
+		isFailed = IsFailed;
+		failure = this.failure;
+		success = this.success;
+	}
+
 	/// <summary>Determines whether the result represents a failure.</summary>
 	/// <param name="output">The possible failure.</param>
 	/// <returns><see langword="true" /> if the result is failed; otherwise, <see langword="false" />.</returns>
@@ -141,20 +155,6 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 		}
 		output = this.success;
 		return !IsFailed;
-	}
-
-	/// <summary>Deconstructs the root state of the result.</summary>
-	/// <remarks>If the result is <see langword="default" /> (uninitialized), an <see cref="InvalidOperationException" /> will be thrown.</remarks>
-	/// <param name="isFailed">Indicates whether the state is failed.</param>
-	/// <param name="failure">The possible failure.</param>
-	/// <param name="success">The expected success.</param>
-	/// <exception cref="InvalidOperationException" />
-	public void Deconstruct(out bool isFailed, out TFailure failure, out TSuccess success)
-	{
-		ThrowInvalidOperationExceptionIfResultIsUninitialized();
-		isFailed = IsFailed;
-		failure = this.failure;
-		success = this.success;
 	}
 
 	/// <summary>Discards the expected success.</summary>

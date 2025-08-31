@@ -164,8 +164,10 @@ successful result.
 
 ### Additional resources
 
-- [`Result<TFailure, TSuccess>`](./result.md): Type intended to handle both the possible failure and the expected success
-of a given action.
+- [`Result<TFailure, TSuccess>`](./result.md): Encapsulates both a possible failure and an expected success
+for a given action (type intended to handle both value and reference types)
+- [`ValueResult<TFailure, TSuccess>`](./value-result.md): Encapsulates both a possible failure and an expected success
+for a given action (type intended to handle only value types)
 - [License](../../../../license.txt)
 - [Security policy](../../../../security.md)
 - [Code of conduct](../../../../code-of-conduct.md)

@@ -10,7 +10,8 @@
 public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSuccess>>
  ```
 
-Encapsulates both a possible failure and an expected success for a given action.
+- Description: Encapsulates both a possible failure and an expected success for a given action.
+- Remarks: Type intended to handle both value and reference types.
 
 ## Table of contents
 
@@ -902,7 +903,9 @@ successful result.
 
 ### Additional resources
 
-- [`ResultFactory`](./result-factory.md): Type intended to expose a set of ways to initialize [`Result<TFailure, TSuccess>`](#resulttfailure-tsuccess).
+- [`ResultFactory`](./result-factory.md): Provide global factory methods to initialize [`Result<TFailure, TSuccess>`](./result.md)
+- [`ValueResult<TFailure, TSuccess>`](./value-result.md): Encapsulates both a possible failure and an expected success
+for a given action (type intended to handle only value types)
 - [License](../../../../license.txt)
 - [Security policy](../../../../security.md)
 - [Code of conduct](../../../../code-of-conduct.md)
