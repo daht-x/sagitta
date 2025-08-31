@@ -1,6 +1,11 @@
 # Daht.Sagitta.Core
 
 [void]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/void
+[unit]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/unit.md
+[result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/results/result.md
+[result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/results/result-factory.md
+[value-result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/results/value-result.md
+[value-result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/results/value-result-factory.md
 
 ***[home](https://github.com/daht-x/sagitta/blob/main/readme.md) / packages /***
 
@@ -92,9 +97,9 @@ For more information, please see [here](https://learn.microsoft.com/en-us/nuget/
 
 Structures intended to integrate with and extend existing modules.
 
-| Type                            | Description                                                                               |
-|:--------------------------------|:------------------------------------------------------------------------------------------|
-| [Unit](./documentation/unit.md) | Represents the absence of a specific value, explicitly simulating the [`void`][void] type |
+| Type         | Description                                                                               |
+|:-------------|:------------------------------------------------------------------------------------------|
+| [Unit][unit] | Represents the absence of a specific value, explicitly simulating the [`void`][void] type |
 
 ***[Top](#dahtsagittacore)***
 
@@ -102,12 +107,12 @@ Structures intended to integrate with and extend existing modules.
 
 Structures intended to encapsulate and manage both potential failure and expected success for a given action.
 
-| Type                                                                       | Description                                                                                                               |
-|:---------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|
-| [Result<TFailure, TSuccess>](./documentation/results/result.md)            | Encapsulates both a possible failure and an expected success for a given action (both value and reference types)          |
-| [ResultFactory](./documentation/results/result-factory.md)                 | Provide global factory methods to initialize [`Result<TFailure, TSuccess>`](./documentation/results/result.md)            |
-| [ValueResult<TFailure, TSuccess>](./documentation/results/value-result.md) | Encapsulates both a possible failure and an expected success for a given action (only value types)                        |
-| [ValueResultFactory](./documentation/results/value-result-factory.md)      | Provide global factory methods to initialize [`ValueResult<TFailure, TSuccess>`](./documentation/results/value-result.md) |
+| Type                                            | Description                                                                                                      |
+|:------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------|
+| [Result<TFailure, TSuccess>][result]            | Encapsulates both a possible failure and an expected success for a given action (both value and reference types) |
+| [ResultFactory][result-factory]                 | Provide global factory methods to initialize [`Result<TFailure, TSuccess>`][result]                              |
+| [ValueResult<TFailure, TSuccess>][value-result] | Encapsulates both a possible failure and an expected success for a given action (only value types)               |
+| [ValueResultFactory][value-result-factory]      | Provide global factory methods to initialize [`ValueResult<TFailure, TSuccess>`][value-result]                   |
 
 ***[Top](#dahtsagittacore)***
 
@@ -125,11 +130,13 @@ Structures intended to encapsulate and manage both potential failure and expecte
 *(e.g., business-rule violations, parameter validation, boundary checks, foreseeable edge cases)*.
   - As a substitute for normal control flow *(e.g., loop termination, flag checking, selecting alternate code paths)*.
   - In high-performance and latency-sensitive scenarios *(e.g., tight loops, real-time processing, compute-intensive tasks)*.
-- Why [`Result<TFailure, TSuccess>`](./documentation/results/result.md) and [`ValueResult<TFailure, TSuccess>`](./documentation/results/value-result.md)?
+- Why [`Result<TFailure, TSuccess>`][result] and [`ValueResult<TFailure, TSuccess>`][value-result]?
   - Exceptions are expensive, because throwing and catching requires constructing complex objects,
 capturing a full stack trace, and unwinding the call stack.
   - Exceptions are intended for exceptional and unpredictable situations and should not be used for regular
 control flow or business-rule enforcement.
+
+***[Top](#dahtsagittacore)***
 
 ### License
 
