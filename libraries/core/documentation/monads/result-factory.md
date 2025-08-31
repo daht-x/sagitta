@@ -20,6 +20,8 @@ Provide global factory methods to initialize [`Result<TFailure, TSuccess>`](./re
    - [`Catch<TException, TFailure, TSuccess>(createSuccess, createFailure)`](#catchtexception-tfailure-tsuccesscreatesuccess-createfailure)
 2. [Additional resources](#additional-resources)
 
+---
+
 ### Methods
 
 #### `Fail<TFailure, TSuccess>(failure)`
@@ -157,6 +159,8 @@ Provide global factory methods to initialize [`Result<TFailure, TSuccess>`](./re
 successful result.
 
 ***[Top](#resultfactory)***
+
+---
 
 ### Additional resources
 

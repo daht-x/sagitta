@@ -22,7 +22,10 @@ type.
    - [`Equals(obj)`](#equalsobj)
    - [`Equals(other)`](#equalsother)
    - [`GetHashCode`](#gethashcode)
+   - [`ToString`](#tostring)
 4. [Additional resources](#additional-resources)
+
+---
 
 ### Properties
 
@@ -37,6 +40,8 @@ type.
 - Description: The placeholder that indicates the discarding of a value.
 
 ***[Top](#unit)***
+
+---
 
 ### Operators
 
@@ -77,6 +82,8 @@ type.
 - Return: [`true`][bool] if the left unit is not equal to the right unit; otherwise, [`false`][bool].
 
 ***[Top](#unit)***
+
+---
 
 ### Methods
 
@@ -130,6 +137,21 @@ type.
 - Returns: The hash code of the current unit.
 
 ***[Top](#unit)***
+
+#### `ToString`
+
+- Signature:
+
+  ```cs
+  public override string ToString()
+  ```
+
+- Description: Gets the value of the current unit.
+- Returns: The value of the current unit.
+
+***[Top](#unit)***
+
+---
 
 ### Additional resources
 

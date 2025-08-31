@@ -1,6 +1,8 @@
 # `Result<TFailure, TSuccess>`
 
+[exception]: https://learn.microsoft.com/en-us/dotnet/api/system.exception
 [invalid-operation-exception]: https://learn.microsoft.com/en-us/dotnet/api/system.invalidoperationexception
+[bool]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool
 
 ***[home](../../../../readme.md) / packages /  [core](../../readme.md) / monads /***
 
@@ -8,7 +10,7 @@
 public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSuccess>>
  ```
 
-Type intended to handle both the possible failure and the expected success of a given action.
+Encapsulates both a possible failure and an expected success for a given action.
 
 ## Table of contents
 
@@ -23,10 +25,16 @@ Type intended to handle both the possible failure and the expected success of a 
 3. [Constructors](#constructors)
     - [`Result(failure)`](#resultfailure)
     - [`Result(success)`](#resultsuccess)
-4. [Equality operators](#equality-operators)
-    - [`==(left, right)`](#left-right)
-    - [`!=(left, right)`](#left-right-1)
+4. [Operators](#operators)
+    - [`Equality operator ==`](#equality-operator-)
+    - [`Inequality operator !=`](#inequality-operator-)
+    - [`True operator`](#true-operator)
+    - [`False operator`](#false-operator)
+    - [`Logical negation operator !`](#logical-negation-operator-)
+    - [`Logical OR operator |`](#logical-or-operator-)
 5. [Implicit operators](#implicit-operators)
+   - [`TFailure(result)`](#tfailureresult)
+   - [`TSuccess(result)`](#tsuccessresult)
    - [`Result<TFailure, TSuccess>(failure)`](#resulttfailure-tsuccessfailure)
    - [`Result<TFailure, TSuccess>(success)`](#resulttfailure-tsuccesssuccess)
 6. [Methods](#methods)
@@ -42,16 +50,20 @@ Type intended to handle both the possible failure and the expected success of a 
    - [`DoOnFailure(execute)`](#doonfailureexecute)
    - [`DoOnSuccess(execute)`](#doonsuccessexecute)
    - [`Match(doOnFailure, doOnSuccess)`](#matchdoonfailure-doonsuccess)
-   - [`Map<TSuccessToMap>(successToMap)`](#maptsuccesstomapsuccesstomap)
-   - [`Map<TSuccessToMap>(createSuccessToMap)`](#maptsuccesstomapcreatesuccesstomap)
-   - [`Bind<TSuccessToBind>(createResultToBind)`](#bindtsuccesstobindcreateresulttobind)
-   - [`Reset<TSuccessToInitialize>(initializerResult)`](#resettsuccesstoinitializeinitializerresult)
-   - [`Discard()`](#discard)
+   - [`MapFailure<TNewFailure>(create)`](#mapfailuretnewfailurecreate)
+   - [`MapSuccess<TNewSuccess>(create)`](#mapsuccesstnewsuccesscreate)
+   - [`Bind<TNewSuccess>(create)`](#bindtnewsuccesscreate)
+   - [`Reset<TNewSuccess>(success)`](#resettnewsuccesssuccess)
+   - [`Reset<TNewSuccess>(result)`](#resettnewsuccessresult)
+   - [`Discard`](#discard)
    - [`Reduce<TReducer>(reduceFailure, reduceSuccess)`](#reducetreducerreducefailure-reducesuccess)
    - [`Equals(obj)`](#equalsobj)
    - [`Equals(other)`](#equalsother)
-   - [`GetHashCode()`](#gethashcode)
+   - [`GetHashCode`](#gethashcode)
+   - [`ToString`](#tostring)
 7. [Additional resources](#additional-resources)
+
+---
 
 ### Generics
 
@@ -67,6 +79,8 @@ Type of expected success.
 
 ***[Top](#resulttfailure-tsuccess)***
 
+---
+
 ### Properties
 
 #### `IsFailed`
@@ -77,7 +91,7 @@ Type of expected success.
   public bool IsFailed { get; }
   ```
 
-- Description: Indicates whether the status is failed.
+- Description: Indicates whether the state is failed.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -90,7 +104,7 @@ Type of expected success.
   ```
 
 - Description: The possible failure.
-- Remarks: If the result is not failed, `Failure` throws [`InvalidOperationException`][invalid-operation-exception].
+- Remarks: If the result is not failed, accessing [`Failure`](#failure) throws an [`InvalidOperationException`][invalid-operation-exception].
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -102,7 +116,7 @@ Type of expected success.
   public bool IsSuccessful { get; }
   ```
 
-- Description: Indicates whether the status is successful.
+- Description: Indicates whether the state is successful.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -115,9 +129,11 @@ Type of expected success.
   ```
 
 - Description: The expected success.
-- Remarks: If the result is not successful, `Success` throws [`InvalidOperationException`][invalid-operation-exception].
+- Remarks: If the result is not successful, accessing [`Success`](#success) throws an [`InvalidOperationException`][invalid-operation-exception].
 
 ***[Top](#resulttfailure-tsuccess)***
+
+---
 
 ### Constructors
 
@@ -132,11 +148,11 @@ Type of expected success.
 - Description: Creates a new failed result.
 - Parameters:
 
-  | Name      | Description        |
-  |:----------|:-------------------|
-  | `failure` | A possible failure |
+  | Name      | Description          |
+  |:----------|:---------------------|
+  | `failure` | The possible failure |
 
-- Return: A new failed result.
+- Returns: A new failed result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -151,17 +167,19 @@ Type of expected success.
 - Description: Creates a new successful result.
 - Parameters:
 
-  | Name      | Description         |
-  |:----------|:--------------------|
-  | `success` | An expected success |
+  | Name      | Description          |
+  |:----------|:---------------------|
+  | `success` | The expected success |
 
-- Return: A new successful result.
+- Returns: A new successful result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
-### Equality operators
+---
 
-#### `==(left, right)`
+### Operators
+
+#### `Equality operator ==`
 
 - Signature:
 
@@ -169,7 +187,7 @@ Type of expected success.
   public static bool operator ==(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
   ```
 
-- Description: Determines whether the left result is equal to the right result (equality is determined by value).
+- Description: Determines whether the left result is equal to the right result.
 - Parameters:
 
   | Name    | Description           |
@@ -177,11 +195,11 @@ Type of expected success.
   | `left`  | The main result       |
   | `right` | The result to compare |
 
-- Return: `true` if the left result is equal to the right result; otherwise,`false`.
+- Returns: [`true`][bool] if the left result is equal to the right result; otherwise, [`false`][bool].
 
 ***[Top](#resulttfailure-tsuccess)***
 
-#### `!=(left, right)`
+#### `Inequality operator !=`
 
 - Signature:
 
@@ -189,7 +207,7 @@ Type of expected success.
   public static bool operator !=(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
   ```
 
-- Description: Determines whether the left result is not equal to the right result (equality is determined by value).
+- Description: Determines whether the left result is not equal to the right result.
 - Parameters:
 
   | Name    | Description           |
@@ -197,11 +215,132 @@ Type of expected success.
   | `left`  | The main result       |
   | `right` | The result to compare |
 
-- Return: `true` if the left result is not equal to the right result; otherwise, `false`.
+- Returns: [`true`][bool] if the left result is not equal to the right result; otherwise, [`false`][bool].
 
 ***[Top](#resulttfailure-tsuccess)***
 
+#### `True operator`
+
+- Signature:
+
+  ```cs
+  public static bool operator true(Result<TFailure, TSuccess> result)
+  ```
+
+- Description: Indicates whether the state is successful.
+- Parameters:
+
+  | Name     | Description        |
+  |:---------|:-------------------|
+  | `result` | The current result |
+
+- Returns: [`true`][bool] if the current result is successful; otherwise, [`false`][bool].
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `False operator`
+
+- Signature:
+
+  ```cs
+  public static bool operator false(Result<TFailure, TSuccess> result)
+  ```
+
+- Description: Indicates whether the state is failed.
+- Parameters:
+
+  | Name     | Description        |
+  |:---------|:-------------------|
+  | `result` | The current result |
+
+- Returns: [`true`][bool] if the current result is failed; otherwise, [`false`][bool].
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `Logical negation operator !`
+
+- Signature:
+
+  ```cs
+  public static bool operator !(Result<TFailure, TSuccess> result)
+  ```
+
+- Description: Indicates whether the state is failed.
+- Parameters:
+
+  | Name     | Description        |
+  |:---------|:-------------------|
+  | `result` | The current result |
+
+- Returns: [`true`][bool] if the current result is failed; otherwise, [`false`][bool].
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `Logical OR operator |`
+
+- Signature:
+
+  ```cs
+  public static Result<TFailure, TSuccess> operator |(
+    Result<TFailure, TSuccess> result, Func<TSuccess, Result<TFailure, TSuccess>> create
+  )
+  ```
+
+- Description: Binds the previous result to a new one.
+- Parameters:
+
+  | Name     | Description                                   |
+  |:---------|:----------------------------------------------|
+  | `result` | The current result                            |
+  | `create` | Creates a new result with the current success |
+
+- Returns: A new result with a different expected success.
+
+***[Top](#resulttfailure-tsuccess)***
+
+---
+
 ### Implicit operators
+
+#### `TFailure(result)`
+
+- Signature:
+
+  ```cs
+  public static implicit operator TFailure(Result<TFailure, TSuccess> result)
+  ```
+
+- Description: Gets the possible failure.
+- Remarks: If the result is not failed, an [`InvalidOperationException`][invalid-operation-exception] will be thrown.
+- Parameters:
+
+  | Name     | Description        |
+  |:---------|:-------------------|
+  | `result` | The current result |
+
+- Returns: The possible failure.
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `TSuccess(result)`
+
+- Signature:
+
+  ```cs
+  public static implicit operator TSuccess(Result<TFailure, TSuccess> result)
+  ```
+
+- Description: Gets the expected success.
+- Remarks: If the result is not successful, an [`InvalidOperationException`][invalid-operation-exception] will be thrown.
+- Parameters:
+
+  | Name     | Description        |
+  |:---------|:-------------------|
+  | `result` | The current result |
+
+- Returns: The expected success.
+
+***[Top](#resulttfailure-tsuccess)***
 
 #### `Result<TFailure, TSuccess>(failure)`
 
@@ -214,11 +353,11 @@ Type of expected success.
 - Description: Creates a new failed result.
 - Parameters:
 
-  | Name      | Description        |
-  |:----------|:-------------------|
-  | `failure` | A possible failure |
+  | Name      | Description          |
+  |:----------|:---------------------|
+  | `failure` | The possible failure |
 
-- Return: A new failed result.
+- Returns: A new failed result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -233,13 +372,15 @@ Type of expected success.
 - Description: Creates a new successful result.
 - Parameters:
 
-  | Name      | Description         |
-  |:----------|:--------------------|
-  | `success` | An expected success |
+  | Name      | Description          |
+  |:----------|:---------------------|
+  | `success` | The expected success |
 
-- Return: A new successful result.
+- Returns: A new successful result.
 
 ***[Top](#resulttfailure-tsuccess)***
+
+---
 
 ### Methods
 
@@ -254,11 +395,11 @@ Type of expected success.
 - Description: Deconstructs the root state of the result.
 - Parameters:
 
-  | Name       | Description                            |
-  |:-----------|:---------------------------------------|
-  | `isFailed` | Indicates whether the status is failed |
-  | `failure`  | The possible failure                   |
-  | `success`  | The expected success                   |
+  | Name       | Description                           |
+  |:-----------|:--------------------------------------|
+  | `isFailed` | Indicates whether the state is failed |
+  | `failure`  | The possible failure                  |
+  | `success`  | The expected success                  |
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -273,11 +414,11 @@ Type of expected success.
 - Description: Determines whether the result represents a failure.
 - Parameters:
 
-  | Name       | Description                            |
-  |:-----------|:---------------------------------------|
-  | `output` | The possible failure. |
+  | Name     | Description          |
+  |:---------|:---------------------|
+  | `output` | The possible failure |
 
-- Return: `true` if the result is failed; otherwise, `false`.
+- Returns: [`true`][bool] if the result is failed; otherwise, [`false`][bool].
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -292,11 +433,11 @@ Type of expected success.
 - Description: Determines whether the result represents a success.
 - Parameters:
 
-  | Name       | Description                            |
-  |:-----------|:---------------------------------------|
-  | `output` | The expected success. |
+  | Name     | Description          |
+  |:---------|:---------------------|
+  | `output` | The expected success |
 
-- Return: `true` if the result is successful; otherwise, `false`.
+- Returns: [`true`][bool] if the result is successful; otherwise, [`false`][bool].
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -305,11 +446,13 @@ Type of expected success.
 - Signature:
 
   ```cs
-  public Result<TFailure, TSuccess> Catch<TException>(Action<TSuccess> execute, Func<TException, TFailure> createFailure)
+  public Result<TFailure, TSuccess> Catch<TException>(
+    Action<TSuccess> execute, Func<TException, TFailure> createFailure
+  )
     where TException : Exception
   ```
 
-- Description: Treats `TException` as a new failed result.
+- Description: Treats [`TException`][exception] as a new failed result.
 - Generics:
 
   | Name         | Description                |
@@ -323,7 +466,7 @@ Type of expected success.
   | `execute`       | The action to execute      |
   | `createFailure` | Creates a possible failure |
 
-- Return: A new failed result if `execute` throws `TException` otherwise, the previous result.
+- Returns: A new failed result if `execute` throws [`TException`][exception]; otherwise, the previous result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -332,11 +475,13 @@ Type of expected success.
 - Signature:
 
   ```cs
-  public Result<TFailure, TSuccess> Catch<TException>(Func<TSuccess, TSuccess> createSuccess, Func<TException, TFailure> createFailure)
+  public Result<TFailure, TSuccess> Catch<TException>(
+    Func<TSuccess, TSuccess> createSuccess, Func<TException, TFailure> createFailure
+  )
     where TException : Exception
   ```
 
-- Description: Treats `TException` as a new failed result.
+- Description: Treats [`TException`][exception] as a new failed result.
 - Generics:
 
   | Name         | Description                |
@@ -350,7 +495,8 @@ Type of expected success.
   | `createSuccess` | Creates an expected success |
   | `createFailure` | Creates a possible failure  |
 
-- Return: A new failed result if the value of `createSuccess` throws `TException`; otherwise, a new successful result.
+- Returns: A new failed result if the value of `createSuccess` throws [`TException`][exception]; otherwise, a new
+successful result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -362,15 +508,15 @@ Type of expected success.
   public Result<TFailure, TSuccess> Ensure(Func<TSuccess, bool> predicate, TFailure failure)
   ```
 
-- Description: Ensures a new failed result if `predicate` evaluates to `true`.
+- Description: Ensures a new failed result if `predicate` evaluates to [`true`][bool].
 - Parameters:
 
   | Name        | Description               |
   |:------------|:--------------------------|
   | `predicate` | Creates a set of criteria |
-  | `failure`   | A possible failure        |
+  | `failure`   | The possible failure      |
 
-- Return: A new failed result if the value of `predicate` is `true`; otherwise, the previous result.
+- Returns: A new failed result if the value of `predicate` is [`true`][bool]; otherwise, the previous result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -382,7 +528,7 @@ Type of expected success.
   public Result<TFailure, TSuccess> Ensure(Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)
   ```
 
-- Description: Ensures a new failed result if `predicate` evaluates to `true`.
+- Description: Ensures a new failed result if `predicate` evaluates to [`true`][bool].
 - Parameters:
 
   | Name            | Description                |
@@ -390,7 +536,7 @@ Type of expected success.
   | `predicate`     | Creates a set of criteria  |
   | `createFailure` | Creates a possible failure |
 
-- Return: A new failed result if the value of `predicate` is `true`; otherwise, the previous result.
+- Returns: A new failed result if the value of `predicate` is [`true`][bool]; otherwise, the previous result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -399,10 +545,13 @@ Type of expected success.
 - Signature:
 
   ```cs
-  public Result<TFailure, TSuccess> Ensure<TAuxiliary>(TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
+  public Result<TFailure, TSuccess> Ensure<TAuxiliary>(
+    TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate,
+    Func<TSuccess, TAuxiliary, TFailure> createFailure
+  )
   ```
 
-- Description: Ensures a new failed result if `predicate` evaluates to `true`.
+- Description: Ensures a new failed result if `predicate` evaluates to [`true`][bool].
 - Generics:
 
   | Name         | Description       |
@@ -411,13 +560,13 @@ Type of expected success.
 
 - Parameters:
 
-  | Name            | Description                                                             |
-  |:----------------|:------------------------------------------------------------------------|
-  | `auxiliary`     | An auxiliary to use in combination with `predicate` and `createFailure` |
-  | `predicate`     | Creates a set of criteria                                               |
-  | `createFailure` | Creates a possible failure                                              |
+  | Name            | Description                                                              |
+  |:----------------|:-------------------------------------------------------------------------|
+  | `auxiliary`     | The auxiliary to use in combination with `predicate` and `createFailure` |
+  | `predicate`     | Creates a set of criteria                                                |
+  | `createFailure` | Creates a possible failure                                               |
 
-- Return: A new failed result if the value of `predicate` is `true`; otherwise, the previous result.
+- Returns: A new failed result if the value of `predicate` is [`true`][bool]; otherwise, the previous result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -426,10 +575,13 @@ Type of expected success.
 - Signature:
 
   ```cs
-  public Result<TFailure, TSuccess> Ensure<TAuxiliary>(Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)
+  public Result<TFailure, TSuccess> Ensure<TAuxiliary>(
+    Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate,
+    Func<TSuccess, TAuxiliary, TFailure> createFailure
+  )
   ```
 
-- Description: Ensures a new failed result if `predicate` evaluates to `true`.
+- Description: Ensures a new failed result if `predicate` evaluates to [`true`][bool].
 - Generics:
 
   | Generic      | Description       |
@@ -444,7 +596,7 @@ Type of expected success.
   | `predicate`       | Creates a set of criteria                                                       |
   | `createFailure`   | Creates a possible failure                                                      |
 
-- Return: A new failed result if the value of `predicate` is `true`; otherwise, the previous result.
+- Returns: A new failed result if the value of `predicate` is [`true`][bool]; otherwise, the previous result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -467,7 +619,7 @@ Type of expected success.
   |:----------|:----------------------|
   | `execute` | The action to execute |
 
-- Return: The previous result.
+- Returns: The previous result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -490,7 +642,7 @@ Type of expected success.
   |:----------|:----------------------|
   | `execute` | The action to execute |
 
-- Return: The previous result.
+- Returns: The previous result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -514,111 +666,136 @@ Type of expected success.
   | `doOnFailure` | The action to execute if the previous result is failed     |
   | `doOnSuccess` | The action to execute if the previous result is successful |
 
-- Return: The previous result.
+- Returns: The previous result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
-#### `Map<TSuccessToMap>(successToMap)`
+#### `MapFailure<TNewFailure>(create)`
 
 - Signature:
 
   ```cs
-  public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(TSuccessToMap successToMap)
+  public Result<TNewFailure, TSuccess> MapFailure<TNewFailure>(Func<TFailure, TNewFailure> create)
+  ```
+
+- Description: Maps the possible failure to a value of another type.
+- Generics:
+
+  | Name          | Description              |
+  |:--------------|:-------------------------|
+  | `TNewFailure` | Type of possible failure |
+
+- Parameters:
+
+  | Name     | Description                |
+  |:---------|:---------------------------|
+  | `create` | Creates a possible failure |
+
+- Returns: A new result with a different type of possible failure.
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `MapSuccess<TNewSuccess>(create)`
+
+- Signature:
+
+  ```cs
+  public Result<TFailure, TNewSuccess> MapSuccess<TNewSuccess>(Func<TSuccess, TNewSuccess> create)
   ```
 
 - Description: Maps the expected success to a value of another type.
 - Generics:
 
-  | Name            | Description                     |
-  |:----------------|:--------------------------------|
-  | `TSuccessToMap` | Type of expected success to map |
+  | Name          | Description              |
+  |:--------------|:-------------------------|
+  | `TNewSuccess` | Type of expected success |
 
 - Parameters:
 
-  | Name           | Description                |
-  |:---------------|:---------------------------|
-  | `successToMap` | An expected success to map |
+  | Name     | Description                 |
+  |:---------|:----------------------------|
+  | `create` | Creates an expected success |
 
-- Return: A new result with a different type of expected success.
+- Returns: A new result with a different type of expected success.
 
 ***[Top](#resulttfailure-tsuccess)***
 
-#### `Map<TSuccessToMap>(createSuccessToMap)`
+#### `Bind<TNewSuccess>(create)`
 
 - Signature:
 
   ```cs
-  public Result<TFailure, TSuccessToMap> Map<TSuccessToMap>(Func<TSuccess, TSuccessToMap> createSuccessToMap)
-  ```
-
-- Description: Maps the expected success to a value of another type.
-- Generics:
-
-  | Name            | Description                     |
-  |:----------------|:--------------------------------|
-  | `TSuccessToMap` | Type of expected success to map |
-
-- Parameters:
-
-  | Name                 | Description                        |
-  |:---------------------|:-----------------------------------|
-  | `createSuccessToMap` | Creates an expected success to map |
-
-- Return: A new result with a different type of expected success.
-
-***[Top](#resulttfailure-tsuccess)***
-
-#### `Bind<TSuccessToBind>(createResultToBind)`
-
-- Signature:
-
-  ```cs
-  public Result<TFailure, TSuccessToBind> Bind<TSuccessToBind>(Func<TSuccess, Result<TFailure, TSuccessToBind>> createResultToBind)
+  public Result<TFailure, TNewSuccess> Bind<TNewSuccess>(Func<TSuccess, Result<TFailure, TNewSuccess>> create)
   ```
 
 - Description: Binds the previous result to a new one.
 - Generics:
 
-  | Name             | Description                      |
-  |:-----------------|:---------------------------------|
-  | `TSuccessToBind` | Type of expected success to bind |
+  | Name          | Description              |
+  |:--------------|:-------------------------|
+  | `TNewSuccess` | Type of expected success |
 
 - Parameters:
 
-  | Name                 | Description                  |
-  |:---------------------|:-----------------------------|
-  | `createResultToBind` | Creates a new result to bind |
+  | Name     | Description                                   |
+  |:---------|:----------------------------------------------|
+  | `create` | Creates a new result with the current success |
 
-- Return: A new result with a different type of expected success.
+- Returns: A new result with a different type of expected success.
 
 ***[Top](#resulttfailure-tsuccess)***
 
-#### `Reset<TSuccessToInitialize>(initializerResult)`
+#### `Reset<TNewSuccess>(success)`
 
 - Signature:
 
   ```cs
-  public Result<TFailure, TSuccessToInitialize> Reset<TSuccessToInitialize>(Result<TFailure, TSuccessToInitialize> initializerResult)
+  public Result<TFailure, TNewSuccess> Reset<TNewSuccess>(TNewSuccess success)
   ```
 
 - Description: Resets the state of the expected success.
 - Generics:
 
-  | Name                  | Description                                       |
-  |:----------------------|:--------------------------------------------------|
-  | `TSuccessInitializer` | Type of expected success that acts as initializer |
+  | Name          | Description              |
+  |:--------------|:-------------------------|
+  | `TNewSuccess` | Type of expected success |
 
 - Parameters:
 
-  | Name                | Description              |
-  |:--------------------|:-------------------------|
-  | `initializerResult` | A new initializer result |
+  | Name      | Description                                   |
+  |:----------|:----------------------------------------------|
+  | `success` | The expected success that acts as initializer |
 
-- Return: A new result with a different type of expected success.
+- Returns: A new result with a different type of expected success.
 
 ***[Top](#resulttfailure-tsuccess)***
 
-#### `Discard()`
+#### `Reset<TNewSuccess>(result)`
+
+- Signature:
+
+  ```cs
+  public Result<TFailure, TNewSuccess> Reset<TNewSuccess>(Result<TFailure, TNewSuccess> result)
+  ```
+
+- Description: Resets the state of the expected success.
+- Generics:
+
+  | Name          | Description              |
+  |:--------------|:-------------------------|
+  | `TNewSuccess` | Type of expected success |
+
+- Parameters:
+
+  | Name     | Description                         |
+  |:---------|:------------------------------------|
+  | `result` | The result that acts as initializer |
+
+- Returns: A new result with a different type of expected success.
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `Discard`
 
 - Signature:
 
@@ -627,7 +804,7 @@ Type of expected success.
   ```
 
 - Description: Discards the expected success.
-- Return: A new result that replaces the expected success with [`Unit`](../unit.md).
+- Returns: A new result that replaces the expected success with [`Unit`](../unit.md).
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -648,12 +825,12 @@ Type of expected success.
 
 - Parameters:
 
-  | Name            | Description                         |
-  |:----------------|:------------------------------------|
-  | `reduceFailure` | Creates a possible reduced failure  |
-  | `reduceSuccess` | Creates an expected reduced success |
+  | Name            | Description                  |
+  |:----------------|:-----------------------------|
+  | `reduceFailure` | Reduces the possible failure |
+  | `reduceSuccess` | Reduces the expected success |
 
-- Return: A new value that can be the possible failure or the expected success.
+- Returns: A new value that can be the possible failure or the expected success.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -665,14 +842,14 @@ Type of expected success.
   public override bool Equals(object? obj)
   ```
 
-- Description: Determines whether the specified result is equal to the current result (equality is determined by value).
+- Description: Determines whether the specified result is equal to the current result.
 - Parameters:
 
-  | Name  | Description                            |
-  |:------|:---------------------------------------|
-  | `obj` | The result to compare with the current |
+  | Name  | Description                                      |
+  |:------|:-------------------------------------------------|
+  | `obj` | The result to compare with the current reference |
 
-- Return: `true` if the specified result is equal to the current result; otherwise, `false`.
+- Returns: [`true`][bool] if the specified result is equal to the current result; otherwise, [`false`][bool].
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -684,18 +861,18 @@ Type of expected success.
   public bool Equals(Result<TFailure, TSuccess>? other)
   ```
 
-- Description: Determines whether the specified result is equal to the current result (equality is determined by value).
+- Description: Determines whether the specified result is equal to the current result.
 - Parameters:
 
-  | Name    | Description                            |
-  |:--------|:---------------------------------------|
-  | `other` | The result to compare with the current |
+  | Name    | Description                                      |
+  |:--------|:-------------------------------------------------|
+  | `other` | The result to compare with the current reference |
 
-- Return: `true` if the specified result is equal to the current result; otherwise, `false`.
+- Returns: [`true`][bool] if the specified result is equal to the current result; otherwise, [`false`][bool].
 
 ***[Top](#resulttfailure-tsuccess)***
 
-#### `GetHashCode()`
+#### `GetHashCode`
 
 - Signature:
 
@@ -704,9 +881,24 @@ Type of expected success.
   ```
 
 - Description: Gets the hash code based on the primary members of the current result.
-- Return: The calculated hash code.
+- Returns: The calculated hash code.
 
 ***[Top](#resulttfailure-tsuccess)***
+
+#### `ToString`
+
+- Signature:
+
+  ```cs
+  public override string ToString()
+  ```
+
+- Description: Gets the value of the current result.
+- Returns: The value of the current result.
+
+***[Top](#resulttfailure-tsuccess)***
+
+---
 
 ### Additional resources
 
