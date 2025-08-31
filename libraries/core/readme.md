@@ -1,11 +1,6 @@
 # Daht.Sagitta.Core
 
-[unit]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/unit.md
 [void]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/void
-[result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result.md
-[result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/result-factory.md
-[value-result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/value-result.md
-[value-result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/monads/value-result-factory.md
 
 ***[home](https://github.com/daht-x/sagitta/blob/main/readme.md) / packages /***
 
@@ -25,7 +20,8 @@
    - [Central package management](#central-package-management)
 2. [API](#api)
    - [Root](#root)
-   - [Monads](#monads)
+   - [Results](#results)
+   - [FAQ](#faq)
 3. [License](#license)
 4. [Security policy](#security-policy)
 5. [Code of conduct](#code-of-conduct)
@@ -94,27 +90,46 @@ For more information, please see [here](https://learn.microsoft.com/en-us/nuget/
 
 #### Root
 
-Set of structures that act as integrations and complements for the pre-existing modules.
+Structures intended to integrate with and extend existing modules.
 
-| Type         | Description                                                                               |
-|:-------------|:------------------------------------------------------------------------------------------|
-| [Unit][unit] | Represents the absence of a specific value, explicitly simulating the [`void`][void] type |
+| Type                            | Description                                                                               |
+|:--------------------------------|:------------------------------------------------------------------------------------------|
+| [Unit](./documentation/unit.md) | Represents the absence of a specific value, explicitly simulating the [`void`][void] type |
+
+***[Top](#dahtsagittacore)***
+
+#### Results
+
+Structures intended to encapsulate and manage both potential failure and expected success for a given action.
+
+| Type                                                                       | Description                                                                                                               |
+|:---------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|
+| [Result<TFailure, TSuccess>](./documentation/results/result.md)            | Encapsulates both a possible failure and an expected success for a given action (both value and reference types)          |
+| [ResultFactory](./documentation/results/result-factory.md)                 | Provide global factory methods to initialize [`Result<TFailure, TSuccess>`](./documentation/results/result.md)            |
+| [ValueResult<TFailure, TSuccess>](./documentation/results/value-result.md) | Encapsulates both a possible failure and an expected success for a given action (only value types)                        |
+| [ValueResultFactory](./documentation/results/value-result-factory.md)      | Provide global factory methods to initialize [`ValueResult<TFailure, TSuccess>`](./documentation/results/value-result.md) |
 
 ***[Top](#dahtsagittacore)***
 
-#### Monads
+#### FAQ
 
-Set of structures that provide ways to handle the state of an element through the composition of
-sequential operations and the handling of side effects.
-
-| Type                                            | Description                                                                                                      |
-|:------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------|
-| [Result<TFailure, TSuccess>][result]            | Encapsulates both a possible failure and an expected success for a given action (both value and reference types) |
-| [ResultFactory][result-factory]                 | Provide global factory methods to initialize [`Result<TFailure, TSuccess>`][result]                              |
-| [ValueResult<TFailure, TSuccess>][value-result] | Encapsulates both a possible failure and an expected success for a given action (only value types)               |
-| [ValueResultFactory][value-result-factory]      | Provide global factory methods to initialize [`ValueResult<TFailure, TSuccess>`][value-result]                   |
-
-***[Top](#dahtsagittacore)***
+- When to use exceptions?
+  - Exceptional, unpredictable, or non-deterministic situations
+*(e.g., disk I/O failures, network timeouts, out-of-memory conditions)*.
+  - When local recovery is not possible or would compromise system integrity
+*(e.g., corrupted state, violated invariants, missing critical resources)*.
+  - When an error must be propagated beyond the local scope to enable stack-unwinding or a global recovery strategy
+*(e.g., transaction rollback, centralized cleanup, subsystem restart, escalation to another API/module)*.
+- When not to use exceptions?
+  - Predictable or expected scenarios
+*(e.g., business-rule violations, parameter validation, boundary checks, foreseeable edge cases)*.
+  - As a substitute for normal control flow *(e.g., loop termination, flag checking, selecting alternate code paths)*.
+  - In high-performance and latency-sensitive scenarios *(e.g., tight loops, real-time processing, compute-intensive tasks)*.
+- Why [`Result<TFailure, TSuccess>`](./documentation/results/result.md) and [`ValueResult<TFailure, TSuccess>`](./documentation/results/value-result.md)?
+  - Exceptions are expensive, because throwing and catching requires constructing complex objects,
+capturing a full stack trace, and unwinding the call stack.
+  - Exceptions are intended for exceptional and unpredictable situations and should not be used for regular
+control flow or business-rule enforcement.
 
 ### License
 
@@ -144,3 +159,5 @@ Please read and follow our [contributing guidelines](https://github.com/daht-x/s
 
 - [LinkedIn](https://www.linkedin.com/in/daht-x)
 - Email (FOSS): [daht.x.foss@gmail.com](mailto:daht.x.foss@gmail.com)
+
+***[Top](#dahtsagittacore)***

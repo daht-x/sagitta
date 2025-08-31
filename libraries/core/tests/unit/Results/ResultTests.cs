@@ -3,7 +3,7 @@
 // Licensed under the MIT License. Please refer to the license file in the project root for more information. 
 // ----------------------------------------------------------------------------------------------------------
 
-namespace Daht.Sagitta.Core.UnitTests.Monads;
+namespace Daht.Sagitta.Core.UnitTests.Results;
 
 public sealed class ResultTests
 {

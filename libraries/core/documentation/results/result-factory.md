@@ -2,7 +2,7 @@
 
 [exception]: https://learn.microsoft.com/en-us/dotnet/api/system.exception
 
-***[home](../../../../readme.md) / packages /  [core](../../readme.md) / monads /***
+***[home](../../../../readme.md) / packages /  [core](../../readme.md) / results /***
 
 ```cs
 public static class ResultFactory

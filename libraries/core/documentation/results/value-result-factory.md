@@ -1,6 +1,6 @@
 # `ValueResultFactory`
 
-***[home](../../../../readme.md) / packages /  [core](../../readme.md) / monads /***
+***[home](../../../../readme.md) / packages /  [core](../../readme.md) / results /***
 
 ```cs
 public static class ValueResultFactory

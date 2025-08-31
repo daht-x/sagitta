@@ -3,7 +3,7 @@
 // Licensed under the MIT License. Please refer to the license file in the project root for more information.
 // ----------------------------------------------------------------------------------------------------------
 
-namespace Daht.Sagitta.Core.UnitTests.Monads.Mothers;
+namespace Daht.Sagitta.Core.UnitTests.Results.Mothers;
 
 internal static class ValueResultMother
 {

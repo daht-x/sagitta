@@ -156,10 +156,10 @@ type.
 
 ### See also
 
-- [Result<TFailure, TSuccess>](./monads/result.md)
-- [ResultFactory](./monads/result-factory.md)
-- [ValueResult<TFailure, TSuccess>](./monads/value-result.md)
-- [ValueResultFactory](./monads/value-result-factory.md)
+- [Result<TFailure, TSuccess>](./results/result.md)
+- [ResultFactory](./results/result-factory.md)
+- [ValueResult<TFailure, TSuccess>](./results/value-result.md)
+- [ValueResultFactory](./results/value-result-factory.md)
 
 ***[Top](#unit)***
 

@@ -4,7 +4,7 @@
 [invalid-operation-exception]: https://learn.microsoft.com/en-us/dotnet/api/system.invalidoperationexception
 [bool]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool
 
-***[home](../../../../readme.md) / packages /  [core](../../readme.md) / monads /***
+***[home](../../../../readme.md) / packages /  [core](../../readme.md) / results /***
 
 ```cs
 public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSuccess>>

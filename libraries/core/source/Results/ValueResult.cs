@@ -3,7 +3,7 @@
 // Licensed under the MIT License. Please refer to the license file in the project root for more information.
 // ----------------------------------------------------------------------------------------------------------
 
-namespace Daht.Sagitta.Core.Monads;
+namespace Daht.Sagitta.Core.Results;
 
 /// <summary>Encapsulates both a possible failure and an expected success for a given action.</summary>
 /// <typeparam name="TFailure">Type of possible failure.</typeparam>
