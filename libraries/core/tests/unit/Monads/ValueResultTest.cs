@@ -9,11 +9,11 @@ public sealed class ValueResultTest
 {
 	private const string @base = nameof(ValueResult<Failure, byte>);
 
+	private const string memberConstructor = "Constructor";
+
 	private const string memberEqualityOperator = "Equality operator ==";
 
 	private const string memberInequalityOperator = "Inequality operator !=";
-
-	private const string memberConstructor = "Constructor";
 
 	private const string memberImplicitOperator = "Implicit operator";
 
@@ -30,6 +30,36 @@ public sealed class ValueResultTest
 	private const string memberGetHashCode = nameof(ValueResult<Failure, sbyte>.GetHashCode);
 
 	private const string memberToString = nameof(ValueResult<Failure, sbyte>.ToString);
+
+	#region Constructor
+
+	#region Constructor overload
+
+	[Fact]
+	[Trait(@base, memberConstructor)]
+	public void Constructor_Failure_FailedResult()
+	{
+		Failure expected = ValueResultFixture.Failure;
+		ValueResult<Failure, sbyte> actual = new(expected);
+		ValueResultAsserter.IsFailed(expected, actual);
+	}
+
+	#endregion Constructor overload
+
+	#region Constructor overload
+
+	[Fact]
+	[Trait(@base, memberConstructor)]
+	public void Constructor_Success_SuccessfulResult()
+	{
+		const sbyte expected = ValueResultFixture.Success;
+		ValueResult<Failure, sbyte> actual = new(expected);
+		ValueResultAsserter.IsSuccessful(expected, actual);
+	}
+
+	#endregion Constructor overload
+
+	#endregion Constructor
 
 	#region Equality operator ==
 
@@ -258,36 +288,6 @@ public sealed class ValueResultTest
 	}
 
 	#endregion Inequality operator !=
-
-	#region Constructor
-
-	#region Constructor overload
-
-	[Fact]
-	[Trait(@base, memberConstructor)]
-	public void Constructor_Failure_FailedResult()
-	{
-		Failure expected = ValueResultFixture.Failure;
-		ValueResult<Failure, sbyte> actual = new(expected);
-		ValueResultAsserter.IsFailed(expected, actual);
-	}
-
-	#endregion Constructor overload
-
-	#region Constructor overload
-
-	[Fact]
-	[Trait(@base, memberConstructor)]
-	public void Constructor_Success_SuccessfulResult()
-	{
-		const sbyte expected = ValueResultFixture.Success;
-		ValueResult<Failure, sbyte> actual = new(expected);
-		ValueResultAsserter.IsSuccessful(expected, actual);
-	}
-
-	#endregion Constructor overload
-
-	#endregion Constructor
 
 	#region Implicit operator
 

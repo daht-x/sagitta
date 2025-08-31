@@ -6,9 +6,9 @@
 namespace Daht.Sagitta.Core.Monads;
 
 /// <summary>Encapsulates both a possible failure and an expected success for a given action.</summary>
-/// <remarks>Type intended to handle only value types.</remarks>
 /// <typeparam name="TFailure">Type of possible failure.</typeparam>
 /// <typeparam name="TSuccess">Type of expected success.</typeparam>
+/// <remarks>Type intended to handle only value types.</remarks>
 [StructLayout(LayoutKind.Auto)]
 public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<TFailure, TSuccess>>
 	where TFailure : struct, Enum

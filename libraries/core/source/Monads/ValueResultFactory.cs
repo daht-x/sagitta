@@ -9,9 +9,9 @@ namespace Daht.Sagitta.Core.Monads;
 public static class ValueResultFactory
 {
 	/// <summary>Creates a new failed result.</summary>
-	/// <param name="failure">The possible failure.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
+	/// <param name="failure">The possible failure.</param>
 	/// <returns>A new failed result.</returns>
 	public static ValueResult<TFailure, TSuccess> Fail<TFailure, TSuccess>(TFailure failure)
 		where TFailure : struct, Enum
@@ -19,9 +19,9 @@ public static class ValueResultFactory
 		=> new(failure);
 
 	/// <summary>Creates a new successful result.</summary>
-	/// <param name="success">The expected success.</param>
 	/// <typeparam name="TFailure">Type of possible failure.</typeparam>
 	/// <typeparam name="TSuccess">Type of expected success.</typeparam>
+	/// <param name="success">The expected success.</param>
 	/// <returns>A new successful result.</returns>
 	public static ValueResult<TFailure, TSuccess> Succeed<TFailure, TSuccess>(TSuccess success)
 		where TFailure : struct, Enum

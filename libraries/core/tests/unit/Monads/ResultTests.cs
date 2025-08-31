@@ -9,19 +9,19 @@ public sealed class ResultTests
 {
 	private const string @base = nameof(Result<object, object>);
 
+	private const string memberConstructor = "Constructor";
+
 	private const string memberEqualityOperator = "Equality operator ==";
 
 	private const string memberInequalityOperator = "Inequality operator !=";
 
-	private const string memberFalseOperator = "False operator";
-
 	private const string memberTrueOperator = "True operator";
+
+	private const string memberFalseOperator = "False operator";
 
 	private const string memberLogicalNegationOperator = "Logical negation operator !";
 
 	private const string memberLogicalOrOperator = "Logical OR operator |";
-
-	private const string memberConstructor = "Constructor";
 
 	private const string memberImplicitOperator = "Implicit operator";
 
@@ -58,6 +58,36 @@ public sealed class ResultTests
 	private const string memberGetHashCode = nameof(Result<object, object>.GetHashCode);
 
 	private const string memberToString = nameof(Result<object, object>.ToString);
+
+	#region Constructor
+
+	#region Constructor overload
+
+	[Fact]
+	[Trait(@base, memberConstructor)]
+	public void Constructor_Failure_FailedResult()
+	{
+		const string expected = ResultFixture.Failure;
+		Result<string, sbyte> actual = new(expected);
+		ResultAsserter.IsFailed(expected, actual);
+	}
+
+	#endregion Constructor overload
+
+	#region Constructor overload
+
+	[Fact]
+	[Trait(@base, memberConstructor)]
+	public void Constructor_Success_SuccessfulResult()
+	{
+		const sbyte expected = ResultFixture.Success;
+		Result<string, sbyte> actual = new(expected);
+		ResultAsserter.IsSuccessful(expected, actual);
+	}
+
+	#endregion Constructor overload
+
+	#endregion Constructor
 
 	#region Equality operator ==
 
@@ -295,6 +325,36 @@ public sealed class ResultTests
 
 	#endregion Inequality operator !=
 
+	#region True operator
+
+	[Fact]
+	[Trait(@base, memberFalseOperator)]
+	[SuppressMessage(RoslynatorAnalysisCategory.Name, RoslynatorAnalysisCategory.Rules.SimplifyConditionalExpression)]
+	[SuppressMessage(SonarAnalysisCategory.Name, SonarAnalysisCategory.Rules.BooleanLiteralsShouldNotBeRedundant)]
+	public void TrueOperator_FailedResult_False()
+	{
+		Result<string, sbyte> actual = ResultMother.Fail();
+		bool status = actual
+			? true
+			: false;
+		Assert.False(status);
+	}
+
+	[Fact]
+	[Trait(@base, memberTrueOperator)]
+	[SuppressMessage(RoslynatorAnalysisCategory.Name, RoslynatorAnalysisCategory.Rules.SimplifyConditionalExpression)]
+	[SuppressMessage(SonarAnalysisCategory.Name, SonarAnalysisCategory.Rules.BooleanLiteralsShouldNotBeRedundant)]
+	public void TrueOperator_SuccessfulResult_True()
+	{
+		Result<string, sbyte> actual = ResultMother.Succeed();
+		bool status = actual
+			? true
+			: false;
+		Assert.True(status);
+	}
+
+	#endregion True operator
+
 	#region False operator
 
 	[Fact]
@@ -328,36 +388,6 @@ public sealed class ResultTests
 	}
 
 	#endregion False operator
-
-	#region True operator
-
-	[Fact]
-	[Trait(@base, memberFalseOperator)]
-	[SuppressMessage(RoslynatorAnalysisCategory.Name, RoslynatorAnalysisCategory.Rules.SimplifyConditionalExpression)]
-	[SuppressMessage(SonarAnalysisCategory.Name, SonarAnalysisCategory.Rules.BooleanLiteralsShouldNotBeRedundant)]
-	public void TrueOperator_FailedResult_False()
-	{
-		Result<string, sbyte> actual = ResultMother.Fail();
-		bool status = actual
-			? true
-			: false;
-		Assert.False(status);
-	}
-
-	[Fact]
-	[Trait(@base, memberTrueOperator)]
-	[SuppressMessage(RoslynatorAnalysisCategory.Name, RoslynatorAnalysisCategory.Rules.SimplifyConditionalExpression)]
-	[SuppressMessage(SonarAnalysisCategory.Name, SonarAnalysisCategory.Rules.BooleanLiteralsShouldNotBeRedundant)]
-	public void TrueOperator_SuccessfulResult_True()
-	{
-		Result<string, sbyte> actual = ResultMother.Succeed();
-		bool status = actual
-			? true
-			: false;
-		Assert.True(status);
-	}
-
-	#endregion True operator
 
 	#region Logical negation operator !
 
@@ -429,36 +459,6 @@ public sealed class ResultTests
 	}
 
 	#endregion Logical OR operator |
-
-	#region Constructor
-
-	#region Constructor overload
-
-	[Fact]
-	[Trait(@base, memberConstructor)]
-	public void Constructor_Failure_FailedResult()
-	{
-		const string expected = ResultFixture.Failure;
-		Result<string, sbyte> actual = new(expected);
-		ResultAsserter.IsFailed(expected, actual);
-	}
-
-	#endregion Constructor overload
-
-	#region Constructor overload
-
-	[Fact]
-	[Trait(@base, memberConstructor)]
-	public void Constructor_Success_SuccessfulResult()
-	{
-		const sbyte expected = ResultFixture.Success;
-		Result<string, sbyte> actual = new(expected);
-		ResultAsserter.IsSuccessful(expected, actual);
-	}
-
-	#endregion Constructor overload
-
-	#endregion Constructor
 
 	#region Implicit operator
 

@@ -6,9 +6,9 @@
 namespace Daht.Sagitta.Core.Monads;
 
 /// <summary>Encapsulates both a possible failure and an expected success for a given action.</summary>
-/// <remarks>Type intended to handle both value and reference types.</remarks>
 /// <typeparam name="TFailure">Type of possible failure.</typeparam>
 /// <typeparam name="TSuccess">Type of expected success.</typeparam>
+/// <remarks>Type intended to handle both value and reference types.</remarks>
 [SuppressMessage(DesignAnalysisCategory.Name, DesignAnalysisCategory.Rules.ValidateArgumentsOfPublicMethods)]
 public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSuccess>>
 {
@@ -73,17 +73,17 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	public static bool operator ==(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)
 		=> (left is null && right is null) || (left is not null && left.Equals(right));
 
-	/// <summary>Indicates whether the state is failed.</summary>
-	/// <param name="result">The current result.</param>
-	/// <returns><see langword="true" /> if the current result is failed; otherwise, <see langword="false" />.</returns>
-	public static bool operator false(Result<TFailure, TSuccess> result)
-		=> result.IsFailed;
-
 	/// <summary>Indicates whether the state is successful.</summary>
 	/// <param name="result">The current result.</param>
 	/// <returns><see langword="true" /> if the current result is successful; otherwise, <see langword="false" />.</returns>
 	public static bool operator true(Result<TFailure, TSuccess> result)
 		=> result.IsSuccessful;
+
+	/// <summary>Indicates whether the state is failed.</summary>
+	/// <param name="result">The current result.</param>
+	/// <returns><see langword="true" /> if the current result is failed; otherwise, <see langword="false" />.</returns>
+	public static bool operator false(Result<TFailure, TSuccess> result)
+		=> result.IsFailed;
 
 	/// <summary>Indicates whether the state is failed.</summary>
 	/// <param name="result">The current result.</param>
@@ -158,9 +158,9 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	}
 
 	/// <summary>Treats <typeparamref name="TException" /> as a new failed result.</summary>
+	/// <typeparam name="TException">Type of possible exception.</typeparam>
 	/// <param name="execute">The action to execute.</param>
 	/// <param name="createFailure">Creates a possible failure.</param>
-	/// <typeparam name="TException">Type of possible exception.</typeparam>
 	/// <returns>A new failed result if <paramref name="execute" /> throws <typeparamref name="TException" />; otherwise, the previous result.</returns>
 	public Result<TFailure, TSuccess> Catch<TException>(
 		Action<TSuccess> execute, Func<TException, TFailure> createFailure
@@ -183,9 +183,9 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	}
 
 	/// <summary>Treats <typeparamref name="TException" /> as a new failed result.</summary>
+	/// <typeparam name="TException">Type of possible exception.</typeparam>
 	/// <param name="createSuccess">Creates an expected success.</param>
 	/// <param name="createFailure">Creates a possible failure.</param>
-	/// <typeparam name="TException">Type of possible exception.</typeparam>
 	/// <returns>A new failed result if the value of <paramref name="createSuccess" /> throws <typeparamref name="TException" />; otherwise, a new successful result.</returns>
 	public Result<TFailure, TSuccess> Catch<TException>(
 		Func<TSuccess, TSuccess> createSuccess, Func<TException, TFailure> createFailure
@@ -235,10 +235,10 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	}
 
 	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
+	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
 	/// <param name="auxiliary">The auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
 	/// <param name="createFailure">Creates a possible failure.</param>
-	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
 	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
 	public Result<TFailure, TSuccess> Ensure<TAuxiliary>(
 		TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate,
@@ -255,10 +255,10 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	}
 
 	/// <summary>Ensures a new failed result if <paramref name="predicate" /> evaluates to <see langword="true" />.</summary>
+	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
 	/// <param name="createAuxiliary">Creates an auxiliary to use in combination with <paramref name="predicate" /> and <paramref name="createFailure" />.</param>
 	/// <param name="predicate">Creates a set of criteria.</param>
 	/// <param name="createFailure">Creates a possible failure.</param>
-	/// <typeparam name="TAuxiliary">Type of auxiliary.</typeparam>
 	/// <returns>A new failed result if the value of <paramref name="predicate" /> is <see langword="true" />; otherwise, the previous result.</returns>
 	public Result<TFailure, TSuccess> Ensure<TAuxiliary>(
 		Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate,
@@ -358,8 +358,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 	}
 
 	/// <summary>Maps the possible failure to a value of another type.</summary>
-	/// <param name="create">Creates a possible failure.</param>
 	/// <typeparam name="TNewFailure">Type of possible failure.</typeparam>
+	/// <param name="create">Creates a possible failure.</param>
 	/// <returns>A new result with a different type of possible failure.</returns>
 	public Result<TNewFailure, TSuccess> MapFailure<TNewFailure>(Func<TFailure, TNewFailure> create)
 		=> IsSuccessful
@@ -367,8 +367,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: new(create(this.failure));
 
 	/// <summary>Maps the expected success to a value of another type.</summary>
-	/// <param name="create">Creates an expected success.</param>
 	/// <typeparam name="TNewSuccess">Type of expected success.</typeparam>
+	/// <param name="create">Creates an expected success.</param>
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TNewSuccess> MapSuccess<TNewSuccess>(Func<TSuccess, TNewSuccess> create)
 		=> IsFailed
@@ -376,8 +376,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: new(create(this.success));
 
 	/// <summary>Binds the previous result to a new one.</summary>
-	/// <param name="create">Creates a new result with the current success.</param>
 	/// <typeparam name="TNewSuccess">Type of expected success.</typeparam>
+	/// <param name="create">Creates a new result with the current success.</param>
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TNewSuccess> Bind<TNewSuccess>(Func<TSuccess, Result<TFailure, TNewSuccess>> create)
 		=> IsFailed
@@ -385,8 +385,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: create(this.success);
 
 	/// <summary>Resets the state of the expected success.</summary>
-	/// <param name="success">The expected success that acts as initializer.</param>
 	/// <typeparam name="TNewSuccess">Type of expected success.</typeparam>
+	/// <param name="success">The expected success that acts as initializer.</param>
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TNewSuccess> Reset<TNewSuccess>(TNewSuccess success)
 		=> IsFailed
@@ -394,8 +394,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: new(success);
 
 	/// <summary>Resets the state of the expected success.</summary>
-	/// <param name="result">The result that acts as initializer.</param>
 	/// <typeparam name="TNewSuccess">Type of expected success.</typeparam>
+	/// <param name="result">The result that acts as initializer.</param>
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TNewSuccess> Reset<TNewSuccess>(Result<TFailure, TNewSuccess> result)
 		=> IsFailed
@@ -410,9 +410,9 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: new(Unit.Default);
 
 	/// <summary>Reduces the possible failure or expected success to a single value.</summary>
+	/// <typeparam name="TReducer">Type of reducer.</typeparam>
 	/// <param name="reduceFailure">Reduces the possible failure.</param>
 	/// <param name="reduceSuccess">Reduces the expected success.</param>
-	/// <typeparam name="TReducer">Type of reducer.</typeparam>
 	/// <returns>A new value that can be the possible failure or the expected success.</returns>
 	public TReducer Reduce<TReducer>(Func<TFailure, TReducer> reduceFailure, Func<TSuccess, TReducer> reduceSuccess)
 		=> IsFailed
