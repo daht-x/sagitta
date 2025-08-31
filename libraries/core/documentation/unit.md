@@ -23,7 +23,8 @@ type.
    - [`Equals(other)`](#equalsother)
    - [`GetHashCode`](#gethashcode)
    - [`ToString`](#tostring)
-4. [Additional resources](#additional-resources)
+4. [See also](#see-also)
+5. [Additional resources](#additional-resources)
 
 ---
 
@@ -148,6 +149,17 @@ type.
 
 - Description: Gets the value of the current unit.
 - Returns: The value of the current unit.
+
+***[Top](#unit)***
+
+---
+
+### See also
+
+- [Result<TFailure, TSuccess>](./monads/result.md)
+- [ResultFactory](./monads/result-factory.md)
+- [ValueResult<TFailure, TSuccess>](./monads/value-result.md)
+- [ValueResultFactory](./monads/value-result-factory.md)
 
 ***[Top](#unit)***
 

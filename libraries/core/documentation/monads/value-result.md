@@ -45,7 +45,8 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
    - [`Equals(other)`](#equalsother)
    - [`GetHashCode`](#gethashcode)
    - [`ToString`](#tostring)
-7. [Additional resources](#additional-resources)
+7. [See also](#see-also)
+8. [Additional resources](#additional-resources)
 
 ---
 
@@ -434,11 +435,19 @@ an [`InvalidOperationException`][invalid-operation-exception] will be thrown.
 
 ---
 
+### See also
+
+- [Unit](../unit.md)
+- [Result<TFailure, TSuccess>](./result.md)
+- [ResultFactory](./result-factory.md)
+- [ValueResultFactory](./value-result-factory.md)
+
+***[Top](#valueresulttfailure-tsuccess)***
+
+---
+
 ### Additional resources
 
-- [`Result<TFailure, TSuccess>`](./result.md): Encapsulates both a possible failure and an expected success
-for a given action (type intended to handle both value and reference types)
-- [`ResultFactory`](./result-factory.md): Provide global factory methods to initialize [`Result<TFailure, TSuccess>`](./result.md)
 - [License](../../../../license.txt)
 - [Security policy](../../../../security.md)
 - [Code of conduct](../../../../code-of-conduct.md)

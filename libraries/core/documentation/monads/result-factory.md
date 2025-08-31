@@ -18,7 +18,8 @@ Provide global factory methods to initialize [`Result<TFailure, TSuccess>`](./re
    - [`Succeed<TFailure, TSuccess>(success)`](#succeedtfailure-tsuccesssuccess)
    - [`Succeed<TFailure, TSuccess>(create)`](#succeedtfailure-tsuccesscreate)
    - [`Catch<TException, TFailure, TSuccess>(createSuccess, createFailure)`](#catchtexception-tfailure-tsuccesscreatesuccess-createfailure)
-2. [Additional resources](#additional-resources)
+2. [See also](#see-also)
+3. [Additional resources](#additional-resources)
 
 ---
 
@@ -162,12 +163,19 @@ successful result.
 
 ---
 
+### See also
+
+- [Unit](../unit.md)
+- [Result<TFailure, TSuccess>](./result.md)
+- [ValueResult<TFailure, TSuccess>](./value-result.md)
+- [ValueResultFactory](./value-result-factory.md)
+
+***[Top](#resultfactory)***
+
+---
+
 ### Additional resources
 
-- [`Result<TFailure, TSuccess>`](./result.md): Encapsulates both a possible failure and an expected success
-for a given action (type intended to handle both value and reference types)
-- [`ValueResult<TFailure, TSuccess>`](./value-result.md): Encapsulates both a possible failure and an expected success
-for a given action (type intended to handle only value types)
 - [License](../../../../license.txt)
 - [Security policy](../../../../security.md)
 - [Code of conduct](../../../../code-of-conduct.md)

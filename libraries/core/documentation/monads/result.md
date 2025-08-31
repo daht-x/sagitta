@@ -62,7 +62,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
    - [`Equals(other)`](#equalsother)
    - [`GetHashCode`](#gethashcode)
    - [`ToString`](#tostring)
-7. [Additional resources](#additional-resources)
+7. [See also](#see-also)
+8. [Additional resources](#additional-resources)
 
 ---
 
@@ -901,11 +902,19 @@ successful result.
 
 ---
 
+### See also
+
+- [Unit](../unit.md)
+- [ResultFactory](./result-factory.md)
+- [ValueResult<TFailure, TSuccess>](./value-result.md)
+- [ValueResultFactory](./value-result-factory.md)
+
+***[Top](#resulttfailure-tsuccess)***
+
+---
+
 ### Additional resources
 
-- [`ResultFactory`](./result-factory.md): Provide global factory methods to initialize [`Result<TFailure, TSuccess>`](./result.md)
-- [`ValueResult<TFailure, TSuccess>`](./value-result.md): Encapsulates both a possible failure and an expected success
-for a given action (type intended to handle only value types)
 - [License](../../../../license.txt)
 - [Security policy](../../../../security.md)
 - [Code of conduct](../../../../code-of-conduct.md)
