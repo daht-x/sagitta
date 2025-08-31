@@ -3,12 +3,13 @@
 // Licensed under the MIT License. Please refer to the license file in the project root for more information.
 // ----------------------------------------------------------------------------------------------------------
 
-namespace Daht.Sagitta.Core.UnitTests.Monads.Fixtures;
+namespace Daht.Sagitta.Core.UnitTests.Results.Fakers;
 
-internal static class ValueResultFixture
+internal enum Failure : byte
 {
-	internal static Failure Failure
-		=> Failure.Availability;
+	Default = 0,
 
-	internal const sbyte Success = sbyte.MinValue;
+	Availability = 1,
+
+	Range = 2
 }

@@ -3,10 +3,12 @@
 // Licensed under the MIT License. Please refer to the license file in the project root for more information.
 // ----------------------------------------------------------------------------------------------------------
 
-namespace Daht.Sagitta.Core.UnitTests.Monads.Fakers;
+namespace Daht.Sagitta.Core.UnitTests.Results.Fixtures;
 
-internal readonly struct SuccessWithNullToString
+internal static class ValueResultFixture
 {
-	public override string? ToString()
-		=> null;
+	internal static Failure Failure
+		=> Failure.Availability;
+
+	internal const sbyte Success = sbyte.MinValue;
 }

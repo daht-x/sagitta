@@ -3,7 +3,7 @@
 // Licensed under the MIT License. Please refer to the license file in the project root for more information.
 // ----------------------------------------------------------------------------------------------------------
 
-namespace Daht.Sagitta.Core.Monads.Exceptions.Helpers;
+namespace Daht.Sagitta.Core.Results.Exceptions.Helpers;
 
 internal static class ResultExceptionMessages
 {

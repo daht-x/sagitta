@@ -3,7 +3,7 @@
 // Licensed under the MIT License. Please refer to the license file in the project root for more information.
 // ----------------------------------------------------------------------------------------------------------
 
-namespace Daht.Sagitta.Core.Monads;
+namespace Daht.Sagitta.Core.Results;
 
 /// <summary>Provide global factory methods to initialize <see cref="ValueResult{TFailure, TSuccess}" />.</summary>
 public static class ValueResultFactory
