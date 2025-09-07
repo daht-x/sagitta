@@ -42,7 +42,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: "Set up .NET SDK"
-        uses: "actions/setup-dotnet@v4.3.1"
+        uses: "actions/setup-dotnet@v5.0.0"
       - name: "Restore dependencies"
         run: "dotnet restore"
       - name: "Get all changed files"
@@ -67,7 +67,7 @@ jobs:
             --configuration '${{ env.BUILD_CONFIGURATION }}'
       - name: "Upload coverage results"
         if: "${{ env.IS_PUSH_EVENT_TO_MAIN_BRANCH == vars.POSITIVE }}"
-        uses: "codecov/codecov-action@v5.5.0"
+        uses: "codecov/codecov-action@v5.5.1"
         with:
           files: "./artifacts/coverage/core.xml"
           fail_ci_if_error: true
@@ -102,7 +102,7 @@ jobs:
         with:
           name: "${{ env.RELEASE_NAME }}"
       - name: "Set up .NET SDK"
-        uses: "actions/setup-dotnet@v4.3.1"
+        uses: "actions/setup-dotnet@v5.0.0"
       - name: "Publish packages"
         run: |
           dotnet nuget push '${{ env.NUGET_OUTPUT_DIRECTORY }}/${{ env.NUGET_SEARCH_PATTERN }}' \
