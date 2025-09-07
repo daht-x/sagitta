@@ -170,13 +170,13 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 	}
 
 	/// <summary>Determines whether the specified result is equal to the current result.</summary>
-	/// <param name="obj">The result to compare with the current reference.</param>
+	/// <param name="obj">The result to compare with the current result.</param>
 	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
 	public override bool Equals(object? obj)
 		=> obj is ValueResult<TFailure, TSuccess> other && Equals(other);
 
 	/// <summary>Determines whether the specified result is equal to the current result.</summary>
-	/// <param name="other">The result to compare with the current reference.</param>
+	/// <param name="other">The result to compare with the current result.</param>
 	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
 	public bool Equals(ValueResult<TFailure, TSuccess> other)
 	{

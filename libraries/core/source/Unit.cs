@@ -29,14 +29,14 @@ public readonly struct Unit : IEquatable<Unit>
 		=> left.Equals(right);
 
 	/// <summary>Determines whether the specified unit is equal to the current unit.</summary>
-	/// <param name="obj">The unit to compare with the current reference.</param>
+	/// <param name="obj">The unit to compare with the current unit.</param>
 	/// <returns><see langword="true" /> if the specified unit is equal to the current unit; otherwise, <see langword="false" />.</returns>
 	[Pure]
 	public override bool Equals(object? obj)
 		=> obj is Unit;
 
 	/// <summary>Determines whether the specified unit is equal to the current unit.</summary>
-	/// <param name="other">The unit to compare with the current reference.</param>
+	/// <param name="other">The unit to compare with the current unit.</param>
 	/// <returns><see langword="true" /> if the specified unit is equal to the current unit; otherwise, <see langword="false" />.</returns>
 	[Pure]
 	public bool Equals(Unit other)
