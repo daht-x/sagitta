@@ -119,22 +119,24 @@ Structures intended to encapsulate and manage both potential failure and expecte
 #### FAQ
 
 - When to use exceptions?
-  - Exceptional, unpredictable, or non-deterministic situations
+  - For exceptional, unpredictable, or non-deterministic situations
 *(e.g., disk I/O failures, network timeouts, out-of-memory conditions)*.
-  - When local recovery is not possible or would compromise system integrity
+  - For cases where local recovery is not possible or would compromise system integrity
 *(e.g., corrupted state, violated invariants, missing critical resources)*.
-  - When an error must be propagated beyond the local scope to enable stack-unwinding or a global recovery strategy
-*(e.g., transaction rollback, centralized cleanup, subsystem restart, escalation to another API/module)*.
+  - When an error must be propagated beyond the local scope to enable stack unwinding or a global recovery strategy
+*(e.g., transaction rollback, centralized cleanup, subsystem restart, escalation to another module)*.
 - When not to use exceptions?
-  - Predictable or expected scenarios
+  - For predictable or expected scenarios
 *(e.g., business-rule violations, parameter validation, boundary checks, foreseeable edge cases)*.
-  - As a substitute for normal control flow *(e.g., loop termination, flag checking, selecting alternate code paths)*.
-  - In high-performance and latency-sensitive scenarios *(e.g., tight loops, real-time processing, compute-intensive tasks)*.
-- Why [`Result<TFailure, TSuccess>`][result] and [`ValueResult<TFailure, TSuccess>`][value-result]?
-  - Exceptions are expensive, because throwing and catching requires constructing complex objects,
+  - As a substitute for normal control flow
+*(e.g., loop termination, flag checking, selecting alternate code paths)*.
+  - In high-performance or latency-sensitive scenarios
+*(e.g., tight loops, real-time processing, compute-intensive tasks)*.
+- Why use [`Result<TFailure, TSuccess>`][result] and [`ValueResult<TFailure, TSuccess>`][value-result] instead of exceptions?
+  - Exceptions are expensive because throwing and catching them requires constructing complex objects,
 capturing a full stack trace, and unwinding the call stack.
-  - Exceptions are intended for exceptional and unpredictable situations and should not be used for regular
-control flow or business-rule enforcement.
+  - Exceptions are intended for exceptional and unpredictable situations and should not be used for
+regular control flow or business-rule enforcement.
 
 ***[Top](#dahtsagittacore)***
 

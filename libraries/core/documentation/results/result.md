@@ -54,6 +54,8 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
    - [`MapFailure<TNewFailure>(create)`](#mapfailuretnewfailurecreate)
    - [`MapSuccess<TNewSuccess>(create)`](#mapsuccesstnewsuccesscreate)
    - [`Bind<TNewSuccess>(create)`](#bindtnewsuccesscreate)
+   - [`Recover(success)`](#recoversuccess)
+   - [`Recover(create)`](#recovercreate)
    - [`Reset<TNewSuccess>(success)`](#resettnewsuccesssuccess)
    - [`Reset<TNewSuccess>(result)`](#resettnewsuccessresult)
    - [`Discard`](#discard)
@@ -291,10 +293,10 @@ Type of expected success.
 - Description: Binds the previous result to a new one.
 - Parameters:
 
-  | Name     | Description                                   |
-  |:---------|:----------------------------------------------|
-  | `result` | The current result                            |
-  | `create` | Creates a new result with the current success |
+  | Name     | Description                 |
+  |:---------|:----------------------------|
+  | `result` | The current result          |
+  | `create` | Creates the expected result |
 
 - Returns: A new result with a different expected success.
 
@@ -739,11 +741,49 @@ successful result.
 
 - Parameters:
 
-  | Name     | Description                                   |
-  |:---------|:----------------------------------------------|
-  | `create` | Creates a new result with the current success |
+  | Name     | Description                 |
+  |:---------|:----------------------------|
+  | `create` | Creates the expected result |
 
 - Returns: A new result with a different type of expected success.
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `Recover(success)`
+
+- Signature:
+
+  ```cs
+  public Result<TFailure, TSuccess> Recover(TSuccess success)
+  ```
+
+- Description: Recovers a failed result by creating a new success.
+- Parameters:
+
+  | Name      | Description          |
+  |:----------|:---------------------|
+  | `success` | The expected success |
+
+- Returns: A new successful result if the current result is failed; otherwise, the previous successful result.
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `Recover(create)`
+
+- Signature:
+
+  ```cs
+  public Result<TFailure, TSuccess> Recover(Func<TFailure, TSuccess> create)
+  ```
+
+- Description: Recovers a failed result by creating a new success.
+- Parameters:
+
+  | Name     | Description                 |
+  |:---------|:----------------------------|
+  | `create` | Creates an expected success |
+
+- Returns: A new successful result if the current result is failed; otherwise, the previous successful result.
 
 ***[Top](#resulttfailure-tsuccess)***
 
@@ -764,9 +804,9 @@ successful result.
 
 - Parameters:
 
-  | Name      | Description                                   |
-  |:----------|:----------------------------------------------|
-  | `success` | The expected success that acts as initializer |
+  | Name      | Description          |
+  |:----------|:---------------------|
+  | `success` | The expected success |
 
 - Returns: A new result with a different type of expected success.
 
@@ -789,9 +829,9 @@ successful result.
 
 - Parameters:
 
-  | Name     | Description                         |
-  |:---------|:------------------------------------|
-  | `result` | The result that acts as initializer |
+  | Name     | Description         |
+  |:---------|:--------------------|
+  | `result` | The expected result |
 
 - Returns: A new result with a different type of expected success.
 
@@ -847,9 +887,9 @@ successful result.
 - Description: Determines whether the specified result is equal to the current result.
 - Parameters:
 
-  | Name  | Description                                      |
-  |:------|:-------------------------------------------------|
-  | `obj` | The result to compare with the current reference |
+  | Name  | Description                                   |
+  |:------|:----------------------------------------------|
+  | `obj` | The result to compare with the current result |
 
 - Returns: [`true`][bool] if the specified result is equal to the current result; otherwise, [`false`][bool].
 
@@ -866,9 +906,9 @@ successful result.
 - Description: Determines whether the specified result is equal to the current result.
 - Parameters:
 
-  | Name    | Description                                      |
-  |:--------|:-------------------------------------------------|
-  | `other` | The result to compare with the current reference |
+  | Name    | Description                                   |
+  |:--------|:----------------------------------------------|
+  | `other` | The result to compare with the current result |
 
 - Returns: [`true`][bool] if the specified result is equal to the current result; otherwise, [`false`][bool].
 

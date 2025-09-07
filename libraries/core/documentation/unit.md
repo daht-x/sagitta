@@ -99,9 +99,9 @@ type.
 - Description: Determines whether the specified unit is equal to the current unit.
 - Parameters:
 
-  | Name  | Description                                    |
-  |:------|:-----------------------------------------------|
-  | `obj` | The unit to compare with the current reference |
+  | Name  | Description                               |
+  |:------|:------------------------------------------|
+  | `obj` | The unit to compare with the current unit |
 
 - Returns: [`true`][bool] if the specified unit is equal to the current unit; otherwise, [`false`][bool].
 
@@ -118,9 +118,9 @@ type.
 - Description: Determines whether the specified unit is equal to the current unit.
 - Parameters:
 
-  | Name    | Description                                    |
-  |:--------|:-----------------------------------------------|
-  | `other` | The unit to compare with the current reference |
+  | Name    | Description                               |
+  |:--------|:------------------------------------------|
+  | `other` | The unit to compare with the current unit |
 
 - Returns: [`true`][bool] if the specified unit is equal to the current unit; otherwise, [`false`][bool].
 
