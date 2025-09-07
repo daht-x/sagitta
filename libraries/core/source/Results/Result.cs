@@ -93,7 +93,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 
 	/// <summary>Binds the previous result to a new one.</summary>
 	/// <param name="result">The current result.</param>
-	/// <param name="create">Creates a new result with the current success.</param>
+	/// <param name="create">Creates the expected result.</param>
 	/// <returns>A new result with a different expected success.</returns>
 	public static Result<TFailure, TSuccess> operator |(
 		Result<TFailure, TSuccess> result, Func<TSuccess, Result<TFailure, TSuccess>> create
@@ -377,16 +377,32 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 
 	/// <summary>Binds the previous result to a new one.</summary>
 	/// <typeparam name="TNewSuccess">Type of expected success.</typeparam>
-	/// <param name="create">Creates a new result with the current success.</param>
+	/// <param name="create">Creates the expected result.</param>
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TNewSuccess> Bind<TNewSuccess>(Func<TSuccess, Result<TFailure, TNewSuccess>> create)
 		=> IsFailed
 			? new(this.failure)
 			: create(this.success);
 
+	/// <summary>Recovers a failed result by creating a new success.</summary>
+	/// <param name="success">The expected success.</param>
+	/// <returns>A new successful result if the current result is failed; otherwise, the previous successful result.</returns>
+	public Result<TFailure, TSuccess> Recover(TSuccess success)
+		=> IsSuccessful
+			? this
+			: new(success);
+
+	/// <summary>Recovers a failed result by creating a new success.</summary>
+	/// <param name="create">Creates an expected success.</param>
+	/// <returns>A new successful result if the current result is failed; otherwise, the previous successful result.</returns>
+	public Result<TFailure, TSuccess> Recover(Func<TFailure, TSuccess> create)
+		=> IsSuccessful
+			? this
+			: new(create(this.failure));
+
 	/// <summary>Resets the state of the expected success.</summary>
 	/// <typeparam name="TNewSuccess">Type of expected success.</typeparam>
-	/// <param name="success">The expected success that acts as initializer.</param>
+	/// <param name="success">The expected success.</param>
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TNewSuccess> Reset<TNewSuccess>(TNewSuccess success)
 		=> IsFailed
@@ -395,7 +411,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 
 	/// <summary>Resets the state of the expected success.</summary>
 	/// <typeparam name="TNewSuccess">Type of expected success.</typeparam>
-	/// <param name="result">The result that acts as initializer.</param>
+	/// <param name="result">The expected result.</param>
 	/// <returns>A new result with a different type of expected success.</returns>
 	public Result<TFailure, TNewSuccess> Reset<TNewSuccess>(Result<TFailure, TNewSuccess> result)
 		=> IsFailed
@@ -420,13 +436,13 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: reduceSuccess(this.success);
 
 	/// <summary>Determines whether the specified result is equal to the current result.</summary>
-	/// <param name="obj">The result to compare with the current reference.</param>
+	/// <param name="obj">The result to compare with the current result.</param>
 	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
 	public override bool Equals(object? obj)
 		=> obj is Result<TFailure, TSuccess> other && Equals(other);
 
 	/// <summary>Determines whether the specified result is equal to the current result.</summary>
-	/// <param name="other">The result to compare with the current reference.</param>
+	/// <param name="other">The result to compare with the current result.</param>
 	/// <returns><see langword="true" /> if the specified result is equal to the current result; otherwise, <see langword="false" />.</returns>
 	public bool Equals(Result<TFailure, TSuccess>? other)
 	{

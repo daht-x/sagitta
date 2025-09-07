@@ -380,9 +380,9 @@ an [`InvalidOperationException`][invalid-operation-exception] will be thrown.
 - Description: Determines whether the specified result is equal to the current result.
 - Parameters:
 
-  | Name  | Description                                      |
-  |:------|:-------------------------------------------------|
-  | `obj` | The result to compare with the current reference |
+  | Name  | Description                                   |
+  |:------|:----------------------------------------------|
+  | `obj` | The result to compare with the current result |
 
 - Returns: [`true`][bool] if the specified result is equal to the current result; otherwise, [`false`][bool].
 
@@ -399,9 +399,9 @@ an [`InvalidOperationException`][invalid-operation-exception] will be thrown.
 - Description: Determines whether the specified result is equal to the current result.
 - Parameters:
 
-  | Name    | Description                                      |
-  |:--------|:-------------------------------------------------|
-  | `other` | The result to compare with the current reference |
+  | Name    | Description                                   |
+  |:--------|:----------------------------------------------|
+  | `other` | The result to compare with the current result |
 
 - Returns: [`true`][bool] if the specified result is equal to the current result; otherwise, [`false`][bool].
 
