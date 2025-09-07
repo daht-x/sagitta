@@ -23,6 +23,8 @@ public sealed class ValueResultTest
 
 	private const string memberDeconstruct = nameof(ValueResult<Failure, sbyte>.Deconstruct);
 
+	private const string memberRecover = nameof(ValueResult<Failure, sbyte>.Recover);
+
 	private const string memberDiscard = nameof(ValueResult<Failure, sbyte>.Discard);
 
 	private const string memberEquals = nameof(ValueResult<Failure, sbyte>.Equals);
@@ -481,6 +483,41 @@ public sealed class ValueResultTest
 	}
 
 	#endregion TryGetSuccess
+
+	#region Recover
+
+	[Fact]
+	[Trait(@base, memberRecover)]
+	public void Recover_Default_InvalidOperationException()
+		=> Assert.Throws<InvalidOperationException>(() =>
+			{
+				ValueResult<Failure, sbyte> actual = default;
+				_ = actual.Recover(ValueResultFixture.Success);
+			}
+		);
+
+	[Fact]
+	[Trait(@base, memberRecover)]
+	public void Recover_SuccessfulResultPlusSuccess_SuccessfulResult()
+	{
+		const sbyte expected = sbyte.MinValue;
+		const sbyte success = sbyte.MaxValue;
+		ValueResult<Failure, sbyte> actual = ValueResultMother.Succeed(expected)
+			.Recover(success);
+		ValueResultAsserter.IsSuccessful(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberRecover)]
+	public void Recover_FailedResultPlusSuccess_SuccessfulResult()
+	{
+		const sbyte expected = ValueResultFixture.Success;
+		ValueResult<Failure, sbyte> actual = ValueResultMother.Fail()
+			.Recover(expected);
+		ValueResultAsserter.IsSuccessful(expected, actual);
+	}
+
+	#endregion Recover
 
 	#region Discard
 

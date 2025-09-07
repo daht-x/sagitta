@@ -40,6 +40,7 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
    - [`Deconstruct(isFailed, failure, success)`](#deconstructisfailed-failure-success)
    - [`TryGetFailure(output)`](#trygetfailureoutput)
    - [`TryGetSuccess(output)`](#trygetsuccessoutput)
+   - [`Recover(success)`](#recoversuccess)
    - [`Discard`](#discard)
    - [`Equals(obj)`](#equalsobj)
    - [`Equals(other)`](#equalsother)
@@ -351,6 +352,27 @@ an [`InvalidOperationException`][invalid-operation-exception] will be thrown.
   | `output` | The expected success |
 
 - Returns: [`true`][bool] if the result is successful; otherwise, [`false`][bool].
+
+***[Top](#valueresulttfailure-tsuccess)***
+
+#### `Recover(success)`
+
+- Signature:
+
+  ```cs
+  public ValueResult<TFailure, TSuccess> Recover(TSuccess success)
+  ```
+
+- Description: Recovers a failed result by creating a new success.
+- Remarks: If the result is [`default`][default] (uninitialized),
+an [`InvalidOperationException`][invalid-operation-exception] will be thrown.
+- Parameters:
+
+  | Name      | Description          |
+  |:----------|:---------------------|
+  | `success` | The expected success |
+
+- Returns: A new successful result if the current result is failed; otherwise, the previous successful result.
 
 ***[Top](#valueresulttfailure-tsuccess)***
 
