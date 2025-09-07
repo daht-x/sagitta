@@ -157,6 +157,18 @@ public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<
 		return !IsFailed;
 	}
 
+	/// <summary>Recovers a failed result by creating a new success.</summary>
+	/// <remarks>If the result is <see langword="default" /> (uninitialized), an <see cref="InvalidOperationException" /> will be thrown.</remarks>
+	/// <param name="success">The expected success.</param>
+	/// <returns>A new successful result if the current result is failed; otherwise, the previous successful result.</returns>
+	public ValueResult<TFailure, TSuccess> Recover(TSuccess success)
+	{
+		ThrowInvalidOperationExceptionIfResultIsUninitialized();
+		return !IsFailed
+			? this
+			: new(success);
+	}
+
 	/// <summary>Discards the expected success.</summary>
 	/// <remarks>If the result is <see langword="default" /> (uninitialized), an <see cref="InvalidOperationException" /> will be thrown.</remarks>
 	/// <returns>A new result that replaces the expected success with <see cref="Unit"/>.</returns>
