@@ -47,6 +47,8 @@ public sealed class ResultTests
 
 	private const string memberBind = nameof(Result<object, object>.Bind);
 
+	private const string memberRecover = nameof(Result<object, object>.Recover);
+
 	private const string memberReduce = nameof(Result<object, object>.Reduce);
 
 	private const string memberReset = nameof(Result<object, object>.Reset);
@@ -363,11 +365,11 @@ public sealed class ResultTests
 	{
 		Result<string, sbyte> actual = ResultMother.Succeed();
 		const string target = "op_False";
-		MethodInfo? method = typeof(Result<string, sbyte>).GetMethod(
-			target,
-			BindingFlags.Public | BindingFlags.Static
-		);
-		object?[] parameters = [actual];
+		MethodInfo? method = typeof(Result<string, sbyte>).GetMethod(target, BindingFlags.Public | BindingFlags.Static);
+		object?[] parameters =
+		[
+			actual
+		];
 		bool status = (bool)(method?.Invoke(null, parameters) ?? throw new InvalidOperationException(target));
 		Assert.False(status);
 	}
@@ -378,11 +380,11 @@ public sealed class ResultTests
 	{
 		Result<string, sbyte> actual = ResultMother.Fail();
 		const string target = "op_False";
-		MethodInfo? method = typeof(Result<string, sbyte>).GetMethod(
-			target,
-			BindingFlags.Public | BindingFlags.Static
-		);
-		object?[] parameters = [actual];
+		MethodInfo? method = typeof(Result<string, sbyte>).GetMethod(target, BindingFlags.Public | BindingFlags.Static);
+		object?[] parameters =
+		[
+			actual
+		];
 		bool status = (bool)(method?.Invoke(null, parameters) ?? throw new InvalidOperationException(target));
 		Assert.True(status);
 	}
@@ -1247,6 +1249,61 @@ public sealed class ResultTests
 	}
 
 	#endregion Discard
+
+	#region Recover
+
+	#region Recover overload
+
+	[Fact]
+	[Trait(@base, memberRecover)]
+	public void Recover_SuccessfulResultPlusSuccess_SuccessfulResult()
+	{
+		const sbyte expected = sbyte.MinValue;
+		const sbyte success = sbyte.MaxValue;
+		Result<string, sbyte> actual = ResultMother.Succeed(expected)
+			.Recover(success);
+		ResultAsserter.IsSuccessful(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberRecover)]
+	public void Recover_FailedResultPlusSuccess_SuccessfulResult()
+	{
+		const sbyte expected = ResultFixture.Success;
+		Result<string, sbyte> actual = ResultMother.Fail()
+			.Recover(expected);
+		ResultAsserter.IsSuccessful(expected, actual);
+	}
+
+	#endregion Recover overload
+
+	#region Recover overload
+
+	[Fact]
+	[Trait(@base, memberRecover)]
+	public void Recover_SuccessfulResultPlusCreate_SuccessfulResult()
+	{
+		const sbyte expected = sbyte.MinValue;
+		Func<string, sbyte> create = static _ => sbyte.MaxValue;
+		Result<string, sbyte> actual = ResultMother.Succeed(expected)
+			.Recover(create);
+		ResultAsserter.IsSuccessful(expected, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberRecover)]
+	public void Recover_FailedResultPlusCreate_SuccessfulResult()
+	{
+		const sbyte expected = ResultFixture.Success;
+		Func<string, sbyte> create = static _ => expected;
+		Result<string, sbyte> actual = ResultMother.Fail()
+			.Recover(create);
+		ResultAsserter.IsSuccessful(expected, actual);
+	}
+
+	#endregion Recover overload
+
+	#endregion Recover
 
 	#region Reduce
 
