@@ -48,6 +48,7 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
    - [`Ensure(predicate, createFailure)`](#ensurepredicate-createfailure)
    - [`Ensure<TAuxiliary>(auxiliary, predicate, createFailure)`](#ensuretauxiliaryauxiliary-predicate-createfailure)
    - [`Ensure<TAuxiliary>(createAuxiliary, predicate, createFailure)`](#ensuretauxiliarycreateauxiliary-predicate-createfailure)
+   - [`Do(execute)`](#doexecute)
    - [`DoOnFailure(execute)`](#doonfailureexecute)
    - [`DoOnSuccess(execute)`](#doonsuccessexecute)
    - [`Match(doOnFailure, doOnSuccess)`](#matchdoonfailure-doonsuccess)
@@ -601,6 +602,25 @@ successful result.
   | `createFailure`   | Creates a possible failure                                                      |
 
 - Returns: A new failed result if the value of `predicate` is [`true`][bool]; otherwise, the previous result.
+
+***[Top](#resulttfailure-tsuccess)***
+
+#### `Do(execute)`
+
+- Signatures:
+
+  - ```cs
+    public Result<TFailure, TSuccess> Do(Action execute)
+    ```
+
+- Description: Executes an action regardless of the previous result.
+- Parameters:
+
+  | Name      | Description           |
+  |:----------|:----------------------|
+  | `execute` | The action to execute |
+
+- Returns: The previous result.
 
 ***[Top](#resulttfailure-tsuccess)***
 

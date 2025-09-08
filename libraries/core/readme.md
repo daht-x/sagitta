@@ -9,7 +9,7 @@
 
 ***[home](https://github.com/daht-x/sagitta/blob/main/readme.md) / packages /***
 
-***Functional paradigm abstractions for .NET - Core***
+***Functional paradigm abstractions for .NET***
 
 [![Stars](https://img.shields.io/github/stars/daht-x/sagitta?style=for-the-badge&logo=starship&logoColor=cdd6f4&label=Stars&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta/stargazers)
 [![Release](https://img.shields.io/github/v/release/daht-x/sagitta?style=for-the-badge&logo=github&logoColor=cdd6f4&label=Release&labelColor=313244&color=b4befe)](https://github.com/daht-x/sagitta/releases)
@@ -127,16 +127,16 @@ Structures intended to encapsulate and manage both potential failure and expecte
 *(e.g., transaction rollback, centralized cleanup, subsystem restart, escalation to another module)*.
 - When not to use exceptions?
   - For predictable or expected scenarios
-*(e.g., business-rule violations, parameter validation, boundary checks, foreseeable edge cases)*.
+*(e.g., unavailable values, out-of-range values, invalid formats or patterns)*.
   - As a substitute for normal control flow
 *(e.g., loop termination, flag checking, selecting alternate code paths)*.
   - In high-performance or latency-sensitive scenarios
 *(e.g., tight loops, real-time processing, compute-intensive tasks)*.
 - Why use [`Result<TFailure, TSuccess>`][result] and [`ValueResult<TFailure, TSuccess>`][value-result] instead of exceptions?
-  - Exceptions are expensive because throwing and catching them requires constructing complex objects,
-capturing a full stack trace, and unwinding the call stack.
-  - Exceptions are intended for exceptional and unpredictable situations and should not be used for
-regular control flow or business-rule enforcement.
+  - Safety: Minimizes side effects through consistent and deterministic control.
+  - Efficiency: Eliminates the overhead associated with exception-based flow control.
+  - Transparency: Explicitly and semantically exposes the state and intent of an operation.
+  - Extensibility: Provides a flexible API to extend, adapt, and evolve processes.
 
 ***[Top](#dahtsagittacore)***
 

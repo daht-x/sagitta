@@ -275,6 +275,15 @@ public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSu
 			: this;
 	}
 
+	/// <summary>Executes an action regardless of the previous result.</summary>
+	/// <param name="execute">The action to execute.</param>
+	/// <returns>The previous result.</returns>
+	public Result<TFailure, TSuccess> Do(Action execute)
+	{
+		execute();
+		return this;
+	}
+
 	/// <summary>Executes an action if the previous result is failed.</summary>
 	/// <param name="execute">The action to execute.</param>
 	/// <returns>The previous result.</returns>

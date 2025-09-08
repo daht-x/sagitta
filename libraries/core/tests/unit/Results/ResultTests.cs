@@ -35,6 +35,8 @@ public sealed class ResultTests
 
 	private const string memberEnsure = nameof(Result<object, object>.Ensure);
 
+	private const string memberDo = nameof(Result<object, object>.Do);
+
 	private const string memberDoOnFailure = nameof(Result<object, object>.DoOnFailure);
 
 	private const string memberDoOnSuccess = nameof(Result<object, object>.DoOnSuccess);
@@ -865,6 +867,34 @@ public sealed class ResultTests
 	#endregion Ensure overload
 
 	#endregion Ensure
+
+	#region Do
+
+	[Fact]
+	[Trait(@base, memberDo)]
+	public void Do_FailedResultPlusExecute_FailedResult()
+	{
+		bool status = false;
+		Action execute = () => status = true;
+		Result<string, sbyte> actual = ResultMother.Fail()
+			.Do(execute);
+		Assert.True(status);
+		ResultAsserter.IsFailed(ResultFixture.Failure, actual);
+	}
+
+	[Fact]
+	[Trait(@base, memberDo)]
+	public void Do_SuccessfulResultPlusExecute_SuccessfulResult()
+	{
+		bool status = false;
+		Action execute = () => status = true;
+		Result<string, sbyte> actual = ResultMother.Succeed()
+			.Do(execute);
+		Assert.True(status);
+		ResultAsserter.IsSuccessful(ResultFixture.Success, actual);
+	}
+
+	#endregion Do
 
 	#region DoOnFailure
 
