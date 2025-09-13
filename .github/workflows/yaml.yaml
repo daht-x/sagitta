@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
       - name: "Get all changed files"
         id: "yaml-files"
-        uses: "tj-actions/changed-files@v46.0.5"
+        uses: "tj-actions/changed-files@v47.0.0"
         with:
           files: "**.{yaml,yml}"
       - name: "Run linter for all changed files"
