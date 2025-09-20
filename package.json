@@ -10,7 +10,7 @@
 	"engines": {
 		"node": "22.19.0"
 	},
-	"packageManager": "pnpm@10.16.1",
+	"packageManager": "pnpm@10.17.0",
 	"private": true,
 	"scripts": {
 		"prepare": "husky"
