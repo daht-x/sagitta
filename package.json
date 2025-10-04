@@ -1,6 +1,6 @@
 {
 	"devDependencies": {
-		"@biomejs/biome": "2.2.4",
+		"@biomejs/biome": "2.2.5",
 		"@commitlint/cli": "20.1.0",
 		"@commitlint/types": "20.0.0",
 		"husky": "9.1.7",
@@ -10,7 +10,7 @@
 	"engines": {
 		"node": "22.20.0"
 	},
-	"packageManager": "pnpm@10.17.1",
+	"packageManager": "pnpm@10.18.0",
 	"private": true,
 	"scripts": {
 		"prepare": "husky"
