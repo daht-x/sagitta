@@ -1,0 +1,96 @@
+name: "Node.js"
+on:
+  schedule:
+    - cron: "0 0 */1 * *"
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  updater:
+    name: "Updater"
+    runs-on: "ubuntu-latest"
+    env:
+      NVM_FILE: ".nvmrc"
+      PACKAGE_FILE: "package.json"
+    steps:
+      - name: "Set up repository with the latest commit"
+        uses: "actions/checkout@v5.0.0"
+      - name: "Check for updates"
+        id: "checker"
+        run: |
+          previous_version="$(<'${{ env.NVM_FILE }}')"
+          next_version="$(
+            curl --proto '=https' \
+              --request 'GET' \
+              --location \
+              --fail \
+              --silent \
+              --show-error 'https://nodejs.org/dist/index.json' |
+              jq --raw-output 'first(.[] | select(.lts != false).version) | ltrimstr("v")'
+          )"
+          if [[ "${previous_version}" == "${next_version}" ]]; then
+            echo 'update=false' >>"${GITHUB_OUTPUT}"
+            exit 0
+          fi
+          IFS='.' read -r previous_major _ <<<"${previous_version}"
+          IFS='.' read -r next_major _ <<<"${next_version}"
+          {
+            echo 'update=true'
+            echo "previous_version=${previous_version}"
+            echo "next_version=${next_version}"
+            echo "previous_major=${previous_major}"
+            echo "next_major=${next_major}"
+          } >>"${GITHUB_OUTPUT}"
+          if [[ "${next_major}" -gt "${previous_major}" ]]; then
+            commit_keyword='upgrade'
+            pull_request_keyword='upgraded'
+          else
+            commit_keyword='update'
+            pull_request_keyword='updated'
+          fi
+          commit_message="build: ${commit_keyword} \`Node.js\` from ${previous_version} to ${next_version}"
+          {
+            echo "pull_request_keyword=${pull_request_keyword}"
+            echo "commit_message=${commit_message}"
+          } >>"${GITHUB_OUTPUT}"
+      - name: "Set up Biome"
+        if: "${{ steps.checker.outputs.update == 'true' }}"
+        uses: "biomejs/setup-biome@v2.6.0"
+      - name: "Update all references"
+        if: "${{ steps.checker.outputs.update == 'true' }}"
+        run: |
+          temporal_package_file='package.tmp.json'
+          echo '${{ steps.checker.outputs.next_version }}' >'${{ env.NVM_FILE }}'
+          jq --arg node '${{ steps.checker.outputs.next_version }}' '.engines.node = $node' '${{ env.PACKAGE_FILE }}' >"${temporal_package_file}"
+          mv "${temporal_package_file}" '${{ env.PACKAGE_FILE }}'
+          biome format '${{ env.PACKAGE_FILE }}' --fix
+      - name: "Create pull request"
+        if: "${{ steps.checker.outputs.update == 'true' }}"
+        uses: "peter-evans/create-pull-request@v7.0.8"
+        env:
+          AUTHOR: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
+        with:
+          delete-branch: true
+          branch: "github-actions/build/nodejs-${{ steps.checker.outputs.next_version }}"
+          sign-commits: true
+          commit-message: "${{ steps.checker.outputs.commit_message }}"
+          author: "${{ env.AUTHOR }}"
+          committer: "${{ env.AUTHOR }}"
+          title: "${{ steps.checker.outputs.commit_message }}"
+          assignees: "${{ github.repository_owner }}"
+          reviewers: "${{ github.repository_owner }}"
+          labels: |
+            topic: build
+            priority: high
+            status: pending
+          body: |
+            # Pull request
+
+            ## Table of contents
+
+            1. [Description](#description)
+
+            ### Description
+
+            [`Node.js`](https://nodejs.org/en) was ${{ steps.checker.outputs.pull_request_keyword }} from [${{ steps.checker.outputs.previous_version }}](https://github.com/nodejs/node/blob/main/doc/changelogs/CHANGELOG_V${{ steps.checker.outputs.previous_major }}.md#${{ steps.checker.outputs.previous_version }}) to [${{ steps.checker.outputs.next_version }}](https://github.com/nodejs/node/blob/main/doc/changelogs/CHANGELOG_V${{ steps.checker.outputs.next_major }}.md#${{ steps.checker.outputs.next_version }}).

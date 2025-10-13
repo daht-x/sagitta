@@ -17,7 +17,7 @@ rules:
   document-start:
     present: false
   empty-lines:
-    max: 0
+    max: 1
   float-values:
     require-numeral-before-decimal: true
   indentation:
