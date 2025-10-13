@@ -16,7 +16,7 @@ concurrency:
 jobs:
   content-validator:
     name: "Content validator"
-    runs-on: "${{ vars.DEFAULT_UBUNTU }}"
+    runs-on: "ubuntu-latest"
     steps:
       - name: "Set up repository with all history"
         uses: "actions/checkout@v5.0.0"

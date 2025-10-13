@@ -37,7 +37,7 @@ concurrency:
 jobs:
   analyzer:
     name: "Analyzer"
-    runs-on: "${{ vars.DEFAULT_UBUNTU }}"
+    runs-on: "ubuntu-latest"
     strategy:
       matrix:
         languages:

@@ -16,7 +16,7 @@ concurrency:
 jobs:
   linter:
     name: "Linter"
-    runs-on: "${{ vars.DEFAULT_UBUNTU }}"
+    runs-on: "ubuntu-latest"
     steps:
       - name: "Set up repository with the latest commit"
         uses: "actions/checkout@v5.0.0"
