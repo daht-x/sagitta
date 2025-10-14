@@ -1,0 +1,33 @@
+name: "Dependabot"
+on:
+  pull_request:
+    types:
+      - "opened"
+    branches:
+      - "main"
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  updater:
+    name: "Updater"
+    runs-on: "ubuntu-latest"
+    if: "${{ github.event.pull_request.user.login == 'dependabot[bot]' }}"
+    permissions:
+      pull-requests: "write"
+    steps:
+      - name: "Set up repository with the latest commit"
+        uses: "actions/checkout@v5.0.0"
+      - name: "Fetch metadata from Dependabot"
+        id: "metadata"
+        uses: "dependabot/fetch-metadata@v2.4.0"
+      - name: "Update pull request title"
+        env:
+          GH_TOKEN: "${{ github.token }}"
+        run: |
+          if [[ '${{ steps.metadata.outputs.update-type }}' == 'version-update:semver-major' ]]; then
+            keyword='upgrade'
+          else
+            keyword='update'
+          fi
+          gh pr edit ${{ github.event.pull_request.number }} --title "dependency: ${keyword} \`${{ steps.metadata.outputs.dependency-names }}\` from ${{ steps.metadata.outputs.previous-version }} to ${{ steps.metadata.outputs.new-version }}"
