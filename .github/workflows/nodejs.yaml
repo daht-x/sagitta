@@ -10,6 +10,9 @@ jobs:
   updater:
     name: "Updater"
     runs-on: "ubuntu-latest"
+    permissions:
+      pull-requests: "write"
+      contents: "write"
     env:
       NVM_FILE: ".nvmrc"
       PACKAGE_FILE: "package.json"

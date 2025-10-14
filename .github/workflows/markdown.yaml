@@ -38,6 +38,8 @@ jobs:
   link-checker:
     name: "Link checker"
     runs-on: "ubuntu-latest"
+    permissions:
+      issues: "write"
     env:
       IS_PUSH_EVENT: "${{ github.event_name == 'push' }}"
       IS_PUSH_OR_PULL_REQUEST_EVENT: "${{ github.event_name == 'push' || github.event_name == 'pull_request' }}"
