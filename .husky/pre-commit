@@ -5,6 +5,7 @@ set -o 'nounset'
 set -o 'pipefail'
 run() {
 	trufflehog git 'file://.' \
+		--trust-local-git-config \
 		--since-commit 'HEAD' \
 		--results 'verified,unknown' \
 		--fail
