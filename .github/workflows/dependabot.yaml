@@ -25,9 +25,16 @@ jobs:
         env:
           GH_TOKEN: "${{ github.token }}"
         run: |
+          if [[ '${{ steps.metadata.outputs.package-ecosystem }}' == 'dotnet-sdk' ]]; then
+            prefix='build'
+            reference='.NET SDK'
+          else
+            prefix='dependency'
+            reference='${{ steps.metadata.outputs.dependency-names }}'
+          fi
           if [[ '${{ steps.metadata.outputs.update-type }}' == 'version-update:semver-major' ]]; then
             keyword='upgrade'
           else
             keyword='update'
           fi
-          gh pr edit ${{ github.event.pull_request.number }} --title "dependency: ${keyword} \`${{ steps.metadata.outputs.dependency-names }}\` from ${{ steps.metadata.outputs.previous-version }} to ${{ steps.metadata.outputs.new-version }}"
+          gh pr edit ${{ github.event.pull_request.number }} --title "${prefix}: ${keyword} \`${reference}\` from ${{ steps.metadata.outputs.previous-version }} to ${{ steps.metadata.outputs.new-version }}"
