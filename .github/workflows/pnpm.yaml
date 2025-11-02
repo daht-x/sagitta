@@ -20,18 +20,14 @@ jobs:
         uses: "actions/checkout@v5.0.0"
       - name: "Check for updates"
         id: "checker"
+        env:
+          GH_TOKEN: "${{ github.token }}"
         run: |
           previous_version="$(
             jq --raw-output '.packageManager | ltrimstr("pnpm@")' '${{ env.PACKAGE_FILE }}'
           )"
           next_version="$(
-            	curl --proto '=https' \
-                --request 'GET' \
-                --location \
-                --fail \
-                --silent \
-                --show-error 'https://api.github.com/repos/pnpm/pnpm/releases/latest' |
-                jq --raw-output '.tag_name | ltrimstr("v")'
+            gh api 'repos/pnpm/pnpm/releases/latest' --jq '.tag_name | ltrimstr("v")'
           )"
           if [[ "${previous_version}" == "${next_version}" ]]; then
             echo 'update=false' >>"${GITHUB_OUTPUT}"
