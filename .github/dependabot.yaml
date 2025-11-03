@@ -1,5 +1,18 @@
 version: 2
 updates:
+  - package-ecosystem: "dotnet-sdk"
+    target-branch: "main"
+    directory: "/"
+    assignees:
+      - "daht-x"
+    commit-message:
+      prefix: "build"
+    labels:
+      - "topic: build"
+      - "priority: high"
+      - "status: pending"
+    schedule:
+      interval: "daily"
   - package-ecosystem: "github-actions"
     target-branch: "main"
     directory: "/"
@@ -14,6 +27,8 @@ updates:
       - "status: pending"
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 3
     open-pull-requests-limit: 10
   - package-ecosystem: "npm"
     target-branch: "main"
@@ -29,6 +44,11 @@ updates:
       - "status: pending"
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 3
+      semver-major-days: 6
+      semver-minor-days: 4
+      semver-patch-days: 2
     open-pull-requests-limit: 10
   - package-ecosystem: "nuget"
     target-branch: "main"
@@ -44,4 +64,9 @@ updates:
       - "status: pending"
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 3
+      semver-major-days: 6
+      semver-minor-days: 4
+      semver-patch-days: 2
     open-pull-requests-limit: 10

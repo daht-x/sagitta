@@ -16,11 +16,18 @@ concurrency:
 jobs:
   linter:
     name: "Linter"
-    runs-on: "${{ vars.DEFAULT_UBUNTU }}"
+    runs-on: "ubuntu-latest"
     steps:
-      - name: "Set up repository with the latest commit"
+      - name: "Set up repository with all history"
         uses: "actions/checkout@v5.0.0"
-      - name: "Run linter for all files"
-        uses: "ludeeus/action-shellcheck@2.0.0"
         with:
-          severity: "style"
+          fetch-depth: 0
+      - name: "Get all changed files"
+        id: "shell-files"
+        uses: "tj-actions/changed-files@v47.0.0"
+        with:
+          files: |
+            **.sh
+            .husky/**
+      - name: "Run linter for all files"
+        run: "shellcheck --severity 'style' ${{ steps.shell-files.outputs.all_changed_files }}"

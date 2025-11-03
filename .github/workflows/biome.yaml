@@ -1,0 +1,38 @@
+name: "Biome"
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "**.json"
+      - "**.ts"
+  pull_request:
+    paths:
+      - "**.json"
+      - "**.ts"
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  content-validator:
+    name: "Content validator"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Set up repository with all history"
+        uses: "actions/checkout@v5.0.0"
+        with:
+          fetch-depth: 0
+      - name: "Get all changed files"
+        id: "biome-files"
+        uses: "tj-actions/changed-files@v47.0.0"
+        with:
+          files: |
+            **.json
+            **.jsonc
+            **.ts
+      - name: "Set up Biome"
+        uses: "biomejs/setup-biome@v2.6.0"
+      - name: "Run formatter for all changed files"
+        run: "biome format ${{ steps.biome-files.outputs.all_changed_files }}"
+      - name: "Run linter for all changed files"
+        run: "biome lint ${{ steps.biome-files.outputs.all_changed_files }}"
