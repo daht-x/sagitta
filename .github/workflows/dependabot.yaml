@@ -37,4 +37,11 @@ jobs:
           else
             keyword='update'
           fi
-          gh pr edit ${{ github.event.pull_request.number }} --title "${prefix}: ${keyword} \`${reference}\` from ${{ steps.metadata.outputs.previous-version }} to ${{ steps.metadata.outputs.new-version }}"
+          previous_version='${{ steps.metadata.outputs.previous-version }}'
+          next_version='${{ steps.metadata.outputs.new-version }}'
+          if [[ -z "${previous_version}" || -z "${next_version}" ]]; then
+            title="${prefix}: ${keyword} \`${reference}\`"
+          else
+            title="${prefix}: ${keyword} \`${reference}\` from ${previous_version} to ${next_version}"
+          fi
+          gh pr edit ${{ github.event.pull_request.number }} --title "${title}"
