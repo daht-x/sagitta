@@ -1,0 +1,17 @@
+<Solution>
+	<Folder Name="/Root/">
+		<File Path=".editorconfig" />
+		<File Path="Directory.Build.props" />
+		<File Path="Directory.Packages.props" />
+		<File Path="global.json" />
+		<File Path="nuget.config" />
+	</Folder>
+	<Folder Name="/Root/Core/">
+		<Project Path="libraries/core/source/Sagitta.Core.csproj" />
+		<Project Path="libraries/core/tests/unit/Sagitta.Core.UnitTests.csproj" />
+	</Folder>
+	<Folder Name="/Root/Shared/">
+		<Project Path="libraries/shared/source/Sagitta.Shared.csproj" />
+		<Project Path="libraries/shared/tests/unit/Sagitta.Shared.UnitTests.csproj" />
+	</Folder>
+</Solution>

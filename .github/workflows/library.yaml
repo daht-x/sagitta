@@ -10,7 +10,7 @@ on:
       - "*.props"
       - "global.json"
       - "nuget.config"
-      - "*.sln"
+      - "*.slnx"
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+"
   pull_request:
@@ -21,7 +21,7 @@ on:
       - "*.props"
       - "global.json"
       - "nuget.config"
-      - "*.sln"
+      - "*.slnx"
 concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
   cancel-in-progress: true
