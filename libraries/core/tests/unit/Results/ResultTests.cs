@@ -7,7 +7,7 @@ namespace Daht.Sagitta.Core.UnitTests.Results;
 
 public sealed class ResultTests
 {
-	private const string @base = nameof(Result<object, object>);
+	private const string @base = nameof(Result<,>);
 
 	private const string memberConstructor = "Constructor";
 
@@ -25,43 +25,43 @@ public sealed class ResultTests
 
 	private const string memberImplicitOperator = "Implicit operator";
 
-	private const string memberTryGetFailure = nameof(Result<object, object>.TryGetFailure);
+	private const string memberTryGetFailure = nameof(Result<,>.TryGetFailure);
 
-	private const string memberTryGetSuccess = nameof(Result<object, object>.TryGetSuccess);
+	private const string memberTryGetSuccess = nameof(Result<,>.TryGetSuccess);
 
-	private const string memberDeconstruct = nameof(Result<object, object>.Deconstruct);
+	private const string memberDeconstruct = nameof(Result<,>.Deconstruct);
 
-	private const string memberCatch = nameof(Result<object, object>.Catch);
+	private const string memberCatch = nameof(Result<,>.Catch);
 
-	private const string memberEnsure = nameof(Result<object, object>.Ensure);
+	private const string memberEnsure = nameof(Result<,>.Ensure);
 
-	private const string memberDo = nameof(Result<object, object>.Do);
+	private const string memberDo = nameof(Result<,>.Do);
 
-	private const string memberDoOnFailure = nameof(Result<object, object>.DoOnFailure);
+	private const string memberDoOnFailure = nameof(Result<,>.DoOnFailure);
 
-	private const string memberDoOnSuccess = nameof(Result<object, object>.DoOnSuccess);
+	private const string memberDoOnSuccess = nameof(Result<,>.DoOnSuccess);
 
-	private const string memberMatch = nameof(Result<object, object>.Match);
+	private const string memberMatch = nameof(Result<,>.Match);
 
-	private const string memberMapFailure = nameof(Result<object, object>.MapFailure);
+	private const string memberMapFailure = nameof(Result<,>.MapFailure);
 
-	private const string memberMapSuccess = nameof(Result<object, object>.MapSuccess);
+	private const string memberMapSuccess = nameof(Result<,>.MapSuccess);
 
-	private const string memberBind = nameof(Result<object, object>.Bind);
+	private const string memberBind = nameof(Result<,>.Bind);
 
-	private const string memberRecover = nameof(Result<object, object>.Recover);
+	private const string memberRecover = nameof(Result<,>.Recover);
 
-	private const string memberReduce = nameof(Result<object, object>.Reduce);
+	private const string memberReduce = nameof(Result<,>.Reduce);
 
-	private const string memberReset = nameof(Result<object, object>.Reset);
+	private const string memberReset = nameof(Result<,>.Reset);
 
-	private const string memberDiscard = nameof(Result<object, object>.Discard);
+	private const string memberDiscard = nameof(Result<,>.Discard);
 
-	private const string memberEquals = nameof(Result<object, object>.Equals);
+	private const string memberEquals = nameof(Result<,>.Equals);
 
-	private const string memberGetHashCode = nameof(Result<object, object>.GetHashCode);
+	private const string memberGetHashCode = nameof(Result<,>.GetHashCode);
 
-	private const string memberToString = nameof(Result<object, object>.ToString);
+	private const string memberToString = nameof(Result<,>.ToString);
 
 	#region Constructor
 

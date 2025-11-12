@@ -14,7 +14,7 @@ on:
       - "*.props"
       - "global.json"
       - "nuget.config"
-      - "*.sln"
+      - "*.slnx"
   pull_request:
     paths:
       - "**.js"
@@ -27,7 +27,7 @@ on:
       - "*.props"
       - "global.json"
       - "nuget.config"
-      - "*.sln"
+      - "*.slnx"
   schedule:
     - cron: "0 0 */2 * *"
   workflow_dispatch:
