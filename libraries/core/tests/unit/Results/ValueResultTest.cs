@@ -7,7 +7,7 @@ namespace Daht.Sagitta.Core.UnitTests.Results;
 
 public sealed class ValueResultTest
 {
-	private const string @base = nameof(ValueResult<Failure, byte>);
+	private const string @base = nameof(ValueResult<,>);
 
 	private const string memberConstructor = "Constructor";
 
@@ -17,21 +17,21 @@ public sealed class ValueResultTest
 
 	private const string memberImplicitOperator = "Implicit operator";
 
-	private const string memberTryGetFailure = nameof(ValueResult<Failure, sbyte>.TryGetFailure);
+	private const string memberTryGetFailure = nameof(ValueResult<,>.TryGetFailure);
 
-	private const string memberTryGetSuccess = nameof(ValueResult<Failure, sbyte>.TryGetSuccess);
+	private const string memberTryGetSuccess = nameof(ValueResult<,>.TryGetSuccess);
 
-	private const string memberDeconstruct = nameof(ValueResult<Failure, sbyte>.Deconstruct);
+	private const string memberDeconstruct = nameof(ValueResult<,>.Deconstruct);
 
-	private const string memberRecover = nameof(ValueResult<Failure, sbyte>.Recover);
+	private const string memberRecover = nameof(ValueResult<,>.Recover);
 
-	private const string memberDiscard = nameof(ValueResult<Failure, sbyte>.Discard);
+	private const string memberDiscard = nameof(ValueResult<,>.Discard);
 
-	private const string memberEquals = nameof(ValueResult<Failure, sbyte>.Equals);
+	private const string memberEquals = nameof(ValueResult<,>.Equals);
 
-	private const string memberGetHashCode = nameof(ValueResult<Failure, sbyte>.GetHashCode);
+	private const string memberGetHashCode = nameof(ValueResult<,>.GetHashCode);
 
-	private const string memberToString = nameof(ValueResult<Failure, sbyte>.ToString);
+	private const string memberToString = nameof(ValueResult<,>.ToString);
 
 	#region Constructor
 
