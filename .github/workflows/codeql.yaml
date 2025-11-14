@@ -8,26 +8,12 @@ on:
       - "**.ts"
       - "package.json"
       - "pnpm-lock.yaml"
-      - "*/**.cs"
-      - "*/**.csproj"
-      - ".editorconfig"
-      - "*.props"
-      - "global.json"
-      - "nuget.config"
-      - "*.slnx"
   pull_request:
     paths:
       - "**.js"
       - "**.ts"
       - "package.json"
       - "pnpm-lock.yaml"
-      - "*/**.cs"
-      - "*/**.csproj"
-      - ".editorconfig"
-      - "*.props"
-      - "global.json"
-      - "nuget.config"
-      - "*.slnx"
   schedule:
     - cron: "0 0 */2 * *"
   workflow_dispatch:
@@ -42,7 +28,6 @@ jobs:
       matrix:
         languages:
           - "javascript-typescript"
-          - "csharp"
     steps:
       - name: "Set up repository with the latest commit"
         uses: "actions/checkout@v5.0.0"
@@ -50,8 +35,6 @@ jobs:
         uses: "github/codeql-action/init@v4.31.2"
         with:
           languages: "${{ matrix.languages }}"
-      - name: "Build assemblies"
-        uses: "github/codeql-action/autobuild@v4.31.2"
       - name: "Run analyzer"
         uses: "github/codeql-action/analyze@v4.31.2"
         with:

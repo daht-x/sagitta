@@ -25,7 +25,8 @@ jobs:
         env:
           GH_TOKEN: "${{ github.token }}"
         run: |
-          if [[ '${{ steps.metadata.outputs.package-ecosystem }}' == 'dotnet-sdk' ]]; then
+          ecosystem='${{ steps.metadata.outputs.package-ecosystem }}'
+          if [[ "${ecosystem}" == 'dotnet-sdk' || "${ecosystem}" == 'dotnet_sdk' ]]; then
             prefix='build'
             reference='.NET SDK'
           else
