@@ -9,7 +9,6 @@
 		"timonwong.shellcheck",
 		"ms-dotnettools.csharp",
 		"ms-dotnettools.csdevkit",
-		"ms-dotnettools.vscodeintellicode-csharp",
 		"github.vscode-github-actions",
 		"github.vscode-pull-request-github",
 		"streetsidesoftware.code-spell-checker",
