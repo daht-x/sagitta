@@ -30,7 +30,7 @@ jobs:
           - "javascript-typescript"
     steps:
       - name: "Set up repository with the latest commit"
-        uses: "actions/checkout@v6.0.0"
+        uses: "actions/checkout@v6.0.1"
       - name: "Set up analyzer"
         uses: "github/codeql-action/init@v4.31.6"
         with:

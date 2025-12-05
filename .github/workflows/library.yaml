@@ -38,7 +38,7 @@ jobs:
       BUILD_CONFIGURATION: "Release"
     steps:
       - name: "Set up repository with all history"
-        uses: "actions/checkout@v6.0.0"
+        uses: "actions/checkout@v6.0.1"
         with:
           fetch-depth: 0
       - name: "Set up .NET SDK"
@@ -114,7 +114,7 @@ jobs:
             --api-key '${{ secrets.GITHUB_TOKEN }}' \
             --skip-duplicate
       - name: "Publish release"
-        uses: "softprops/action-gh-release@v2.4.2"
+        uses: "softprops/action-gh-release@v2.5.0"
         with:
           generate_release_notes: true
           files: "${{ env.NUGET_OUTPUT_DIRECTORY }}/*"
