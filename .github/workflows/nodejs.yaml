@@ -18,7 +18,7 @@ jobs:
       PACKAGE_FILE: "package.json"
     steps:
       - name: "Set up repository with the latest commit"
-        uses: "actions/checkout@v6.0.0"
+        uses: "actions/checkout@v6.0.1"
       - name: "Check for updates"
         id: "checker"
         run: |
