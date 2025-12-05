@@ -23,7 +23,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Set up repository with all history"
-        uses: "actions/checkout@v6.0.0"
+        uses: "actions/checkout@v6.0.1"
         with:
           fetch-depth: 0
       - name: "Get all changed files"
@@ -47,12 +47,12 @@ jobs:
     steps:
       - name: "Set up repository with all history"
         if: "${{ env.IS_PUSH_OR_PULL_REQUEST_EVENT == 'true' }}"
-        uses: "actions/checkout@v6.0.0"
+        uses: "actions/checkout@v6.0.1"
         with:
           fetch-depth: 0
       - name: "Set up repository with the latest commit"
         if: "${{ env.IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT == 'true' }}"
-        uses: "actions/checkout@v6.0.0"
+        uses: "actions/checkout@v6.0.1"
       - name: "Get all changed files"
         id: "markdown-files"
         if: "${{ env.IS_PUSH_OR_PULL_REQUEST_EVENT == 'true' }}"
