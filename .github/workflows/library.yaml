@@ -51,7 +51,7 @@ jobs:
         with:
           files: "**/*.cs"
       - name: "Run formatter for all changed files"
-        if: "${{ steps.csharp-files.outputs.any_changed == 'true' }}"
+        if: ${{ steps.csharp-files.outputs.any_changed == 'true' }}
         run: |
           dotnet format --include ${{ steps.csharp-files.outputs.all_changed_files }} \
            --no-restore \
@@ -66,7 +66,7 @@ jobs:
             --no-build \
             --configuration '${{ env.BUILD_CONFIGURATION }}'
       - name: "Upload coverage results"
-        if: "${{ env.IS_PUSH_EVENT_TO_MAIN_BRANCH == 'true' }}"
+        if: ${{ env.IS_PUSH_EVENT_TO_MAIN_BRANCH == 'true' }}
         uses: "codecov/codecov-action@v5.5.2"
         with:
           files: "./artifacts/coverage/core.xml"
@@ -74,7 +74,7 @@ jobs:
           override_commit: "${{ github.sha }}"
           token: "${{ secrets.CODECOV_TOKEN }}"
       - name: "Build packages"
-        if: "${{ env.IS_RELEASE == 'true' }}"
+        if: ${{ env.IS_RELEASE == 'true' }}
         run: |
           dotnet pack --no-build \
             --configuration '${{ env.BUILD_CONFIGURATION }}' \
@@ -82,7 +82,7 @@ jobs:
             -property:'PackageReleaseNotes=Please see ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.ref_name }}'
       - name: "Upload artifacts"
         uses: "actions/upload-artifact@v5.0.0"
-        if: "${{ env.IS_RELEASE == 'true' }}"
+        if: ${{ env.IS_RELEASE == 'true' }}
         with:
           name: "${{ env.RELEASE_NAME }}"
           path: |
@@ -92,7 +92,7 @@ jobs:
   publisher:
     name: "Publisher"
     needs: "builder"
-    if: "${{ startsWith(github.ref, 'refs/tags/v') && github.actor == github.repository_owner }}"
+    if: ${{ startsWith(github.ref, 'refs/tags/v') && github.actor == github.repository_owner }}
     runs-on: "ubuntu-latest"
     env:
       NUGET_SEARCH_PATTERN: "*.nupkg"

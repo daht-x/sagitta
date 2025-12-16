@@ -26,6 +26,8 @@ rules:
   quoted-strings:
     quote-type: "double"
     required: true
+    ignore:
+      - ".github/workflows/*.yaml"
   truthy:
     allowed-values:
       - "true"
