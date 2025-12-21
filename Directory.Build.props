@@ -18,8 +18,8 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.16.1.129956" />
-		<GlobalPackageReference Include="Roslynator.Analyzers" Version="4.14.1" />
+		<GlobalPackageReference Include="Roslynator.Analyzers" Version="4.15.0" />
 		<GlobalPackageReference Include="Roslynator.Refactorings" Version="4.14.1" />
-		<GlobalPackageReference Include="Roslynator.CodeFixes" Version="4.14.1" />
+		<GlobalPackageReference Include="Roslynator.CodeFixes" Version="4.15.0" />
 	</ItemGroup>
 </Project>
