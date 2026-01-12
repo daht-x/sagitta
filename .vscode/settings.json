@@ -55,10 +55,10 @@
 		"Xunit"
 	],
 	"editor.codeActionsOnSave": {
+		"source.action.useSortedKeys.biome": "explicit",
 		"source.fixAll.biome": "explicit",
 		"source.fixAll.shellcheck": "explicit",
-		"source.organizeImports.biome": "explicit",
-		"source.sort.json": "explicit"
+		"source.organizeImports.biome": "explicit"
 	},
 	"files.associations": {
 		"nuget.config": "xml"
