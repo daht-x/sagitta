@@ -1,6 +1,15 @@
 {
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on",
+				"useSortedKeys": "on"
+			}
+		}
+	},
 	"files": {
+		"ignoreUnknown": true,
 		"includes": ["**"]
 	},
 	"formatter": {
@@ -19,6 +28,28 @@
 			"allowTrailingCommas": false
 		}
 	},
+	"linter": {
+		"rules": {
+			"complexity": "error",
+			"correctness": "error",
+			"performance": "error",
+			"security": "error",
+			"style": "error",
+			"suspicious": "error"
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["**"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noDefaultExport": "off"
+					}
+				}
+			}
+		}
+	],
 	"vcs": {
 		"clientKind": "git",
 		"enabled": true,
