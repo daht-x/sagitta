@@ -12,6 +12,7 @@ const defaultMinimumLength = 0;
 const namingStyle = {
 	lowerCase: "lower-case"
 } as const;
+const delimiters: string[] = ["/"];
 const signatureLabel = "Signed-off-by:";
 const rootConfiguration: UserConfig = {
 	rules: {
@@ -33,9 +34,24 @@ const rootConfiguration: UserConfig = {
 		"header-min-length": [RuleConfigSeverity.Error, ruleCompliance.always, defaultMinimumLength],
 		"header-trim": [RuleConfigSeverity.Error, ruleCompliance.always],
 		"references-empty": [RuleConfigSeverity.Warning, ruleCompliance.never],
-		"scope-case": [RuleConfigSeverity.Warning, ruleCompliance.always, namingStyle.lowerCase],
+		"scope-case": [
+			RuleConfigSeverity.Error,
+			ruleCompliance.always,
+			{
+				cases: [namingStyle.lowerCase],
+				delimiters
+			}
+		],
+		"scope-delimiter-style": [RuleConfigSeverity.Error, ruleCompliance.always, delimiters],
 		"scope-empty": [RuleConfigSeverity.Warning, ruleCompliance.never],
-		"scope-enum": [RuleConfigSeverity.Disabled],
+		"scope-enum": [
+			RuleConfigSeverity.Error,
+			ruleCompliance.always,
+			{
+				delimiters,
+				scopes: []
+			}
+		],
 		"scope-max-length": [RuleConfigSeverity.Error, ruleCompliance.always, defaultMaximumLength],
 		"scope-min-length": [RuleConfigSeverity.Error, ruleCompliance.always, defaultMinimumLength],
 		"signed-off-by": [RuleConfigSeverity.Warning, ruleCompliance.always, signatureLabel],
