@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<IsAotCompatible>true</IsAotCompatible>
+		<VerifyReferenceAotCompatibility>true</VerifyReferenceAotCompatibility>
 		<NoWarn>$(NoWarn); CA1034; CA1716</NoWarn>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
