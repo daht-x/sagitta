@@ -54,7 +54,7 @@ jobs:
           } >>"${GITHUB_OUTPUT}"
       - name: "Set up Biome"
         if: ${{ steps.checker.outputs.update == 'true' }}
-        uses: "biomejs/setup-biome@v2.6.0"
+        uses: "biomejs/setup-biome@v2.7.0"
       - name: "Update all references"
         if: ${{ steps.checker.outputs.update == 'true' }}
         run: |
