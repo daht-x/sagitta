@@ -19,6 +19,9 @@
 		"tamasfe.even-better-toml",
 		"darkriszty.markdown-table-prettify",
 		"biomejs.biome",
-		"fnando.linter"
+		"fnando.linter",
+		"astro-build.astro-vscode",
+		"unifiedjs.vscode-mdx",
+		"yoavbls.pretty-ts-errors"
 	]
 }

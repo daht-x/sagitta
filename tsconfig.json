@@ -1,0 +1,31 @@
+{
+	"compilerOptions": {
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"baseUrl": ".",
+		"erasableSyntaxOnly": true,
+		"exactOptionalPropertyTypes": true,
+		"jsx": "preserve",
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"noEmit": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noUncheckedIndexedAccess": true,
+		"noUncheckedSideEffectImports": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"paths": {
+			"@/*": ["./documentation/source/*"]
+		},
+		"resolveJsonModule": true,
+		"strict": true,
+		"target": "esnext",
+		"verbatimModuleSyntax": true
+	},
+	"exclude": ["node_modules", "dist"],
+	"extends": "astro/tsconfigs/strict",
+	"include": [".astro/types.d.ts", "**/*"]
+}

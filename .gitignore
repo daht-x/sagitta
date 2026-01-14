@@ -292,3 +292,16 @@ FodyWeavers.xsd
 .lycheecache
 
 .idea/
+
+dist/
+.astro/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.env
+.env.production
+
+.DS_Store
