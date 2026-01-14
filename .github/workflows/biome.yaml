@@ -31,7 +31,7 @@ jobs:
             **.jsonc
             **.ts
       - name: "Set up Biome"
-        uses: "biomejs/setup-biome@v2.6.0"
+        uses: "biomejs/setup-biome@v2.7.0"
       - name: "Run formatter for all changed files"
         run: "biome format ${{ steps.biome-files.outputs.all_changed_files }}"
       - name: "Run linter for all changed files"
