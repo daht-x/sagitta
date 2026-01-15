@@ -3,15 +3,26 @@ changelog:
     authors:
       - "dependabot"
   categories:
-    - title: "Compatibility"
+    - title: "🚨 Breaking Changes"
       labels:
-        - "topic: compatibility"
-    - title: "Build system"
+        - "impact: breaking-change"
+    - title: "🚀 New Features & Enhancements"
+      labels:
+        - "topic: feat"
+    - title: "🛠️ Bug Fixes"
+      labels:
+        - "topic: fix"
+    - title: "📦 Build & Dependencies"
       labels:
         - "topic: build"
-    - title: "Bug fixes"
+    - title: "📝 Documentation"
       labels:
-        - "topic: bug"
-    - title: "New features and enhancements"
+        - "topic: docs"
+    - title: "⚙️ CI/CD & Workflows"
       labels:
-        - "topic: feature"
+        - "topic: ci"
+    - title: "🧹 Refactors & Maintenance"
+      labels:
+        - "topic: style"
+        - "topic: refactor"
+        - "topic: chore"
