@@ -1,11 +1,11 @@
 # Daht.Sagitta.Core
 
 [void]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/void
-[unit]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/unit.md
-[result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/results/result.md
-[result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/results/result-factory.md
-[value-result]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/results/value-result.md
-[value-result-factory]: https://github.com/daht-x/sagitta/blob/main/libraries/core/documentation/results/value-result-factory.md
+[unit]: https://github.com/daht-x/sagitta/blob/main/libs/core/docs/unit.md
+[result]: https://github.com/daht-x/sagitta/blob/main/libs/core/docs/results/result.md
+[result-factory]: https://github.com/daht-x/sagitta/blob/main/libs/core/docs/results/result-factory.md
+[value-result]: https://github.com/daht-x/sagitta/blob/main/libs/core/docs/results/value-result.md
+[value-result-factory]: https://github.com/daht-x/sagitta/blob/main/libs/core/docs/results/value-result-factory.md
 
 ***[home](https://github.com/daht-x/sagitta/blob/main/readme.md) / packages /***
 
