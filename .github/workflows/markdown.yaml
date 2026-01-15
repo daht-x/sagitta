@@ -80,5 +80,5 @@ jobs:
           assignees: "${{ github.repository_owner }}"
           labels: |
             priority: medium
-            topic: documentation
+            status: pending
           content-filepath: "lychee/out.md"
