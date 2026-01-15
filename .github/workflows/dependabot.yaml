@@ -27,10 +27,8 @@ jobs:
         run: |
           ecosystem='${{ steps.metadata.outputs.package-ecosystem }}'
           if [[ "${ecosystem}" == 'dotnet-sdk' || "${ecosystem}" == 'dotnet_sdk' ]]; then
-            prefix='build'
             reference='.NET SDK'
           else
-            prefix='dependency'
             reference='${{ steps.metadata.outputs.dependency-names }}'
           fi
           if [[ '${{ steps.metadata.outputs.update-type }}' == 'version-update:semver-major' ]]; then
@@ -41,8 +39,8 @@ jobs:
           previous_version='${{ steps.metadata.outputs.previous-version }}'
           next_version='${{ steps.metadata.outputs.new-version }}'
           if [[ -z "${previous_version}" || -z "${next_version}" ]]; then
-            title="${prefix}: ${keyword} \`${reference}\`"
+            title="build: ${keyword} \`${reference}\`"
           else
-            title="${prefix}: ${keyword} \`${reference}\` from ${previous_version} to ${next_version}"
+            title="build: ${keyword} \`${reference}\` from ${previous_version} to ${next_version}"
           fi
           gh pr edit ${{ github.event.pull_request.number }} --title "${title}"
