@@ -4,7 +4,7 @@ import { defineConfig } from "astro/config";
 const configuration = defineConfig({
 	integrations: [
 		starlight({
-			favicon: "./documentation/public/favicon.svg",
+			favicon: "./docs/public/favicon.svg",
 			sidebar: [
 				{
 					items: [{ label: "Example Guide", slug: "guides/example" }],
@@ -19,7 +19,7 @@ const configuration = defineConfig({
 			title: "My Docs"
 		})
 	],
-	srcDir: "./documentation/source"
+	srcDir: "./docs/src"
 });
 
 export default configuration;

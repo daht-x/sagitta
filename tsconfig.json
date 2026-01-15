@@ -18,7 +18,7 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"paths": {
-			"@/*": ["./documentation/source/*"]
+			"@/*": ["./docs/src/*"]
 		},
 		"resolveJsonModule": true,
 		"strict": true,
