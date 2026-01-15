@@ -10,7 +10,8 @@ const defaultMaximumLength = 120;
 const defaultMaximumLineLength = 300;
 const defaultMinimumLength = 0;
 const namingStyle = {
-	lowerCase: "lower-case"
+	lowerCase: "lower-case",
+	upperCase: "upper-case"
 } as const;
 const delimiters: string[] = ["/"];
 const signatureLabel = "Signed-off-by:";
@@ -23,6 +24,7 @@ const rootConfiguration: UserConfig = {
 		"body-max-length": [RuleConfigSeverity.Error, ruleCompliance.always, Number.POSITIVE_INFINITY],
 		"body-max-line-length": [RuleConfigSeverity.Error, ruleCompliance.always, defaultMaximumLineLength],
 		"body-min-length": [RuleConfigSeverity.Error, ruleCompliance.always, defaultMinimumLength],
+		"breaking-change-exclamation-mark": [RuleConfigSeverity.Error, ruleCompliance.always, namingStyle.upperCase],
 		"footer-empty": [RuleConfigSeverity.Warning, ruleCompliance.never],
 		"footer-leading-blank": [RuleConfigSeverity.Error, ruleCompliance.always],
 		"footer-max-length": [RuleConfigSeverity.Error, ruleCompliance.always, Number.POSITIVE_INFINITY],
@@ -67,19 +69,7 @@ const rootConfiguration: UserConfig = {
 		"type-enum": [
 			RuleConfigSeverity.Error,
 			ruleCompliance.always,
-			[
-				"compatibility",
-				"feature",
-				"test",
-				"build",
-				"dependency",
-				"bug",
-				"refactor",
-				"style",
-				"chore",
-				"documentation",
-				"workflow"
-			]
+			["feat", "fix", "docs", "style", "refactor", "test", "build", "ci", "chore"]
 		],
 		"type-max-length": [RuleConfigSeverity.Error, ruleCompliance.always, defaultMaximumLength],
 		"type-min-length": [RuleConfigSeverity.Error, ruleCompliance.always, defaultMinimumLength]
