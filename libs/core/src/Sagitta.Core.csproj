@@ -40,7 +40,7 @@
 		<PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="all" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="../../shared/source/Sagitta.Shared.csproj">
+		<ProjectReference Include="../../shared/src/Sagitta.Shared.csproj">
 			<PrivateAssets>all</PrivateAssets>
 		</ProjectReference>
 	</ItemGroup>

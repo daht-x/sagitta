@@ -4,6 +4,6 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\source\Sagitta.Shared.csproj" />
+		<ProjectReference Include="..\..\src\Sagitta.Shared.csproj" />
 	</ItemGroup>
 </Project>

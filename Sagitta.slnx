@@ -7,11 +7,11 @@
 		<File Path="nuget.config" />
 	</Folder>
 	<Folder Name="/Root/Core/">
-		<Project Path="libraries/core/source/Sagitta.Core.csproj" />
-		<Project Path="libraries/core/tests/unit/Sagitta.Core.UnitTests.csproj" />
+		<Project Path="libs/core/src/Sagitta.Core.csproj" />
+		<Project Path="libs/core/tests/unit/Sagitta.Core.UnitTests.csproj" />
 	</Folder>
 	<Folder Name="/Root/Shared/">
-		<Project Path="libraries/shared/source/Sagitta.Shared.csproj" />
-		<Project Path="libraries/shared/tests/unit/Sagitta.Shared.UnitTests.csproj" />
+		<Project Path="libs/shared/src/Sagitta.Shared.csproj" />
+		<Project Path="libs/shared/tests/unit/Sagitta.Shared.UnitTests.csproj" />
 	</Folder>
 </Solution>

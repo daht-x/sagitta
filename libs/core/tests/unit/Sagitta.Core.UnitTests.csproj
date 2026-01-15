@@ -13,7 +13,7 @@
 		<PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="../../source/Sagitta.Core.csproj" />
+		<ProjectReference Include="../../src/Sagitta.Core.csproj" />
 		<ProjectReference Include="../../../shared/tests/unit/Sagitta.Shared.UnitTests.csproj" />
 	</ItemGroup>
 </Project>

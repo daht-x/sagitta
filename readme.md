@@ -21,7 +21,7 @@
 - Daht.Sagitta.Core:
   - [NuGet registry](https://www.nuget.org/packages/Daht.Sagitta.Core)
   - [GitHub registry](https://github.com/daht-x/sagitta/pkgs/nuget/Daht.Sagitta.Core)
-  - [Documentation](./libraries/core/readme.md)
+  - [Documentation](./libs/core/readme.md)
 
 ***[Top](#sagitta)***
 

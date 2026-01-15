@@ -10,7 +10,7 @@ check_libs() {
 	readonly build_configuration
 	dotnet build --no-restore \
 		--configuration "${build_configuration}"
-	dotnet run --project './libraries/core/tests/unit/Sagitta.Core.UnitTests.csproj' \
+	dotnet run --project './libs/core/tests/unit/Sagitta.Core.UnitTests.csproj' \
 		--no-build \
 		--configuration "${build_configuration}"
 	return $?

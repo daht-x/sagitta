@@ -62,7 +62,7 @@ jobs:
             --configuration '${{ env.BUILD_CONFIGURATION }}'
       - name: "Run unit tests"
         run: |
-          dotnet run --project './libraries/core/tests/unit/Sagitta.Core.UnitTests.csproj' \
+          dotnet run --project './libs/core/tests/unit/Sagitta.Core.UnitTests.csproj' \
             --no-build \
             --configuration '${{ env.BUILD_CONFIGURATION }}'
       - name: "Upload coverage results"
