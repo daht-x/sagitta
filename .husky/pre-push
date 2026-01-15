@@ -21,12 +21,8 @@ check_docs() {
 	return $?
 }
 run() {
-	check_libs &
-	pid_libs=$!
-	check_docs &
-	pid_docs=$!
-	wait "${pid_libs}"
-	wait "${pid_docs}"
+	check_libs
+	check_docs
 	exit $?
 }
 run
