@@ -19,9 +19,9 @@ updates:
     assignees:
       - "daht-x"
     commit-message:
-      prefix: "dependency"
+      prefix: "build"
     labels:
-      - "topic: dependency"
+      - "topic: build"
       - "package manager: github actions"
       - "priority: medium"
       - "status: pending"
@@ -36,9 +36,9 @@ updates:
     assignees:
       - "daht-x"
     commit-message:
-      prefix: "dependency"
+      prefix: "build"
     labels:
-      - "topic: dependency"
+      - "topic: build"
       - "package manager: pnpm"
       - "priority: medium"
       - "status: pending"
@@ -56,9 +56,9 @@ updates:
     assignees:
       - "daht-x"
     commit-message:
-      prefix: "dependency"
+      prefix: "build"
     labels:
-      - "topic: dependency"
+      - "topic: build"
       - "package manager: nuget"
       - "priority: medium"
       - "status: pending"
