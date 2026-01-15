@@ -2,7 +2,7 @@ name: "Feature request"
 description: "Request a feature or enhancement."
 assignees: "daht-x"
 labels:
-  - "topic: feature"
+  - "topic: feat"
   - "priority: medium"
   - "status: pending"
 body:
