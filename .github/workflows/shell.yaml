@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
       - name: "Get all changed files"
         id: "shell-files"
-        uses: "tj-actions/changed-files@v47.0.1"
+        uses: "tj-actions/changed-files@v47.0.2"
         with:
           files: |
             **.sh
