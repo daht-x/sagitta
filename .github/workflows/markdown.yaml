@@ -61,13 +61,13 @@ jobs:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Run link checker for all changed files"
         if: ${{ env.IS_PUSH_OR_PULL_REQUEST_EVENT == 'true' }}
-        uses: "lycheeverse/lychee-action@v2.7.0"
+        uses: "lycheeverse/lychee-action@v2.8.0"
         with:
           args: "${{ steps.markdown-files.outputs.all_changed_files }}"
           fail: true
       - name: "Run link checker for all files"
         if: ${{ env.IS_SCHEDULE_OR_WORKFLOW_DISPATCH_EVENT == 'true' }}
-        uses: "lycheeverse/lychee-action@v2.7.0"
+        uses: "lycheeverse/lychee-action@v2.8.0"
         with:
           args: "'**/*.md'"
           fail: true
