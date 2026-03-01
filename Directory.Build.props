@@ -17,7 +17,7 @@
 		<UseArtifactsOutput>true</UseArtifactsOutput>
 	</PropertyGroup>
 	<ItemGroup>
-		<GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.19.0.132793" />
+		<GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.20.0.135146" />
 		<GlobalPackageReference Include="Roslynator.Analyzers" Version="4.15.0" />
 		<GlobalPackageReference Include="Roslynator.Refactorings" Version="4.15.0" />
 		<GlobalPackageReference Include="Roslynator.CodeFixes" Version="4.15.0" />
