@@ -1,11 +1,11 @@
 {
 	"dependencies": {
 		"@astrojs/starlight": "0.37.7",
-		"astro": "5.18.0",
+		"astro": "5.18.1",
 		"sharp": "0.34.5"
 	},
 	"devDependencies": {
-		"@astrojs/check": "0.9.6",
+		"@astrojs/check": "0.9.7",
 		"@biomejs/biome": "2.4.6",
 		"@commitlint/cli": "20.4.3",
 		"@commitlint/types": "20.4.3",
