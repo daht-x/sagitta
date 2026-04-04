@@ -8,12 +8,13 @@
 ## Table of contents
 
 1. [Code of conduct](#code-of-conduct)
-2. [Prerequisite software](#prerequisite-software)
-3. [Coding rules](#coding-rules)
-4. [Bug report](#bug-report)
-5. [Feature request](#feature-request)
-6. [Security policy](#security-policy)
-7. [Additional resources](#additional-resources)
+2. [Prerequisites](#prerequisites)
+3. [Development setup](#development-setup)
+4. [Coding rules](#coding-rules)
+5. [Bug report](#bug-report)
+6. [Feature request](#feature-request)
+7. [Security policy](#security-policy)
+8. [Additional resources](#additional-resources)
 
 ### Code of conduct
 
@@ -21,19 +22,30 @@ Please read and follow our [code of conduct](./code-of-conduct.md).
 
 ***[Top](#contributing-guidelines)***
 
-### Prerequisite software
+### Prerequisites
+
+To contribute, you will need the following tools:
 
 - [Git](https://git-scm.com)
 - [TruffleHog](https://github.com/trufflesecurity/trufflehog)
 - [yamllint](https://github.com/adrienverge/yamllint)
 - [ShellCheck](https://github.com/koalaman/shellcheck)
 - [shfmt](https://github.com/mvdan/sh)
-- [NVM](https://github.com/nvm-sh/nvm) or alternatives like [FNM](https://github.com/Schniz/fnm),
-[N](https://github.com/tj/n) or [NVM-Windows](https://github.com/coreybutler/nvm-windows).
-- [Node.js](https://nodejs.org/en) **(the version specified in [.nvmrc](./.nvmrc) and [package.json](./package.json) is required)**
-- [PNPM](https://pnpm.io) **(the version specified in [package.json](./package.json) is required)**
+- [FNM](https://github.com/Schniz/fnm)
+- [Node.js](https://nodejs.org/en)
+- [PNPM](https://pnpm.io)
 - [lychee](https://github.com/lycheeverse/lychee)
-- [.NET SDK](https://dotnet.microsoft.com/en-us/download) **(the version specified in [global.json](./global.json) is required)**
+- [.NET SDK](https://dotnet.microsoft.com/en-us/download)
+
+***[Top](#contributing-guidelines)***
+
+### Development setup
+
+- Set up predefined Git hooks:
+
+  ```bash
+  pnpm run prepare
+  ```
 
 ***[Top](#contributing-guidelines)***
 

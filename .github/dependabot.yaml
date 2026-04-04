@@ -28,7 +28,7 @@ updates:
     schedule:
       interval: "daily"
     cooldown:
-      default-days: 3
+      default-days: 5
     open-pull-requests-limit: 10
   - package-ecosystem: "npm"
     target-branch: "main"
@@ -45,10 +45,10 @@ updates:
     schedule:
       interval: "daily"
     cooldown:
-      default-days: 3
+      default-days: 6
       semver-major-days: 6
       semver-minor-days: 4
-      semver-patch-days: 2
+      semver-patch-days: 4
     open-pull-requests-limit: 10
   - package-ecosystem: "nuget"
     target-branch: "main"
@@ -65,8 +65,8 @@ updates:
     schedule:
       interval: "daily"
     cooldown:
-      default-days: 3
+      default-days: 6
       semver-major-days: 6
       semver-minor-days: 4
-      semver-patch-days: 2
+      semver-patch-days: 4
     open-pull-requests-limit: 10
