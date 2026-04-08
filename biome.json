@@ -17,6 +17,7 @@
 		"indentWidth": 4,
 		"lineWidth": 120
 	},
+	"html": {},
 	"javascript": {
 		"formatter": {
 			"arrowParentheses": "asNeeded",
@@ -41,9 +42,13 @@
 	},
 	"overrides": [
 		{
-			"includes": ["**"],
+			"includes": ["**", "**/*.astro"],
 			"linter": {
 				"rules": {
+					"correctness": {
+						"noUnusedImports": "off",
+						"noUnusedVariables": "off"
+					},
 					"style": {
 						"noDefaultExport": "off"
 					}

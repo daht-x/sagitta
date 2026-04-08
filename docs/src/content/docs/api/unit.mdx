@@ -1,0 +1,154 @@
+---
+title: Unit
+description: Represents the absence of a specific value, explicitly simulating the void type.
+---
+
+import { MarkdownCodeBlockType } from "@/global.ts";
+import { Code } from '@astrojs/starlight/components';
+import ParametersTable from '@/components/tables/ParametersTable.astro';
+export const fileName = 'Unit.cs';
+
+[bool]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public readonly struct Unit : IEquatable<Unit>` }
+/>
+
+Represents the absence of a specific value, explicitly simulating the [void](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/void) type.
+
+## Properties
+
+### Default
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static Unit Default { get; }` }
+/>
+
+The placeholder that indicates the discarding of a value.
+
+## Operators
+
+### Equality operator ==
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static bool operator ==(Unit left, Unit right)` }
+/>
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'Unit',
+				name: 'left',
+				description: 'The main unit'
+			},
+			{
+				type: 'Unit',
+				name: 'right',
+				description: 'The unit to compare'
+			}
+		]
+	}
+/>
+
+Determines whether the left unit is equal to the right unit. Returns [true][bool] if the left unit is equal to the right unit; otherwise, [false][bool].
+
+### Inequality operator !=
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static bool operator !=(Unit left, Unit right)` }
+/>
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'Unit',
+				name: 'left',
+				description: 'The main unit'
+			},
+			{
+				type: 'Unit',
+				name: 'right',
+				description: 'The unit to compare'
+			}
+		]
+	}
+/>
+
+Determines whether the left unit is not equal to the right unit. Returns [true][bool] if the left unit is not equal to the right unit; otherwise, [false][bool].
+
+## Methods
+
+### Equals(obj)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public override bool Equals(object? obj)` }
+
+/>
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'object?',
+				name: 'obj',
+				description: 'The unit to compare with the current unit'
+			}
+		]
+	}
+/>
+
+Determines whether the specified unit is equal to the current unit. Returns [true][bool] if the specified unit is equal to the current unit; otherwise, [false][bool].
+
+### Equals(other)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public bool Equals(Unit other)` }
+/>
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'Unit',
+				name: 'other',
+				description: 'The unit to compare with the current unit'
+			}
+		]
+	}
+/>
+
+Determines whether the specified unit is equal to the current unit. Returns [true][bool] if the specified unit is equal to the current unit; otherwise, [false][bool].
+
+### GetHashCode
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public override int GetHashCode()` }
+/>
+
+Gets the hash code of the current unit. Returns the hash code of the current unit.
+
+### ToString
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public override string ToString()` }
+/>
+
+Gets the value of the current unit. Returns the value of the current unit.

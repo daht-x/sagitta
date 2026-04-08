@@ -1,0 +1,31 @@
+---
+import type detailsTable from "./parameters-table";
+
+interface Props {
+	details: detailsTable[];
+}
+const { details } = Astro.props;
+---
+
+<table>
+	<thead>
+		<tr>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		{details.map(detail => (
+		<tr>
+			<td>
+				<code>{detail.type}</code>
+			</td>
+			<td>
+				<code>{detail.name}</code>
+			</td>
+			<td>{detail.description}</td>
+		</tr>
+		))}
+	</tbody>
+</table>
