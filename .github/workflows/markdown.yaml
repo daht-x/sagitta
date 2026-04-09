@@ -32,6 +32,7 @@ jobs:
         with:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Run linter for all changed files"
+        if: ${{ steps.markdown-files.outputs.only_changed == 'true' }}
         uses: "DavidAnson/markdownlint-cli2-action@v23.0.0"
         with:
           globs: "${{ steps.markdown-files.outputs.all_changed_files }}"
@@ -60,7 +61,7 @@ jobs:
         with:
           files: "${{ env.SEARCH_PATTERN }}"
       - name: "Run link checker for all changed files"
-        if: ${{ env.IS_PUSH_OR_PULL_REQUEST_EVENT == 'true' }}
+        if: ${{ env.IS_PUSH_OR_PULL_REQUEST_EVENT == 'true' && steps.markdown-files.outputs.only_changed == 'true' }}
         uses: "lycheeverse/lychee-action@v2.8.0"
         with:
           args: "${{ steps.markdown-files.outputs.all_changed_files }}"

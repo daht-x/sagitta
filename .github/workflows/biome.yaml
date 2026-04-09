@@ -28,11 +28,12 @@ jobs:
         with:
           files: |
             **.json
-            **.jsonc
             **.ts
       - name: "Set up Biome"
         uses: "biomejs/setup-biome@v2.7.1"
       - name: "Run formatter for all changed files"
+        if: ${{ steps.biome-files.outputs.only_changed == 'true' }}
         run: "biome format ${{ steps.biome-files.outputs.all_changed_files }}"
       - name: "Run linter for all changed files"
+        if: ${{ steps.biome-files.outputs.only_changed == 'true' }}
         run: "biome lint ${{ steps.biome-files.outputs.all_changed_files }}"

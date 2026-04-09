@@ -30,4 +30,5 @@ jobs:
             **.sh
             .husky/**
       - name: "Run linter for all files"
+        if: ${{ steps.shell-files.outputs.only_changed == 'true' }}
         run: "shellcheck --severity 'style' ${{ steps.shell-files.outputs.all_changed_files }}"

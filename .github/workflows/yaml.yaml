@@ -28,6 +28,7 @@ jobs:
         with:
           files: "**.{yaml,yml}"
       - name: "Run linter for all changed files"
+        if: ${{ steps.yaml-files.outputs.only_changed == 'true' }}
         uses: "ibiqlik/action-yamllint@v3.1.1"
         with:
           file_or_dir: "${{ steps.yaml-files.outputs.all_changed_files }}"

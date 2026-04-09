@@ -51,7 +51,7 @@ jobs:
         with:
           files: "**/*.cs"
       - name: "Run formatter for all changed files"
-        if: ${{ steps.csharp-files.outputs.any_changed == 'true' }}
+        if: ${{ steps.csharp-files.outputs.only_changed == 'true' }}
         run: |
           dotnet format --include ${{ steps.csharp-files.outputs.all_changed_files }} \
            --no-restore \
