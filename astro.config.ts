@@ -1,13 +1,25 @@
 import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
 
+const apiDirectory = "api";
 const configuration = defineConfig({
 	integrations: [
 		starlight({
 			favicon: "./docs/public/favicon.svg",
 			sidebar: [
 				{
-					autogenerate: { directory: "api" },
+					items: [
+						{
+							label: "Unit",
+							link: `${apiDirectory}/unit`
+						},
+						{
+							autogenerate: {
+								directory: `${apiDirectory}/results/`
+							},
+							label: "Results"
+						}
+					],
 					label: "API"
 				}
 			],
