@@ -5,6 +5,9 @@ interface Props {
 	details: ParameterTable[];
 }
 const { details } = Astro.props;
+const inlineCodeRegularExpression = /`([^`]+)`/g;
+const parseInlineCode = (description: string): string =>
+	description.replace(inlineCodeRegularExpression, "<code>$1</code>");
 ---
 
 <table>
@@ -24,7 +27,7 @@ const { details } = Astro.props;
 			<td>
 				<code>{detail.name}</code>
 			</td>
-			<td>{detail.description}</td>
+			<td set:html={parseInlineCode(detail.description)}/>
 		</tr>
 		))}
 	</tbody>

@@ -47,7 +47,8 @@
 				"rules": {
 					"correctness": {
 						"noUnusedImports": "off",
-						"noUnusedVariables": "off"
+						"noUnusedVariables": "off",
+						"useQwikValidLexicalScope": "off"
 					},
 					"style": {
 						"noDefaultExport": "off"

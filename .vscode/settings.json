@@ -50,6 +50,7 @@
 		"nupkg",
 		"nvmrc",
 		"opencover",
+		"Qwik",
 		"Sagittae",
 		"shellcheck",
 		"shfmt",

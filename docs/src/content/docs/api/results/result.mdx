@@ -1,0 +1,1111 @@
+---
+title: Result<TFailure, TSuccess>
+description: Encapsulates both a possible failure and an expected success for a given action.
+---
+
+import { MarkdownCodeBlockType } from "@/global.ts";
+import { Code, Aside } from '@astrojs/starlight/components';
+import GenericTable from '@/components/generic-table/GenericTable.astro';
+import ParameterTable from '@/components/parameter-table/ParameterTable.astro';
+export const fileName = 'Result.cs';
+
+[exception]: https://learn.microsoft.com/en-us/dotnet/api/system.exception
+[invalid-operation-exception]: https://learn.microsoft.com/en-us/dotnet/api/system.invalidoperationexception
+[bool]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool
+
+<Aside type="note">Type intended to handle both value and reference types.</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public sealed class Result<TFailure, TSuccess> : IEquatable<Result<TFailure, TSuccess>>` }
+/>
+
+Encapsulates both a possible failure and an expected success for a given action.
+
+---
+
+## Generics
+
+### TFailure
+
+Type of possible failure.
+
+### TSuccess
+
+Type of expected success.
+
+---
+
+## Properties
+
+### IsFailed
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public bool IsFailed { get; }` }
+/>
+
+Indicates whether the state is failed.
+
+### Failure
+
+<Aside type="caution">If the result is not failed, accessing [`Failure`](#failure) throws an [`InvalidOperationException`][invalid-operation-exception].</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public TFailure Failure { get; }` }
+/>
+
+The possible failure.
+
+### IsSuccessful
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public bool IsSuccessful { get; }` }
+/>
+
+Indicates whether the state is successful.
+
+### Success
+
+<Aside type="caution">If the result is not successful, accessing [`Success`](#success) throws an [`InvalidOperationException`][invalid-operation-exception].</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public TSuccess Success { get; }` }
+/>
+
+The expected success.
+
+---
+
+## Constructors
+
+### Result(failure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result(TFailure failure)` }
+/>
+
+Creates a new failed result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TFailure',
+				name: 'failure',
+				description: 'The possible failure'
+			}
+		]
+	}
+/>
+
+### Result(success)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result(TSuccess success)` }
+/>
+
+Creates a new successful result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TSuccess',
+				name: 'success',
+				description: 'The expected success'
+			}
+		]
+	}
+/>
+
+---
+
+## Operators
+
+### Equality operator ==
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static bool operator ==(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)` }
+/>
+
+Determines whether the left result is equal to the right result. Returns [`true`][bool] if the left result is equal to the right result; otherwise, [`false`][bool].
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Result<TFailure, TSuccess>?',
+				name: 'left',
+				description: 'The main result'
+			},
+			{
+				type: 'Result<TFailure, TSuccess>?',
+				name: 'right',
+				description: 'The result to compare'
+			}
+		]
+	}
+/>
+
+### Inequality operator !=
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static bool operator !=(Result<TFailure, TSuccess>? left, Result<TFailure, TSuccess>? right)` }
+/>
+
+Determines whether the left result is not equal to the right result. Returns [`true`][bool] if the left result is not equal to the right result; otherwise, [`false`][bool].
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Result<TFailure, TSuccess>?',
+				name: 'left',
+				description: 'The main result'
+			},
+			{
+				type: 'Result<TFailure, TSuccess>?',
+				name: 'right',
+				description: 'The result to compare'
+			}
+		]
+	}
+/>
+
+### True operator
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static bool operator true(Result<TFailure, TSuccess> result)` }
+/>
+
+Indicates whether the state is successful. Returns [`true`][bool] if the current result is successful; otherwise, [`false`][bool].
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Result<TFailure, TSuccess>',
+				name: 'result',
+				description: 'The current result'
+			}
+		]
+	}
+/>
+
+### False operator
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static bool operator false(Result<TFailure, TSuccess> result)` }
+/>
+
+Indicates whether the state is failed. Returns [`true`][bool] if the current result is failed; otherwise, [`false`][bool].
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Result<TFailure, TSuccess>',
+				name: 'result',
+				description: 'The current result'
+			}
+		]
+	}
+/>
+
+### Logical negation operator !
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static bool operator !(Result<TFailure, TSuccess> result)` }
+/>
+
+Indicates whether the state is failed. Returns [`true`][bool] if the current result is failed; otherwise, [`false`][bool].
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Result<TFailure, TSuccess>',
+				name: 'result',
+				description: 'The current result'
+			}
+		]
+	}
+/>
+
+### Logical OR operator |
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static Result<TFailure, TSuccess> operator |(Result<TFailure, TSuccess> result, Func<TSuccess, Result<TFailure, TSuccess>> create)` }
+/>
+
+Binds the previous result to a new one. Returns a new result with a different expected success.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Result<TFailure, TSuccess>',
+				name: 'result',
+				description: 'The current result'
+			},
+			{
+				type: 'Func<TSuccess, Result<TFailure, TSuccess>>',
+				name: 'create',
+				description: 'Creates the expected result'
+			}
+		]
+	}
+/>
+
+---
+
+## Implicit operators
+
+### TFailure(result)
+
+<Aside type="caution">If the result is not failed, an [`InvalidOperationException`][invalid-operation-exception] will be thrown.</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static implicit operator TFailure(Result<TFailure, TSuccess> result)` }
+/>
+
+Gets the possible failure.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Result<TFailure, TSuccess>',
+				name: 'result',
+				description: 'The current result'
+			}
+		]
+	}
+/>
+
+### TSuccess(result)
+
+<Aside type="caution">If the result is not successful, an [`InvalidOperationException`][invalid-operation-exception] will be thrown.</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static implicit operator TSuccess(Result<TFailure, TSuccess> result)` }
+/>
+
+Gets the expected success.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Result<TFailure, TSuccess>',
+				name: 'result',
+				description: 'The current result'
+			}
+		]
+	}
+/>
+
+### Result&lt;TFailure, TSuccess&gt;(failure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static implicit operator Result<TFailure, TSuccess>(TFailure failure)` }
+/>
+
+Creates a new failed result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TFailure',
+				name: 'failure',
+				description: 'The possible failure'
+			}
+		]
+	}
+/>
+
+### Result&lt;TFailure, TSuccess&gt;(success)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static implicit operator Result<TFailure, TSuccess>(TSuccess success)` }
+/>
+
+Creates a new successful result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TSuccess',
+				name: 'success',
+				description: 'The expected success'
+			}
+		]
+	}
+/>
+
+---
+
+## Methods
+
+### Deconstruct(isFailed, failure, success)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public void Deconstruct(out bool isFailed, out TFailure? failure, out TSuccess? success)` }
+/>
+
+Deconstructs the root state of the result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'bool',
+				name: 'isFailed',
+				description: 'Indicates whether the state is failed'
+			},
+			{
+				type: 'TFailure?',
+				name: 'failure',
+				description: 'The possible failure'
+			},
+			{
+				type: 'TSuccess?',
+				name: 'success',
+				description: 'The expected success'
+			}
+		]
+	}
+/>
+
+### TryGetFailure(output)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public bool TryGetFailure(out TFailure? output)` }
+/>
+
+Determines whether the result represents a failure. Returns [`true`][bool] if the result is failed; otherwise, [`false`][bool].
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TFailure?',
+				name: 'output',
+				description: 'The possible failure'
+			}
+		]
+	}
+/>
+
+### TryGetSuccess(output)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public bool TryGetSuccess(out TSuccess? output)` }
+/>
+
+Determines whether the result represents a success. Returns [`true`][bool] if the result is successful; otherwise, [`false`][bool].
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TSuccess?',
+				name: 'output',
+				description: 'The expected success'
+			}
+		]
+	}
+/>
+
+### Catch&lt;TException&gt;(execute, createFailure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> Catch<TException>(Action<TSuccess> execute, Func<TException, TFailure> createFailure)
+  		where TException : Exception`
+	}
+/>
+
+Treats [`TException`][exception] as a new failed result. Returns a new failed result if `execute` throws [`TException`][exception]; otherwise, the previous result.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TException',
+				description: 'Type of possible exception'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Action<TSuccess>',
+				name: 'execute',
+				description: 'The action to execute'
+			},
+			{
+				type: 'Func<TException, TFailure>',
+				name: 'createFailure',
+				description: 'Creates a possible failure'
+			}
+		]
+	}
+/>
+
+### Catch&lt;TException&gt;(createSuccess, createFailure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> Catch<TException>(Func<TSuccess, TSuccess> createSuccess, Func<TException, TFailure> createFailure)
+  		where TException : Exception`
+	}
+/>
+
+Treats [`TException`][exception] as a new failed result. Returns a new failed result if the value of `createSuccess` throws [`TException`][exception]; otherwise, a new successful result.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TException',
+				description: 'Type of possible exception'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Func<TSuccess, TSuccess>',
+				name: 'createSuccess',
+				description: 'Creates an expected success'
+			},
+			{
+				type: 'Func<TException, TFailure>',
+				name: 'createFailure',
+				description: 'Creates a possible failure'
+			}
+		]
+	}
+/>
+
+### Ensure(predicate, failure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> Ensure(Func<TSuccess, bool> predicate, TFailure failure)` }
+/>
+
+Ensures a new failed result if `predicate` evaluates to [`true`][bool]. Returns a new failed result if the value of `predicate` is [`true`][bool]; otherwise, the previous result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Func<TSuccess, bool>',
+				name: 'predicate',
+				description: 'Creates a set of criteria'
+			},
+			{
+				type: 'TFailure',
+				name: 'failure',
+				description: 'The possible failure'
+			}
+		]
+	}
+/>
+
+### Ensure(predicate, createFailure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> Ensure(Func<TSuccess, bool> predicate, Func<TSuccess, TFailure> createFailure)` }
+/>
+
+Ensures a new failed result if `predicate` evaluates to [`true`][bool]. Returns a new failed result if the value of `predicate` is [`true`][bool]; otherwise, the previous result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Func<TSuccess, bool>',
+				name: 'predicate',
+				description: 'Creates a set of criteria'
+			},
+			{
+				type: 'Func<TSuccess, TFailure>',
+				name: 'createFailure',
+				description: 'Creates a possible failure'
+			}
+		]
+	}
+/>
+
+### Ensure&lt;TAuxiliary&gt;(auxiliary, predicate, createFailure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> Ensure<TAuxiliary>(TAuxiliary auxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)` }
+/>
+
+Ensures a new failed result if `predicate` evaluates to [`true`][bool]. Returns a new failed result if the value of `predicate` is [`true`][bool]; otherwise, the previous result.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TAuxiliary',
+				description: 'Type of auxiliary'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TAuxiliary',
+				name: 'auxiliary',
+				description: 'The auxiliary to use in combination with `predicate` and `createFailure`'
+			},
+			{
+				type: 'Func<TSuccess, TAuxiliary, bool>',
+				name: 'predicate',
+				description: 'Creates a set of criteria'
+			},
+			{
+				type: 'Func<TSuccess, TAuxiliary, TFailure>',
+				name: 'createFailure',
+				description: 'Creates a possible failure'
+			}
+		]
+	}
+/>
+
+### Ensure&lt;TAuxiliary&gt;(createAuxiliary, predicate, createFailure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> Ensure<TAuxiliary>(Func<TAuxiliary> createAuxiliary, Func<TSuccess, TAuxiliary, bool> predicate, Func<TSuccess, TAuxiliary, TFailure> createFailure)` }
+/>
+
+Ensures a new failed result if `predicate` evaluates to [`true`][bool]. Returns a new failed result if the value of `predicate` is [`true`][bool]; otherwise, the previous result.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TAuxiliary',
+				description: 'Type of auxiliary'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Func<TAuxiliary>',
+				name: 'createAuxiliary',
+				description: 'Creates an auxiliary to use in combination with `predicate` and `createFailure`'
+			},
+			{
+				type: 'Func<TSuccess, TAuxiliary, bool>',
+				name: 'predicate',
+				description: 'Creates a set of criteria'
+			},
+			{
+				type: 'Func<TSuccess, TAuxiliary, TFailure>',
+				name: 'createFailure',
+				description: 'Creates a possible failure'
+			}
+		]
+	}
+/>
+
+### Do(execute)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> Do(Action execute)` }
+/>
+
+Executes an action regardless of the previous result. Returns the previous result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Action',
+				name: 'execute',
+				description: 'The action to execute'
+			}
+		]
+	}
+/>
+
+### DoOnFailure(execute)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> DoOnFailure(Action execute)` }
+/>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> DoOnFailure(Action<TFailure> execute)` }
+/>
+
+Executes an action if the previous result is failed. Returns the previous result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Action | Action<TFailure>',
+				name: 'execute',
+				description: 'The action to execute'
+			}
+		]
+	}
+/>
+
+### DoOnSuccess(execute)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> DoOnSuccess(Action execute)` }
+/>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> DoOnSuccess(Action<TSuccess> execute)` }
+/>
+
+Executes an action if the previous result is successful. Returns the previous result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Action | Action<TSuccess>',
+				name: 'execute',
+				description: 'The action to execute'
+			}
+		]
+	}
+/>
+
+### Match(doOnFailure, doOnSuccess)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> Match(Action doOnFailure, Action doOnSuccess)` }
+/>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> Match(Action<TFailure> doOnFailure, Action<TSuccess> doOnSuccess)` }
+/>
+
+Executes an action based on the state of the previous result. Returns the previous result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Action | Action<TFailure>',
+				name: 'doOnFailure',
+				description: 'The action to execute if the previous result is failed'
+			},
+			{
+				type: 'Action | Action<TSuccess>',
+				name: 'doOnSuccess',
+				description: 'The action to execute if the previous result is successful'
+			}
+		]
+	}
+/>
+
+### MapFailure&lt;TNewFailure&gt;(create)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TNewFailure, TSuccess> MapFailure<TNewFailure>(Func<TFailure, TNewFailure> create)` }
+/>
+
+Maps the possible failure to a value of another type. Returns a new result with a different type of possible failure.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TNewFailure',
+				description: 'Type of possible failure'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Func<TFailure, TNewFailure>',
+				name: 'create',
+				description: 'Creates a possible failure'
+			}
+		]
+	}
+/>
+
+### MapSuccess&lt;TNewSuccess&gt;(create)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TNewSuccess> MapSuccess<TNewSuccess>(Func<TSuccess, TNewSuccess> create)` }
+/>
+
+Maps the expected success to a value of another type. Returns a new result with a different type of expected success.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TNewSuccess',
+				description: 'Type of expected success'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Func<TSuccess, TNewSuccess>',
+				name: 'create',
+				description: 'Creates an expected success'
+			}
+		]
+	}
+/>
+
+### Bind&lt;TNewSuccess&gt;(create)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TNewSuccess> Bind<TNewSuccess>(Func<TSuccess, Result<TFailure, TNewSuccess>> create)` }
+/>
+
+Binds the previous result to a new one. Returns a new result with a different type of expected success.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TNewSuccess',
+				description: 'Type of expected success'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Func<TSuccess, Result<TFailure, TNewSuccess>>',
+				name: 'create',
+				description: 'Creates the expected result'
+			}
+		]
+	}
+/>
+
+### Recover(success)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> Recover(TSuccess success)` }
+/>
+
+Recovers a failed result by creating a new success. Returns a new successful result if the current result is failed; otherwise, the previous successful result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TSuccess',
+				name: 'success',
+				description: 'The expected success'
+			}
+		]
+	}
+/>
+
+### Recover(create)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TSuccess> Recover(Func<TFailure, TSuccess> create)` }
+/>
+
+Recovers a failed result by creating a new success. Returns a new successful result if the current result is failed; otherwise, the previous successful result.
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Func<TFailure, TSuccess>',
+				name: 'create',
+				description: 'Creates an expected success'
+			}
+		]
+	}
+/>
+
+### Reset&lt;TNewSuccess&gt;(success)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TNewSuccess> Reset<TNewSuccess>(TNewSuccess success)` }
+/>
+
+Resets the state of the expected success. Returns a new result with a different type of expected success.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TNewSuccess',
+				description: 'Type of expected success'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TNewSuccess',
+				name: 'success',
+				description: 'The expected success'
+			}
+		]
+	}
+/>
+
+### Reset&lt;TNewSuccess&gt;(result)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, TNewSuccess> Reset<TNewSuccess>(Result<TFailure, TNewSuccess> result)` }
+/>
+
+Resets the state of the expected success. Returns a new result with a different type of expected success.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TNewSuccess',
+				description: 'Type of expected success'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Result<TFailure, TNewSuccess>',
+				name: 'result',
+				description: 'The expected result'
+			}
+		]
+	}
+/>
+
+### Discard
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public Result<TFailure, Unit> Discard()` }
+/>
+
+Discards the expected success. Returns A new result that replaces the expected success with [`Unit`](../../unit).
+
+### Reduce&lt;TReducer&gt;(reduceFailure, reduceSuccess)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public TReducer Reduce<TReducer>(Func<TFailure, TReducer> reduceFailure, Func<TSuccess, TReducer> reduceSuccess)` }
+/>
+
+Reduces the possible failure or expected success to a single value. Returns a new value that can be the possible failure or the expected success.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TReducer',
+				description: 'Type of reducer'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Func<TFailure, TReducer>',
+				name: 'reduceFailure',
+				description: 'Reduces the possible failure'
+			},
+			{
+				type: 'Func<TSuccess, TReducer>',
+				name: 'reduceSuccess',
+				description: 'Reduces the expected success'
+			}
+		]
+	}
+/>
+
+### Equals(obj)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public override bool Equals(object? obj)` }
+/>
+
+Determines whether the specified result is equal to the current result. Returns [`true`][bool] if the specified result is equal to the current result; otherwise, [`false`][bool].
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'object?',
+				name: 'obj',
+				description: 'The result to compare with the current result'
+			}
+		]
+	}
+/>
+
+### Equals(other)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public bool Equals(Result<TFailure, TSuccess>? other)` }
+/>
+
+Determines whether the specified result is equal to the current result. Returns [`true`][bool] if the specified result is equal to the current result; otherwise, [`false`][bool].
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Result<TFailure, TSuccess>?',
+				name: 'other',
+				description: 'The result to compare with the current result'
+			}
+		]
+	}
+/>
+
+### GetHashCode
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public override int GetHashCode()` }
+/>
+
+Gets the hash code based on the primary members of the current result.
+
+### ToString
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public override string ToString()` }
+/>
+
+Gets the value of the current result.
