@@ -16,7 +16,9 @@ export const fileName = 'Unit.cs';
 	code = { `public readonly struct Unit : IEquatable<Unit>` }
 />
 
-Represents the absence of a specific value, explicitly simulating the [void](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/void) type.
+Represents the absence of a specific value, explicitly simulating the [`void`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/void) type.
+
+---
 
 ## Properties
 
@@ -30,6 +32,8 @@ Represents the absence of a specific value, explicitly simulating the [void](htt
 
 The placeholder that indicates the discarding of a value.
 
+---
+
 ## Operators
 
 ### Equality operator ==
@@ -40,6 +44,8 @@ The placeholder that indicates the discarding of a value.
 	code = { `public static bool operator ==(Unit left, Unit right)` }
 />
 
+Determines whether the left unit is equal to the right unit. Returns [`true`][bool] if the left unit is equal to the right unit; otherwise, [`false`][bool].
+
 <ParametersTable
 	details = {
 		[
@@ -56,8 +62,6 @@ The placeholder that indicates the discarding of a value.
 		]
 	}
 />
-
-Determines whether the left unit is equal to the right unit. Returns [true][bool] if the left unit is equal to the right unit; otherwise, [false][bool].
 
 ### Inequality operator !=
 
@@ -67,6 +71,8 @@ Determines whether the left unit is equal to the right unit. Returns [true][bool
 	code = { `public static bool operator !=(Unit left, Unit right)` }
 />
 
+Determines whether the left unit is not equal to the right unit. Returns [`true`][bool] if the left unit is not equal to the right unit; otherwise, [`false`][bool].
+
 <ParametersTable
 	details = {
 		[
@@ -84,7 +90,7 @@ Determines whether the left unit is equal to the right unit. Returns [true][bool
 	}
 />
 
-Determines whether the left unit is not equal to the right unit. Returns [true][bool] if the left unit is not equal to the right unit; otherwise, [false][bool].
+---
 
 ## Methods
 
@@ -96,6 +102,8 @@ Determines whether the left unit is not equal to the right unit. Returns [true][
 	code = { `public override bool Equals(object? obj)` }
 
 />
+
+Determines whether the specified unit is equal to the current unit. Returns [`true`][bool] if the specified unit is equal to the current unit; otherwise, [`false`][bool].
 
 <ParametersTable
 	details = {
@@ -109,8 +117,6 @@ Determines whether the left unit is not equal to the right unit. Returns [true][
 	}
 />
 
-Determines whether the specified unit is equal to the current unit. Returns [true][bool] if the specified unit is equal to the current unit; otherwise, [false][bool].
-
 ### Equals(other)
 
 <Code
@@ -118,6 +124,8 @@ Determines whether the specified unit is equal to the current unit. Returns [tru
 	lang = { MarkdownCodeBlockType.csharp }
 	code = { `public bool Equals(Unit other)` }
 />
+
+Determines whether the specified unit is equal to the current unit. Returns [`true`][bool] if the specified unit is equal to the current unit; otherwise, [`false`][bool].
 
 <ParametersTable
 	details = {
@@ -130,8 +138,6 @@ Determines whether the specified unit is equal to the current unit. Returns [tru
 		]
 	}
 />
-
-Determines whether the specified unit is equal to the current unit. Returns [true][bool] if the specified unit is equal to the current unit; otherwise, [false][bool].
 
 ### GetHashCode
 

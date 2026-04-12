@@ -1,0 +1,472 @@
+---
+title: ValueResult<TFailure, TSuccess>
+description: Encapsulates both a possible failure and an expected success for a given action.
+---
+
+import { MarkdownCodeBlockType } from "@/global.ts";
+import { Code, Aside } from '@astrojs/starlight/components';
+import ParametersTable from '@/components/tables/ParametersTable.astro';
+export const fileName = 'ValueResult.cs';
+
+[default]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/default
+[invalid-operation-exception]: https://learn.microsoft.com/en-us/dotnet/api/system.invalidoperationexception
+[bool]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool
+
+<Aside type="note">Type intended to handle only value types.</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public readonly struct ValueResult<TFailure, TSuccess> : IEquatable<ValueResult<TFailure, TSuccess>>
+		where TFailure : struct, Enum
+		where TSuccess : struct`
+	}
+/>
+
+Encapsulates both a possible failure and an expected success for a given action.
+
+---
+
+## Generics
+
+### TFailure
+
+Type of possible failure.
+
+### TSuccess
+
+Type of expected success.
+
+---
+
+## Properties
+
+### IsInitialized
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public bool IsInitialized { get; }` }
+/>
+
+Indicates whether the current result is initialized.
+
+### IsFailed
+
+<Aside type="caution">Access to this state is only semantically valid when [`IsInitialized`](#isinitialized) is [`true`][bool].</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public bool IsFailed { get; }` }
+/>
+
+Indicates whether the state is failed.
+
+### Failure
+
+<Aside type="caution">If the result is [`default`][default] (uninitialized) or not failed, accessing [`Failure`](#failure) throws an [`InvalidOperationException`][invalid-operation-exception].</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public TFailure Failure { get; }` }
+/>
+
+The possible failure.
+
+### Success
+
+<Aside type="caution">If the result is [`default`][default] (uninitialized) or not successful, accessing [`Success`](#success) throws an [`InvalidOperationException`][invalid-operation-exception].</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public TSuccess Success { get; }` }
+/>
+
+The expected success.
+
+---
+
+## Constructors
+
+### ValueResult(failure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public ValueResult(TFailure failure)` }
+/>
+
+Creates a new failed result. Returns a new failed result.
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'TFailure',
+				name: 'failure',
+				description: 'The possible failure'
+			}
+		]
+	}
+/>
+
+### ValueResult(success)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public ValueResult(TSuccess success)` }
+/>
+
+Creates a new successful result. Returns a new successful result.
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'TSuccess',
+				name: 'success',
+				description: 'The expected success'
+			}
+		]
+	}
+/>
+
+---
+
+## Operators
+
+### Equality operator ==
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static bool operator ==(ValueResult<TFailure, TSuccess> left, ValueResult<TFailure, TSuccess> right)` }
+/>
+
+Determines whether the left result is equal to the right result. Returns [`true`][bool] if the left result is equal to the right result; otherwise, [`false`][bool].
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'ValueResult<TFailure, TSuccess>',
+				name: 'left',
+				description: 'The main result'
+			},
+			{
+				type: 'ValueResult<TFailure, TSuccess>',
+				name: 'right',
+				description: 'The result to compare'
+			},
+		]
+	}
+/>
+
+### Inequality operator !=
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static bool operator !=(ValueResult<TFailure, TSuccess> left, ValueResult<TFailure, TSuccess> right)` }
+/>
+
+Determines whether the left result is not equal to the right result. Returns [`true`][bool] if the left result is not equal to the right result; otherwise, [`false`][bool].
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'ValueResult<TFailure, TSuccess>',
+				name: 'left',
+				description: 'The main result'
+			},
+			{
+				type: 'ValueResult<TFailure, TSuccess>',
+				name: 'right',
+				description: 'The result to compare'
+			},
+		]
+	}
+/>
+
+---
+
+## Implicit operators
+
+### TFailure(result)
+
+<Aside type="caution">If the result is [`default`][default] (uninitialized) or not failed, an [`InvalidOperationException`][invalid-operation-exception] will be thrown.</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static implicit operator TFailure(ValueResult<TFailure, TSuccess> result)` }
+/>
+
+Gets the possible failure. Returns the possible failure.
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'ValueResult<TFailure, TSuccess>',
+				name: 'result',
+				description: 'The current result'
+			}
+		]
+	}
+/>
+
+### TSuccess(result)
+
+<Aside type="caution">If the result is [`default`][default] (uninitialized) or not successful, an [`InvalidOperationException`][invalid-operation-exception] will be thrown.</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static implicit operator TSuccess(ValueResult<TFailure, TSuccess> result)` }
+/>
+
+Gets the expected success. Returns the expected success.
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'ValueResult<TFailure, TSuccess>',
+				name: 'result',
+				description: 'The current result'
+			}
+		]
+	}
+/>
+
+### ValueResult&lt;TFailure, TSuccess&gt;(failure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static implicit operator ValueResult<TFailure, TSuccess>(TFailure failure)` }
+/>
+
+Creates a new failed result. Returns a new failed result.
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'TFailure',
+				name: 'failure',
+				description: 'The possible failure'
+			}
+		]
+	}
+/>
+
+### ValueResult&lt;TFailure, TSuccess&gt;(success)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static implicit operator ValueResult<TFailure, TSuccess>(TSuccess success)` }
+/>
+
+Creates a new successful result. Returns a new successful result.
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'TSuccess',
+				name: 'success',
+				description: 'The expected success'
+			}
+		]
+	}
+/>
+
+---
+
+## Methods
+
+### Deconstruct(isFailed, failure, success)
+
+<Aside type="caution">If the result is [`default`][default] (uninitialized), an [`InvalidOperationException`][invalid-operation-exception] will be thrown.</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public void Deconstruct(out bool isFailed, out TFailure failure, out TSuccess success)` }
+/>
+
+Deconstructs the root state of the result.
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'bool',
+				name: 'isFailed',
+				description: 'Indicates whether the state is failed'
+			},
+			{
+				type: 'TFailure',
+				name: 'failure',
+				description: 'The possible failure'
+			},
+			{
+				type: 'TSuccess',
+				name: 'success',
+				description: 'The expected success'
+			}
+		]
+	}
+/>
+
+### TryGetFailure(output)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public bool TryGetFailure(out TFailure output)` }
+/>
+
+Determines whether the result represents a failure. Returns [`true`][bool] if the result is failed; otherwise, [`false`][bool].
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'TFailure',
+				name: 'output',
+				description: 'The possible failure'
+			}
+		]
+	}
+/>
+
+### TryGetSuccess(output)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public bool TryGetSuccess(out TSuccess output)` }
+/>
+
+Determines whether the result represents a success. Returns [`true`][bool] if the result is successful; otherwise, [`false`][bool].
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'TSuccess',
+				name: 'output',
+				description: 'The expected success'
+			}
+		]
+	}
+/>
+
+### Recover(success)
+
+<Aside type="caution">If the result is [`default`][default] (uninitialized), an [`InvalidOperationException`][invalid-operation-exception] will be thrown.</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public ValueResult<TFailure, TSuccess> Recover(TSuccess success)` }
+/>
+
+Recovers a failed result by creating a new success. Returns a new successful result if the current result is failed; otherwise, the previous successful result.
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'TSuccess',
+				name: 'success',
+				description: 'The expected success'
+			}
+		]
+	}
+/>
+
+### Discard
+
+<Aside type="caution">If the result is [`default`][default] (uninitialized), an [`InvalidOperationException`][invalid-operation-exception] will be thrown.</Aside>
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public ValueResult<TFailure, Unit> Discard()` }
+/>
+
+Discards the expected success. Returns a new result that replaces the expected success with [`Unit`](../../unit).
+
+### Equals(obj)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public override bool Equals(object? obj)` }
+/>
+
+Determines whether the specified result is equal to the current result. Returns [`true`][bool] if the specified result is equal to the current result; otherwise, [`false`][bool].
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'object?',
+				name: 'obj',
+				description: 'The result to compare with the current result'
+			}
+		]
+	}
+/>
+
+### Equals(other)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public bool Equals(ValueResult<TFailure, TSuccess> other)` }
+/>
+
+Determines whether the specified result is equal to the current result. Returns [`true`][bool] if the specified result is equal to the current result; otherwise, [`false`][bool].
+
+<ParametersTable
+	details = {
+		[
+			{
+				type: 'ValueResult<TFailure, TSuccess>',
+				name: 'other',
+				description: 'The result to compare with the current result'
+			}
+		]
+	}
+/>
+
+### GetHashCode
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public override int GetHashCode()` }
+/>
+
+Gets the hash code based on the primary members of the current result. Returns the calculated hash code.
+
+### ToString
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public override string ToString()` }
+/>
+
+Gets the value of the current result. Returns the value of the current result.

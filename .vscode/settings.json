@@ -81,6 +81,10 @@
 	"markdown.validate.fragmentLinks.enabled": "error",
 	"markdown.validate.referenceLinks.enabled": "error",
 	"markdown.validate.unusedLinkDefinitions.enabled": "error",
+	"material-icon-theme.folders.associations": {
+		"results": "core",
+		"tables": "core"
+	},
 	"mdx.validate.validateDuplicateLinkDefinitions": "error",
 	"mdx.validate.validateFileLinks": "error",
 	"mdx.validate.validateFragmentLinks": "error",
