@@ -1,0 +1,221 @@
+---
+title: ResultFactory
+description: Provide global factory methods to initialize Result<TFailure, TSuccess>.
+---
+
+import { MarkdownCodeBlockType } from "@/global.ts";
+import { Code } from '@astrojs/starlight/components';
+import GenericTable from '@/components/generic-table/GenericTable.astro';
+import ParameterTable from '@/components/parameter-table/ParameterTable.astro';
+export const fileName = 'ResultFactory.cs';
+
+[exception]: https://learn.microsoft.com/en-us/dotnet/api/system.exception
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static class ResultFactory` }
+/>
+
+Provide global factory methods to initialize [`Result<TFailure, TSuccess>`](../result).
+
+---
+
+## Methods
+
+### Fail&lt;TFailure, TSuccess&gt;(failure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static Result<TFailure, TSuccess> Fail<TFailure, TSuccess>(TFailure failure)` }
+/>
+
+Creates a new failed result.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TFailure',
+				description: 'Type of possible failure'
+			},
+			{
+				name: 'TSuccess',
+				description: 'Type of expected success'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TFailure',
+				name: 'failure',
+				description: 'The possible failure'
+			}
+		]
+	}
+/>
+
+### Fail&lt;TFailure, TSuccess&gt;(create)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static Result<TFailure, TSuccess> Fail<TFailure, TSuccess>(Func<TFailure> create)` }
+/>
+
+Creates a new failed result.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TFailure',
+				description: 'Type of possible failure'
+			},
+			{
+				name: 'TSuccess',
+				description: 'Type of expected success'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Func<TFailure>',
+				name: 'create',
+				description: 'Creates a possible failure'
+			}
+		]
+	}
+/>
+
+### Succeed&lt;TFailure, TSuccess&gt;(success)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static Result<TFailure, TSuccess> Succeed<TFailure, TSuccess>(TSuccess success)` }
+/>
+
+Creates a new successful result.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TFailure',
+				description: 'Type of possible failure'
+			},
+			{
+				name: 'TSuccess',
+				description: 'Type of expected success'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TSuccess',
+				name: 'success',
+				description: 'The expected success'
+			}
+		]
+	}
+/>
+
+### Succeed&lt;TFailure, TSuccess&gt;(create)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static Result<TFailure, TSuccess> Succeed<TFailure, TSuccess>(Func<TSuccess> create)` }
+/>
+
+Creates a new successful result.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TFailure',
+				description: 'Type of possible failure'
+			},
+			{
+				name: 'TSuccess',
+				description: 'Type of expected success'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Func<TSuccess>',
+				name: 'create',
+				description: 'Creates an expected success'
+			}
+		]
+	}
+/>
+
+### Catch&lt;TException, TFailure, TSuccess&gt;(createSuccess, createFailure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static Result<TFailure, TSuccess> Catch<TException, TFailure, TSuccess>(Func<TSuccess> createSuccess, Func<TException, TFailure> createFailure)
+    	where TException : Exception`
+	}
+/>
+
+Treats [`TException`][exception] as a new failed result. Returns a new failed result if the value of `createSuccess` throws [`TException`][exception]; otherwise, a new
+successful result.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TException',
+				description: 'Type of possible exception'
+			},
+			{
+				name: 'TFailure',
+				description: 'Type of possible failure'
+			},
+			{
+				name: 'TSuccess',
+				description: 'Type of expected success'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'Func<TSuccess>',
+				name: 'createSuccess',
+				description: 'Creates an expected success'
+			},
+			{
+				type: 'Func<TException, TFailure>',
+				name: 'createFailure',
+				description: 'Creates a possible failure'
+			}
+		]
+	}
+/>
