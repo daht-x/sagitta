@@ -1,7 +1,8 @@
 import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
 
-const apiDirectory = "api";
+const coreDirectory = "api/core";
+const corePackageName = "Daht.Sagitta.Core";
 const configuration = defineConfig({
 	integrations: [
 		starlight({
@@ -10,21 +11,26 @@ const configuration = defineConfig({
 				{
 					items: [
 						{
-							label: "Unit",
-							link: `${apiDirectory}/unit`
-						},
-						{
-							autogenerate: {
-								directory: `${apiDirectory}/results/`
-							},
-							label: "Results"
+							items: [
+								{
+									label: "Unit",
+									link: `${coreDirectory}/unit`
+								},
+								{
+									autogenerate: {
+										directory: `${coreDirectory}/results/`
+									},
+									label: "Results"
+								}
+							],
+							label: corePackageName
 						}
 					],
 					label: "API"
 				}
 			],
-			social: [{ href: "https://github.com/withastro/starlight", icon: "github", label: "GitHub" }],
-			title: "My Docs"
+			social: [{ href: "https://github.com/daht-x/sagitta", icon: "github", label: "GitHub" }],
+			title: "Sagitta"
 		})
 	],
 	srcDir: "./docs/src"

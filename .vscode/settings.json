@@ -51,6 +51,7 @@
 		"nvmrc",
 		"opencover",
 		"Qwik",
+		"Roslynator",
 		"Sagittae",
 		"shellcheck",
 		"shfmt",
