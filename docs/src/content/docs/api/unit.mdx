@@ -5,7 +5,7 @@ description: Represents the absence of a specific value, explicitly simulating t
 
 import { MarkdownCodeBlockType } from "@/global.ts";
 import { Code } from '@astrojs/starlight/components';
-import ParametersTable from '@/components/tables/ParametersTable.astro';
+import ParameterTable from '@/components/parameter-table/ParameterTable.astro';
 export const fileName = 'Unit.cs';
 
 [bool]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool
@@ -46,7 +46,7 @@ The placeholder that indicates the discarding of a value.
 
 Determines whether the left unit is equal to the right unit. Returns [`true`][bool] if the left unit is equal to the right unit; otherwise, [`false`][bool].
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -73,7 +73,7 @@ Determines whether the left unit is equal to the right unit. Returns [`true`][bo
 
 Determines whether the left unit is not equal to the right unit. Returns [`true`][bool] if the left unit is not equal to the right unit; otherwise, [`false`][bool].
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -105,7 +105,7 @@ Determines whether the left unit is not equal to the right unit. Returns [`true`
 
 Determines whether the specified unit is equal to the current unit. Returns [`true`][bool] if the specified unit is equal to the current unit; otherwise, [`false`][bool].
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -127,7 +127,7 @@ Determines whether the specified unit is equal to the current unit. Returns [`tr
 
 Determines whether the specified unit is equal to the current unit. Returns [`true`][bool] if the specified unit is equal to the current unit; otherwise, [`false`][bool].
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -147,7 +147,7 @@ Determines whether the specified unit is equal to the current unit. Returns [`tr
 	code = { `public override int GetHashCode()` }
 />
 
-Gets the hash code of the current unit. Returns the hash code of the current unit.
+Gets the hash code of the current unit.
 
 ### ToString
 
@@ -157,4 +157,4 @@ Gets the hash code of the current unit. Returns the hash code of the current uni
 	code = { `public override string ToString()` }
 />
 
-Gets the value of the current unit. Returns the value of the current unit.
+Gets the value of the current unit.

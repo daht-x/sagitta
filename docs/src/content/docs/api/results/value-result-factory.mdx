@@ -1,0 +1,96 @@
+---
+title: ValueResultFactory
+description: Provide global factory methods to initialize ValueResult<TFailure, TSuccess>
+---
+
+import { MarkdownCodeBlockType } from "@/global.ts";
+import { Code } from '@astrojs/starlight/components';
+import GenericTable from '@/components/generic-table/GenericTable.astro';
+import ParameterTable from '@/components/parameter-table/ParameterTable.astro';
+export const fileName = 'ValueResultFactory.cs';
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static class ValueResultFactory` }
+/>
+
+Provide global factory methods to initialize [`ValueResult<TFailure, TSuccess>`](../value-result).
+
+---
+
+## Methods
+
+### Fail&lt;TFailure, TSuccess&gt;(failure)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static ValueResult<TFailure, TSuccess> Fail<TFailure, TSuccess>(TFailure failure)` }
+/>
+
+Creates a new failed result.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TFailure',
+				description: 'Type of possible failure'
+			},
+			{
+				name: 'TSuccess',
+				description: 'Type of expected success'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TFailure',
+				name: 'failure',
+				description: 'The possible failure'
+			}
+		]
+	}
+/>
+
+### Succeed&lt;TFailure, TSuccess&gt;(success)
+
+<Code
+	title = { fileName }
+	lang = { MarkdownCodeBlockType.csharp }
+	code = { `public static ValueResult<TFailure, TSuccess> Succeed<TFailure, TSuccess>(TSuccess success)` }
+/>
+
+Creates a new successful result.
+
+<GenericTable
+	details = {
+		[
+			{
+				name: 'TFailure',
+				description: 'Type of possible failure'
+			},
+			{
+				name: 'TSuccess',
+				description: 'Type of expected success'
+			}
+		]
+	}
+/>
+
+<ParameterTable
+	details = {
+		[
+			{
+				type: 'TSuccess',
+				name: 'success',
+				description: 'The expected success'
+			}
+		]
+	}
+/>

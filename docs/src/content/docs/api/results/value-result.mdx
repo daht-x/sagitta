@@ -5,7 +5,7 @@ description: Encapsulates both a possible failure and an expected success for a 
 
 import { MarkdownCodeBlockType } from "@/global.ts";
 import { Code, Aside } from '@astrojs/starlight/components';
-import ParametersTable from '@/components/tables/ParametersTable.astro';
+import ParameterTable from '@/components/parameter-table/ParameterTable.astro';
 export const fileName = 'ValueResult.cs';
 
 [default]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/default
@@ -99,9 +99,9 @@ The expected success.
 	code = { `public ValueResult(TFailure failure)` }
 />
 
-Creates a new failed result. Returns a new failed result.
+Creates a new failed result.
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -121,9 +121,9 @@ Creates a new failed result. Returns a new failed result.
 	code = { `public ValueResult(TSuccess success)` }
 />
 
-Creates a new successful result. Returns a new successful result.
+Creates a new successful result.
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -149,7 +149,7 @@ Creates a new successful result. Returns a new successful result.
 
 Determines whether the left result is equal to the right result. Returns [`true`][bool] if the left result is equal to the right result; otherwise, [`false`][bool].
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -176,7 +176,7 @@ Determines whether the left result is equal to the right result. Returns [`true`
 
 Determines whether the left result is not equal to the right result. Returns [`true`][bool] if the left result is not equal to the right result; otherwise, [`false`][bool].
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -207,9 +207,9 @@ Determines whether the left result is not equal to the right result. Returns [`t
 	code = { `public static implicit operator TFailure(ValueResult<TFailure, TSuccess> result)` }
 />
 
-Gets the possible failure. Returns the possible failure.
+Gets the possible failure.
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -231,9 +231,9 @@ Gets the possible failure. Returns the possible failure.
 	code = { `public static implicit operator TSuccess(ValueResult<TFailure, TSuccess> result)` }
 />
 
-Gets the expected success. Returns the expected success.
+Gets the expected success.
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -253,9 +253,9 @@ Gets the expected success. Returns the expected success.
 	code = { `public static implicit operator ValueResult<TFailure, TSuccess>(TFailure failure)` }
 />
 
-Creates a new failed result. Returns a new failed result.
+Creates a new failed result.
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -275,9 +275,9 @@ Creates a new failed result. Returns a new failed result.
 	code = { `public static implicit operator ValueResult<TFailure, TSuccess>(TSuccess success)` }
 />
 
-Creates a new successful result. Returns a new successful result.
+Creates a new successful result.
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -305,7 +305,7 @@ Creates a new successful result. Returns a new successful result.
 
 Deconstructs the root state of the result.
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -337,7 +337,7 @@ Deconstructs the root state of the result.
 
 Determines whether the result represents a failure. Returns [`true`][bool] if the result is failed; otherwise, [`false`][bool].
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -359,7 +359,7 @@ Determines whether the result represents a failure. Returns [`true`][bool] if th
 
 Determines whether the result represents a success. Returns [`true`][bool] if the result is successful; otherwise, [`false`][bool].
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -383,7 +383,7 @@ Determines whether the result represents a success. Returns [`true`][bool] if th
 
 Recovers a failed result by creating a new success. Returns a new successful result if the current result is failed; otherwise, the previous successful result.
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -417,7 +417,7 @@ Discards the expected success. Returns a new result that replaces the expected s
 
 Determines whether the specified result is equal to the current result. Returns [`true`][bool] if the specified result is equal to the current result; otherwise, [`false`][bool].
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -439,7 +439,7 @@ Determines whether the specified result is equal to the current result. Returns 
 
 Determines whether the specified result is equal to the current result. Returns [`true`][bool] if the specified result is equal to the current result; otherwise, [`false`][bool].
 
-<ParametersTable
+<ParameterTable
 	details = {
 		[
 			{
@@ -459,7 +459,7 @@ Determines whether the specified result is equal to the current result. Returns 
 	code = { `public override int GetHashCode()` }
 />
 
-Gets the hash code based on the primary members of the current result. Returns the calculated hash code.
+Gets the hash code based on the primary members of the current result.
 
 ### ToString
 
@@ -469,4 +469,4 @@ Gets the hash code based on the primary members of the current result. Returns t
 	code = { `public override string ToString()` }
 />
 
-Gets the value of the current result. Returns the value of the current result.
+Gets the value of the current result.

@@ -1,8 +1,8 @@
 ---
-import type detailsTable from "./parameters-table";
+import type GenericTable from "./generic-table";
 
 interface Props {
-	details: detailsTable[];
+	details: GenericTable[];
 }
 const { details } = Astro.props;
 ---
@@ -10,7 +10,6 @@ const { details } = Astro.props;
 <table>
 	<thead>
 		<tr>
-			<th>Type</th>
 			<th>Name</th>
 			<th>Description</th>
 		</tr>
@@ -18,9 +17,6 @@ const { details } = Astro.props;
 	<tbody>
 		{details.map(detail => (
 		<tr>
-			<td>
-				<code>{detail.type}</code>
-			</td>
 			<td>
 				<code>{detail.name}</code>
 			</td>

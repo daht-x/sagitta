@@ -82,8 +82,9 @@
 	"markdown.validate.referenceLinks.enabled": "error",
 	"markdown.validate.unusedLinkDefinitions.enabled": "error",
 	"material-icon-theme.folders.associations": {
-		"results": "core",
-		"tables": "core"
+		"generic-table": "core",
+		"parameter-table": "core",
+		"results": "core"
 	},
 	"mdx.validate.validateDuplicateLinkDefinitions": "error",
 	"mdx.validate.validateFileLinks": "error",
