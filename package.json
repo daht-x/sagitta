@@ -12,7 +12,7 @@
 		"husky": "9.1.7",
 		"lint-staged": "16.4.0",
 		"markdownlint-cli2": "0.22.1",
-		"typescript": "5.9.3"
+		"typescript": "6.0.3"
 	},
 	"engines": {
 		"node": "24.15.0"
