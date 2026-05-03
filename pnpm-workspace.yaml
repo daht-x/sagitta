@@ -1,4 +1,4 @@
-onlyBuiltDependencies:
-  - "@biomejs/biome"
-  - "esbuild"
-  - "sharp"
+allowBuilds:
+  "@biomejs/biome": true
+  "esbuild": true
+  "sharp": true
