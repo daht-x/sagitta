@@ -7,7 +7,7 @@
 	"devDependencies": {
 		"@astrojs/check": "0.9.9",
 		"@biomejs/biome": "2.4.13",
-		"@commitlint/cli": "20.5.2",
+		"@commitlint/cli": "20.5.3",
 		"@commitlint/types": "20.5.0",
 		"husky": "9.1.7",
 		"lint-staged": "16.4.0",
