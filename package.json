@@ -1,13 +1,13 @@
 {
 	"dependencies": {
 		"@astrojs/starlight": "0.38.4",
-		"astro": "6.1.10",
+		"astro": "6.2.2",
 		"sharp": "0.34.5"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.9",
-		"@biomejs/biome": "2.4.13",
-		"@commitlint/cli": "20.5.2",
+		"@biomejs/biome": "2.4.14",
+		"@commitlint/cli": "20.5.3",
 		"@commitlint/types": "20.5.0",
 		"husky": "9.1.7",
 		"lint-staged": "16.4.0",
@@ -17,7 +17,7 @@
 	"engines": {
 		"node": "24.15.0"
 	},
-	"packageManager": "pnpm@11.0.4",
+	"packageManager": "pnpm@11.0.9",
 	"private": true,
 	"scripts": {
 		"astro": "astro",
