@@ -17,7 +17,7 @@
 	"engines": {
 		"node": "24.15.0"
 	},
-	"packageManager": "pnpm@11.0.9",
+	"packageManager": "pnpm@11.1.1",
 	"private": true,
 	"scripts": {
 		"astro": "astro",
