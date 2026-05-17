@@ -70,7 +70,7 @@ jobs:
           REPOSITORY: "https://github.com/pnpm/pnpm"
         with:
           delete-branch: true
-          branch: "github-actions/build/pnpm-${{ steps.checker.outputs.next_version }}"
+          branch: "github-actions/build/pnpm-auto-update"
           sign-commits: true
           commit-message: "${{ steps.checker.outputs.commit_message }}"
           author: "${{ env.AUTHOR }}"

@@ -75,7 +75,7 @@ jobs:
           AUTHOR: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
         with:
           delete-branch: true
-          branch: "github-actions/build/nodejs-${{ steps.checker.outputs.next_version }}"
+          branch: "github-actions/build/nodejs-auto-update"
           sign-commits: true
           commit-message: "${{ steps.checker.outputs.commit_message }}"
           author: "${{ env.AUTHOR }}"
