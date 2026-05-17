@@ -4,7 +4,6 @@ assignees: "daht-x"
 labels:
   - "topic: feat"
   - "priority: medium"
-  - "status: pending"
 body:
   - type: "markdown"
     attributes:

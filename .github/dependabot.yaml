@@ -10,7 +10,6 @@ updates:
     labels:
       - "topic: build"
       - "priority: high"
-      - "status: pending"
     schedule:
       interval: "daily"
   - package-ecosystem: "github-actions"
@@ -24,7 +23,6 @@ updates:
       - "topic: build"
       - "package manager: github actions"
       - "priority: medium"
-      - "status: pending"
     schedule:
       interval: "daily"
     cooldown:
@@ -41,7 +39,6 @@ updates:
       - "topic: build"
       - "package manager: pnpm"
       - "priority: medium"
-      - "status: pending"
     schedule:
       interval: "daily"
     cooldown:
@@ -61,7 +58,6 @@ updates:
       - "topic: build"
       - "package manager: nuget"
       - "priority: medium"
-      - "status: pending"
     schedule:
       interval: "daily"
     cooldown:

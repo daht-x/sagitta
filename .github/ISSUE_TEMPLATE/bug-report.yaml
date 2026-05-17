@@ -4,7 +4,6 @@ assignees: "daht-x"
 labels:
   - "topic: fix"
   - "priority: high"
-  - "status: pending"
 body:
   - type: "markdown"
     attributes:

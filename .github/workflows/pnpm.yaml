@@ -81,7 +81,6 @@ jobs:
           labels: |
             topic: build
             priority: high
-            status: pending
           body: |
             # Pull request
 
