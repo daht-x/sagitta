@@ -28,8 +28,8 @@ importers:
         specifier: 21.0.1
         version: 21.0.1(@types/node@25.0.6)(conventional-commits-parser@6.4.0)(typescript@6.0.3)
       '@commitlint/types':
-        specifier: 21.0.0
-        version: 21.0.0
+        specifier: 21.0.1
+        version: 21.0.1
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -259,10 +259,6 @@ packages:
 
   '@commitlint/top-level@21.0.1':
     resolution: {integrity: sha512-4esUYqzY7K0FCgcJ/1xWEZekV7Ch4yZT1+xjEb7KzqbJ05XEkxHVsTfC8ADKNNtlCE2pj98KEbPGZWw9WwEnVw==}
-    engines: {node: '>=22.12.0'}
-
-  '@commitlint/types@21.0.0':
-    resolution: {integrity: sha512-6nEz+M7I90iix4sviA8NLwskOuyt0M98KUU2aYgiKbn46jMSxUm1l2ACtzRd9ec+y38aKyJhW4Fp6NW0z35kJQ==}
     engines: {node: '>=22.12.0'}
 
   '@commitlint/types@21.0.1':
@@ -2987,11 +2983,6 @@ snapshots:
   '@commitlint/top-level@21.0.1':
     dependencies:
       escalade: 3.2.0
-
-  '@commitlint/types@21.0.0':
-    dependencies:
-      conventional-commits-parser: 6.4.0
-      picocolors: 1.1.1
 
   '@commitlint/types@21.0.1':
     dependencies:
