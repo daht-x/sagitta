@@ -7,17 +7,17 @@
 	"devDependencies": {
 		"@astrojs/check": "0.9.9",
 		"@biomejs/biome": "2.4.15",
-		"@commitlint/cli": "20.5.3",
+		"@commitlint/cli": "21.0.0",
 		"@commitlint/types": "20.5.0",
 		"husky": "9.1.7",
-		"lint-staged": "17.0.2",
+		"lint-staged": "17.0.4",
 		"markdownlint-cli2": "0.22.1",
 		"typescript": "6.0.3"
 	},
 	"engines": {
 		"node": "24.15.0"
 	},
-	"packageManager": "pnpm@11.1.1",
+	"packageManager": "pnpm@11.1.2",
 	"private": true,
 	"scripts": {
 		"astro": "astro",
