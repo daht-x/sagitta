@@ -17,9 +17,13 @@ const configuration = defineConfig({
 									link: `${coreDirectory}/unit`
 								},
 								{
-									autogenerate: {
-										directory: `${coreDirectory}/results/`
-									},
+									items: [
+										{
+											autogenerate: {
+												directory: `${coreDirectory}/results/`
+											}
+										}
+									],
 									label: "Results"
 								}
 							],
