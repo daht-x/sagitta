@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@astrojs/starlight':
         specifier: 0.39.2
-        version: 0.39.2(astro@6.3.2(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0))(typescript@6.0.3)
+        version: 0.39.2(astro@6.3.3(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0))(typescript@6.0.3)
       astro:
-        specifier: 6.3.2
-        version: 6.3.2(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0)
+        specifier: 6.3.3
+        version: 6.3.3(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0)
       sharp:
         specifier: 0.34.5
         version: 0.34.5
@@ -34,8 +34,8 @@ importers:
         specifier: 9.1.7
         version: 9.1.7
       lint-staged:
-        specifier: 17.0.4
-        version: 17.0.4
+        specifier: 17.0.5
+        version: 17.0.5
       markdownlint-cli2:
         specifier: 0.22.1
         version: 0.22.1
@@ -1022,8 +1022,8 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0 || ^6.0.0-beta
 
-  astro@6.3.2:
-    resolution: {integrity: sha512-Wvl/420m99OjKRH9Q+Vk7JBed8H39n66R61FG2ty0yZjQXBplIIXvJWYXUouMn2U4znfjpYe1HLOA2Rpet6uog==}
+  astro@6.3.3:
+    resolution: {integrity: sha512-wvLIZQYbBZt6U8gyflBW4SLBypaqdwLZUH93rT3oT53cmQ0bTGubvMAGjqBRoheOYzYcTJZtW6czztzbu4kQ5g==}
     engines: {node: '>=22.12.0', npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -1640,8 +1640,8 @@ packages:
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
-  lint-staged@17.0.4:
-    resolution: {integrity: sha512-+rU9lSUyVOZ/hDUmRLVGzyS2v73cDdQjX+XQz1AaOdIE4RysLq0HoPW2HrrgeNCLklkhi904VBU1bmgWLHVnkA==}
+  lint-staged@17.0.5:
+    resolution: {integrity: sha512-d12yC+/e8RhBjZtaxZn71FyrgU/P5e+uAPifhCLwdosQZP/zamSdKRWDC30ocVIbzDKiFG1McHc/LUgB92GIPw==}
     engines: {node: '>=22.22.1'}
     hasBin: true
 
@@ -1656,8 +1656,8 @@ packages:
   longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
 
-  lru-cache@11.3.6:
-    resolution: {integrity: sha512-Gf/KoL3C/MlI7Bt0PGI9I+TeTC/I6r/csU58N4BSNc4lppLBeKsOdFYkK+dX0ABDUMJNfCHTyPpzwwO21Awd3A==}
+  lru-cache@11.4.0:
+    resolution: {integrity: sha512-W+R+kFL4HgVxONq2bhXPi3bGpzGe/yEhVOp233qw9wCRtgncJ15P3bC+e4zZMu4Cq7d+WAJjXGW0uUkifhcatA==}
     engines: {node: 20 || >=22}
 
   magic-string@0.30.21:
@@ -2736,12 +2736,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@5.0.4(astro@6.3.2(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0))':
+  '@astrojs/mdx@5.0.4(astro@6.3.3(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0))':
     dependencies:
       '@astrojs/markdown-remark': 7.1.1
       '@mdx-js/mdx': 3.1.1
       acorn: 8.16.0
-      astro: 6.3.2(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0)
+      astro: 6.3.3(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0)
       es-module-lexer: 2.1.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -2769,17 +2769,17 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 4.4.3
 
-  '@astrojs/starlight@0.39.2(astro@6.3.2(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0))(typescript@6.0.3)':
+  '@astrojs/starlight@0.39.2(astro@6.3.3(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0))(typescript@6.0.3)':
     dependencies:
       '@astrojs/markdown-remark': 7.1.1
-      '@astrojs/mdx': 5.0.4(astro@6.3.2(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0))
+      '@astrojs/mdx': 5.0.4(astro@6.3.3(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0))
       '@astrojs/sitemap': 3.7.2
       '@pagefind/default-ui': 1.5.2
       '@types/hast': 3.0.4
       '@types/js-yaml': 4.0.9
       '@types/mdast': 4.0.4
-      astro: 6.3.2(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0)
-      astro-expressive-code: 0.42.0(astro@6.3.2(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0))
+      astro: 6.3.3(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0)
+      astro-expressive-code: 0.42.0(astro@6.3.3(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0))
       bcp-47: 2.1.0
       hast-util-from-html: 2.0.3
       hast-util-select: 6.0.4
@@ -3574,12 +3574,12 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-expressive-code@0.42.0(astro@6.3.2(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0)):
+  astro-expressive-code@0.42.0(astro@6.3.3(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0)):
     dependencies:
-      astro: 6.3.2(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0)
+      astro: 6.3.3(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0)
       rehype-expressive-code: 0.42.0
 
-  astro@6.3.2(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0):
+  astro@6.3.3(@types/node@25.0.6)(jiti@2.6.1)(rollup@4.60.4)(yaml@2.9.0):
     dependencies:
       '@astrojs/compiler': 4.0.0
       '@astrojs/internal-helpers': 0.9.1
@@ -4374,7 +4374,7 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
-  lint-staged@17.0.4:
+  lint-staged@17.0.5:
     dependencies:
       listr2: 10.2.1
       picomatch: 4.0.4
@@ -4401,7 +4401,7 @@ snapshots:
 
   longest-streak@3.1.0: {}
 
-  lru-cache@11.3.6: {}
+  lru-cache@11.4.0: {}
 
   magic-string@0.30.21:
     dependencies:
@@ -5554,7 +5554,7 @@ snapshots:
       chokidar: 5.0.0
       destr: 2.0.5
       h3: 1.15.11
-      lru-cache: 11.3.6
+      lru-cache: 11.4.0
       node-fetch-native: 1.6.7
       ofetch: 1.5.1
       ufo: 1.6.4
