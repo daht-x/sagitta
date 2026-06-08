@@ -1,23 +1,23 @@
 {
 	"dependencies": {
 		"@astrojs/starlight": "0.39.2",
-		"astro": "6.3.7",
+		"astro": "6.4.4",
 		"sharp": "0.34.5"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.9",
-		"@biomejs/biome": "2.4.15",
-		"@commitlint/cli": "21.0.1",
+		"@biomejs/biome": "2.4.16",
+		"@commitlint/cli": "21.0.2",
 		"@commitlint/types": "21.0.1",
 		"husky": "9.1.7",
-		"lint-staged": "17.0.5",
+		"lint-staged": "17.0.7",
 		"markdownlint-cli2": "0.22.1",
 		"typescript": "6.0.3"
 	},
 	"engines": {
 		"node": "24.16.0"
 	},
-	"packageManager": "pnpm@11.5.0",
+	"packageManager": "pnpm@11.5.2",
 	"private": true,
 	"scripts": {
 		"astro": "astro",
