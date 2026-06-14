@@ -5,6 +5,7 @@ require_https = true
 accept = [
 	'100..=103',
 	'200..=226',
+	'403',
 	'429',
 ]
 exclude = [
