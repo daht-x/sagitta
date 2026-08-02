@@ -5,7 +5,7 @@
 		"sharp": "0.35.3"
 	},
 	"devDependencies": {
-		"@astrojs/check": "0.9.9",
+		"@astrojs/check": "0.9.10",
 		"@biomejs/biome": "2.5.6",
 		"@commitlint/cli": "21.2.1",
 		"@commitlint/types": "21.2.0",
