@@ -20,6 +20,6 @@
 		<GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.31.0.145097" />
 		<GlobalPackageReference Include="Roslynator.Analyzers" Version="4.16.0" />
 		<GlobalPackageReference Include="Roslynator.Refactorings" Version="4.16.0" />
-		<GlobalPackageReference Include="Roslynator.CodeFixes" Version="4.15.0" />
+		<GlobalPackageReference Include="Roslynator.CodeFixes" Version="4.16.0" />
 	</ItemGroup>
 </Project>
