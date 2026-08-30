@@ -1,6 +1,6 @@
 {
 	"dependencies": {
-		"@astrojs/starlight": "0.41.7",
+		"@astrojs/starlight": "0.41.9",
 		"astro": "7.2.4",
 		"sharp": "0.35.3"
 	},
@@ -17,7 +17,7 @@
 	"engines": {
 		"node": "24.20.0"
 	},
-	"packageManager": "pnpm@11.24.0",
+	"packageManager": "pnpm@11.25.0",
 	"private": true,
 	"scripts": {
 		"astro": "astro",
