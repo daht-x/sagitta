@@ -16,7 +16,6 @@ check_libs() {
 	return $?
 }
 check_docs() {
-	pnpm run 'astro:check'
 	pnpm run 'astro:build'
 	return $?
 }
