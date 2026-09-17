@@ -3,7 +3,7 @@
 		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.400" />
+		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.401" />
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.9.0" />
 		<PackageVersion Include="xunit.v3.mtp-v2" Version="4.0.1" />
 		<PackageVersion Include="xunit.runner.visualstudio" Version="4.0.0" />
