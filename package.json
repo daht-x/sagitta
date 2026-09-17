@@ -1,7 +1,7 @@
 {
 	"dependencies": {
-		"@astrojs/starlight": "0.41.10",
-		"astro": "7.2.10",
+		"@astrojs/starlight": "0.42.0",
+		"astro": "7.3.2",
 		"sharp": "0.35.4"
 	},
 	"devDependencies": {
@@ -10,7 +10,7 @@
 		"@commitlint/cli": "21.2.2",
 		"@commitlint/types": "21.2.0",
 		"husky": "9.1.7",
-		"lint-staged": "17.4.1",
+		"lint-staged": "17.5.1",
 		"markdownlint-cli2": "0.23.2",
 		"typescript": "7.0.2"
 	},
