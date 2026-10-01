@@ -10,7 +10,7 @@
 		"@commitlint/cli": "21.2.3",
 		"@commitlint/types": "21.2.3",
 		"husky": "9.1.7",
-		"lint-staged": "17.5.1",
+		"lint-staged": "17.6.0",
 		"markdownlint-cli2": "0.23.3",
 		"typescript": "7.0.2"
 	},
