@@ -1,9 +1,10 @@
+local.settings.json
+
 *.rsuser
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
-
 *.userprefs
 
 mono_crash.*
@@ -45,11 +46,11 @@ project.fragment.lock.json
 artifacts/
 
 ScaffoldingReadMe.txt
-
 StyleCopReport.xml
 
 *_i.c
 *_p.c
+*_i.h
 *_h.h
 *.ilk
 *.meta
@@ -76,6 +77,8 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.pem
+*.key
 
 _Chutzpah*
 
@@ -104,6 +107,8 @@ _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
+.JustCode
+
 _TeamCity*
 
 *.dotCover
@@ -114,7 +119,6 @@ _TeamCity*
 coverage*.json
 coverage*.xml
 coverage*.info
-
 *.coverage
 *.coveragexml
 
@@ -169,7 +173,6 @@ _pkginfo.txt
 *.appxupload
 
 *.[Cc]ache
-
 !?*.[Cc]ache/
 
 ClientBin/
@@ -211,18 +214,11 @@ FakesAssemblies/
 node_modules/
 
 *.plg
-
 *.opt
-
 *.vbw
-
 *.vbp
-
 *.dsw
 *.dsp
-
-*.ncb
-*.aps
 
 **/*.HTMLClient/GeneratedArtifacts
 **/*.DesktopClient/GeneratedArtifacts
@@ -242,34 +238,22 @@ __pycache__/
 *.pyc
 
 *.tss
-
 *.jmconfig
-
 *.btp.cs
 *.btm.cs
 *.odx.cs
 *.xsd.cs
 
 OpenCover/
-
 ASALocalRun/
-
 *.binlog
-
 *.nvuser
-
 .mfractor/
-
 .localhistory/
-
 .vshistory/
-
 healthchecksdb
-
 MigrationBackup/
-
 .ionide/
-
 FodyWeavers.xsd
 
 .vscode/*
@@ -288,9 +272,7 @@ FodyWeavers.xsd
 *.msp
 
 *.sln.iml
-
 .lycheecache
-
 .idea/
 
 dist/
@@ -303,5 +285,6 @@ pnpm-debug.log*
 
 .env
 .env.production
+.env*
 
 .DS_Store
