@@ -1,6 +1,6 @@
 {
 	"dependencies": {
-		"@astrojs/starlight": "0.42.10",
+		"@astrojs/starlight": "0.42.11",
 		"astro": "7.4.11",
 		"sharp": "0.35.5"
 	},
@@ -11,7 +11,7 @@
 		"@commitlint/types": "21.2.3",
 		"husky": "9.1.7",
 		"lint-staged": "17.6.0",
-		"markdownlint-cli2": "0.24.0",
+		"markdownlint-cli2": "0.24.1",
 		"typescript": "7.0.2"
 	},
 	"engines": {
