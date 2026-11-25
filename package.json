@@ -11,13 +11,13 @@
 		"@commitlint/types": "21.2.3",
 		"husky": "9.1.7",
 		"lint-staged": "17.6.1",
-		"markdownlint-cli2": "0.24.1",
+		"markdownlint-cli2": "0.24.2",
 		"typescript": "7.0.2"
 	},
 	"engines": {
 		"node": "26.13.1"
 	},
-	"packageManager": "pnpm@12.21.0",
+	"packageManager": "pnpm@12.23.0",
 	"private": true,
 	"scripts": {
 		"astro": "astro",
